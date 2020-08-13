@@ -61,7 +61,7 @@ export function init() {
 
 if (require.main === module) {
   // called directly i.e. "node app"
-  const PORT = 3000;
+  const PORT = 3030;
   init().listen(PORT, (err: Error) => {
     if (err) {
       // tslint:disable-next-line: no-console
