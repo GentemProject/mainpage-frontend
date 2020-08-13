@@ -1,0 +1,29 @@
+import React from 'react'
+import Heart from '../svg/heart'
+import * as styles from '../../styles/home/home.module.scss'
+function Cont() {
+  return (
+    <div className={styles.containerContribuir}>
+      <div className={styles.img}></div>
+      <div className={styles.content}>
+        <div className={styles.texto}>
+          <span>¿Eres una fundación, ONG o proyecto de carácter social?</span>
+          <p>
+            Haz parte de gentem y mejora tus probabilidades de recibir
+            donaciones.
+          </p>
+        </div>
+        <div className={styles.btnFl}>
+          <button
+            className={styles.btnContribuir}
+            style={{ background: '#237ed5' }}
+          >
+            <span>Regístrate </span>
+            <Heart />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+export default Cont

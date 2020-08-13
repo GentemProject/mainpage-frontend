@@ -1,0 +1,41 @@
+$bgwhite: #ffffff;
+$bgheader: $bgwhite;
+$bgfooter: #ededed;
+
+// Colores
+$black: #1a1928;
+$dark-blue: #145899;
+$blue: #237ed5;
+$light-blue: #37bef0;
+$green: #1e8a61;
+$yellow: #ffcf53;
+$red: #f44b53;
+$light-red: #ce242c;
+$no-bg: transparent;
+
+// Usables
+.divider {
+  margin: 12px 0;
+}
+
+// ONG PROFILE
+$hero-xxs: 320px;
+$hero-xs: 424px;
+$hero-xs-p: 748px;
+
+$hero-s: 438px;
+$hero-s-mr: 32px;
+$hero-s-p: 573px;
+
+$hero-m: 600px;
+$hero-m-mr: 48px;
+
+$hero-xl: 784px;
+
+$breadcrumb-xxs: calc(#{$hero-xxs} - #{$hero-s-mr});
+$breadcrumb-xs: calc(#{$hero-xs} - #{$hero-s-mr});
+$breadcrumb-xs-p: calc(#{$hero-xs-p} - #{$hero-s-mr});
+$breadcrumb-s: calc(#{$hero-s} - #{$hero-s-mr});
+$breadcrumb-s-p: calc($hero-s-p - #{$hero-s-mr});
+$breadcrumb-m: calc(#{$hero-m} - #{$hero-m-mr});
+$breadcrumb-xl: calc(#{$hero-m} - #{$hero-m-mr});
