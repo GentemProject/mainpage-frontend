@@ -12,7 +12,6 @@ import { authApi } from './api/auth';
 import { projects } from './api/routes/projects';
 import { error404, handleRouteErrors } from './logs/errors';
 import { logRequest } from './logs/log-request';
-
 export function init() {
   aws.config.update({ region: 'us-east-1' });
   const app = express();
@@ -31,6 +30,7 @@ export function init() {
   app.use(
     cors({
       origin: [
+        'http://localhost:3030',
         'http://localhost:3000',
         'http://localhost:8080',
         'https://gentem.org',
@@ -52,6 +52,7 @@ export function init() {
   app.use(authApi);
   app.use('/api/projects', projects);
   /*  app.use(organizationsApi); */
+
 
   /* Server Errors */
   app.use(error404);
