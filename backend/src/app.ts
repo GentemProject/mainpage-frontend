@@ -8,7 +8,8 @@ import methodOverride from 'method-override';
 import pino from 'pino-http';
 
 import { authApi } from './api/auth';
-import { organizationsApi } from './api/organizations';
+/* import organizationsApi from './api/routes'; */
+import { projects } from './api/routes/projects';
 import { error404, handleRouteErrors } from './logs/errors';
 import { logRequest } from './logs/log-request';
 
@@ -32,7 +33,6 @@ export function init() {
       origin: [
         'http://localhost:3000',
         'http://localhost:8080',
-        'http://localhost:8081',
         'https://gentem.org',
         'https://www.gentem.org',
         'https://app.gentem.org',
@@ -50,7 +50,8 @@ export function init() {
 
   /* Server Routes */
   app.use(authApi);
-  app.use(organizationsApi);
+  app.use('/api/projects', projects);
+  /*  app.use(organizationsApi); */
 
   /* Server Errors */
   app.use(error404);
@@ -61,7 +62,7 @@ export function init() {
 
 if (require.main === module) {
   // called directly i.e. "node app"
-  const PORT = 3000;
+  const PORT = 3030;
   init().listen(PORT, (err: Error) => {
     if (err) {
       // tslint:disable-next-line: no-console

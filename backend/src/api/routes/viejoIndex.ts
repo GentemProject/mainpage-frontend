@@ -25,25 +25,25 @@ route.put('/organizations/:id', async (req: Request, res: Response) => {
   const slug = req.params.id;
   const body = req.body;
   let project = {
-    name: body.name,
-    logo: req.body.logo,
-    objective: body.objective,
+    /*  name: body.name, */
+    /*    logo: req.body.logo,
+    objective: body.objective, */
+    /*    description: body.description, */
+    /*     location: body.location, */
+    /* city: body.city,
+    country: body.country, */
+    /*   howusedonations: body.howusedonations,
     communityworkwith: body.communityworkwith,
-    description: body.description,
-    howusedonations: body.howusedonations,
-    location: body.location,
-    city: body.city,
-    country: body.country,
-    sponsors: body.sponsors,
-    paymentslink: body.paymentslink,
-    accounts: body.accounts,
-    instructionstodeliverproducts: body.instructionstodeliverproducts,
-    website: body.website,
+    sponsors: body.sponsors, */
+    /*  paymentslink: body.paymentslink, */
+    /*  accounts: body.accounts, */
+    /*   instructionstodeliverproducts: body.instructionstodeliverproducts, */
+    /* website: body.website,
     email: body.email,
     phones: body.phones,
     whatsapp: body.whatsapp,
     instagram: body.instagram,
-    facebook: body.facebook,
+    facebook: body.facebook, */
     twitter: body.twitter,
     linkedin: body.linkedin,
     createtAt: new Date().toISOString(),
