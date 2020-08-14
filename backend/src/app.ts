@@ -11,7 +11,7 @@ import { authApi } from './api/auth';
 import { organizationsApi } from './api/organizations';
 import { error404, handleRouteErrors } from './logs/errors';
 import { logRequest } from './logs/log-request';
-
+import {filters} from './api/organizations/querys'
 export function init() {
   aws.config.update({ region: 'us-east-1' });
   const app = express();
@@ -30,6 +30,7 @@ export function init() {
   app.use(
     cors({
       origin: [
+        'http://localhost:3030',
         'http://localhost:3000',
         'http://localhost:8080',
         'http://localhost:8081',
@@ -51,6 +52,7 @@ export function init() {
   /* Server Routes */
   app.use(authApi);
   app.use(organizationsApi);
+  app.use(filters)
 
   /* Server Errors */
   app.use(error404);
