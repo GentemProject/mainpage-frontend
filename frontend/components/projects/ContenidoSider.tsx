@@ -1,46 +1,54 @@
-import { Layout, Modal } from 'antd'
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ModalContent } from './Contenido'
+import Modal from 'react-modal'
 
+// Components & Usables
+import { ModalContent } from './Contenido'
 import TargetBase from '../usables/TargetBase'
 import ResultItem from './ResultItem'
+
+// Svg
+import Close from '../svg/close'
+
+// Styles
 import * as styles from '../../styles/onglist.module.scss'
 
-const { Sider } = Layout
+Modal.setAppElement('#__next')
 
 function ContenidoSider(props: any) {
-  const [estado, setEstado] = useState({
-    visible: false,
-  })
-  const filter = props.filter
-  const handleModal = () => {
-    setEstado({ visible: true })
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+    setOpen(true)
   }
   const handleClose = () => {
-    setEstado({ visible: false })
+    setOpen(false)
   }
+
   const { ONGs } = props
+  const filter = props.filter
+
   return (
-    <Sider className={styles.ongListResult}>
+    <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
         <h6>Mostrando {ONGs.data.length} proyectos</h6>
-        <div className={styles.quantityBtn} onClick={handleModal}>
+        <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
         <Modal
-          maskClosable={true}
-          footer={null}
-          centered={true}
-          onCancel={handleClose}
-          visible={estado.visible}
+          className={styles.listModal}
+          isOpen={open}
+          onRequestClose={handleClose}
         >
+          <button className={styles.modalClose} onClick={handleClose}>
+            <Close />
+          </button>
           <ModalContent />
         </Modal>
       </div>
       {filter && <TargetBase filter={filter} />}
       <LazyContenidoSider ONGs={ONGs} />
-    </Sider>
+    </div>
   )
 }
 
@@ -49,7 +57,7 @@ function LazyContenidoSider({ ONGs }) {
   const elementRef = useRef()
 
   useEffect(() => {
-    const onChange = (entries, observer) => {
+    const onChange = (entries /* observer */) => {
       const el = entries[0]
       if (el.isIntersecting) {
         setShow(true)

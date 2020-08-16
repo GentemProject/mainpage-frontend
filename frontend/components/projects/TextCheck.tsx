@@ -1,19 +1,103 @@
-import { Switch } from 'antd'
-import React from 'react'
+import { useState } from 'react'
 
-function onChange(/* checked: any */) {
-  /*   console.log(`switch to ${checked}`) */
+// Material UI Check
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch'
+
+// Styles
+import * as styles from '../../styles/onglist.module.scss'
+
+interface Styles extends Partial<Record<SwitchClassKey, string>> {
+  focusVisible?: string
 }
 
-function textCheck(props: any) {
+interface Props extends SwitchProps {
+  classes: Styles
+}
+const IOSSwitch = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 42,
+      height: 26,
+      padding: 0,
+      margin: theme.spacing(1),
+    },
+    switchBase: {
+      padding: 1,
+      '&$checked': {
+        transform: 'translateX(16px)',
+        color: theme.palette.common.white,
+        '& + $track': {
+          backgroundColor: '#237ed5',
+          opacity: 1,
+          border: 'none',
+        },
+      },
+      '&$focusVisible $thumb': {
+        color: '#237ed5',
+        border: '6px solid #fff',
+      },
+    },
+    thumb: {
+      width: 24,
+      height: 24,
+    },
+    track: {
+      borderRadius: 26 / 2,
+      border: `1px solid ${theme.palette.grey[400]}`,
+      backgroundColor: theme.palette.grey[50],
+      opacity: 1,
+      transition: theme.transitions.create(['background-color', 'border']),
+    },
+    checked: {},
+    focusVisible: {},
+  })
+)(({ classes, ...props }: Props) => {
   return (
-    <div className="textCheck">
-      <div className="textCheck__top">
-        <h6>{props.title}</h6>
-        <Switch defaultChecked onChange={onChange} />
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  )
+})
+
+export default function TextCheck({ title, desc }) {
+  const [check, setCheck] = useState({
+    checkedB: true,
+  })
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheck({ ...check, [event.target.name]: event.target.checked })
+  }
+
+  return (
+    <FormGroup>
+      <div className={styles.textCheck}>
+        <div className={styles.textCheckTop}>
+          <h6>{title}</h6>
+          <FormControlLabel
+            control={
+              <IOSSwitch
+                checked={check.checkedB}
+                onChange={handleChange}
+                name="checkedB"
+              />
+            }
+            label=""
+          />
+        </div>
+        <div className={styles.textCheckBottom}>{desc}</div>
       </div>
-      <div className="textCheck__bottom">{props.desc}</div>
-    </div>
+    </FormGroup>
   )
 }
-export default textCheck

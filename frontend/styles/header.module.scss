@@ -1,16 +1,6 @@
 @import './lib/variables.scss';
 @import './layout/layout.scss';
 
-.ant-layout-header {
-  display: flex;
-  line-height: normal !important;
-}
-
-.ant-layout {
-  width: 100%;
-  background: none;
-}
-
 .fixed {
   position: fixed;
   top: 0;
@@ -37,6 +27,7 @@
 .headerContent {
   padding: 0 $layout-xl;
   background-color: transparent;
+  width: 100%;
 }
 
 .headerLogo {

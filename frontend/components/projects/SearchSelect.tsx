@@ -1,5 +1,4 @@
-import { Divider } from 'antd'
-import React from 'react'
+import Divider from '../usables/buttons/divider'
 
 function SearchSelect(props: any) {
   return (
@@ -9,9 +8,7 @@ function SearchSelect(props: any) {
       </div>
       <Divider className="Divider" />
       <div className="SearchSelect__info">
-        <p>
-          Selecciona la ciudad en la que quieres que tu donación tenga efecto
-        </p>
+        <p>{props.info}</p>
       </div>
       <div className="SearchSelect__select">{props.children}</div>
     </div>

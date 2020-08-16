@@ -5,6 +5,8 @@
 
 .ongList {
   background-color: $bgwhite;
+  display: flex;
+  flex-direction: column;
 }
 
 .ongListContent {
@@ -12,6 +14,7 @@
   padding: 0 $layout-xl;
   height: auto;
   background: none;
+  display: flex;
 }
 
 // banner
@@ -19,7 +22,11 @@
 .banner {
   margin-top: 64px;
   height: 228px;
-  background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+  background: linear-gradient(
+      0deg,
+      rgba(26, 25, 40, 0.6),
+      rgba(26, 25, 40, 0.6)
+    ),
     url('https://gentem.org/public/src/img/hero_xxl.jpg');
   position: relative;
   z-index: 0;
@@ -56,34 +63,16 @@
     margin-bottom: 48px;
   }
 }
-
-.SearchSelect__select {
-  margin-top: 12px;
-  /*   & .ant-select-selector {
-    border: 1px solid #1a1928 !important;
-  } */
-}
-
 .textCheck {
   margin-top: 24px;
 }
-.textCheck__top {
+.textCheckTop {
   display: flex;
   justify-content: space-between;
-}
-.ant-switch {
-  min-width: 50px;
-  height: 26px;
-  &::after {
-    width: 22px;
-    height: 22px;
-  }
-}
-.ant-switch-checked {
-  background-color: $blue;
+  align-items: center;
 }
 
-.textCheck__bottom {
+.textCheckBottom {
   font-size: 14px;
   max-width: 310px;
 }
@@ -208,6 +197,28 @@
 
 // Responsive
 
+@media (max-width: 799px) {
+  .listModal {
+    padding: 12px 24px;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    right: 20px;
+    bottom: 40px;
+    border: 1px solid #cccccc;
+    background: white;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .modalClose {
+    position: absolute;
+    z-index: 21;
+    right: 20px;
+  }
+}
+
 // XXS
 @media (min-width: 320px) {
   .ongListContent {
@@ -217,7 +228,11 @@
   .banner {
     height: 252px;
     padding: 0 24px;
-    background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
       url('https://gentem.org/landing/img/hero_s.jpg');
   }
   .ongListSearch {
@@ -262,60 +277,24 @@
 // XS
 @media (min-width: 424px) {
   .banner {
-    background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
       url('https://gentem.org/landing/img/hero_m.jpg');
   }
-  /* .ongListContent {
-    padding: 0 @layout-xs;
-    margin-top: 24px;
-  }
-  .banner {
-    height: 252px;
-  }
-  .ongListSearch {
-    display: none !important;
-  }
-  .ongListResult {
-    margin: 0;
-  }
-  .resultItem{
-    height: 132px;
-  }
-  .resultItemImg {
-    min-width: 132px;
-    height: 132px;
-  }
-  .resultItemDetails {
-    margin: 21px 16px;
-  }
-  .itemDetailsDesc {
-    display: none;
-  }
-  .itemDetailsFooter {
-    flex-direction: column-reverse;
-  }
-  .ongListModal {
-    & > * {
-      display: block !important;
-    }
-  }
-  .ongListModalLogo {
-    margin-bottom: 60px;
-    & img {
-      width: 120px;
-    }
-  }
-  .ongListSearch {
-    width: 100%;
-    max-width: 100%;
-  } */
 }
 
 // XS Portrait
 @media (min-width: 796px) {
   .banner {
     height: 228px;
-    background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
       url('https://gentem.org/landing/img/hero_l.jpg');
   }
   .ongListContent {
@@ -348,7 +327,11 @@
 // S Portrait
 @media (min-width: 1016px) {
   .banner {
-    background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
       url('https://gentem.org/landing/img/hero_xl.jpg');
   }
   .ongListContent {
@@ -366,7 +349,11 @@
 // M
 @media (min-width: 1028px) {
   .banner {
-    background: linear-gradient(0deg, rgba(26, 25, 40, 0.6), rgba(26, 25, 40, 0.6)),
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
       url('https://gentem.org/landing/img/hero_xxl.jpg');
   }
   .ongListContent {

@@ -6,7 +6,7 @@ import csrf from 'csurf';
 import express from 'express';
 import methodOverride from 'method-override';
 import pino from 'pino-http';
-
+import './utils/database';
 import { authApi } from './api/auth';
 /* import organizationsApi from './api/routes'; */
 import { projects } from './api/routes/projects';
@@ -52,7 +52,6 @@ export function init() {
   app.use(authApi);
   app.use('/api/projects', projects);
   /*  app.use(organizationsApi); */
-
 
   /* Server Errors */
   app.use(error404);

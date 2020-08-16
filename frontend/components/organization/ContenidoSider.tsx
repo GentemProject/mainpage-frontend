@@ -1,19 +1,19 @@
-import { Layout, Divider, Button } from 'antd'
-import React from 'react'
+import { Divider, Button } from '../usables/buttons'
 import * as styles from '../../styles/organization.module.scss'
 
-const { Sider } = Layout
 function ContenidoSider(props: any) {
   return (
-    <Sider className={styles.ongProfileHowToDonate}>
-      <ResponsiveDonate
-        logo={props.logo}
-        name={props.name}
-        instructionstodeliverproducts={props.instructionstodeliverproducts}
-        accounts={props.accounts}
-        paymentslink={props.paymentslink}
-      />
-    </Sider>
+    <div className={styles.ongProfileHowToDonate}>
+      <div>
+        <ResponsiveDonate
+          logo={props.logo}
+          name={props.name}
+          instructionstodeliverproducts={props.instructionstodeliverproducts}
+          accounts={props.accounts}
+          paymentslink={props.paymentslink}
+        />
+      </div>
+    </div>
   )
 }
 export default ContenidoSider
@@ -26,12 +26,11 @@ export function ResponsiveDonate({
   paymentslink,
 }: any) {
   return (
-    <React.Fragment>
+    <>
       {(instructionstodeliverproducts || paymentslink || accounts) && (
         <>
           <div className={styles.ongProfileUserModal}>
             <div className={styles.ongProfileUserModalImg}>
-              {/* <img src={logo || Logo} alt='Logo de ONG' /> */}
               {logo ? (
                 <img src={logo} alt="User 1" />
               ) : (
@@ -49,17 +48,18 @@ export function ResponsiveDonate({
             <div className="OngProfile__HowToDonate--Donate">
               <>
                 <h4 className="OngProfile__Donate--Title h4"> Dona Online </h4>
-                <Divider className={styles.divider} />
+                <Divider
+                  styleProp={{
+                    margin: '12px 0',
+                  }}
+                />
                 <a
                   href={paymentslink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button
-                    type="primary"
-                    className={styles.ongProfileDonateButton}
-                  >
-                    Haz tu donación online
+                  <Button>
+                    <span> Haz tu donación online </span>
                   </Button>
                 </a>
               </>
@@ -70,7 +70,11 @@ export function ResponsiveDonate({
               <h4 className="OngProfile__DonateWay--Bank h4">
                 Consigna a una cuenta bancaria
               </h4>
-              <Divider className={styles.divider} />
+              <Divider
+                styleProp={{
+                  margin: '12px 0',
+                }}
+              />
               <span className={`OngProfile__DonateWay--BankID ${styles.span}`}>
                 {accounts}
               </span>
@@ -81,7 +85,11 @@ export function ResponsiveDonate({
               <h4 className="OngProfile__DonateProduct--Title h4">
                 Haz una donación de productos
               </h4>
-              <Divider className={styles.divider} />
+              <Divider
+                styleProp={{
+                  margin: '12px 0',
+                }}
+              />
               <div className="OngProfile__DonateProduct--DonateWay">
                 <span className="span">{instructionstodeliverproducts}</span>
               </div>
@@ -89,6 +97,6 @@ export function ResponsiveDonate({
           )}
         </>
       )}
-    </React.Fragment>
+    </>
   )
 }

@@ -1,25 +1,33 @@
-import { Layout, Divider, Button, Modal } from 'antd'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Modal from 'react-modal'
+
+// SVG
+import Message from '../svg/Message'
+import Close from '../svg/close'
+
+// Usables & Componentes
 import { ResponsiveDonate } from './ContenidoSider'
-import { MessageOutlined } from '@ant-design/icons'
-import cat from '../../api/categories.json'
+import { Button, Divider } from '../usables/buttons'
 import TargetBase from '../usables/TargetBase'
+import cat from '../../api/categories.json'
+
+// Styles
 import * as styles from '../../styles/organization.module.scss'
 
-const { Content } = Layout
-
+Modal.setAppElement('#__next')
 function Contenido(props: any) {
-  const [estado, setEstado] = useState<any>({
-    visible: false,
-  })
-  const [communityArray, setCommunityArray] = useState<any>([])
-  const handleModal = () => {
-    setEstado({ visible: true })
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+    setOpen(true)
   }
   const handleClose = () => {
-    setEstado({ visible: false })
+    setOpen(false)
   }
+
+  const [communityArray, setCommunityArray] = useState<any>([])
+
   const communityWorkWith = props.communityworkwith
   const catdata = cat.data
   useEffect(() => {
@@ -35,8 +43,9 @@ function Contenido(props: any) {
     })
   }, [catdata, communityWorkWith])
   const filter = 0
+
   return (
-    <Content className={styles.ongProfileHero}>
+    <div className={styles.ongProfileHero}>
       <div className="OngProfile__Hero--User">
         <div className={styles.ongProfileUserImgBreadcrumb}>
           <div className={styles.ongProfileUserImg}>
@@ -77,7 +86,11 @@ function Contenido(props: any) {
         {props.sponsors && (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
-            <Divider className={styles.divider} />
+            <Divider
+              styleProp={{
+                margin: '12px 0',
+              }}
+            />
             <div className={styles.ongProfileSponsorsContainer}>
               {props.sponsors.map((sponsor: any) => (
                 <div key={sponsor} className={styles.ongProfileContainerImg}>
@@ -91,7 +104,11 @@ function Contenido(props: any) {
         {(props.website || props.email || props.phone) && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
-            <Divider className={styles.divider} />
+            <Divider
+              styleProp={{
+                margin: '12px 0',
+              }}
+            />
             <div className={styles.ongProfileContactInfo}>
               {props.website && (
                 <div className="OngProfile__Info-Web">
@@ -128,7 +145,11 @@ function Contenido(props: any) {
         {(props.facebook || props.instagram || props.whatsapp) && (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
-            <Divider className={styles.divider} />
+            <Divider
+              styleProp={{
+                margin: '12px 0',
+              }}
+            />
             <div className="OngProfile__Social--Networks">
               {props.whatsapp && (
                 <a
@@ -163,7 +184,11 @@ function Contenido(props: any) {
         {(props.country || props.city) && (
           <div className={styles.ongProfileUserAddress}>
             <h4 className={styles.ongProfileAddressTitle}> Área de trabajo </h4>
-            <Divider className={styles.divider} />
+            <Divider
+              styleProp={{
+                margin: '12px 0',
+              }}
+            />
             <div className={styles.ongProfileAddressInfo}>
               <div className={styles.ongProfileInfoIcon}>
                 <img src="/location.svg" alt="location icon" />
@@ -183,19 +208,22 @@ function Contenido(props: any) {
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
-                type="primary"
-                className={styles.ongProfileFixedHowToDonateButton}
-                onClick={handleModal}
+                styleProp={{
+                  width: '216px',
+                  height: '48px',
+                }}
+                onClick={handleOpen}
               >
-                ¿Cómo donar?
+                <span> ¿Cómo donar? </span>
               </Button>
               <Modal
-                maskClosable={true}
-                footer={null}
-                centered={true}
-                onCancel={handleClose}
-                visible={estado.visible}
+                isOpen={open}
+                onRequestClose={handleClose}
+                className={styles.ongProfileModal}
               >
+                <button className={styles.modalClose} onClick={handleClose}>
+                  <Close />
+                </button>
                 <div className="Modal__Active">
                   <ResponsiveDonate
                     logo={props.logo}
@@ -209,16 +237,20 @@ function Contenido(props: any) {
                 </div>
               </Modal>
               <Button
-                type="primary"
-                className={styles.ongProfileFixedHowToDonateMessageButton}
+                styleProp={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '40px',
+                  marginLeft: '24px',
+                }}
               >
-                <MessageOutlined />
+                <Message width="30px" height="40px" color="#fff" />
               </Button>
             </div>
           </div>
         )}
       </div>
-    </Content>
+    </div>
   )
 }
 export default Contenido

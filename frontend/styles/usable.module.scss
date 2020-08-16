@@ -1,0 +1,103 @@
+@import './lib/variables.scss';
+@import './layout/layout.scss';
+
+// Button
+.button {
+  background-color: $blue;
+  border-color: $blue;
+  color: white;
+  width: 266px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & :hover {
+    cursor: pointer;
+  }
+  & span {
+    font-size: 18px;
+    font-weight: 800;
+  }
+}
+
+// Responsive
+// UltraResponsive XXS(?
+@media (min-width: 320px) {
+  .button {
+    width: 290px;
+  }
+}
+
+@media (max-width: 424px) {
+  .button {
+    width: 90%;
+    & span {
+      font-size: 16px;
+    }
+  }
+}
+
+// XS Portrait
+@media (min-width: 796px) {
+  .button {
+    width: 266px;
+  }
+}
+// End Button
+
+// Divider
+
+.divider {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  border-top: 1px solid #f0f0f0;
+}
+
+.dividerHorizontal {
+  display: flex;
+  clear: both;
+  width: 100%;
+  min-width: 100%;
+  margin: 24px 0;
+}
+// End Divider
+
+// Select
+
+.select {
+  cursor: pointer !important;
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    cursor: pointer;
+    transition: ease-in 0.25s;
+    color: rgb(167, 166, 166);
+  }
+  & option {
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: normal;
+    font-size: 14px;
+  }
+  & option:checked {
+    background-color: rgba(28, 54, 92, 0.986);
+    transition: ease-in 0.25s;
+    color: white;
+  }
+
+  /*   &:hover option {
+    background-color: red;
+  } */
+}
+
+// End Select

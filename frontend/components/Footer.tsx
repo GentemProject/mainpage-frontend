@@ -1,11 +1,9 @@
-import React from 'react'
-import { Layout } from 'antd'
 import * as styles from '../styles/footer.module.scss'
 
 function Footer() {
   return (
-    <Layout>
-      <Layout.Footer className={styles.footer}>
+    <div>
+      <div className={styles.footer}>
         <div className={styles.socialMedia}>
           <div>
             <a
@@ -61,8 +59,8 @@ function Footer() {
             <span className='circle'></span>
             <div className='activate'>Ingles</div>
           </div> */}
-      </Layout.Footer>
-    </Layout>
+      </div>
+    </div>
   )
 }
 

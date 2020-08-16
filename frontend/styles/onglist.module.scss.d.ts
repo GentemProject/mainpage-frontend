@@ -8,11 +8,8 @@ export const banner: string
 export const bannerContent: string
 export const ongListSearch: string
 export const ongListSearchContainer: string
-export const searchSelectSelect: string
 export const textCheck: string
 export const textCheckTop: string
-export const antSwitch: string
-export const antSwitchChecked: string
 export const textCheckBottom: string
 export const ongListResult: string
 export const ongListResultQuantity: string
@@ -29,5 +26,7 @@ export const footerTargetPrincipal: string
 export const target: string
 export const targetSpan: string
 export const detailsFooterLocation: string
+export const listModal: string
+export const modalClose: string
 export const ongListModal: string
 export const ongListModalLogo: string

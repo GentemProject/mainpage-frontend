@@ -36,6 +36,6 @@ $breadcrumb-xxs: calc(#{$hero-xxs} - #{$hero-s-mr});
 $breadcrumb-xs: calc(#{$hero-xs} - #{$hero-s-mr});
 $breadcrumb-xs-p: calc(#{$hero-xs-p} - #{$hero-s-mr});
 $breadcrumb-s: calc(#{$hero-s} - #{$hero-s-mr});
-$breadcrumb-s-p: calc($hero-s-p - #{$hero-s-mr});
+$breadcrumb-s-p: calc(#{$hero-s-p} - #{$hero-s-mr});
 $breadcrumb-m: calc(#{$hero-m} - #{$hero-m-mr});
 $breadcrumb-xl: calc(#{$hero-m} - #{$hero-m-mr});

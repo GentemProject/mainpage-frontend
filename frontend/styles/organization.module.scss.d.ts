@@ -33,7 +33,6 @@ export const ongProfileFixedHowToDonateMessageButton: string
 export const ongProfileDivider: string
 export const ongProfileHowToDonate: string
 export const ongProfileTitleDivider: string
-export const ongProfileDonateButton: string
 export const ongProfileUserModal: string
 export const ongProfileDonateDonateWay: string
 export const ongProfileHowToDonateDonateProduct: string
@@ -48,7 +47,8 @@ export const mapInfo: string
 export const marker: string
 export const markerFill: string
 export const markerFillFill: string
-export const antModalBody: string
+export const ongProfileModal: string
+export const modalClose: string
 export const ongProfileUserModalImg: string
 export const ongProfileHowToDonateTitle: string
 export const ongProfileUserModalTitle: string

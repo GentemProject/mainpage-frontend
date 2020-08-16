@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import Router from 'next/router'
+
+// Loading
 import NProgress from 'nprogress'
-import '../styles/antd.less'
+
+// Styles
 import '../styles/styles.scss'
-import 'nprogress/nprogress.css'
 
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())

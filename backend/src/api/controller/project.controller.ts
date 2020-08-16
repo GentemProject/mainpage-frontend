@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 /* import { connectMongo } from '../../utils/database'; */
 
-import Project from '../models/project';
+import Project from '../schemas/project';
 
 const ProjectCtrl = {
   getAllProjects: async (res: Response) => {

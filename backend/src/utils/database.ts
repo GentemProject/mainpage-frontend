@@ -1,7 +1,6 @@
 import { MongoClient, Db } from 'mongodb';
 import { config } from './config';
 
-
 let databaseConnection: Db;
 
 export async function connectMongo() {

@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { NextPage } from 'next'
-import { Organization } from '../../interfaces/organization'
-/* import { api } from '../../api' */
-import { Layout as AntLayout } from 'antd'
-import Layout from '../../components/Layout'
-import Contenido from '../../components/organization/Contenido'
-import ContenidoSider from '../../components/organization/ContenidoSider'
+import { useState, useEffect } from 'react'
 import useLocation from '../../components/usables/useLocation'
-import Map from '../../components/organization/Map'
+import { NextPage } from 'next'
 import Head from 'next/head'
+
+// Usables & Componentes
+import { Contenido, ContenidoSider } from '../../components/organization'
+import Layout from '../../components/Layout'
+import Map from '../../components/organization/Map'
+
+// Interfaces
+import { Organization } from '../../interfaces/organization'
+
+// Styles
 import * as styles from '../../styles/organization.module.scss'
 
 interface Props {
@@ -30,7 +33,7 @@ const ORG: NextPage<Props> = ({ organization }) => {
         <title>gentem | {organization.name}</title>
       </Head>
       <Layout>
-        <AntLayout className={styles.ongProfile}>
+        <div className={styles.ongProfile}>
           <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
             <Map
               googleMapURL={
@@ -40,9 +43,7 @@ const ORG: NextPage<Props> = ({ organization }) => {
               country={organization.country}
               coordenates={location}
             ></Map>
-            <AntLayout
-              className={`${styles.ongProfileContent} ${styles.layout}`}
-            >
+            <div className={`${styles.ongProfileContent} ${styles.layout}`}>
               <Contenido
                 communityworkwith={organization.communityworkwith}
                 name={organization.name}
@@ -64,7 +65,6 @@ const ORG: NextPage<Props> = ({ organization }) => {
                 instructionstodeliverproducts={
                   organization.instructionstodeliverproducts
                 }
-                /*  location={location.props.mapLocation} */
               />
               <ContenidoSider
                 name={organization.name}
@@ -74,9 +74,9 @@ const ORG: NextPage<Props> = ({ organization }) => {
                 }
                 paymentslink={organization.paymentslink}
               />
-            </AntLayout>
+            </div>
           </div>
-        </AntLayout>
+        </div>
       </Layout>
     </>
   )

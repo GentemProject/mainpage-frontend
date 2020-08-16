@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport * as styles from '../../styles/home/home.module.scss';\n\nfunction Fl(props) {\n  return __jsx(\"div\", {\n    className: styles.fl1\n  }, props.children);\n}\n\nexport default Fl;","map":null,"metadata":{},"sourceType":"module"}

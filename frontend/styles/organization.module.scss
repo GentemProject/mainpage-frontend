@@ -15,10 +15,12 @@
   padding: $layout-xl;
   height: auto;
   background: none;
+  display: flex;
+  flex-direction: row;
 }
 
 .ongProfileHero {
-  width: 784px;
+  width: 100%;
   margin-bottom: 84px;
 }
 
@@ -110,7 +112,7 @@
   width: 100%;
 }
 
-.OngProfile__Sponsors--Container {
+.ongProfileSponsorsContainer {
   padding-top: 10px;
   display: flex;
   flex-direction: row;
@@ -149,11 +151,14 @@
 .ongProfileFixedHowToDonate {
   position: fixed;
   bottom: 3vh;
-  display: flex;
+  display: none;
   width: 85%;
   justify-content: flex-end;
   margin: 0 $layout-xs;
   color: $blue;
+  & div {
+    display: flex;
+  }
 }
 
 .ongProfileFixedHowToDonateButton {
@@ -200,21 +205,6 @@
 
 .OngProfile__Title--Divider {
   margin: 10px 0;
-}
-
-.ongProfileDonateButton {
-  background-color: $blue;
-  border-color: $blue;
-  width: 266px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & span {
-    font-size: 18px;
-    font-weight: 800;
-  }
 }
 
 .ongProfileUserModal {
@@ -341,9 +331,25 @@
 }
 
 // Modal
-@media (max-width: 800px) {
-  .ant-modal-body {
-    padding: 12px 24px !important;
+@media (max-width: 799px) {
+  .ongProfileModal {
+    padding: 12px 24px;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    right: 20px;
+    bottom: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .modalClose {
+    position: absolute;
+    z-index: 21;
+    right: 20px;
   }
 
   .ongProfileUserModal {
@@ -409,9 +415,15 @@
     display: block;
   }
 
+  .ongProfileFixedHowToDonate {
+    display: flex;
+  }
+
   .ongProfileFixedHowToDonateButton,
   .ongProfileFixedHowToDonateMessageButton {
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -424,10 +436,6 @@
 
   .map {
     height: 168px !important;
-  }
-
-  .ongProfileHero {
-    width: $hero-xs;
   }
 
   .ongProfileUserImgBreadcrumb {
@@ -476,10 +484,6 @@
     width: 376px !important;
   }
 
-  .ongProfileDonateButton {
-    width: 290px;
-  }
-
   .ongProfileDonateDonateWay {
     padding-top: 48px;
   }
@@ -498,8 +502,8 @@
   }
 
   .ongProfileFixedHowToDonateMessageButton {
-    width: 50;
-    height: 50;
+    width: 50px;
+    height: 50px;
   }
 
   .address {
@@ -528,8 +532,8 @@
   }
 
   .ongProfileFixedHowToDonateMessageButton {
-    width: 60;
-    height: 60;
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -537,10 +541,6 @@
 @media (min-width: 796px) {
   .ongProfileContent {
     padding: 0 $layout-xs-p;
-  }
-
-  .ongProfileHero {
-    width: $hero-xs-p;
   }
 
   .ongProfileUserImgBreadcrumb {
@@ -557,10 +557,6 @@
 
   .ongProfileUserAddress {
     margin-top: 36px;
-  }
-
-  .ongProfileDonateButton {
-    width: 266px;
   }
 
   .ongProfileDonateDonateWay {
@@ -583,7 +579,6 @@
   }
 
   .ongProfileHero {
-    width: $hero-s;
     margin-right: $hero-s-mr;
   }
 
@@ -659,10 +654,6 @@
     padding: 0 $layout-s-p;
   }
 
-  .ongProfileHero {
-    width: $hero-s-p;
-  }
-
   .ongProfileUserImgBreadcrumb {
     max-width: $breadcrumb-s-p;
   }
@@ -679,7 +670,6 @@
   }
 
   .ongProfileHero {
-    width: $hero-m;
     margin-right: $hero-m-mr;
   }
 

@@ -9,17 +9,13 @@ $centrado: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $bgfooter;
 }
 
 .footerContact {
   display: flex;
   flex-direction: column;
   text-align: center;
-}
-
-.ant-layout-footer {
-  text-align: $centrado;
-  background-color: $bgfooter;
 }
 
 .mail-color {
