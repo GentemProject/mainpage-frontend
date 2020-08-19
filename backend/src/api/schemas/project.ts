@@ -1,5 +1,5 @@
-import { model, Schema } from 'mongoose';
-
+import { mongoose } from '../connect';
+const Schema = mongoose.Schema;
 const projectSchema = new Schema(
   {
     slug: {
@@ -48,5 +48,5 @@ const projectSchema = new Schema(
     timestamps: true,
   },
 );
-
-export default model('projects', projectSchema);
+const projectModel = mongoose.model('Project', projectSchema);
+export default  projectModel
