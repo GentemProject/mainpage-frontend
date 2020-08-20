@@ -6,8 +6,17 @@ body {
   font-family: 'Nunito', serif;
   font-size: 18px;
   margin: 0;
+  color: #1a1928;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1a1928;
+}
 h1 {
   font-weight: 600 !important;
   font-size: 45px !important;
@@ -40,6 +49,7 @@ p {
 
 a {
   color: $blue;
+  text-decoration: none;
   &:hover {
     color: $dark-blue;
   }
@@ -54,13 +64,13 @@ button {
   display: none;
 }
 
-@media (max-width: 800px) {
-  .ReactModalPortal {
-    position: absolute;
-    z-index: 2;
-    display: block;
-  }
+/* @media (max-width: 800px) { */
+.ReactModalPortal {
+  position: absolute;
+  z-index: 2;
+  display: block;
 }
+/* } */
 
 // Loader
 

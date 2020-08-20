@@ -19,8 +19,8 @@ interface Props extends SwitchProps {
 const IOSSwitch = withStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: 42,
-      height: 26,
+      width: 40,
+      height: 25,
       padding: 0,
       margin: theme.spacing(1),
     },
@@ -30,13 +30,13 @@ const IOSSwitch = withStyles((theme: Theme) =>
         transform: 'translateX(16px)',
         color: theme.palette.common.white,
         '& + $track': {
-          backgroundColor: '#237ed5',
+          backgroundColor: '#52d869',
           opacity: 1,
           border: 'none',
         },
       },
       '&$focusVisible $thumb': {
-        color: '#237ed5',
+        color: '#52d869',
         border: '6px solid #fff',
       },
     },
@@ -75,7 +75,6 @@ export default function TextCheck({ title, desc, change, name }) {
   const [check, setCheck] = useState({
     checkedB: false,
   })
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheck({ ...check, [event.target.name]: event.target.checked })
     console.log(check.checkedB)

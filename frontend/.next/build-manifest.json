@@ -9,10 +9,6 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -24,7 +20,11 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
+<<<<<<< HEAD
     "/index": [
+=======
+    "/admin": [
+>>>>>>> e11f5dbe3c996433a796c36d587d19d2ac90b44b
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],

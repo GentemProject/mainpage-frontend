@@ -158,7 +158,7 @@ const ProjectCtrl = {
       {
         _id: _id,
       },
-      (err:any, result:any) => {
+      (err: any, result: any) => {
         if (err) {
           return res.json(err);
         } else {

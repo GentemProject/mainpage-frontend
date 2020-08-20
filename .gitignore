@@ -17,6 +17,8 @@ build/
 # Next output
 frontend/out/
 out/
+.next
+frontend/.next/
 
 # Environment configuration file
 .env
