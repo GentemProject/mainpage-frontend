@@ -61,7 +61,7 @@ const ProjectCtrl = {
     const slug = req.params.id;
     projectModel.find(
       {
-        _id: slug,
+        slug: slug,
       },
       (err: any, result: any) => {
         if (err) {
