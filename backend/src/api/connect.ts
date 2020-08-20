@@ -6,7 +6,7 @@ mongoose.connect(config.X_MONGO_URL, {
   useUnifiedTopology: true,
   dbName: 'projects',
 });
-mongoose.set("useCreateIndex", true);
-mongoose.connection.on("on", console.log.bind("error en la conexion"))
+mongoose.set('useCreateIndex', true);
+mongoose.connection.on('on', console.log.bind('error en la conexion'));
 
-export { mongoose }
+export { mongoose };
