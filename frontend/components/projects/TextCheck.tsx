@@ -70,12 +70,15 @@ const IOSSwitch = withStyles((theme: Theme) =>
     />
   )
 })
-export default function TextCheck({ title, desc }) {
+
+export default function TextCheck({ title, desc, change, name }) {
   const [check, setCheck] = useState({
-    checkedB: true,
+    checkedB: false,
   })
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheck({ ...check, [event.target.name]: event.target.checked })
+    console.log(check.checkedB)
+    change(event.target.checked, name)
   }
 
   return (
