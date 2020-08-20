@@ -73,6 +73,6 @@ const oldSchema = new Schema({
   city: String,
   country: String,
   createtAt: Number,
-});
+}, {strict: false});
 
 export const oldModel = mongoose.model('organiz', oldSchema, 'organiz');
