@@ -19,15 +19,14 @@ interface Props {
 
 const OngList: NextPage<Props> = ({ projects }) => {
   const filter = ['Niños y Niñas (7-12)']
-
   return (
     <>
       <Head>
         <title>gentem | Proyectos</title>
       </Head>
       <Layout>
-        {projects.data.length < 0 && <Loader></Loader>}
-        {projects.data.length > 0 && (
+        {projects.length < 0 && <Loader></Loader>}
+        {projects.length > 0 && (
           <div className={styles.ongList}>
             <Banner />
             <div className={styles.layoutCenter}>
@@ -46,7 +45,7 @@ const OngList: NextPage<Props> = ({ projects }) => {
 export default OngList
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://api.gentem.org/organizations')
+  const res = await fetch('https://api.gentem.org/api/projects')
   const projects = await res.json()
   return {
     props: {

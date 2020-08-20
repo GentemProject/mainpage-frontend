@@ -8,7 +8,6 @@ function ResultItem(props: any) {
     <div className="OngList__Result--itemContainer">
       <div className={style.resultItem}>
         <div className={style.resultItemImg}>
-          {/* <img src={props.img || Logo} alt='ONG Logo' /> */}
           {props.logo ? (
             <img src={props.logo} />
           ) : (
@@ -32,8 +31,8 @@ function ResultItem(props: any) {
               {/*  <div className='footer__target--more'> +1</div> */}
             </div>
             <div className={style.detailsFooterLocation}>
-              {props.city && props.country
-                ? `${props.city}, ${props.country}`
+              {props.location
+                ? `${props.location.city}, ${props.location.country}`
                 : 'Sin nombrar'}
             </div>
           </div>

@@ -23,5 +23,5 @@ export interface Organization {
   description: string
   country: string
   city: string
-  data: any
+  length: number
 }

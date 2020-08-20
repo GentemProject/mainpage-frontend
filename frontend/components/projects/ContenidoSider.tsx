@@ -31,7 +31,7 @@ function ContenidoSider(props: any) {
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
-        <h6>Mostrando {ONGs.data.length} proyectos</h6>
+        <h6>Mostrando {ONGs.length} proyectos</h6>
         <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
@@ -75,16 +75,16 @@ function LazyContenidoSider({ ONGs }) {
   return (
     <div ref={elementRef}>
       {show
-        ? ONGs.data.map((ong: any) => {
+        ? ONGs.map((ong: any) => {
             return (
               <Link key={ong.slug} href={`/org/${ong.slug}`}>
                 <a>
                   <ResultItem
-                    name={ong.name}
-                    desc={ong.description}
-                    logo={ong.logo}
-                    city={ong.city}
-                    country={ong.country}
+                    communityId={ong.primaryData.communityId}
+                    name={ong.primaryData.name}
+                    desc={ong.primaryData.description}
+                    logo={ong.primaryData.logo}
+                    location={ong.location}
                   />
                 </a>
               </Link>
