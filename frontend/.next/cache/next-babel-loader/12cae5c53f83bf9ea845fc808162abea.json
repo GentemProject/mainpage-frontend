@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport * as styles from '../../styles/loader.module.scss';\n\nfunction Loader() {\n  return __jsx(React.Fragment, null, window.scroll(0, 0), __jsx(\"div\", {\n    className: styles.loader\n  }));\n}\n\nexport default Loader;","map":null,"metadata":{},"sourceType":"module"}

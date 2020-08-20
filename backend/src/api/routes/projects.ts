@@ -5,7 +5,7 @@ import projectCtrl from '../controller/project.controller';
 const { getAllProjects, createProject, getForFilters, getDistinctCountry, getOrg } = projectCtrl;
 
 router.get('/', getAllProjects);
-router.get('/filters/:country&:products&:paymentData&:transfer', getForFilters);
+router.get('/filters/:country&:products&:paymentData&:transfer&:community', getForFilters);
 router.get('/distinct/', getDistinctCountry);
 router.get('/id/:id', getOrg);
 router.post('/', createProject);

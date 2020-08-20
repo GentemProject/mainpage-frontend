@@ -120,19 +120,25 @@ const ProjectCtrl = {
     });
   },
   getForFilters: async (req: Request, res: Response) => {
-    const { country, products, paymentData, transfer } = req.params;
+    const { country, products, paymentData, transfer, community } = req.params;
     projectModel.find(
       {
         'location.country': country,
         'paymentData.link': { $exists: paymentData },
         'paymentData.bankAccount': { $exists: transfer },
         'paymentData.products': { $exists: products },
+        'primaryData.communityId': {$exists: true, $eq: community}
       },
       (err: any, result: any) => {
         if (err) {
           return res.json(err);
         } else {
-          return res.json(result);
+          if(result == ""){
+            return res.json("no hay nada");
+          }
+          else{
+            return res.json(result);
+          }
         }
       },
     );

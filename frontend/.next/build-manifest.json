@@ -28,10 +28,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/org/[slug]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/projects": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
