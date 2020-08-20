@@ -43,7 +43,7 @@ function Contenido(props: any) {
     })
   }, [catdata, communityWorkWith])
   const filter = 0
-
+  console.log(props)
   return (
     <div className={styles.ongProfileHero}>
       <div className="OngProfile__Hero--User">
@@ -75,15 +75,20 @@ function Contenido(props: any) {
             {props.description}
           </h3>
         </div>
-        <div className={styles.ongProfileUserHowUseDonation}>
-          <h3 className={styles.ongProfileHowUseDonationTitle}>
-            ¿Cómo usamos las donaciones que recibimos?
-          </h3>
-          <p className={styles.ongProfileHowUseDonationDescription}>
-            {props.howusedonation}
-          </p>
-        </div>
-        {props.sponsors && (
+        {props.howusedonation !== undefined ? (
+          <div className={styles.ongProfileUserHowUseDonation}>
+            <h3 className={styles.ongProfileHowUseDonationTitle}>
+              ¿Cómo usamos las donaciones que recibimos?
+            </h3>
+            <p className={styles.ongProfileHowUseDonationDescription}>
+              {props.howusedonation}
+            </p>
+          </div>
+        ) : (
+          false
+        )}
+
+        {props.sponsors.length !== 0 ? (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
             <Divider
@@ -99,9 +104,11 @@ function Contenido(props: any) {
               ))}
             </div>
           </div>
+        ) : (
+          false
         )}
 
-        {(props.website || props.email || props.phone) && (
+        {props.contact !== undefined ? (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
             <Divider
@@ -110,39 +117,43 @@ function Contenido(props: any) {
               }}
             />
             <div className={styles.ongProfileContactInfo}>
-              {props.website && (
+              {props.contact.website && (
                 <div className="OngProfile__Info-Web">
                   <strong>Website</strong> <br />
                   <span>
                     <a
-                      href={props.website}
+                      href={props.contact.website}
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      {props.website}
+                      {props.contact.website}
                     </a>
                   </span>
                 </div>
               )}
-              {props.email && (
+              {props.contact.email && (
                 <div className="OngProfile__Info-Email">
                   <strong>Email</strong> <br />
                   <span>
-                    <a href={`mailto://${props.email}`}>{props.email}</a>
+                    <a href={`mailto://${props.contact.email}`}>
+                      {props.contact.email}
+                    </a>
                   </span>
                 </div>
               )}
-              {props.phone && (
+              {props.contact.phones && (
                 <div className={styles.ongProfileInfoTel}>
                   <strong>Teléfono</strong> <br />
-                  <span>{props.phone}</span>
+                  <span>{props.contact.phones}</span>
                 </div>
               )}
             </div>
           </div>
+        ) : (
+          false
         )}
 
-        {(props.facebook || props.instagram || props.whatsapp) && (
+        {props.contact !== undefined ? (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
             <Divider
@@ -151,27 +162,27 @@ function Contenido(props: any) {
               }}
             />
             <div className="OngProfile__Social--Networks">
-              {props.whatsapp && (
+              {props.contact.whatsapp && (
                 <a
-                  href={`https://api.whatsapp.com/send?phone=${props.whatsapp}`}
+                  href={`https://api.whatsapp.com/send?phone=${props.contact.whatsapp}`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/whatsapp.svg" alt="whatsapp logo" />
                 </a>
               )}
-              {props.instagram && (
+              {props.contact.instagram && (
                 <a
-                  href={props.instagram}
+                  href={props.contact.instagram}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/insta.svg" alt="instagram logo" />
                 </a>
               )}
-              {props.facebook && (
+              {props.contact.facebook && (
                 <a
-                  href={props.facebook}
+                  href={props.contact.facebook}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -180,8 +191,10 @@ function Contenido(props: any) {
               )}
             </div>
           </div>
+        ) : (
+          false
         )}
-        {(props.country || props.city) && (
+        {props.location !== undefined ? (
           <div className={styles.ongProfileUserAddress}>
             <h4 className={styles.ongProfileAddressTitle}> Área de trabajo </h4>
             <Divider
@@ -195,16 +208,16 @@ function Contenido(props: any) {
               </div>
               <div className="OngProfile__Info--Data">
                 <span>
-                  {props.country}, {props.city}
+                  {props.location.country}, {props.location.city}
                 </span>
               </div>
             </div>
           </div>
+        ) : (
+          false
         )}
 
-        {(props.instructionstodeliverproducts ||
-          props.paymentslink ||
-          props.accounts) && (
+        {props.paymentData !== undefined ? (
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
@@ -227,12 +240,10 @@ function Contenido(props: any) {
                 <div className="Modal__Active">
                   <ResponsiveDonate
                     logo={props.logo}
-                    paymentslink={props.paymentslink}
+                    paymentslink={props.paymentData.link}
                     name={props.name}
-                    instructionstodeliverproducts={
-                      props.instructionstodeliverproducts
-                    }
-                    accounts={props.accounts}
+                    instructionstodeliverproducts={props.paymentData.products}
+                    accounts={props.paymentData.bankAccount}
                   />
                 </div>
               </Modal>
@@ -248,6 +259,8 @@ function Contenido(props: any) {
               </Button>
             </div>
           </div>
+        ) : (
+          false
         )}
       </div>
     </div>

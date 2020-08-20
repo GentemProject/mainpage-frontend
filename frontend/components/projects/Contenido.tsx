@@ -95,14 +95,14 @@ function Contenido() {
                 changeSelect('country', e.target.value)
               }}
             >
-              {ciudad &&
+              {/*   {ciudad &&
                 ciudad.map((data) => {
                   return (
                     <MenuItem key={data} value={data}>
                       {data}
                     </MenuItem>
                   )
-                })}
+                })} */}
             </Select>
           </FormControl>
         </SearchSelect>

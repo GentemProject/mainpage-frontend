@@ -20,17 +20,19 @@ interface Props {
 
 const ORG: NextPage<Props> = ({ organization }) => {
   const [orgLocation, setOrgLocation] = useState<any>()
+  const ong = organization[0]
 
-  useEffect(() => {
-    setOrgLocation(organization.location)
-  }, [])
+  if (ong.location !== undefined) {
+    useEffect(() => {
+      setOrgLocation(ong.location.map)
+    }, [])
+  }
 
   const location = useLocation(orgLocation)
-
   return (
     <>
       <Head>
-        <title>gentem | {organization.name}</title>
+        <title>gentem | {ong.primaryData.name}</title>
       </Head>
       <Layout>
         <div className={styles.ongProfile}>
@@ -39,40 +41,25 @@ const ORG: NextPage<Props> = ({ organization }) => {
               googleMapURL={
                 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCDr1CIiG6Nop7lpjmIbVk8NVC1IjW_oXE'
               }
-              city={organization.city}
-              country={organization.country}
+              location={ong.location}
               coordenates={location}
             ></Map>
             <div className={`${styles.ongProfileContent} ${styles.layout}`}>
               <Contenido
-                communityworkwith={organization.communityworkwith}
-                name={organization.name}
-                description={organization.description}
-                logo={organization.logo}
-                objetive={organization.objective}
-                howusedonation={organization.howusedonations}
-                website={organization.website}
-                email={organization.email}
-                phone={organization.phones}
-                facebook={organization.facebook}
-                instagram={organization.instagram}
-                paymentslink={organization.paymentslink}
-                whatsapp={organization.whatsapp}
-                sponsors={organization.sponsors}
-                accounts={organization.accounts}
-                city={organization.city}
-                country={organization.country}
-                instructionstodeliverproducts={
-                  organization.instructionstodeliverproducts
-                }
+                communityworkwith={ong.primaryData.communityId}
+                name={ong.primaryData.name}
+                description={ong.primaryData.description}
+                logo={ong.primaryData.logo}
+                objetive={ong.primaryData.objective}
+                howusedonation={ong.primaryData.howUseDonation}
+                sponsors={ong.primaryData.sponsors}
+                contact={ong.contact}
+                paymentData={ong.paymentData}
+                city={ong.location}
               />
               <ContenidoSider
-                name={organization.name}
-                accounts={organization.accounts}
-                instructionstodeliverproducts={
-                  organization.instructionstodeliverproducts
-                }
-                paymentslink={organization.paymentslink}
+                name={ong.primaryData.name}
+                paymentData={ong.paymentData}
               />
             </div>
           </div>
@@ -83,18 +70,18 @@ const ORG: NextPage<Props> = ({ organization }) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch('https://api.gentem.org/organizations')
+  const res = await fetch('https://api.gentem.org/api/projects')
   const projects = await res.json()
 
-  const paths = projects.data.map((org) => `/org/${org.slug}`)
+  const paths = projects.map((org) => `/org/${org.slug}`)
 
   return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`https://api.gentem.org/organizations/${params.slug}`)
+  const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
   const organizations = await res.json()
-  const organization = organizations.data
+  const organization = organizations
 
   return { props: { organization } }
 }

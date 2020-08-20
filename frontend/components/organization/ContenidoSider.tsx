@@ -5,29 +5,26 @@ function ContenidoSider(props: any) {
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
-        <ResponsiveDonate
-          logo={props.logo}
-          name={props.name}
-          instructionstodeliverproducts={props.instructionstodeliverproducts}
-          accounts={props.accounts}
-          paymentslink={props.paymentslink}
-        />
+        {props.paymentData !== undefined ? (
+          <ResponsiveDonate
+            logo={props.logo}
+            name={props.name}
+            paymentData={props.paymentData}
+          />
+        ) : (
+          false
+        )}
       </div>
     </div>
   )
 }
 export default ContenidoSider
 
-export function ResponsiveDonate({
-  instructionstodeliverproducts,
-  logo,
-  name,
-  accounts,
-  paymentslink,
-}: any) {
+export function ResponsiveDonate(props, { logo, name, paymentData }: any) {
+  console.log(props, 'ndea')
   return (
     <>
-      {(instructionstodeliverproducts || paymentslink || accounts) && (
+      {props.paymentData !== undefined ? (
         <>
           <div className={styles.ongProfileUserModal}>
             <div className={styles.ongProfileUserModalImg}>
@@ -44,7 +41,7 @@ export function ResponsiveDonate({
           <div className={styles.ongProfileHowToDonateTitle}>
             <h3>¿Cómo donar?</h3>
           </div>
-          {paymentslink && (
+          {props.paymentData.link !== undefined ? (
             <div className="OngProfile__HowToDonate--Donate">
               <>
                 <h4 className="OngProfile__Donate--Title h4"> Dona Online </h4>
@@ -54,7 +51,7 @@ export function ResponsiveDonate({
                   }}
                 />
                 <a
-                  href={paymentslink}
+                  href={props.paymentData.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -64,8 +61,10 @@ export function ResponsiveDonate({
                 </a>
               </>
             </div>
+          ) : (
+            false
           )}
-          {accounts && (
+          {props.paymentData.bankAccount !== undefined ? (
             <div className={styles.howToDonateBank}>
               <h4 className="OngProfile__DonateWay--Bank h4">
                 Consigna a una cuenta bancaria
@@ -76,11 +75,13 @@ export function ResponsiveDonate({
                 }}
               />
               <span className={`OngProfile__DonateWay--BankID ${styles.span}`}>
-                {accounts}
+                {props.paymentData.bankAccount}
               </span>
             </div>
+          ) : (
+            false
           )}
-          {instructionstodeliverproducts && (
+          {props.paymentData.products !== undefined ? (
             <div className={styles.ongProfileHowToDonateDonateProduct}>
               <h4 className="OngProfile__DonateProduct--Title h4">
                 Haz una donación de productos
@@ -91,11 +92,15 @@ export function ResponsiveDonate({
                 }}
               />
               <div className="OngProfile__DonateProduct--DonateWay">
-                <span className="span">{instructionstodeliverproducts}</span>
+                <span className="span">{props.paymentData.products}</span>
               </div>
             </div>
+          ) : (
+            false
           )}
         </>
+      ) : (
+        false
       )}
     </>
   )
