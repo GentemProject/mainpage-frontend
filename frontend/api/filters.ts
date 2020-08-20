@@ -1,24 +1,11 @@
-const BASE_API = 'http://localhost:3030'
+const BASE_API = 'https://api.gentem.org'
 //const BASE_API = 'https://www.gentem.org'
-const DOUBLE_API = 'https://api.gentem.org'
 interface paramsFilters {
   country: string
   products: boolean
   paymenData: boolean
   transfer: boolean
   community: number
-}
-
-export const probanding = async (quanty: number) => {
-  try {
-    const request = await fetch(`${DOUBLE_API}/api/projects/lastest/${quanty}`)
-    const response = await request.json()
-    const data = response
-    console.log(data)
-    return data
-  } catch (error) {
-    return error
-  }
 }
 
 export const getDistinct = async () => {
