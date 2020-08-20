@@ -1,8 +1,17 @@
 import { Request, Response } from 'express';
-/* import { connectMongo } from '../../utils/database'; */
-import projectModel from '../schemas/project';
+import projectModel, { oldModel } from '../schemas/project';
 
 const ProjectCtrl = {
+  getOld: async (req: Request, res: Response) => {
+    oldModel.find({}, (err: any, result: any) => {
+      if (err) {
+        return res.json(err);
+      }
+      if (result) {
+        return res.json(result);
+      }
+    });
+  },
   getAllProjects: async (req: Request, res: Response) => {
     projectModel.find({}, (err: any, result: any) => {
       if (err) {
@@ -15,68 +24,56 @@ const ProjectCtrl = {
   },
   createProject: async (req: Request, res: Response) => {
     console.log(req.body);
-    /*   const {
-      name,
-      description,
-      objective,
-      logo,
-      howUseDonation,
-      sponsors,
-      communityId,
-      email,
-      phone,
-      whatsapp,
-      instagram,
-      facebook,
-      linkedin,
-      twitter,
-      website,
-      link,
-      bankAccount,
-      products,
-      map,
-      city,
-      country,
-      adminName,
-      adminEmail,
-    } = req.body;
-*/
-    /*const newProject = new projectModel({
-      primaryData: {
-        name: name,
-        description: description,
-        objective: objective,
-        logo: logo,
-        howUseDonation: howUseDonation,
-        sponsors: sponsors,
-        communityId: communityId,
+  },
+  getForFilters: async (req: Request, res: Response) => {
+    const { country, products, paymentData, transfer } = req.params;
+    projectModel.find(
+      {
+        'location.country': country,
+        'paymentData.link': { $exists: paymentData },
+        'paymentData.bankAccount': { $exists: transfer },
+        'paymentData.products': { $exists: products },
       },
-      contact: {
-        email: email,
-        phone:phone,
-        whatsapp:whatsapp,
-        instagram: instagram,
-        facebook: facebook,
-        linkedin: linkedin,
-        twitter: twitter,
-        website: website,
+      (err: any, result: any) => {
+        if (err) {
+          return res.json(err);
+        } else {
+          return res.json(result);
+        }
       },
-      paymentData: {
-        link: link,
-        bankAccount: bankAccount,
-        products: products,
+    );
+  },
+  getDistinctCountry: async (req: Request, res: Response) => {
+    projectModel.distinct('location.country', (err: any, result: any) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        return res.json(result);
+      }
+    });
+  },
+  getOrg: async (req: Request, res: Response) => {
+    const slug = req.params.id;
+    projectModel.find(
+      {
+        slug: slug,
       },
-      location: {
-        map: map,
-        city: city,
-        country: country,
+      (err: any, result: any) => {
+        if (err) {
+          return res.json(err);
+        } else {
+          return res.json(result);
+        }
       },
-      adminInfo: {
-        adminName: adminName,
-        adminEmail: adminEmail,
-      },
-    });*/
+    );
+  },
+};
+
+export default ProjectCtrl;
+
+/* 
     const objPrueba = new projectModel({
+      slug: 'ndeaa',
       primaryData: {
         name: 'name',
         description: 'description',
@@ -117,66 +114,58 @@ const ProjectCtrl = {
       } else {
         res.json({ message: 'Saved' });
       }
-    });
-  },
-  getForFilters: async (req: Request, res: Response) => {
-    const { country, products, paymentData, transfer } = req.params;
-    projectModel.find(
-      {
-        'location.country': country,
-        'paymentData.link': { $exists: paymentData },
-        'paymentData.bankAccount': { $exists: transfer },
-        'paymentData.products': { $exists: products },
-      },
-      (err: any, result: any) => {
-        if (err) {
-          return res.json(err);
-        } else {
-          return res.json(result);
-        }
-      },
-    );
-  },
-  getDistinctCountry: async (req: Request, res: Response) => {
-    projectModel.distinct('location.country', (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      } else {
-        return res.json(result);
-      }
-    });
-  },
-  getOrg: async (req: Request, res: Response) => {
-    const _id = req.params.id;
-    projectModel.find(
-      {
-        _id: _id,
-      },
-      (err: any, result: any) => {
-        if (err) {
-          return res.json(err);
-        } else {
-          return res.json(result);
-        }
-      },
-    );
-  },
-};
+    }); */
 
-export default ProjectCtrl;
-
-/* getAllOrgs: async (_req: Request, res: Response) => {
-    const db = await connectMongo();
-    const data = await db.collection('organizations').find({}).toArray();
-
-    res.status(200).json({ data });
-  }, */
-
-/*   getOrg: async (req: Request, res: Response) => {
-    const slug = req.params.id;
-
-    const db = await connectMongo();
-    const data = await db.collection('organizations').findOne({ slug });
-
-    res.status(200).json({ data });
-  }, */
+// Code used for take all the old data to the new api
+/* 
+       var aum: any = 0;
+       await req.body.forEach(async (one: any) => {
+         var changingModel = new projectModel({
+           slug: one.slug,
+           primaryData: {
+             name: one.name,
+             description: one.description,
+             objective: one.objective,
+             logo: one.logo,
+             howUseDonation: one.howusedonations,
+             sponsors: one.sponsors,
+             communityId: one.communityworkwith,
+           },
+           contact: {
+             email: one.email,
+             phone: one.phones,
+             whatsapp: one.whatsapp,
+             instagram: one.instagram,
+             facebook: one.facebook,
+             linkedin: one.linkedin,
+             twitter: one.twitter,
+             website: one.website,
+           },
+           paymentData: {
+             link: one.paymentslink,
+             bankAccount: one.accounts,
+             products: one.instructionstodeliverproducts,
+           },
+           location: {
+             map: one.location,
+             city: one.city,
+             country: one.country,
+           },
+           adminInfo: {
+             adminName: one.adminname,
+             adminEmail: one.adminemail,
+           },
+         });
+         await changingModel.save((err: any) => {
+           if (err) {
+             return res.json(err);
+           } else {
+             console.log('Saved maaan!');
+             aum = aum + 1;
+             console.log(aum);
+             if (aum === req.body.length) {
+               res.json({ message: 'Listo padre!' });
+             }
+           }
+         });
+       }); */
