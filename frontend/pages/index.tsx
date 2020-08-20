@@ -11,10 +11,19 @@ import Nos from '../components/home/nosotros-home'
 import Ongs from '../components/home/ongs'
 import Contribuir from '../components/home/contribuir'
 import * as styles from '../styles/home/home.module.scss'
-import { getLastest } from '../api/filters'
+import { getLastest, probanding } from '../api/filters'
 export default function Home() {
   const [ongs, setOngs] = useState()
   const [isLoading, setIsloading] = useState<boolean>(true)
+
+  useEffect(() => {
+    probanding(8).then((data) => {
+      /*       setOngs(data)
+      setIsloading(false) */
+      console.log(data, 'deaa')
+    })
+  }, [])
+
   useEffect(() => {
     getLastest(8).then((data) => {
       setOngs(data)
@@ -22,6 +31,7 @@ export default function Home() {
       console.log(data)
     })
   }, [])
+
   return (
     <>
       <Head>
