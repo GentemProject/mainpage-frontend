@@ -43,7 +43,6 @@ function Contenido(props: any) {
     })
   }, [catdata, communityWorkWith])
   const filter = 0
-  console.log(props)
   return (
     <div className={styles.ongProfileHero}>
       <div className="OngProfile__Hero--User">
@@ -75,7 +74,7 @@ function Contenido(props: any) {
             {props.description}
           </h3>
         </div>
-        {props.howusedonation !== undefined ? (
+        {props.howusedonation && (
           <div className={styles.ongProfileUserHowUseDonation}>
             <h3 className={styles.ongProfileHowUseDonationTitle}>
               ¿Cómo usamos las donaciones que recibimos?
@@ -84,8 +83,6 @@ function Contenido(props: any) {
               {props.howusedonation}
             </p>
           </div>
-        ) : (
-          false
         )}
 
         {props.sponsors.length !== 0 ? (
@@ -108,7 +105,7 @@ function Contenido(props: any) {
           false
         )}
 
-        {props.contact !== undefined ? (
+        {props.contact && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
             <Divider
@@ -149,11 +146,9 @@ function Contenido(props: any) {
               )}
             </div>
           </div>
-        ) : (
-          false
         )}
 
-        {props.contact !== undefined ? (
+        {props.contact && (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
             <Divider
@@ -191,10 +186,8 @@ function Contenido(props: any) {
               )}
             </div>
           </div>
-        ) : (
-          false
         )}
-        {props.location !== undefined ? (
+        {props.location && (
           <div className={styles.ongProfileUserAddress}>
             <h4 className={styles.ongProfileAddressTitle}> Área de trabajo </h4>
             <Divider
@@ -213,11 +206,9 @@ function Contenido(props: any) {
               </div>
             </div>
           </div>
-        ) : (
-          false
         )}
 
-        {props.paymentData !== undefined ? (
+        {props.paymentData && (
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
@@ -240,10 +231,8 @@ function Contenido(props: any) {
                 <div className="Modal__Active">
                   <ResponsiveDonate
                     logo={props.logo}
-                    paymentslink={props.paymentData.link}
                     name={props.name}
-                    instructionstodeliverproducts={props.paymentData.products}
-                    accounts={props.paymentData.bankAccount}
+                    paymentData={props.paymentData}
                   />
                 </div>
               </Modal>
@@ -259,8 +248,6 @@ function Contenido(props: any) {
               </Button>
             </div>
           </div>
-        ) : (
-          false
         )}
       </div>
     </div>

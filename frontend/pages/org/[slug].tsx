@@ -19,10 +19,10 @@ interface Props {
 }
 
 const ORG: NextPage<Props> = ({ organization }) => {
-  console.log(organization)
   const [orgLocation, setOrgLocation] = useState<any>()
   const ong = organization[0]
 
+  console.log(ong)
   if (ong.location !== undefined) {
     useEffect(() => {
       setOrgLocation(ong.location.map)

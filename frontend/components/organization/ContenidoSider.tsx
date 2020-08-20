@@ -5,14 +5,12 @@ function ContenidoSider(props: any) {
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
-        {props.paymentData !== undefined ? (
+        {props.paymentData && (
           <ResponsiveDonate
             logo={props.logo}
             name={props.name}
             paymentData={props.paymentData}
           />
-        ) : (
-          false
         )}
       </div>
     </div>
@@ -20,28 +18,29 @@ function ContenidoSider(props: any) {
 }
 export default ContenidoSider
 
-export function ResponsiveDonate(props, { logo, name, paymentData }: any) {
-  console.log(props, 'ndea')
+export function ResponsiveDonate(props) {
   return (
     <>
-      {props.paymentData !== undefined ? (
+      {props.paymentData && (
         <>
           <div className={styles.ongProfileUserModal}>
             <div className={styles.ongProfileUserModalImg}>
-              {logo ? (
-                <img src={logo} alt="User 1" />
+              {props.logo ? (
+                <img src={props.logo} alt="User 1" />
               ) : (
                 <img src="/logoDefault.png" alt="" />
               )}
             </div>
             <div>
-              <span className={styles.ongProfileUserModalTitle}>{name}</span>
+              <span className={styles.ongProfileUserModalTitle}>
+                {props.name}
+              </span>
             </div>
           </div>
           <div className={styles.ongProfileHowToDonateTitle}>
             <h3>¿Cómo donar?</h3>
           </div>
-          {props.paymentData.link !== undefined ? (
+          {props.paymentData.link && (
             <div className="OngProfile__HowToDonate--Donate">
               <>
                 <h4 className="OngProfile__Donate--Title h4"> Dona Online </h4>
@@ -61,10 +60,8 @@ export function ResponsiveDonate(props, { logo, name, paymentData }: any) {
                 </a>
               </>
             </div>
-          ) : (
-            false
           )}
-          {props.paymentData.bankAccount !== undefined ? (
+          {props.paymentData.bankAccount && (
             <div className={styles.howToDonateBank}>
               <h4 className="OngProfile__DonateWay--Bank h4">
                 Consigna a una cuenta bancaria
@@ -78,10 +75,8 @@ export function ResponsiveDonate(props, { logo, name, paymentData }: any) {
                 {props.paymentData.bankAccount}
               </span>
             </div>
-          ) : (
-            false
           )}
-          {props.paymentData.products !== undefined ? (
+          {props.paymentData.products && (
             <div className={styles.ongProfileHowToDonateDonateProduct}>
               <h4 className="OngProfile__DonateProduct--Title h4">
                 Haz una donación de productos
@@ -95,12 +90,8 @@ export function ResponsiveDonate(props, { logo, name, paymentData }: any) {
                 <span className="span">{props.paymentData.products}</span>
               </div>
             </div>
-          ) : (
-            false
           )}
         </>
-      ) : (
-        false
       )}
     </>
   )

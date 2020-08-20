@@ -4,18 +4,13 @@ import * as style from '../../styles/organization.module.scss'
 import GoogleMapReact from 'google-map-react'
 
 function Map(props: any) {
-  console.log(props)
-  let geometryY = -26.231718
-  let geometryX = -63.2485696
+  const geometryY = parseFloat(props.coordenates.props.ygriega) || -26.231718
+  const geometryX = parseFloat(props.coordenates.props.equis) || -63.2485696
   const [zoom, setZoom] = useState(1)
-  console.log(props)
-  if (props.coordenates !== undefined) {
-    geometryY = parseFloat(props.coordenates.props.ygriega) || -26.231718
-    geometryX = parseFloat(props.coordenates.props.equis) || -63.2485696
-    useEffect(() => {
-      setZoom(props.coordenates.props.zoom)
-    }, [props.coordenates.props.zoom])
-  }
+
+  useEffect(() => {
+    setZoom(props.coordenates.props.zoom)
+  }, [props.coordenates.props.zoom])
 
   return (
     <div className={style.map}>
@@ -69,7 +64,7 @@ export function Marcador(props: any) {
         <div className={style.address}>
           <div className={style.textContainer}>
             <div className={style.textContainerCity}>
-              {props.location !== undefined
+              {props.location
                 ? `${props.location.city}, ${props.location.country}`
                 : `Desde LATAM, Hacia el mundo`}
               {/*          {props.region ? props.region : 'Desde LATAM'},{' '}
