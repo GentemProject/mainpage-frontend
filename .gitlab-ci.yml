@@ -17,7 +17,6 @@ build:frontend:
     changes:
       - frontend/**/*
 
-
 build:backend:
   stage: build
   image: node:12.13.1-alpine
@@ -34,7 +33,7 @@ build:backend:
     changes:
       - backend/**/*
 
-      deploy:frontend:
+deploy:frontend:
   stage: deploy
   image: garland/aws-cli-docker:latest
   script:
@@ -48,8 +47,6 @@ build:backend:
       - master
     changes:
       - frontend/**/*
-
-
 
 deploy:backend:
   stage: deploy
