@@ -8,7 +8,6 @@ build:frontend:
   script:
     - cd frontend
     - yarn install
-    - yarn format:check
     - yarn export
   artifacts:
     paths:
