@@ -1,4 +1,5 @@
 const BASE_API = 'http://localhost:3030'
+//const BASE_API = 'https://www.gentem.org'
 interface paramsFilters {
   country: string
   products: boolean
@@ -44,6 +45,16 @@ export const getForFilters = async (params: paramsFilters) => {
     const request = await fetch(
       `${BASE_API}/api/projects/filters/${params.country}&${params.products}&${params.paymenData}&${params.transfer}&${params.community}`
     )
+    const response = await request.json()
+    const data = response
+    return data
+  } catch (error) {
+    return error
+  }
+}
+export const getLastest = async (quanty: number) => {
+  try {
+    const request = await fetch(`${BASE_API}/api/projects/lastest/${quanty}`)
     const response = await request.json()
     const data = response
     return data

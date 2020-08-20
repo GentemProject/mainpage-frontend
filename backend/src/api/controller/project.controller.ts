@@ -30,9 +30,9 @@ const ProjectCtrl = {
     projectModel.find(
       {
         'location.country': country,
-        'paymentData.link': { $exists: paymentData },
-        'paymentData.bankAccount': { $exists: transfer },
-        'paymentData.products': { $exists: products },
+        'paymentData.link': { $exists: paymentData,$ne: null },
+        'paymentData.bankAccount': { $exists: transfer,$ne: null },
+        'paymentData.products': { $exists: products, $ne: null },
         'primaryData.communityId': { $exists: true, $eq: community },
       },
       (err: any, result: any) => {
@@ -61,7 +61,8 @@ const ProjectCtrl = {
     const slug = req.params.id;
     projectModel.find(
       {
-        slug: slug,
+        
+        _id: slug,
       },
       (err: any, result: any) => {
         if (err) {
@@ -72,6 +73,12 @@ const ProjectCtrl = {
       },
     );
   },
+  getLastest: async (req: Request, res: Response) => {
+    const quanty = req.params.quanty;
+    projectModel.find({}).sort({createdAt: -1}).limit(parseInt(quanty, 10)).then((result)=>{
+      return res.json(result)
+    })
+  }
 };
 
 export default ProjectCtrl;

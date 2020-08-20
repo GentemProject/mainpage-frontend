@@ -23,7 +23,7 @@ interface filters {
 }
 function Contenido() {
   const [ciudad, setCiudad] = useState([])
-  //const [resultfilters, setResultfilters ] = useState<any>()
+  const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
     country: '',
     products: false,
@@ -64,15 +64,14 @@ function Contenido() {
       }
     )
   }, [])
-  /*
-  useEffect(()=>{
-  
-    getForFilters(filters).then((data)=>{
-      setResultfilters(data)
 
+  useEffect(() => {
+    console.log(filters)
+    getForFilters(filters).then((data) => {
+      setResultfilters(data)
+      console.log(data)
     })
-  
-  }, [{...filters}])*/
+  }, [filters])
 
   return (
     <div className={styles.ongListSearch}>
@@ -90,19 +89,18 @@ function Contenido() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={ciudad}
               onChange={(e) => {
                 changeSelect('country', e.target.value)
               }}
             >
-              {/*   {ciudad &&
+              {ciudad &&
                 ciudad.map((data) => {
                   return (
                     <MenuItem key={data} value={data}>
                       {data}
                     </MenuItem>
                   )
-                })} */}
+                })}
             </Select>
           </FormControl>
         </SearchSelect>

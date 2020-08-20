@@ -9,12 +9,14 @@ const {
   getDistinctCountry,
   getOrg,
   getOld,
+  getLastest,
 } = projectCtrl;
 
 router.get('/', getAllProjects);
 router.get('/organizations', getOld);
-router.get('/filters/:country&:products&:paymentData&:transfer', getForFilters);
+//router.get('/filters/:country&:products&:paymentData&:transfer', getForFilters)
 router.get('/filters/:country&:products&:paymentData&:transfer&:community', getForFilters);
+router.get('/lastest/:quanty', getLastest)
 router.get('/distinct/', getDistinctCountry);
 router.get('/:id', getOrg);
 router.post('/', createProject);

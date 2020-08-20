@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Container from '../components/home/container'
@@ -10,7 +11,17 @@ import Nos from '../components/home/nosotros-home'
 import Ongs from '../components/home/ongs'
 import Contribuir from '../components/home/contribuir'
 import * as styles from '../styles/home/home.module.scss'
+import { getLastest } from '../api/filters'
 export default function Home() {
+  const [ongs, setOngs] = useState()
+  const [isLoading, setIsloading] = useState<boolean>(true)
+  useEffect(() => {
+    getLastest(8).then((data) => {
+      setOngs(data)
+      setIsloading(false)
+      console.log(data)
+    })
+  }, [])
   return (
     <>
       <Head>
@@ -47,7 +58,7 @@ export default function Home() {
               <Nos />
             </Fl>
             <Fl>
-              <Ongs />
+              <Ongs ongs={ongs} load={isLoading} />
             </Fl>
           </div>
           <Fl>
