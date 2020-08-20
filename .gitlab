@@ -1,0 +1,28 @@
+build:frontend:
+  stage: build
+  image: node:12.13.1-alpine
+  script:
+    - cd frontend
+    - yarn install
+    - yarn export
+  artifacts:
+    paths:
+      - frontend/out
+  only:
+    changes:
+      - frontend/**/*
+
+deploy:frontend:
+  stage: deploy
+  image: garland/aws-cli-docker:latest
+  script:
+    - cd frontend
+    - aws s3 cp ./build s3://gentem/ --recursive --acl public-read
+    - aws cloudfront create-invalidation --distribution-id E3K0FAMHGVOUZH --paths '/*'
+  dependencies:
+    - build:frontend
+  only:
+    refs:
+      - master
+    changes:
+      - frontend/**/*
