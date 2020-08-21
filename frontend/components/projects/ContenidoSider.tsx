@@ -26,7 +26,6 @@ function ContenidoSider(props: any) {
   }
 
   const { ONGs } = props
-  const filter = props.filter
 
   return (
     <div className={styles.ongListResult}>
@@ -46,7 +45,6 @@ function ContenidoSider(props: any) {
           <ModalContent />
         </Modal>
       </div>
-      {filter && <TargetBase filter={filter} />}
       <LazyContenidoSider ONGs={ONGs} />
     </div>
   )

@@ -49,6 +49,6 @@ export const containerImg: string
 export const tit: string
 export const containerOngs: string
 export const containerFichas: string
-export const i4: string
 export const ficha: string
+export const i4: string
 export const containerContribuir: string
