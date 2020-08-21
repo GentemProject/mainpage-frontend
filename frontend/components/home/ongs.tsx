@@ -13,7 +13,7 @@ function Ongs(props: any) {
         <div className={styles.desc}>
           <p>
             Estos son los proyectos que recientemente se han unido a
-            <strong>gentem</strong>. ¿Qué estás esperando para apoyarlos?
+            <strong> gentem</strong>. ¿Qué estás esperando para apoyarlos?
           </p>
         </div>
 
