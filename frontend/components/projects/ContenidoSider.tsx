@@ -79,8 +79,10 @@ function LazyContenidoSider({ ONGs }) {
             return (
               <Link
                 key={ong.slug}
-                href={`/org/${ong.slug}`}
-                /*                as={`/org/${ong.slug}`} */
+                href="/org/[slug]"
+                as={`/org/${ong.slug}`}
+                /* href={`/org?slug=${ong.slug}`}
+                as={`/org/${ong.slug}`} */
               >
                 <a>
                   <ResultItem
