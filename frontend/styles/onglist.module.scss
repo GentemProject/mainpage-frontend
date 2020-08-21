@@ -137,9 +137,11 @@
 .resultItemImg {
   width: 136px;
   height: 136px;
-  & img {
-    width: inherit;
-  }
+  min-width: 136px;
+  max-width: 136px;
+  background-size: 136px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .resultItemDetails {
   margin: 24px 16px;

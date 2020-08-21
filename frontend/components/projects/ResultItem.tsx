@@ -7,13 +7,23 @@ function ResultItem(props: any) {
   return (
     <div className="OngList__Result--itemContainer">
       <div className={style.resultItem}>
-        <div className={style.resultItemImg}>
-          {props.logo ? (
-            <img src={props.logo} />
-          ) : (
-            <img src="/logoDefault.png" alt="" />
-          )}
-        </div>
+        {props.logo ? (
+          <>
+            <div
+              className={style.resultItemImg}
+              style={{
+                backgroundImage: `url(${props.logo})`,
+              }}
+            />
+          </>
+        ) : (
+          <div
+            className={style.resultItemImg}
+            style={{
+              backgroundImage: 'url(/logoDefault.png)',
+            }}
+          />
+        )}
         <div className={style.resultItemDetails}>
           <div className={style.itemDetailsTitle}>
             <div className="title-child">
