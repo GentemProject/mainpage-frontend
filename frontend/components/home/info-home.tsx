@@ -15,9 +15,8 @@ function Infohome() {
           <div className={styles.colm2}>
             <Info
               col="#FFCF53"
-              tit="La extrema 
-pobreza amenaza Latino América"
-              cuerpo="En los países latinos más del 50% de la población trabaja en condiciones de informalidad, sin ningún tipo de protección de parte del gobierno. Cada día que no pueden trabajar es un día que pasan hambre."
+              tit="La pobreza extrema azota a todo el mundo"
+              cuerpo="Con la ayuda de cada uno de nosotros, por pequeña que sea, podemos darle a alguien un respiro en tiempos de incertidumbre, y la esperanza de un manaña mejor."
             />
           </div>
         </div>

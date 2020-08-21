@@ -7,7 +7,7 @@ function Noshome() {
   return (
     <div className={styles.containerAbout}>
       <div className={styles.texto}>
-        <h2>Como funciona gentem</h2>
+        <h2>¿Cómo funciona gentem?</h2>
       </div>
       <div className={styles.content}>
         <div className={styles.colm3}>
@@ -68,7 +68,7 @@ function Noshome() {
       </div>
       <div className={styles.btnFl}>
         <button className={styles.btnColab} style={{ background: '#237ed5' }}>
-          <span>Ayudar ahora</span>
+          <span>¡Ayuda ya!</span>
         </button>
       </div>
     </div>

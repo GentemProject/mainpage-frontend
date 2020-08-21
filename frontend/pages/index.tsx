@@ -13,7 +13,7 @@ import Contribuir from '../components/home/contribuir'
 import * as styles from '../styles/home/home.module.scss'
 import { getLastest } from '../api/filters'
 export default function Home() {
-  const [ongs, setOngs] = useState()
+  const [ongs, setOngs] = useState<any>()
   const [isLoading, setIsloading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -37,9 +37,8 @@ export default function Home() {
           <div className={styles.home}>
             <Fl>
               <Colab
-                desc=" Te conectamos con ONGs, fundaciones y otras iniciativas que están ayudando a los más afectados por la
-          emergencia del COVID-19"
-                btn="Ayuda ahora"
+                desc="Te conectamos con ONGs, fundaciones y cualquier tipo de iniciativas cuyo objetivo es el mismo: Trabajar por un futuro mejor."
+                btn="¡Ayuda ya!"
                 colorBtn=" #237ed5"
               />
             </Fl>
@@ -51,8 +50,8 @@ export default function Home() {
             </Fl>
             <Fl>
               <Colab
-                desc=" El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-                btn="Apoya un proyecto"
+                desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
+                btn="Apoya una organización"
                 colorBtn="#F44B53"
               />
             </Fl>

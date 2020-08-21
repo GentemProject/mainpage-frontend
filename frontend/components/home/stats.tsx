@@ -93,7 +93,7 @@ function Stats() {
   return (
     <div className={styles.containerStats}>
       <div className={styles.texto}>
-        <h2>Esto no es una gripe cualquiera</h2>
+        <h2>El coronavirus no es una gripe cualquiera</h2>
       </div>
       <div className={styles.desc}>
         <p>

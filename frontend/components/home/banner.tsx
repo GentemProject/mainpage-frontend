@@ -10,8 +10,8 @@ function Banner() {
         <div className={styles.content}>
           <div className={styles.text}>
             <span>
-              Ayuda a proyectos sociales que están trabajando con comunidades
-              afectadas por el coronavirus en América Latina
+              Apoya a iniciaitivas sociales que estén en sintonía con tus
+              creencias y valores
             </span>
           </div>
           <div className={styles.btnBanner}>

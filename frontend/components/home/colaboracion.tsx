@@ -5,7 +5,7 @@ function Col(props: any) {
     <div className={styles.containerColabor}>
       <div className={styles.colaborar}>
         <div className={styles.texto}>
-          <h4>{props.desc}</h4>
+          <span>{props.desc}</span>
         </div>
         <div className={styles.btnFl}>
           <button

@@ -19,7 +19,7 @@ function Ongs(props: any) {
 
         <div className={styles.containerFichas}>
           {props.load ? (
-            <h1>cargando</h1>
+            <span>cargando</span>
           ) : (
             props.ongs.map((data) => (
               <Ficha
