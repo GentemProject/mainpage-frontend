@@ -18,7 +18,10 @@ build/
 frontend/out/
 out/
 .next
+_next
 frontend/.next/
+frontend/_next/
+
 
 # Environment configuration file
 .env
