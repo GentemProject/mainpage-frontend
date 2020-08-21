@@ -1,29 +1,33 @@
-/* const withSass = require('@zeit/next-sass')
-const withPlugins = require('next-compose-plugins')
-
-const dotenv = require('dotenv')
-
-dotenv.config()
-
-const plugins = [
-  [
-    withSass({
-      cssModules: true,
-      cssLoaderOptions: {
-        importLoaders: 1,
-        localIdentName: '[local]___[hash:base64:5]',
-      },
-    }),
-  ],
-]
-
-const nextConfig = {
-  env: {},
-}
-
-module.exports = withPlugins(plugins, nextConfig, withSass) */
+const fetch = require('isomorphic-unfetch')
 
 module.exports = {
+  /*   distDir: '_next', */
+  generateBuildId: async () => {
+    if (process.env.BUILD_ID) {
+      return process.env.BUILD_ID
+    } else {
+      return `${new Date().getTime()}`
+    }
+  },
+  exportPathMap: async function () {
+    const paths = {
+      '/': { page: '/' },
+      '/projects': { page: '/projects' },
+      '/admin': { page: '/admin' },
+    }
+    const res = await fetch('https://api.gentem.org/api/projects')
+    const data = await res.json()
+    const orgs = data.map((entry) => entry)
+    orgs.forEach((org) => {
+      paths[`/org/${org.slug}`] = {
+        page: '/org/[slug]',
+        /*         src: '/org/[slug]',
+        dest: '/org/[slug].html', */
+        query: { slug: org.slug },
+      }
+    })
+    return paths
+  },
   rules: [
     {
       enforce: 'pre',
