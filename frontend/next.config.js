@@ -21,8 +21,6 @@ module.exports = {
     orgs.forEach((org) => {
       paths[`/org/${org.slug}`] = {
         page: '/org/[slug]',
-        /*         src: '/org/[slug]',
-        dest: '/org/[slug].html', */
         query: { slug: org.slug },
       }
     })

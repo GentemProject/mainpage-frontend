@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import useLocation from '../../components/usables/useLocation'
 import { NextPage } from 'next'
+/* import { useRouter } from 'next/router' */
 import Head from 'next/head'
 
 // Usables & Componentes
@@ -19,6 +20,8 @@ interface Props {
 }
 
 const ORG: NextPage<Props> = ({ organization }) => {
+  /*   const router = useRouter() */
+  /*   const { slug } = router.query */
   const [orgLocation, setOrgLocation] = useState<any>()
   const ong = organization[0]
 
@@ -74,7 +77,6 @@ export async function getStaticPaths() {
   const projects = await res.json()
 
   const paths = projects.map((org) => `/org/${org.slug}`)
-
   return { paths, fallback: false }
 }
 

@@ -75,13 +75,7 @@ function LazyContenidoSider({ ONGs }) {
       {show
         ? ONGs.map((ong: any) => {
             return (
-              <Link
-                key={ong.slug}
-                href="/org/[slug]"
-                as={`/org/${ong.slug}`}
-                /* href={`/org?slug=${ong.slug}`}
-                as={`/org/${ong.slug}`} */
-              >
+              <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
                 <a>
                   <ResultItem
                     communityId={ong.primaryData.communityId}
