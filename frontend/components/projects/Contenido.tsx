@@ -10,50 +10,13 @@ import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 //APi
-import { getDistinct, getForFilters } from '../../api/filters'
+import { getDistinct } from '../../api/filters'
 // Style & Api test
 import * as api from '../../api/categories.json'
 import * as styles from '../../styles/onglist.module.scss'
-interface filters {
-  country: string
-  products: boolean
-  paymenData: boolean
-  transfer: boolean
-  community: number
-}
-function Contenido() {
+function Contenido(props: any) {
   const [ciudad, setCiudad] = useState([])
-  const [resultfilters, setResultfilters] = useState<any>()
-  const [filters, setFilters] = useState<filters>({
-    country: '',
-    products: false,
-    paymenData: false,
-    transfer: false,
-    community: 0,
-  })
-  const changeSelect = (motive: string, select: any) => {
-    const temp = { ...filters }
-    if (motive === 'country') {
-      temp.country = select
-    }
-    if (motive === 'community') {
-      temp.community = select
-    }
-    setFilters(temp)
-  }
-  const changeFilters = (res: boolean, motive: string) => {
-    const temp = { ...filters }
-    if (motive === 'products') {
-      temp.products = res
-    }
-    if (motive === 'paymenData') {
-      temp.paymenData = res
-    }
-    if (motive === 'transfer') {
-      temp.transfer = res
-    }
-    setFilters(temp)
-  }
+
   useEffect(() => {
     getDistinct().then(
       (data) => {
@@ -64,15 +27,6 @@ function Contenido() {
       }
     )
   }, [])
-
-  useEffect(() => {
-    console.log(filters)
-    getForFilters(filters).then((data) => {
-      setResultfilters(data)
-      console.log(data)
-    })
-  }, [filters])
-
   return (
     <div className={styles.ongListSearch}>
       <div className={styles.ongListSearchContainer}>
@@ -90,7 +44,7 @@ function Contenido() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               onChange={(e) => {
-                changeSelect('country', e.target.value)
+                props.changeSelect('country', e.target.value)
               }}
             >
               {ciudad &&
@@ -114,7 +68,7 @@ function Contenido() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               onChange={(e) => {
-                changeSelect('community', e.target.value.toString())
+                props.changeSelect('community', e.target.value.toString())
               }}
             >
               {api.data.map((cat) => (
@@ -132,19 +86,19 @@ function Contenido() {
           <TextCheck
             title="Donar online"
             desc="Link para donar desde casa"
-            change={changeFilters}
+            change={props.changeFilters}
             name="paymenData"
           />
           <TextCheck
             title="Transferencia bancaria"
             desc="Información de las cuentas para que hagas una transferencia"
-            change={changeFilters}
+            change={props.changeFilters}
             name="transfer"
           />
           <TextCheck
             title="Donar productos"
             desc="Información sobre como entregar los productos que quieras donar"
-            change={changeFilters}
+            change={props.changeFilters}
             name="products"
           />
         </SearchSelect>
