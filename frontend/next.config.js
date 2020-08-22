@@ -1,7 +1,6 @@
 const fetch = require('isomorphic-unfetch')
 
 module.exports = {
-  distDir: '_next',
   generateBuildId: async () => {
     if (process.env.BUILD_ID) {
       return process.env.BUILD_ID
