@@ -54,14 +54,7 @@ deploy:frontend:
   image: garland/aws-cli-docker:latest
   script:
     - cd frontend
-    - mv out/_next .
-    - mv out _out
-    - mkdir -p out/builds/Our-BUild-Hash
-    - mv _out/* out/builds/Our-BUild-Hash
-    - rm -rf _out
-    - mv _next out/
-    - aws s3 cp ./out/_next s3://gentem/_next --cache-control public --acl public-read --recursive
-    - aws s3 cp ./out/_next/static s3://gentem/static --cache-control public --acl public-read --recursive
+    - aws s3 cp ./out s3://gentem/ --recursive --acl public-read
     - aws cloudfront create-invalidation --distribution-id E3K0FAMHGVOUZH --paths '/*'
   dependencies:
     - build:frontend
