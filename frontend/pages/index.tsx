@@ -12,16 +12,19 @@ import Ongs from '../components/home/ongs'
 import Contribuir from '../components/home/contribuir'
 import * as styles from '../styles/home/home.module.scss'
 import { getLastest } from '../api/filters'
-export default function Home() {
+
+export default function Home({ orgs }) {
   const [ongs, setOngs] = useState<any>()
   const [isLoading, setIsloading] = useState<boolean>(true)
 
   useEffect(() => {
-    getLastest(8).then((data) => {
+    /*     getLastest(8).then((data) => {
       setOngs(data)
-      setIsloading(false)
       console.log(data)
-    })
+
+    }) */
+    setOngs(orgs)
+    setIsloading(false)
   }, [])
 
   return (
@@ -69,4 +72,14 @@ export default function Home() {
       </Container>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const orgs = await getLastest(8)
+
+  return {
+    props: {
+      orgs,
+    },
+  }
 }

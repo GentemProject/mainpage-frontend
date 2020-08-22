@@ -77,7 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('https://api.gentem.org/api/projects')
   const projects = await res.json()
   const paths = projects.map((org) => `/org/${org.slug}`)
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
