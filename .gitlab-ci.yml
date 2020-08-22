@@ -27,7 +27,7 @@ build:frontend:
     - yarn export
   artifacts:
     paths:
-      - frontend/out/**
+      - frontend/out
   only:
     changes:
       - frontend/**/*

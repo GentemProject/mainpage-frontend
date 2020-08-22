@@ -3,6 +3,7 @@ import useLocation from '../../components/usables/useLocation'
 import { NextPage } from 'next'
 /* import { useRouter } from 'next/router' */
 import Head from 'next/head'
+import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
 import { Contenido, ContenidoSider } from '../../components/organization'
@@ -72,19 +73,16 @@ const ORG: NextPage<Props> = ({ organization }) => {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('https://api.gentem.org/api/projects')
   const projects = await res.json()
-
   const paths = projects.map((org) => `/org/${org.slug}`)
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
-  const organizations = await res.json()
-  const organization = organizations
-
+  const organization = await res.json()
   return { props: { organization } }
 }
 
