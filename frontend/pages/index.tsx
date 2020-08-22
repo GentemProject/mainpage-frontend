@@ -13,7 +13,7 @@ import Contribuir from '../components/home/contribuir'
 import * as styles from '../styles/home/home.module.scss'
 import { getLastest } from '../api/filters'
 
-export default function Home({ orgs }) {
+export default function Home({ orgs }: any) {
   const [ongs, setOngs] = useState<any>()
   const [isLoading, setIsloading] = useState<boolean>(true)
 
