@@ -61,8 +61,7 @@ deploy:frontend:
     - rm -rf _out
     - mv _next out/
     - aws s3 cp ./out/_next s3://gentem/_next --cache-control public --acl public-read --recursive
-    - aws s3 cp ./static s3://gentem/static --cache-control public --acl public-read --recursive
-    - aws s3 cp ./out/builds s3://gentem/builds --acl public-read --recursive
+    - aws s3 cp ./out/_next/static s3://gentem/static --cache-control public --acl public-read --recursive
     - aws cloudfront create-invalidation --distribution-id E3K0FAMHGVOUZH --paths '/*'
   dependencies:
     - build:frontend
