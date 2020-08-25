@@ -69,8 +69,8 @@
   height: 48px;
   border-radius: 2px;
   box-shadow: 0px 4px 8px rgba(25, 25, 25, 0.1);
-  width: auto;
-  padding: 0 48px;
+  width: 300px;
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-out;
   &:hover {
@@ -286,80 +286,48 @@
 .containerInfoHome {
   width: 100%;
   height: 100%;
-  .fl-2 {
-    padding: 120px 0 0;
-  }
-  .infoHome,
-  .flexRev {
-    width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    .containerInfo {
+  display: grid;
+  grid-template: repeat(3, 575px) / auto;
+  grid-row-gap: 120px;
+  .target {
+    display: grid;
+    grid-template: 100% / repeat(2, 50%);
+    .info {
       width: 392px;
+      justify-self: center;
+      align-self: center;
       .texto {
         align-items: flex-start;
       }
-
       .linea {
         width: 83px;
         margin: 24px 0;
         border-radius: 8px;
         height: 5px;
-        background: red;
+        background: grey;
       }
     }
-    .containerImgInfo {
+    .containerImgInfo{
+      justify-self: center;
+      align-self: center;
       width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-
-      .cont {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+      height:100%;
+      .formaIm{
         width: 100%;
-        height: 100%;
-        position: relative;
-        .formaIm {
-          width: 550px;
-          height: 400px;
-          img {
-            height: 100%;
-            width: 100%;
-          }
+        height:100%;
+        img{
+          width: 100%;
+          height:100%;
         }
-        .forma {
-          height: 392px;
-          width: 399px;
-          position: absolute;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-
-          .svgF {
-            width: 100%;
-            height: 100%;
-          }
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .img {
-          z-index: 1;
-          position: relative;
-          display: flex;
-          width: 448px;
-          height: 362px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
+      }
+    }
+    &:nth-child(2){
+      .info{
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .containerImgInfo{
+        grid-column: 2 ;
       }
     }
   }
@@ -449,7 +417,7 @@
     .ficha {
       height: 100%;
       border-radius: 10px;
-      width:100%;
+      width: 100%;
       transition: all 0.1s ease-out;
       justify-self: center;
       align-self: center;
@@ -576,78 +544,57 @@
     }
   }
   .containerInfoHome {
-    .fl-2 {
-      padding: 60px 0 0;
-      .containerImgInfo {
-        .cont {
-          justify-content: center;
-        }
-      }
-    }
-    .infoHome {
-      width: 100%;
-      flex-direction: column-reverse;
-      .containerInfo {
+    grid-template: repeat(6, auto) / 100%;
+    grid-row-gap: 60px;
+    .target{
+      grid-template: repeat(2, 50%) / 100%;
+      
+      .info{
         width: 100%;
-        text-align: center;
-        .texto {
+        
+        .texto{
           align-items: center;
+          text-align: center;
+        }
+        .linea{
+          margin: 24px auto;
+        }
+        .desc{
+          text-align: center;
         }
       }
-      .containerImgInfo {
-        .cont {
-          justify-content: center;
-          .formaIm {
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            img {
-              height: 280px;
-              width: 300px;
-            }
-          }
-        }
+      .containerImgInfo{
+        width: 376px;
+        height: 370px;
       }
-    }
-    .flexRev {
-      width: 100%;
-      flex-direction: column;
 
-      .containerInfo {
-        width: 100%;
-        text-align: center;
-        .texto {
-          align-items: center;
+      &:nth-child(2){
+        .info{
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .containerImgInfo{
+          grid-column: 1;
+          grid-row: 2;
+          width: 376px;
+          height: 312px;
         }
       }
-      .containerImgInfo {
-        .cont {
-          justify-content: center;
-          .formaIm {
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            img {
-              height: 280px;
-              width: 300px;
-            }
-          }
+      &:nth-child(odd){
+        .info{
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .containerImgInfo{
+          grid-column: 1;
+          grid-row: 2;
         }
       }
-    }
-    .colm2 {
-      align-items: center;
     }
   }
+     
+  
 
-  .containerInfoHome .infoHome .containerInfo .linea,
-  .containerInfoHome .flexRev .containerInfo .linea {
-    margin: 24px auto;
-  }
   .colm2 {
     width: 100%;
     justify-content: center;
@@ -672,6 +619,12 @@
   }
   .containerAbout .content .about {
     width: 100%;
+  
+  }
+  .containerAbout{
+    .texto{
+      text-align: center;
+    }
   }
   .containerOngs {
     .desc {
@@ -680,7 +633,6 @@
     .containerFichas {
       grid-template-columns: repeat(4, 80px);
       grid-template-rows: repeat(2, 80px);
-  
     }
   }
 
@@ -688,9 +640,8 @@
     width: 68px;
     height: 68px;
   }
-  .texto {
-    text-align: center;
-    padding: 0;
+  .btnColab{
+    width: 256px;
   }
   .containerContribuir {
     height: 426px;
@@ -746,73 +697,7 @@
       }
     }
   }
-  .containerInfoHome {
-    .fl-2 {
-      padding: 0;
-      .containerImgInfo {
-        .cont {
-          justify-content: center;
-        }
-      }
-    }
-    .infoHome {
-      width: 100%;
-      flex-direction: column-reverse;
-      .containerInfo {
-        width: 100%;
-        text-align: center;
-        .texto {
-          align-items: center;
-        }
-      }
-      .containerImgInfo {
-        .cont {
-          .formaIm {
-            width: 100%;
-            height: 100%;
-            img {
-              width: 376px;
-              height: 360px;
-            }
-          }
-        }
-      }
-    }
-    .flexRev {
-      width: 100%;
-      flex-direction: column;
 
-      .containerInfo {
-        width: 100%;
-        text-align: center;
-        .texto {
-          align-items: center;
-        }
-      }
-      .containerImgInfo {
-        .cont {
-          justify-content: center;
-          .formaIm {
-            width: 100%;
-            height: 100%;
-            img {
-              width: 376px;
-              height: 360px;
-            }
-          }
-        }
-      }
-    }
-    .colm2 {
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  .containerInfoHome .infoHome .containerInfo .linea,
-  .containerInfoHome .flexRev .containerInfo .linea {
-    margin: 24px auto;
-  }
   .colm2 {
     width: 100%;
     justify-content: center;
@@ -822,6 +707,7 @@
     padding: 0;
     .texto {
       padding-bottom: 0;
+      
     }
     .content {
       flex-direction: column;
@@ -848,9 +734,7 @@
     width: 80px;
     height: 80px;
   }
-  .texto {
-    text-align: center;
-  }
+
   .containerContribuir {
     height: 426px;
     background-size: cover;
@@ -888,38 +772,8 @@
       padding: 36px 0 0;
     }
   }
-  .containerInfoHome .infoHome .containerInfo .texto,
-  .containerInfoHome .flexRev .containerInfo .texto {
-    align-items: center;
-  }
-  .containerInfoHome {
-    padding-top: (120px-48px);
-    .infoHome {
-      .containerImgInfo {
-        .cont {
-          .formaIm {
-            height: 361px;
-            width: 376px;
-          }
-        }
-      }
-    }
-    .flexRev {
-      width: 100%;
-      flex-direction: column;
-      .containerImgInfo {
-        .cont {
-          .formaIm {
-            height: 361px;
-            width: 376px;
-          }
-        }
-      }
-      .containerInfo {
-        width: 100%;
-      }
-    }
-  }
+
+ 
   .containerAbout {
     .content {
       .about {
@@ -987,40 +841,45 @@
     }
   }
   .containerInfoHome {
-    .fl-2 {
-      padding: 0;
-    }
-    .infoHome {
-      width: 100%;
-      flex-direction: row;
-      .containerInfo {
-        width: 100%;
-        text-align: left;
-        .texto {
+    grid-template: repeat(3, 344px) / 100%;
+    grid-row-gap: 90px;
+    .target{
+      grid-template: 100% / repeat(2, 50%);
+      .info{
+        width: 360px;
+        .texto{
+          align-items: start;
           text-align: left;
         }
-        .linea {
+        .linea{
           margin: 24px 0;
         }
-      }
-      .containerImgInfo {
-        height: 361px;
-        width: 376px;
-      }
-    }
-    .flexRev {
-      width: 100%;
-      flex-direction: row;
-      .containerInfo {
-        text-align: left;
-        .texto {
+        .desc{
           text-align: left;
         }
-        .linea {
-          margin: 24px 0;
+      }
+      &:nth-child(2){
+        .info{
+          grid-row: 1;
+          grid-column: 1;
+        }
+        .containerImgInfo{
+          grid-row: 1;
+          grid-column: 2;
+        }
+      }
+      &:nth-child(odd){
+        .info{
+          grid-row: 1;
+          grid-column: 2;
+        }
+        .containerImgInfo{
+          grid-row: 1;
+          grid-column: 1;
         }
       }
     }
+
   }
 
   .colm2 {
@@ -1057,9 +916,7 @@
     }
   }
 
-  .texto {
-    text-align: center;
-  }
+ 
   .containerContribuir {
     height: 426px;
     background-size: contain;
@@ -1082,39 +939,19 @@
     margin: 0 auto;
   }
   .containerInfoHome {
-    .fl-2 {
-      padding: 120px 0;
-    }
-
-    .infoHome {
-      .containerInfo .texto {
-        align-items: flex-start;
+    grid-row-gap: 110px;
+    .target{
+      .info{
+        width: 300px;
       }
-      .containerImgInfo {
-        .cont {
-          .formaIm {
-            img {
-              width: 468px;
-              height: 448px;
-            }
-          }
-        }
+      .containerImgInfo{
+        width: 459px;
+        height: 439px;
       }
-    }
-    .flexRev {
-      .containerInfo .texto {
-        align-items: flex-start;
-      }
-      .containerImgInfo {
-        .cont {
-          .formaIm {
-            width: 100%;
-            height: 100%;
-            img {
-              width: 468px;
-              height: 448px;
-            }
-          }
+      &:nth-child(2){
+        .containerImgInfo{
+          width: 457px;
+          height: 379px;
         }
       }
     }
@@ -1158,39 +995,8 @@
       }
     }
   }
-  .containerInfoHome {
-    .infoHome {
-      flex-direction: row;
-    }
-  }
-  .texto {
-    text-align: left;
-  }
-  .containerInfoHome {
-    .infoHome {
-      .colm2 {
-        .containerInfo {
-          text-align: left;
-          width: 300px;
-          .linea {
-            margin: 24px 0;
-          }
-        }
-      }
-    }
-    .flexRev {
-      flex-direction: row;
-      .colm2 {
-        text-align: left;
-        .containerInfo {
-          width: 300px;
-          .linea {
-            margin: 24px 0;
-          }
-        }
-      }
-    }
-  }
+
+ 
   .containerAbout {
     .content {
       flex-direction: row;
@@ -1205,7 +1011,6 @@
       }
     }
   }
-
 }
 @media screen and (min-width: 1224px) {
   .home {

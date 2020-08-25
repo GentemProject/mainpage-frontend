@@ -52,3 +52,5 @@ export const containerFichas: string
 export const ficha: string
 export const i4: string
 export const containerContribuir: string
+export const target: string
+export const info: string
