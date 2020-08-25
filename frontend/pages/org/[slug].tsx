@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import useLocation from '../../components/usables/useLocation'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+/* import { useRouter } from 'next/router' */
 import Head from 'next/head'
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
 import { Contenido, ContenidoSider } from '../../components/organization'
@@ -24,20 +24,19 @@ const ORG: NextPage<Props> = ({ organization }) => {
   /*   const router = useRouter()
   const { slug } = router.query */
   console.log(organization)
-  /*   const [orgLocation, setOrgLocation] = useState<any>()
+  const [orgLocation, setOrgLocation] = useState<any>()
   const ong = organization[0]
 
   if (ong.location !== undefined) {
     useEffect(() => {
       setOrgLocation(ong.location.map)
     }, [])
-  } */
-  /* 
-  const location = useLocation(orgLocation) */
+  }
+
+  const location = useLocation(orgLocation)
   return (
     <>
-      <h1>Ndea</h1>
-      {/* <Head>
+      <Head>
         <title>gentem | {ong.primaryData.name}</title>
       </Head>
       <Layout>
@@ -70,7 +69,7 @@ const ORG: NextPage<Props> = ({ organization }) => {
             </div>
           </div>
         </div>
-      </Layout> */}
+      </Layout>
     </>
   )
 }
