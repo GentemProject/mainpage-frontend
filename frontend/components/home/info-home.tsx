@@ -19,7 +19,7 @@ function Infohome() {
         col="#1E8A61"
         tit="Unidos somos 
 más fuertes"
-        cuerpo="Con la ayuda de cada uno de nosotros, por pequeña que sea, podemos darle a alguien un respiro en estos tiempos de incertidumbre y la esperanza de un manaña mejor."
+        cuerpo="Tenemos que trabajar todos juntos, por un futuro mas brillante."
         i={img3}
         id="2"
       />

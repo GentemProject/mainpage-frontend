@@ -201,69 +201,64 @@
 }
 .containerStats {
   width: 100%;
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;
-  .texto {
-    padding: 0 96px;
-    h2 {
-      color: #1a1928;
+  display: grid;
+  grid-template: 140px auto 30px / 100%;
+  grid-row-gap: 48px;
+  .infoStats {
+    display:grid;
+    grid-template: repeat(2, 50%) / 100%;
+    justify-self: center;
+    align-content: center;
+    text-align: center;
+    grid-row: 1;
+    .texto {
+      text-align: center;
+      h2 {
+        color: #1a1928;
+      }
+    }
+    .desc{
+      justify-self: center;
     }
   }
-  .desc {
-    padding: 84px 0;
+  .resStats {
+    display: grid;
+    align-items: center;
+
+    grid-template: 100% / repeat(3, (100%/3));
+    .resCov {
+      justify-self: center;
+      align-self: center;
+      .valor {
+        span {
+          font-weight: 200;
+          font-size: 55px;
+          line-height: 55px;
+          text-align: center;
+          letter-spacing: -0.045em;
+        }
+      }
+      .resultInfo{
+        text-align: center;
+        margin-top: 10px;
+        span{
+          font-weight: bold;
+font-size: 16px;
+line-height: 22px;
+        }
+      }
+    }
   }
+
+ 
   .fuente {
-    padding: 48px;
     text-align: center;
+    grid-row: 3;
     span {
       font-style: normal;
       font-weight: 300;
       font-size: 12px;
       line-height: 29px;
-    }
-  }
-  .resStats {
-    display: flex;
-
-    flex-direction: column;
-    .result {
-      width: 100%;
-      justify-content: space-around;
-      display: flex;
-      flex-direction: row;
-      .colm3 {
-        &:nth-child(1) {
-          justify-content: flex-start;
-        }
-        &:nth-child(3) {
-          justify-content: flex-end;
-        }
-      }
-      .resCov {
-        .valor {
-          span {
-            font-weight: 200;
-            font-size: 55px;
-            line-height: 55px;
-            flex: none;
-            order: 0;
-            align-self: center;
-            margin: 0px 6px;
-            letter-spacing: -0.045em;
-          }
-        }
-        .resultInfo {
-          padding-top: 6px;
-          text-align: center;
-          span {
-            font-style: normal;
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 22px;
-          }
-        }
-      }
     }
   }
 }
@@ -308,27 +303,27 @@
         background: grey;
       }
     }
-    .containerImgInfo{
+    .containerImgInfo {
       justify-self: center;
       align-self: center;
       width: 100%;
-      height:100%;
-      .formaIm{
+      height: 100%;
+      .formaIm {
         width: 100%;
-        height:100%;
-        img{
+        height: 100%;
+        img {
           width: 100%;
-          height:100%;
+          height: 100%;
         }
       }
     }
-    &:nth-child(2){
-      .info{
+    &:nth-child(2) {
+      .info {
         grid-column: 1;
         grid-row: 1;
       }
-      .containerImgInfo{
-        grid-column: 2 ;
+      .containerImgInfo {
+        grid-column: 2;
       }
     }
   }
@@ -336,63 +331,49 @@
 .containerAbout {
   width: 100%;
   height: 100%;
-  display: flex;
-  padding-bottom: 180px;
-  flex-direction: column;
+  display: grid;
+  grid-template: 100px 300px 48px / repeat(3, (100%/3));
+  grid-row-gap: 65px;
+  margin-bottom: 180px;
   .texto {
-    padding: 60px 0;
+    grid-column: 1 / 4;
+    align-items: center;
   }
   .content {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template: repeat(2, 50%) / 100%;
+    align-items: center;
+    justify-items: center;
 
+    .containerImg {
+      align-self: center;
+    }
     .about {
-      flex-direction: column;
-      width: 376px;
-      .containerImg {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .img {
-          justify-content: center;
-          align-items: center;
-          display: flex;
-          height: 144px;
-          width: 144px;
-        }
-      }
+      align-self: center;
+      text-align: center;
       .tit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
         span {
           font-weight: bold;
-          font-size: 16px;
+          font-size: 18px;
           line-height: 147.5%;
-          color: #000;
-          margin: 20px 0;
+          color: black;
         }
-        p {
-          font-size: 16px;
-        }
+        margin-bottom: 18px;
       }
       .desc {
-        text-align: center;
         p {
-          font-style: normal;
           font-weight: 300;
           font-size: 16px;
           line-height: 22px;
-
+          text-align: center;
           letter-spacing: 0.01em;
         }
       }
     }
   }
   .btnFl {
-    padding: 60px 0;
+    grid-row: 3;
+    grid-column: 1/4;
   }
 }
 .containerOngs {
@@ -520,116 +501,81 @@
     width: 100%;
   }
   .containerStats {
-    width: 100%;
-    .texto {
-      padding: 0;
-      text-align: center;
-    }
-    .desc {
-      padding: 36px 0;
-      text-align: center;
-    }
-    .resStats {
-      .result {
-        flex-direction: column;
-        .colm3 {
-          width: 100%;
-          padding: 36px 0;
-          &:nth-child(1) {
-            justify-content: center;
-          }
-          &:nth-child(3) {
-            justify-content: center;
-          }
-        }
-      }
+    .resStats{
+      grid-template: repeat(3, auto) / 100%;
+      grid-row-gap: 40px;
     }
   }
   .containerInfoHome {
     grid-template: repeat(6, auto) / 100%;
     grid-row-gap: 60px;
-    .target{
+    .target {
       grid-template: repeat(2, 50%) / 100%;
       grid-row-gap: 40px;
-      .info{
+      .info {
         width: 100%;
-        
-        .texto{
+
+        .texto {
           align-items: center;
           text-align: center;
         }
-        .linea{
+        .linea {
           margin: 24px auto;
         }
-        .desc{
+        .desc {
           text-align: center;
         }
       }
-      .containerImgInfo{
+      .containerImgInfo {
         width: 376px;
         height: 370px;
       }
 
-      &:nth-child(2){
-        .info{
+      &:nth-child(2) {
+        .info {
           grid-column: 1;
           grid-row: 1;
         }
-        .containerImgInfo{
+        .containerImgInfo {
           grid-column: 1;
           grid-row: 2;
           width: 376px;
           height: 312px;
         }
       }
-      &:nth-child(odd){
-        .info{
+      &:nth-child(odd) {
+        .info {
           grid-column: 1;
           grid-row: 1;
         }
-        .containerImgInfo{
+        .containerImgInfo {
           grid-column: 1;
           grid-row: 2;
         }
       }
     }
   }
-     
-  
 
   .colm2 {
     width: 100%;
     justify-content: center;
   }
   .containerAbout {
-    width: 100%;
-    padding: 0;
+    grid-template: 100px repeat(3, 280px) 48px / 100%;
     .texto {
-      padding-bottom: 0;
-    }
-    .content {
-      flex-direction: column;
-
-      .colm3 {
-        width: 100%;
-        padding-top: 68px;
-      }
-    }
-    .btnFl {
-      padding-bottom: 130px;
-    }
-  }
-  .containerAbout .content .about {
-    width: 100%;
-  
-  }
-  .containerAbout{
-    .texto{
+      grid-row: 1;
+      grid-column: 1;
       text-align: center;
     }
+
+    .btnFl {
+      grid-row: 5;
+      grid-column: 1;
+    }
   }
+
   .containerOngs {
-    .texto{
+    .texto {
       text-align: center;
     }
     .desc {
@@ -645,7 +591,7 @@
     width: 68px;
     height: 68px;
   }
-  .btnColab{
+  .btnColab {
     width: 256px;
   }
   .containerContribuir {
@@ -656,7 +602,7 @@
     }
     .content {
       padding: 44px $layout-xs 0;
-      .texto{
+      .texto {
         text-align: center;
       }
     }
@@ -680,58 +626,12 @@
   .containerColabor .colaborar {
     width: 100%;
   }
-  .containerStats {
-    width: 100%;
-    .texto {
-      padding: 0;
-    }
-    .desc {
-      padding: 36px 0;
-      text-align: center;
-    }
-    .resStats {
-      .result {
-        flex-direction: column;
-        .colm3 {
-          width: 100%;
-          padding: 36px 0;
-          &:nth-child(1) {
-            justify-content: center;
-          }
-          &:nth-child(3) {
-            justify-content: center;
-          }
-        }
-      }
-    }
-  }
 
   .colm2 {
     width: 100%;
     justify-content: center;
   }
-  .containerAbout {
-    width: 100%;
-    padding: 0;
-    .texto {
-      padding-bottom: 0;
-      
-    }
-    .content {
-      flex-direction: column;
 
-      .colm3 {
-        width: 100%;
-        padding-top: 68px;
-      }
-    }
-    .btnFl {
-      padding-bottom: 132px;
-    }
-  }
-  .containerAbout .content .about {
-    width: 100%;
-  }
   .containerOngs {
     .desc {
       width: 100%;
@@ -775,24 +675,7 @@
       padding: 0 (98px-$layout-xs-p);
     }
   }
-  .containerStats {
-    .desc {
-      padding: 36px 0 0;
-    }
-  }
 
- 
-  .containerAbout {
-    .content {
-      .about {
-        .desc {
-          padding: 0;
-        }
-      }
-    }
-  }
-  .containerOngs {
-  }
   .containerContribuir {
     .content {
       padding: 84px (98px-$layout-s-p);
@@ -823,97 +706,52 @@
   .containerColabor .colaborar {
     width: 100%;
   }
-  .containerStats {
-    width: 100%;
-    .texto {
-      padding: 0;
-    }
-    .desc {
-      padding: 36px 0;
-      text-align: center;
-    }
-    .resStats {
-      .result {
-        flex-direction: column;
-        .colm3 {
-          width: 100%;
-          padding: 36px 0;
-          &:nth-child(1) {
-            justify-content: center;
-          }
-          &:nth-child(3) {
-            justify-content: center;
-          }
-        }
-      }
-    }
-  }
+ 
   .containerInfoHome {
     grid-template: repeat(3, 344px) / 100%;
     grid-row-gap: 90px;
-    .target{
+    .target {
       grid-template: 100% / repeat(2, 50%);
-      .info{
+      .info {
         width: 360px;
-        .texto{
+        .texto {
           align-items: start;
           text-align: left;
         }
-        .linea{
+        .linea {
           margin: 24px 0;
         }
-        .desc{
+        .desc {
           text-align: left;
         }
       }
-      &:nth-child(2){
-        .info{
+      &:nth-child(2) {
+        .info {
           grid-row: 1;
           grid-column: 1;
         }
-        .containerImgInfo{
+        .containerImgInfo {
           grid-row: 1;
           grid-column: 2;
         }
       }
-      &:nth-child(odd){
-        .info{
+      &:nth-child(odd) {
+        .info {
           grid-row: 1;
           grid-column: 2;
         }
-        .containerImgInfo{
+        .containerImgInfo {
           grid-row: 1;
           grid-column: 1;
         }
       }
     }
-
   }
 
   .colm2 {
     width: 50%;
   }
-  .containerAbout {
-    width: 100%;
-    padding: 0;
-    .texto {
-      padding-bottom: 0;
-    }
-    .content {
-      flex-direction: column;
 
-      .colm3 {
-        width: 100%;
-        padding-top: 68px;
-      }
-    }
-    .btnFl {
-      padding-bottom: 132px;
-    }
-  }
-  .containerAbout .content .about {
-    width: 100%;
-  }
   .containerOngs {
     .desc {
       width: 100%;
@@ -924,7 +762,6 @@
     }
   }
 
- 
   .containerContribuir {
     height: 426px;
     background-size: contain;
@@ -942,30 +779,37 @@
   .home {
     padding: 0 $layout-s-p;
   }
-  .containerStats .desc {
-    width: 600px;
-    margin: 0 auto;
-  }
+
   .containerInfoHome {
     grid-template: repeat(3, 448px) / 100%;
     grid-row-gap: 110px;
-    .target{
-      .info{
+    .target {
+      .info {
         width: 300px;
       }
-      .containerImgInfo{
+      .containerImgInfo {
         width: 459px;
         height: 439px;
       }
-      &:nth-child(2){
-        .containerImgInfo{
+      &:nth-child(2) {
+        .containerImgInfo {
           width: 457px;
           height: 379px;
         }
       }
     }
   }
-
+  .containerAbout {
+    grid-template: 100px 300px 48px / repeat(3, (100%/3));
+    .texto {
+      grid-row: 1;
+      grid-column: 1 /4;
+    }
+    .btnFl {
+      grid-row: 3;
+      grid-column: 1 /4;
+    }
+  }
   .containerOngs {
     .desc {
       width: 100%;
@@ -993,31 +837,16 @@
       }
     }
   }
-  .containerColabor {
-    // padding: 204px 196px;
-  }
-
+  
   .containerStats {
-    .resStats {
-      .result {
-        flex-direction: row;
+    .infoStats{
+      .desc{
+        width: 70%;
       }
     }
-  }
-
- 
-  .containerAbout {
-    .content {
-      flex-direction: row;
-      .colm3 {
-        width: (100%/3);
-        .about {
-          .desc {
-            padding: 0 20px;
-            height: 88px;
-          }
-        }
-      }
+    .resStats {
+      grid-template: 100% / repeat(3, (100%/3));
+      grid-row-gap: 0;
     }
   }
 }
