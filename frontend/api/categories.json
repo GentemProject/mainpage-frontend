@@ -90,7 +90,15 @@
     },
     {
       "cat_id": [22],
+      "cat_name": "Estudiantes"
+    },
+    {
+      "cat_id": [23],
       "cat_name": "Personas privadas de la libertad"
+    },
+    {
+      "cat_id": [24],
+      "cat_name": "Animales"
     }
   ]
 }
