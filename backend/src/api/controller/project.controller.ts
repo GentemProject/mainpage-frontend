@@ -67,7 +67,7 @@ const ProjectCtrl = {
         if (err) {
           return res.json(err);
         } else {
-          return res.json(result);
+          return res.json(result[0]);
         }
       },
     );
