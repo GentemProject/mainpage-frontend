@@ -10,7 +10,10 @@ module.exports = {
       return `${new Date().getTime()}`
     }
   },
-  exportPathMap: async function () {
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
     const paths = {
       '/': { page: '/' },
       '/projects': { page: '/projects' },
