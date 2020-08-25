@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import useLocation from '../../components/usables/useLocation'
 import { NextPage } from 'next'
-/* import { useRouter } from 'next/router' */
+import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 
 // Usables & Componentes
 import { Contenido, ContenidoSider } from '../../components/organization'
@@ -21,21 +21,23 @@ interface Props {
 }
 
 const ORG: NextPage<Props> = ({ organization }) => {
-  /*   const router = useRouter() */
-  /*   const { slug } = router.query */
-  const [orgLocation, setOrgLocation] = useState<any>()
+  /*   const router = useRouter()
+  const { slug } = router.query */
+  console.log(organization)
+  /*   const [orgLocation, setOrgLocation] = useState<any>()
   const ong = organization[0]
 
   if (ong.location !== undefined) {
     useEffect(() => {
       setOrgLocation(ong.location.map)
     }, [])
-  }
-
-  const location = useLocation(orgLocation)
+  } */
+  /* 
+  const location = useLocation(orgLocation) */
   return (
     <>
-      <Head>
+      <h1>Ndea</h1>
+      {/* <Head>
         <title>gentem | {ong.primaryData.name}</title>
       </Head>
       <Layout>
@@ -68,7 +70,7 @@ const ORG: NextPage<Props> = ({ organization }) => {
             </div>
           </div>
         </div>
-      </Layout>
+      </Layout> */}
     </>
   )
 }
@@ -76,13 +78,18 @@ const ORG: NextPage<Props> = ({ organization }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('https://api.gentem.org/api/projects')
   const projects = await res.json()
-  const paths = projects.map((org) => `/org/${org.slug}`)
+  /*   const paths = projects.map((org) => `/org/${org.slug}`) */
+  const paths = projects.map((org) => ({
+    params: { slug: org.slug },
+  }))
   return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
-  const organization = await res.json()
+  const organizations = await res.json()
+  const organization = organizations[0]
+
   return { props: { organization } }
 }
 
