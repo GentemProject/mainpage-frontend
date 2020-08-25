@@ -522,6 +522,7 @@
     width: 100%;
     .texto {
       padding: 0;
+      text-align: center;
     }
     .desc {
       padding: 36px 0;
@@ -548,7 +549,7 @@
     grid-row-gap: 60px;
     .target{
       grid-template: repeat(2, 50%) / 100%;
-      
+      grid-row-gap: 40px;
       .info{
         width: 100%;
         
@@ -627,6 +628,9 @@
     }
   }
   .containerOngs {
+    .texto{
+      text-align: center;
+    }
     .desc {
       width: 100%;
     }
@@ -651,6 +655,9 @@
     }
     .content {
       padding: 44px $layout-xs 0;
+      .texto{
+        text-align: center;
+      }
     }
   }
 }
