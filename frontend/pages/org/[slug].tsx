@@ -37,11 +37,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return { props: { organization } }
 }
 
-const ORG: NextPage<Props> = ({ organization }) => {
+const ORG: NextPage<Props> = (props) => {
+  const { organization } = props
   if (!organization) {
     return <>loading..</>
   }
-  console.log(organization)
   const [orgLocation, setOrgLocation] = useState<any>()
   const location = useLocation(orgLocation)
   const ong = organization

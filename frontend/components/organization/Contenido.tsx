@@ -49,9 +49,15 @@ function Contenido(props: any) {
         <div className={styles.ongProfileUserImgBreadcrumb}>
           <div className={styles.ongProfileUserImg}>
             {props.logo ? (
-              <img src={props.logo} alt="User 1" />
+              <div
+                style={{ backgroundImage: `url(${props.logo})` }}
+                className={styles.ongProfileUserImg}
+              />
             ) : (
-              <img src="/logoDefault.png" alt="" />
+              <div
+                style={{ backgroundImage: `url(/logoDefault.png)` }}
+                className={styles.ongProfileUserImg}
+              />
             )}
           </div>
           <div className={styles.ongProfileUserBreadcrumb}>
