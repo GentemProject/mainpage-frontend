@@ -92,40 +92,36 @@ function Stats() {
 
   return (
     <div className={styles.containerStats}>
-      <div className={styles.texto}>
-        <h2>El coronavirus no es una gripe cualquiera</h2>
-      </div>
-      <div className={styles.desc}>
-        <p>
-          A pesar de que muchos nos intentan convencer diciendo que este virus
-          es más leve que una gripe, los datos demuestran que es mucho más
-          agresivo.
-        </p>
+      <div className={styles.infoStats}>
+        <div className={styles.texto}>
+          <h2>El coronavirus no es una gripe cualquiera</h2>
+        </div>
+        <div className={styles.desc}>
+          <p>
+            A pesar de que muchos nos intentan convencer diciendo que este virus
+            es más leve que una gripe, los datos demuestran que es mucho más
+            agresivo.
+          </p>
+        </div>
       </div>
       <div className={styles.resStats}>
-        <div className={styles.result}>
-          <div className={styles.colm3}>
-            <ResCov res={cont} info="Casos confirmados" />
-          </div>
-          <div className={styles.colm3}>
-            <ResCov res={rec} info="Recuperados" />
-          </div>
-          <div className={styles.colm3}>
-            <ResCov res={f} info="Fallecidos" />
-          </div>
-        </div>
-        <div className={styles.fuente}>
-          <span>
-            Datos actualizados el {date}, tomados de{' '}
-            <a
-              href="https://covid19api.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              www.covid19api.com
-            </a>
-          </span>
-        </div>
+        <ResCov res={cont} info="Casos confirmados" />
+
+        <ResCov res={rec} info="Recuperados" />
+
+        <ResCov res={f} info="Fallecidos" />
+      </div>
+      <div className={styles.fuente}>
+        <span>
+          Datos actualizados el {date}, tomados de{' '}
+          <a
+            href="https://covid19api.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            www.covid19api.com
+          </a>
+        </span>
       </div>
     </div>
   )
