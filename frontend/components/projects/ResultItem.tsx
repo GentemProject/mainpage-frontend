@@ -1,9 +1,21 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
+
+// Components & Usables
 import TargetBase from '../usables/TargetBase'
+import { useOneCategorie } from '../usables/useCategories'
+
+// Styles
 import * as style from '../../styles/onglist.module.scss'
 
 function ResultItem(props: any) {
-  const array = ['Adolescentes']
+  const communityWorkWith = [props.communityId[0]]
+  const communityLength = props.communityId.length
+  const [community, setCommunity] = useState([])
+
+  useEffect(() => {
+    useOneCategorie({ setCommunity, communityWorkWith })
+  }, [])
+
   return (
     <div className="OngList__Result--itemContainer">
       <div className={style.resultItem}>
@@ -36,9 +48,15 @@ function ResultItem(props: any) {
           <div className={style.itemDetailsFooter}>
             <div className={style.detailsFooterTarget}>
               <div className={style.footerTargetPrincipal}>
-                <TargetBase array={array} filter={0} />
+                <TargetBase id={props.id} array={community} filter={0} />
               </div>
-              {/*  <div className='footer__target--more'> +1</div> */}
+              {communityLength > 1 ? (
+                <div className="footer__target--more">
+                  +{communityLength - 1}
+                </div>
+              ) : (
+                false
+              )}
             </div>
             <div className={style.detailsFooterLocation}>
               {props.location

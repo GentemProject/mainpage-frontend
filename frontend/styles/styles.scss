@@ -64,13 +64,13 @@ button {
   display: none;
 }
 
-/* @media (max-width: 800px) { */
+@media (max-width: 800px) {
 .ReactModalPortal {
   position: absolute;
   z-index: 2;
   display: block;
 }
-/* } */
+}
 
 // Loader
 

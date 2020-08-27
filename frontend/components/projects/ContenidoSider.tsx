@@ -79,6 +79,7 @@ function LazyContenidoSider({ ONGs }) {
                 <a>
                   <ResultItem
                     communityId={ong.primaryData.communityId}
+                    id={ong._id}
                     name={ong.primaryData.name}
                     desc={ong.primaryData.description}
                     logo={ong.primaryData.logo}

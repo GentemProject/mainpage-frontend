@@ -10,12 +10,14 @@ import Close from '../svg/close'
 import { ResponsiveDonate } from './ContenidoSider'
 import { Button, Divider } from '../usables/buttons'
 import TargetBase from '../usables/TargetBase'
+import { useAllCategories } from '../usables/useCategories'
 import cat from '../../api/categories.json'
 
 // Styles
 import * as styles from '../../styles/organization.module.scss'
 
 Modal.setAppElement('#__next')
+
 function Contenido(props: any) {
   const [open, setOpen] = useState(false)
 
@@ -29,19 +31,9 @@ function Contenido(props: any) {
   const [communityArray, setCommunityArray] = useState<any>([])
 
   const communityWorkWith = props.communityworkwith
-  const catdata = cat.data
   useEffect(() => {
-    catdata.map((target: any) => {
-      return communityWorkWith.map((community: any) => {
-        return target.cat_id.some((iqual: number) => iqual === community)
-          ? setCommunityArray((communityArray: []) => [
-              ...communityArray,
-              target.cat_name,
-            ])
-          : false
-      })
-    })
-  }, [catdata, communityWorkWith])
+    useAllCategories({ setCommunityArray, communityWorkWith })
+  }, [communityWorkWith])
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>
@@ -188,6 +180,24 @@ function Contenido(props: any) {
                   target="_blank"
                 >
                   <img src="/fb.svg" alt="facebook logo" />
+                </a>
+              )}
+              {props.contact.twitter && (
+                <a
+                  href={props.contact.twitter}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <img src="/twitter.svg" alt="twitter logo" />
+                </a>
+              )}
+              {props.contact.linkedin && (
+                <a
+                  href={props.contact.linkedin}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <img src="/linkedIn.svg" alt="linkedin logo" />
                 </a>
               )}
             </div>

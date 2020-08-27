@@ -3,15 +3,14 @@ import Target from './Target'
 import * as style from '../../styles/lib/usables.module.scss'
 
 function TargetBase(props: any) {
-  const result = props.array
-  const filter = props.filter
+  const { array, filter, id } = props
 
   if (filter !== 0) {
     return (
       <div className={style.target}>
         <div className={style.targetGrid}>
           {filter.map((title: any) => {
-            return <Target key={title} filtro={title} />
+            return <Target key={id} filtro={title} />
           })}
         </div>
       </div>
@@ -20,8 +19,8 @@ function TargetBase(props: any) {
   return (
     <div className={style.target}>
       <div className={style.targetGrid}>
-        {result.map((title: any) => {
-          return <Target key={title} desc={title} />
+        {array.map((title: any) => {
+          return <Target key={id} desc={title} />
         })}
       </div>
     </div>
