@@ -51,9 +51,7 @@ function ResultItem(props: any) {
                 <TargetBase id={props.id} array={community} filter={0} />
               </div>
               {communityLength > 1 ? (
-                <div className="footer__target--more">
-                  +{communityLength - 1}
-                </div>
+                <div className={style.targetMore}>+{communityLength - 1}</div>
               ) : (
                 false
               )}

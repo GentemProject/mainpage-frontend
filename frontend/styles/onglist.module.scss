@@ -170,6 +170,7 @@
 .detailsFooterTarget {
   display: flex;
   margin-top: 8px;
+  align-items: center;
 }
 .footerTargetPrincipal {
   margin-right: 16px;
@@ -194,6 +195,10 @@
   font-size: 16px;
   display: flex;
   align-items: center;
+}
+
+.targetMore {
+  color: #1a1928;
 }
 
 // Responsive

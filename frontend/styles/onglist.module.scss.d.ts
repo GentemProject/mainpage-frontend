@@ -26,6 +26,7 @@ export const footerTargetPrincipal: string
 export const target: string
 export const targetSpan: string
 export const detailsFooterLocation: string
+export const targetMore: string
 export const listModal: string
 export const modalClose: string
 export const ongListModal: string
