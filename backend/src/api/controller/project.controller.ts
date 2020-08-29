@@ -32,7 +32,6 @@ const ProjectCtrl = {
         res.end();
       }
       const show = page * perPage;
-      console.log(show);
       projectModel
         .find({})
         .skip(show)
