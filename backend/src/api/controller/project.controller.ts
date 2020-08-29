@@ -23,10 +23,16 @@ const ProjectCtrl = {
     });
   },
   getPagination: async (req: Request, res: Response) => {
+    let cuantity = await projectModel.countDocuments();
     try {
       const perPage: number = parseInt(req.query.limit as string);
-      const page: number = parseInt(req.query.skip as string);
+      const totalPages: number = Math.floor(cuantity / perPage)
+      let page: number = parseInt(req.query.skip as string);
+      if (page > totalPages) {
+        res.end();
+      }
       const show = page * perPage;
+      console.log(show);
       projectModel
         .find({})
         .skip(show)
@@ -34,7 +40,7 @@ const ProjectCtrl = {
         .then(data =>
           res.json({
             page: page,
-            perPage: perPage,
+            totalPages: totalPages,
             data: data,
           }),
         );
