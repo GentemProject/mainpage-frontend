@@ -27,16 +27,19 @@ const ProjectCtrl = {
       const perPage: number = parseInt(req.query.limit as string);
       const page: number = parseInt(req.query.skip as string);
       const show = page * perPage;
-      projectModel.find({})
+      projectModel
+        .find({})
         .skip(show)
         .limit(perPage)
-        .then((data) => res.json({
-          page: page,
-          perPage: perPage,
-          data: data,
-        }))
+        .then(data =>
+          res.json({
+            page: page,
+            perPage: perPage,
+            data: data,
+          }),
+        );
     } catch (error) {
-      return res.status(500).json(error)
+      return res.status(500).json(error);
     }
   },
 
