@@ -22,9 +22,10 @@ import * as styles from '../styles/onglist.module.scss'
 
 interface Props {
   projects: Organization
+  projectos: Organization
 }
 
-const OngList: NextPage<Props> = ({ projects }) => {
+const OngList: NextPage<Props> = ({ projects, projectos }) => {
   const filter = ['Niños y Niñas (7-12)']
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
@@ -77,6 +78,7 @@ const OngList: NextPage<Props> = ({ projects }) => {
       mounted.current = true
     }
   }, [filters])
+  console.log(projectos)
   return (
     <>
       <Head>
@@ -107,13 +109,18 @@ const OngList: NextPage<Props> = ({ projects }) => {
 }
 
 export default OngList
-
+const skip = 1
 export const getStaticProps = async () => {
   const res = await fetch('https://api.gentem.org/api/projects')
+  const res2 = await fetch(
+    `https://api.gentem.org/api/projects/pagination?skip=${skip}&limit=15`
+  )
+  const projectos = await res2.json()
   const projects = await res.json()
   return {
     props: {
       projects,
+      projectos,
     },
   }
 }
