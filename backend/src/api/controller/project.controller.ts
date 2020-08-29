@@ -22,6 +22,24 @@ const ProjectCtrl = {
       }
     });
   },
+  getPagination: async (req: Request, res: Response) => {
+    try {
+      const perPage: number = parseInt(req.query.limit as string);
+      const page: number = parseInt(req.query.skip as string);
+      const show = page * perPage;
+      projectModel.find({})
+        .skip(show)
+        .limit(perPage)
+        .then((data) => res.json({
+          page: page,
+          perPage: perPage,
+          data: data,
+        }))
+    } catch (error) {
+      return res.status(500).json(error)
+    }
+  },
+
   createProject: async (req: Request, res: Response) => {
     console.log(req.body);
   },
@@ -86,7 +104,7 @@ const ProjectCtrl = {
 
 export default ProjectCtrl;
 
-/* 
+/*
     const objPrueba = new projectModel({
       slug: 'ndeaa',
       primaryData: {
@@ -132,7 +150,7 @@ export default ProjectCtrl;
     }); */
 
 // Code used for take all the old data to the new api
-/* 
+/*
        var aum: any = 0;
        await req.body.forEach(async (one: any) => {
          var changingModel = new projectModel({
