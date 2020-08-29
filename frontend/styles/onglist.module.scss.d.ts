@@ -27,6 +27,9 @@ export const target: string
 export const targetSpan: string
 export const detailsFooterLocation: string
 export const targetMore: string
+export const seeMoreContainer: string
+export const seeMore: string
+export const seeMoreText: string
 export const listModal: string
 export const modalClose: string
 export const ongListModal: string

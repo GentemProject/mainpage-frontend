@@ -25,12 +25,18 @@ function ContenidoSider(props: any) {
     setOpen(false)
   }
 
-  const { ONGs } = props
+  const { button, proyectos, visible } = props
+  const [quantity, setQuantity] = useState(0)
+  useEffect(() => {
+    proyectos.map((ong) => {
+      setQuantity(ong.length + quantity)
+    })
+  }, [proyectos])
 
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
-        <h6>Mostrando {ONGs.length} proyectos</h6>
+        <h6>Mostrando {quantity} proyectos</h6>
         <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
@@ -45,12 +51,16 @@ function ContenidoSider(props: any) {
           <ModalContent />
         </Modal>
       </div>
-      <LazyContenidoSider ONGs={ONGs} />
+      <LazyContenidoSider
+        button={button}
+        proyectos={proyectos}
+        visible={visible}
+      />
     </div>
   )
 }
 
-function LazyContenidoSider({ ONGs }) {
+function LazyContenidoSider({ button, proyectos, visible }) {
   const [show, setShow] = useState(false)
   const elementRef = useRef()
 
@@ -73,23 +83,32 @@ function LazyContenidoSider({ ONGs }) {
   return (
     <div ref={elementRef}>
       {show
-        ? ONGs.map((ong: any) => {
-            return (
-              <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
-                <a>
-                  <ResultItem
-                    communityId={ong.primaryData.communityId}
-                    id={ong._id}
-                    name={ong.primaryData.name}
-                    desc={ong.primaryData.description}
-                    logo={ong.primaryData.logo}
-                    location={ong.location}
-                  />
-                </a>
-              </Link>
-            )
-          })
+        ? proyectos.map((page: any) =>
+            page.map((ong: any) => {
+              return (
+                <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
+                  <a>
+                    <ResultItem
+                      communityId={ong.primaryData.communityId}
+                      id={ong._id}
+                      name={ong.primaryData.name}
+                      desc={ong.primaryData.description}
+                      logo={ong.primaryData.logo}
+                      location={ong.location}
+                    />
+                  </a>
+                </Link>
+              )
+            })
+          )
         : null}
+      {visible && (
+        <div className={styles.seeMoreContainer}>
+          <div onClick={button} className={styles.seeMore}>
+            <span className={styles.seeMoreText}>Ver más</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

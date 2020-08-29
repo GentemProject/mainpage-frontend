@@ -7,6 +7,7 @@ import { Contenido, ContenidoSider, Banner } from '../components/projects/'
 import Layout from '../components/Layout'
 import Loader from '../components/usables/Loader'
 import { getForFilters } from '../api/filters'
+import { getPagination } from '../api/filters'
 // Interfaces
 import { Organization } from '../interfaces/organization'
 
@@ -21,11 +22,11 @@ interface filters {
 import * as styles from '../styles/onglist.module.scss'
 
 interface Props {
-  projects: Organization
   projectos: Organization
 }
+let page = 0
 
-const OngList: NextPage<Props> = ({ projects, projectos }) => {
+const OngList: NextPage<Props> = ({ projectos }) => {
   const filter = ['Niños y Niñas (7-12)']
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
@@ -78,15 +79,28 @@ const OngList: NextPage<Props> = ({ projects, projectos }) => {
       mounted.current = true
     }
   }, [filters])
-  console.log(projectos)
+
+  const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
+  const [visible, setVisible] = useState(true)
+  const handlePagination = async () => {
+    page = page + 1
+    const res = await getPagination(page)
+    const project = await res.data
+    setArrayProjectos([...arrayProjectos, project])
+    if (page === projectos.totalPages) {
+      console.log(page, projectos.totalPages)
+      setVisible(false)
+    }
+  }
+
   return (
     <>
       <Head>
         <title>gentem | Proyectos</title>
       </Head>
       <Layout>
-        {projects.length < 0 && <Loader></Loader>}
-        {projects.length > 0 && (
+        {projectos.data.length < 0 && <Loader></Loader>}
+        {projectos.data.length > 0 && (
           <div className={styles.ongList}>
             <Banner />
             <div className={styles.layoutCenter}>
@@ -96,8 +110,11 @@ const OngList: NextPage<Props> = ({ projects, projectos }) => {
                   changeSelect={changeSelect}
                 />
                 <ContenidoSider
-                  ONGs={resultfilters ? resultfilters : projects}
+                  ONGs={resultfilters ? resultfilters : projectos.data}
+                  proyectos={arrayProjectos}
                   filter={filter}
+                  button={handlePagination}
+                  visible={visible}
                 />
               </div>
             </div>
@@ -109,17 +126,11 @@ const OngList: NextPage<Props> = ({ projects, projectos }) => {
 }
 
 export default OngList
-const skip = 1
+
 export const getStaticProps = async () => {
-  const res = await fetch('https://api.gentem.org/api/projects')
-  const res2 = await fetch(
-    `https://api.gentem.org/api/projects/pagination?skip=${skip}&limit=15`
-  )
-  const projectos = await res2.json()
-  const projects = await res.json()
+  const projectos = await getPagination()
   return {
     props: {
-      projects,
       projectos,
     },
   }

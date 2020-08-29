@@ -1,11 +1,23 @@
 const BASE_API = 'https://api.gentem.org'
-//const BASE_API = 'https://www.gentem.org'
 interface paramsFilters {
   country: string
   products: boolean
   paymenData: boolean
   transfer: boolean
   community: number
+}
+
+export const getPagination = async (skip = 0, limit = 15) => {
+  try {
+    const request = await fetch(
+      `${BASE_API}/api/projects/pagination?skip=${skip}&limit=${limit}`
+    )
+    const projectos = await request.json()
+    const data = projectos
+    return data
+  } catch (error) {
+    return error
+  }
 }
 
 export const getDistinct = async () => {

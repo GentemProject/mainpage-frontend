@@ -21,6 +21,10 @@ export interface Organization {
     bankAccount: string
     products: string
   }
+  totalPages: number
+  data: {
+    length: number
+  }
   _id: string
   name: string
   adminemail: string

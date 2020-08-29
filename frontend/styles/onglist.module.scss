@@ -201,6 +201,54 @@
   color: #1a1928;
 }
 
+.seeMoreContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.seeMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  border: 1px solid $blue;
+  border-radius: 2px;
+  cursor: pointer;
+  fill: $blue;
+  color: $blue;
+  padding: 0 16px;
+  transition: 150ms ease-in-out;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+
+  &:hover {
+    background-color: $blue;
+    color: #f5f5f5;
+    fill: #f5f5f5;
+  }
+
+  & svg {
+    margin-left: 8px;
+    fill: inherit;
+    width: 15px;
+  }
+}
+
+.seeMoreText {
+  display: flex;
+  -webkit-box-flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0px;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: inherit;
+}
+
 // Responsive
 
 @media (max-width: 799px) {
