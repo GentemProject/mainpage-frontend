@@ -22,6 +22,7 @@ export const texto: string
 export const desc: string
 export const colm2: string
 export const colm3: string
+export const colm4: string
 export const fuente: string
 export const containerStats: string
 export const infoStats: string
@@ -47,4 +48,3 @@ export const ficha: string
 export const img: string
 export const i4: string
 export const containerContribuir: string
-export const colm4: string

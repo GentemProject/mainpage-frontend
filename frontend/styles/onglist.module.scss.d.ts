@@ -34,3 +34,4 @@ export const listModal: string
 export const modalClose: string
 export const ongListModal: string
 export const ongListModalLogo: string
+export const estiloNegro: string
