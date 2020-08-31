@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
@@ -18,9 +18,14 @@ const tagManagerArgs = {
 }
 
 export default function App({ Component, pageProps }) {
+  const [visible, setVisible] = useState(true)
   useEffect(() => {
     TagManager.initialize(tagManagerArgs)
   }, [])
+
+  const handleVisible = () => {
+    setVisible(false)
+  }
   return (
     <>
       <Head>
@@ -122,6 +127,26 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <Component {...pageProps} />
+      {visible && (
+        <div className="beta">
+          <div className="betaContainer">
+            <div className="infoImg">
+              <img src="/svg/advertencia.svg" alt="Advertencia icono" />
+            </div>
+            <div>
+              <strong>Versión BETA</strong>
+            </div>
+            <div className="betaText">
+              Esta es una versión de prueba. Si tienes algún comentario o duda,
+              por favor escríbenos y haznos saber 😉
+            </div>
+            <div onClick={handleVisible} className="betaBtn" style={{}}>
+              {' '}
+              <span>Cerrar</span>{' '}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
