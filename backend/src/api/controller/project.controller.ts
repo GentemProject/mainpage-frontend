@@ -53,35 +53,164 @@ const ProjectCtrl = {
   },
   getForFilters: async (req: Request, res: Response) => {
     const { country, products, paymentData, transfer, community } = req.params;
-    projectModel.find(
-      {
-        'location.country': country,
-        'paymentData.link': { $exists: paymentData, $ne: null },
-        'paymentData.bankAccount': { $exists: transfer, $ne: null },
-        'paymentData.products': { $exists: products, $ne: null },
-        'primaryData.communityId': { $exists: true, $eq: community },
-      },
-      (err: any, result: any) => {
-        if (err) {
-          return res.json(err);
-        } else {
-          if (result == '') {
-            return res.json('no hay nada');
-          } else {
+
+    let valuePais: any;
+    let valueComm: any;
+    if (country === 'null') {
+      valuePais = { $ne: null };
+      console.log(valuePais);
+    } else {
+      valuePais = country;
+    }
+    if (community === '0') {
+      valueComm = { $ne: null };
+      console.log(valueComm);
+    } else {
+      valueComm = { $eq: community };
+    }
+    if (products === 'true' && transfer === 'true' && paymentData === 'true') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+          'paymentData.products': { $exists: true },
+          'paymentData.link': { $exists: true },
+          'paymentData.bankAccount': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
             return res.json(result);
+          } else {
+            res.json(error);
           }
-        }
-      },
-    );
+        },
+      );
+    }
+    if (products === 'false' && transfer === 'false' && paymentData === 'false') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'true' && transfer === 'false' && paymentData === 'false') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+          'paymentData.products': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'true' && transfer === 'true' && paymentData === 'false') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+          'paymentData.products': { $exists: true },
+          'paymentData.bankAccount': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'true' && transfer === 'false' && paymentData === 'true') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+          'paymentData.products': { $exists: true },
+          'paymentData.link': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'false' && transfer === 'true' && paymentData === 'true') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+          'paymentData.link': { $exists: true },
+          'paymentData.bankAccount': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'false' && transfer === 'false' && paymentData === 'true') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+
+          'paymentData.link': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
+    if (products === 'false' && transfer === 'true' && paymentData === 'false') {
+      projectModel.find(
+        {
+          'location.country': valuePais,
+          'primaryData.communityId': valueComm,
+
+          'paymentData.bankAccount': { $exists: true },
+        },
+        (error, result) => {
+          if (result) {
+            return res.json(result);
+          } else {
+            res.json(error);
+          }
+        },
+      );
+    }
   },
   getDistinctCountry: async (req: Request, res: Response) => {
-    projectModel.distinct('location.country', (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      } else {
-        return res.json(result);
-      }
-    });
+    projectModel
+      .find({})
+      .collation({ locale: 'es', strength: 1 })
+      .distinct('location.country')
+      .then(result => {
+        res.json(result);
+      });
   },
   getOrg: async (req: Request, res: Response) => {
     const slug = req.params.id;

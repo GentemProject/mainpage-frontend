@@ -46,6 +46,7 @@ const projectSchema = new Schema(
     timestamps: true,
   },
 );
+projectSchema.index({ 'ĺocation.country': 'text' }, { sparse: false });
 const projectModel = mongoose.model('Project', projectSchema);
 export default projectModel;
 
