@@ -47,6 +47,7 @@ function Contenido(props: any) {
                 props.changeSelect('country', e.target.value)
               }}
             >
+              <MenuItem value={null}>Todos los paises</MenuItem>
               {ciudad &&
                 ciudad.map((data) => {
                   return (

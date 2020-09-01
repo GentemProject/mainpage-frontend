@@ -12,7 +12,7 @@ import { getPagination } from '../api/filters'
 import { Organization } from '../interfaces/organization'
 
 interface filters {
-  country: string
+  country: string | boolean
   products: boolean
   paymenData: boolean
   transfer: boolean
@@ -30,7 +30,7 @@ const OngList: NextPage<Props> = ({ projectos }) => {
   const filter = ['Niños y Niñas (7-12)']
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
-    country: '',
+    country: null,
     products: false,
     paymenData: false,
     transfer: false,

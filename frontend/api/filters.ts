@@ -1,6 +1,6 @@
 const BASE_API = 'https://api.gentem.org'
 interface paramsFilters {
-  country: string
+  country: string | boolean
   products: boolean
   paymenData: boolean
   transfer: boolean
