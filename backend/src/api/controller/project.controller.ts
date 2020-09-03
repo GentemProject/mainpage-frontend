@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import projectModel, { oldModel } from '../schemas/project';
+import { paginationFilter } from './paginationFilter';
 
 const ProjectCtrl = {
   getOld: async (req: Request, res: Response) => {
@@ -23,29 +24,7 @@ const ProjectCtrl = {
     });
   },
   getPagination: async (req: Request, res: Response) => {
-    let cuantity = await projectModel.countDocuments();
-    try {
-      const perPage: number = parseInt(req.query.limit as string);
-      const totalPages: number = Math.floor(cuantity / perPage);
-      let page: number = parseInt(req.query.skip as string);
-      if (page > totalPages) {
-        res.end();
-      }
-      const show = page * perPage;
-      projectModel
-        .find({})
-        .skip(show)
-        .limit(perPage)
-        .then(data =>
-          res.json({
-            page: page,
-            totalPages: totalPages,
-            data: data,
-          }),
-        );
-    } catch (error) {
-      return res.status(500).json(error);
-    }
+    await paginationFilter({}, projectModel, req, res);
   },
 
   createProject: async (req: Request, res: Response) => {
@@ -69,138 +48,76 @@ const ProjectCtrl = {
       valueComm = { $eq: community };
     }
     if (products === 'true' && transfer === 'true' && paymentData === 'true') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-          'paymentData.products': { $exists: true },
-          'paymentData.link': { $exists: true },
-          'paymentData.bankAccount': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+        'paymentData.products': { $exists: true },
+        'paymentData.link': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
+      }
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'false') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+      };
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'false' && paymentData === 'false') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-          'paymentData.products': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+        'paymentData.products': { $exists: true },
+      };
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'true' && paymentData === 'false') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-          'paymentData.products': { $exists: true },
-          'paymentData.bankAccount': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+        'paymentData.products': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
+      }
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'false' && paymentData === 'true') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-          'paymentData.products': { $exists: true },
-          'paymentData.link': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+        'paymentData.products': { $exists: true },
+        'paymentData.link': { $exists: true },
+      };
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'true' && paymentData === 'true') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
-          'paymentData.link': { $exists: true },
-          'paymentData.bankAccount': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+        'paymentData.link': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
+      };
+      await paginationFilter(filter, projectModel, req, res);
+
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'true') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
 
-          'paymentData.link': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+        'paymentData.link': { $exists: true },
+      };
+
+      await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'true' && paymentData === 'false') {
-      projectModel.find(
-        {
-          'location.country': valuePais,
-          'primaryData.communityId': valueComm,
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
 
-          'paymentData.bankAccount': { $exists: true },
-        },
-        (error, result) => {
-          if (result) {
-            return res.json(result);
-          } else {
-            res.json(error);
-          }
-        },
-      );
+        'paymentData.bankAccount': { $exists: true },
+      };
+      await paginationFilter(filter, projectModel, req, res);
     }
   },
   getDistinctCountry: async (req: Request, res: Response) => {
