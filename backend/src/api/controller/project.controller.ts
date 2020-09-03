@@ -54,7 +54,7 @@ const ProjectCtrl = {
         'paymentData.products': { $exists: true },
         'paymentData.link': { $exists: true },
         'paymentData.bankAccount': { $exists: true },
-      }
+      };
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'false') {
@@ -78,7 +78,7 @@ const ProjectCtrl = {
         'primaryData.communityId': valueComm,
         'paymentData.products': { $exists: true },
         'paymentData.bankAccount': { $exists: true },
-      }
+      };
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'false' && paymentData === 'true') {
@@ -98,7 +98,6 @@ const ProjectCtrl = {
         'paymentData.bankAccount': { $exists: true },
       };
       await paginationFilter(filter, projectModel, req, res);
-
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'true') {
       let filter = {
