@@ -25,13 +25,7 @@ function ContenidoSider(props: any) {
     setOpen(false)
   }
 
-  const { button, proyectos, visible } = props
-  const [quantity, setQuantity] = useState(0)
-  useEffect(() => {
-    proyectos.map((ong) => {
-      setQuantity(ong.length + quantity)
-    })
-  }, [proyectos])
+  const { button, proyectos, visible, quantity } = props
 
   return (
     <div className={styles.ongListResult}>

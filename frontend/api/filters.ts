@@ -53,10 +53,11 @@ export const getForId = async (id: string) => {
   }
 }
 
-export const getForFilters = async (params: paramsFilters) => {
+export const getForFilters = async (skip = 0, params: paramsFilters) => {
+  const limit = 15
   try {
     const request = await fetch(
-      `${BASE_API}/api/projects/filters/${params.country}&${params.products}&${params.paymenData}&${params.transfer}&${params.community}`
+      `${BASE_API}/api/projects/filters/${params.country}&${params.products}&${params.paymenData}&${params.transfer}&${params.community}?skip=${skip}&limit=${limit}`
     )
     const response = await request.json()
     const data = response
