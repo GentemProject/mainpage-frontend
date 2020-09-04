@@ -24,15 +24,13 @@ import * as styles from '../styles/onglist.module.scss'
 interface Props {
   projectos: Organization
 }
-let page = 0
-
 const OngList: NextPage<Props> = ({ projectos }) => {
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
     country: null,
-    products: false,
-    paymenData: false,
-    transfer: false,
+    products: true,
+    paymenData: true,
+    transfer: true,
     community: 0,
   })
 
@@ -48,6 +46,7 @@ const OngList: NextPage<Props> = ({ projectos }) => {
   }
 
   const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
+  const [page, setPage] = useState(0)
   const [maxPage, setMaxPage] = useState(0)
   const changeFilters = (res: boolean, motive: string) => {
     const temp = { ...filters }
@@ -67,7 +66,9 @@ const OngList: NextPage<Props> = ({ projectos }) => {
   useEffect(() => {
     const changeFilters = () => {
       console.log(filters, 'pais selected')
-      getForFilters(page, filters).then((datos) => {
+      /*       setPage(0);
+            console.log(page); */
+      getForFilters(0, filters).then((datos) => {
         if (datos === 'no hay nada') {
           setResultfilters(null)
         } else {
@@ -88,8 +89,9 @@ const OngList: NextPage<Props> = ({ projectos }) => {
   }, [filters])
 
   const [visible, setVisible] = useState(true)
+
   const handlePagination = async () => {
-    page = page + 1
+    setPage(page + 1)
     getForFilters(page, filters).then((datos) => {
       if (datos === 'no hay nada') {
         setResultfilters(null)
@@ -98,16 +100,24 @@ const OngList: NextPage<Props> = ({ projectos }) => {
       }
       setArrayProjectos([...arrayProjectos, datos.data])
     })
-    if (page === maxPage) {
-      setVisible(false)
-    }
+    /*     if (page === maxPage) {
+          setVisible(false)
+        } */
   }
 
   useEffect(() => {
-    if (quantityOng > 15) {
+    if (page === maxPage) {
       setVisible(false)
+    } else {
+      setVisible(true)
     }
-  }, [quantityOng])
+  }, [page, maxPage])
+  /* 
+    useEffect(() => {
+      if (quantityOng > 15) {
+        setVisible(false)
+      }
+    }, [quantityOng]) */
 
   useEffect(() => {
     arrayProjectos.map((ong) => {
@@ -159,17 +169,17 @@ export const getStaticProps = async () => {
   }
   let projectos
   /*   const projectos = await getPagination() */
+  const page = 0
   await getForFilters(page, filters).then((datos) => {
     if (datos === 'no hay nada') {
       projectos = null
       return projectos
     } else {
       projectos = datos
-      console.log(projectos, 'from if')
       return projectos
     }
   })
-  /*    */
+  console.log(projectos)
   return {
     props: {
       projectos,
