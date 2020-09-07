@@ -11,13 +11,12 @@ function Map(props: any) {
   useEffect(() => {
     setZoom(props.coordenates.props.zoom)
   }, [props.coordenates.props.zoom])
-
+  const API = process.env.GoogleAPI
   return (
     <div className={style.map}>
       <GoogleMapReact
         bootstrapURLKeys={{
-          key:
-            'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw',
+          key: API,
         }}
         defaultCenter={{ lat: geometryY, lng: geometryX }}
         defaultZoom={zoom}

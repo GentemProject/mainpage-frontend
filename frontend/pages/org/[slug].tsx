@@ -59,13 +59,7 @@ const ORG: NextPage<Props> = (props) => {
       <Layout>
         <div className={styles.ongProfile}>
           <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-            <Map
-              googleMapURL={
-                'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw'
-              }
-              location={ong.location}
-              coordenates={location}
-            ></Map>
+            <Map location={ong.location} coordenates={location}></Map>
             <div className={`${styles.ongProfileContent} ${styles.layout}`}>
               <Contenido
                 communityworkwith={ong.primaryData.communityId}
