@@ -14,7 +14,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 const tagManagerArgs = {
-  id: 'GTM-KS8MP9B',
+  gtmId: 'GTM-KS8MP9B',
 }
 
 export default function App({ Component, pageProps }) {
