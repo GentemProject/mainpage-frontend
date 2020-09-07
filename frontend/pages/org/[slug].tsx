@@ -61,7 +61,7 @@ const ORG: NextPage<Props> = (props) => {
           <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
             <Map
               googleMapURL={
-                'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCDr1CIiG6Nop7lpjmIbVk8NVC1IjW_oXE'
+                'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw'
               }
               location={ong.location}
               coordenates={location}

@@ -17,7 +17,7 @@ function Map(props: any) {
       <GoogleMapReact
         bootstrapURLKeys={{
           key:
-            'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCDr1CIiG6Nop7lpjmIbVk8NVC1IjW_oXE',
+            'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw',
         }}
         defaultCenter={{ lat: geometryY, lng: geometryX }}
         defaultZoom={zoom}
