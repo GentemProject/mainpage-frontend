@@ -36,8 +36,9 @@ export const getAll = async () => {
     const request = await fetch(`${BASE_API}/api/projects/`)
     const response = await request.json()
     const data = response
+    const length = data.length
 
-    return data
+    return length
   } catch (error) {
     return error
   }

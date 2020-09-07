@@ -15,8 +15,8 @@ import { getDistinct } from '../../api/filters'
 import * as api from '../../api/categories.json'
 import * as styles from '../../styles/onglist.module.scss'
 function Contenido(props: any) {
+  const { changeSelect, changeFilters, filters } = props
   const [ciudad, setCiudad] = useState([])
-
   useEffect(() => {
     getDistinct().then(
       (data) => {
@@ -36,15 +36,16 @@ function Contenido(props: any) {
 
         <SearchSelect
           title="Ubicación"
-          info="Selecciona la ciudad en la que quieres que tu donación tenga efecto"
+          info="Selecciona un país en el que quieres que tu donación tenga efecto"
         >
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
-            <InputLabel id="demo-simple-select-label">Ciudad</InputLabel>
+            <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              value={filters.country || ''}
               onChange={(e) => {
-                props.changeSelect('country', e.target.value)
+                changeSelect('country', e.target.value)
               }}
             >
               <MenuItem value={null}>Todos los paises</MenuItem>
@@ -68,8 +69,9 @@ function Contenido(props: any) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              value={filters.community || ''}
               onChange={(e) => {
-                props.changeSelect('community', e.target.value.toString())
+                changeSelect('community', e.target.value.toString())
               }}
             >
               {api.data.map((cat) => (
@@ -87,24 +89,25 @@ function Contenido(props: any) {
           <TextCheck
             title="Donar online"
             desc="Link para donar desde casa"
-            change={props.changeFilters}
+            change={changeFilters}
+            boolean={filters.paymenData}
             name="paymenData"
           />
           <TextCheck
             title="Transferencia bancaria"
             desc="Información de las cuentas para que hagas una transferencia"
-            change={props.changeFilters}
+            change={changeFilters}
+            boolean={filters.transfer}
             name="transfer"
           />
           <TextCheck
             title="Donar productos"
             desc="Información sobre como entregar los productos que quieras donar"
-            change={props.changeFilters}
+            change={changeFilters}
+            boolean={filters.products}
             name="products"
           />
         </SearchSelect>
-        <div></div>
-        <div></div>
       </div>
     </div>
   )
@@ -112,13 +115,18 @@ function Contenido(props: any) {
 
 export default Contenido
 
-export function ModalContent() {
+export function ModalContent(props: any) {
+  const { changeSelect, changeFilters, filters } = props
   return (
     <div className={styles.ongListModal}>
       <div className={styles.ongListModalLogo}>
         <img src="/logoAnimado.svg" alt="logo" />
       </div>
-      <Contenido />
+      <Contenido
+        changeSelect={changeSelect}
+        filters={filters}
+        changeFilters={changeFilters}
+      />
     </div>
   )
 }

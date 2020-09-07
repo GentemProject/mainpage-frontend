@@ -30,8 +30,10 @@ export const targetMore: string
 export const seeMoreContainer: string
 export const seeMore: string
 export const seeMoreText: string
+export const noOrganization: string
+export const noOrganizationBtnContainer: string
+export const noOrganizationBtn: string
 export const listModal: string
 export const modalClose: string
 export const ongListModal: string
 export const ongListModalLogo: string
-export const estiloNegro: string

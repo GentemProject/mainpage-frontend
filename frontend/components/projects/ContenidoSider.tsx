@@ -16,8 +16,17 @@ import * as styles from '../../styles/onglist.module.scss'
 Modal.setAppElement('#__next')
 
 function ContenidoSider(props: any) {
+  const {
+    button,
+    proyectos,
+    visible,
+    quantity,
+    changeSelect,
+    changeFilters,
+    filters,
+  } = props
   const [open, setOpen] = useState(false)
-
+  const [proyectLength, setProyectLength] = useState()
   const handleOpen = () => {
     setOpen(true)
   }
@@ -25,12 +34,16 @@ function ContenidoSider(props: any) {
     setOpen(false)
   }
 
-  const { button, proyectos, visible, quantity } = props
+  useEffect(() => {
+    proyectos.map((ong) => {
+      setProyectLength(ong.length)
+    })
+  }, [proyectos])
 
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
-        <h6>Mostrando {quantity} proyectos</h6>
+        <h6>{quantity} proyectos registrados</h6>
         <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
@@ -42,14 +55,45 @@ function ContenidoSider(props: any) {
           <button className={styles.modalClose} onClick={handleClose}>
             <Close />
           </button>
-          <ModalContent />
+          <ModalContent
+            filters={filters}
+            changeSelect={changeSelect}
+            changeFilters={changeFilters}
+          />
         </Modal>
       </div>
-      <LazyContenidoSider
-        button={button}
-        proyectos={proyectos}
-        visible={visible}
-      />
+      {proyectLength === 0 ? (
+        <NoOrganization />
+      ) : (
+        <LazyContenidoSider
+          button={button}
+          proyectos={proyectos}
+          visible={visible}
+        />
+      )}
+    </div>
+  )
+}
+
+function NoOrganization() {
+  return (
+    <div className={styles.noOrganization}>
+      <div>
+        <h3>
+          No encontramos ninguna organización con los filtros que escogiste
+        </h3>
+      </div>
+      <div>
+        <h5>
+          Cambia tus filtros de búsqueda para encontrar una organización a la
+          que quieras ayudar
+        </h5>
+      </div>
+      <div className={styles.noOrganizationBtnContainer}>
+        <div className={styles.noOrganizationBtn}>
+          <span>Mostrar todas las organizaciones</span>
+        </div>
+      </div>
     </div>
   )
 }

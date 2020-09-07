@@ -1,13 +1,13 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import fetch from 'node-fetch'
 import { useState, useEffect, useRef } from 'react'
+import NProgress from 'nprogress'
+
 // Components & Usables
 import { Contenido, ContenidoSider, Banner } from '../components/projects/'
 import Layout from '../components/Layout'
 import Loader from '../components/usables/Loader'
-import { getForFilters } from '../api/filters'
-import { getPagination } from '../api/filters'
+import { getForFilters, getAll } from '../api/filters'
 // Interfaces
 import { Organization } from '../interfaces/organization'
 
@@ -23,8 +23,10 @@ import * as styles from '../styles/onglist.module.scss'
 
 interface Props {
   projectos: Organization
+  lengthOng: number
 }
-const OngList: NextPage<Props> = ({ projectos }) => {
+const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
+  const quantityOng = lengthOng
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
     country: null,
@@ -61,24 +63,21 @@ const OngList: NextPage<Props> = ({ projectos }) => {
     }
     setFilters(temp)
   }
-  const [quantityOng, setQuantityOng] = useState(0)
   const mounted = useRef(false)
   useEffect(() => {
     const changeFilters = () => {
-      console.log(filters, 'pais selected')
-      /*       setPage(0);
-            console.log(page); */
+      /*       setPage(0); */
       getForFilters(0, filters).then((datos) => {
+        NProgress.start()
         if (datos === 'no hay nada') {
           setResultfilters(null)
+          NProgress.done()
         } else {
           setResultfilters(datos)
+          NProgress.done()
         }
-        console.log(datos)
-        console.log(datos.data)
         setArrayProjectos([datos.data])
         setMaxPage(datos.totalPages)
-        setQuantityOng(datos.data.length)
       })
     }
     if (mounted.current) {
@@ -93,16 +92,16 @@ const OngList: NextPage<Props> = ({ projectos }) => {
   const handlePagination = async () => {
     setPage(page + 1)
     getForFilters(page, filters).then((datos) => {
+      NProgress.start()
       if (datos === 'no hay nada') {
         setResultfilters(null)
+        NProgress.done()
       } else {
         setResultfilters(datos)
+        NProgress.done()
       }
       setArrayProjectos([...arrayProjectos, datos.data])
     })
-    /*     if (page === maxPage) {
-          setVisible(false)
-        } */
   }
 
   useEffect(() => {
@@ -112,19 +111,6 @@ const OngList: NextPage<Props> = ({ projectos }) => {
       setVisible(true)
     }
   }, [page, maxPage])
-  /* 
-    useEffect(() => {
-      if (quantityOng > 15) {
-        setVisible(false)
-      }
-    }, [quantityOng]) */
-
-  useEffect(() => {
-    arrayProjectos.map((ong) => {
-      setQuantityOng(ong.length + quantityOng)
-    })
-  }, [arrayProjectos])
-
   return (
     <>
       <Head>
@@ -140,9 +126,13 @@ const OngList: NextPage<Props> = ({ projectos }) => {
                 <Contenido
                   changeFilters={changeFilters}
                   changeSelect={changeSelect}
+                  filters={filters}
                 />
                 <ContenidoSider
                   ONGs={resultfilters ? resultfilters : projectos.data}
+                  changeSelect={changeSelect}
+                  changeFilters={changeFilters}
+                  filters={filters}
                   proyectos={arrayProjectos}
                   quantity={quantityOng}
                   button={handlePagination}
@@ -160,6 +150,10 @@ const OngList: NextPage<Props> = ({ projectos }) => {
 export default OngList
 
 export const getStaticProps = async () => {
+  let lengthOng
+  await getAll().then((length) => {
+    lengthOng = length
+  })
   const filters = {
     country: null,
     products: true,
@@ -168,7 +162,6 @@ export const getStaticProps = async () => {
     community: 0,
   }
   let projectos
-  /*   const projectos = await getPagination() */
   const page = 0
   await getForFilters(page, filters).then((datos) => {
     if (datos === 'no hay nada') {
@@ -179,10 +172,10 @@ export const getStaticProps = async () => {
       return projectos
     }
   })
-  console.log(projectos)
   return {
     props: {
       projectos,
+      lengthOng,
     },
   }
 }
