@@ -11,7 +11,8 @@ function Map(props: any) {
   useEffect(() => {
     setZoom(props.coordenates.props.zoom)
   }, [props.coordenates.props.zoom])
-  const API = process.env.GoogleAPI
+  const API = process.env.GOOGLE_API
+  console.log(process.env.GOOGLE_API)
   return (
     <div className={style.map}>
       <GoogleMapReact
