@@ -33,6 +33,7 @@
     "babel-plugin-import": "^1.13.0",
     "css-loader": "^4.2.1",
     "dotenv": "^8.2.0",
+    "envalid": "^6.0.2",
     "fork-ts-checker-webpack-plugin": "^5.0.12",
     "google-map-react": "^1.1.7",
     "isomorphic-unfetch": "^3.0.0",

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import * as style from '../../styles/organization.module.scss'
-
+import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
+
+import * as style from '../../styles/organization.module.scss'
 
 function Map(props: any) {
   const geometryY = parseFloat(props.coordenates.props.ygriega) || -26.231718
@@ -11,13 +11,12 @@ function Map(props: any) {
   useEffect(() => {
     setZoom(props.coordenates.props.zoom)
   }, [props.coordenates.props.zoom])
-  const API = process.env.GOOGLE_API
-  console.log(process.env.GOOGLE_API)
+
   return (
     <div className={style.map}>
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: API,
+          key: 'AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw',
         }}
         defaultCenter={{ lat: geometryY, lng: geometryX }}
         defaultZoom={zoom}
