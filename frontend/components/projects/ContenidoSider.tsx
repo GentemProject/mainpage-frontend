@@ -127,6 +127,9 @@ function LazyContenidoSider({ button, proyectos, visible }) {
                 <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
                   <a>
                     <ResultItem
+                      products={ong.paymentData.products}
+                      link={ong.paymentData.link}
+                      bank={ong.paymentData.bankAccount}
                       communityId={ong.primaryData.communityId}
                       id={ong._id}
                       name={ong.primaryData.name}

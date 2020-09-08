@@ -56,11 +56,23 @@ function ResultItem(props: any) {
                 false
               )}
             </div>
+
             <div className={style.detailsFooterLocation}>
               {props.location
                 ? `${props.location.city}, ${props.location.country}`
                 : 'Sin nombrar'}
             </div>
+          </div>
+          <div className={style.additionals}>
+            {props.products && (
+              <div className={style.optionFilters}>Productos</div>
+            )}
+            {props.link && (
+              <div className={style.optionFilters}>Donar Online</div>
+            )}
+            {props.bank && (
+              <div className={style.optionFilters}>Transferencia</div>
+            )}
           </div>
         </div>
       </div>
