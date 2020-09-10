@@ -60,10 +60,7 @@ const ProjectCtrl = {
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'false') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-      };
+      let filter = {};
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'false' && paymentData === 'false') {
