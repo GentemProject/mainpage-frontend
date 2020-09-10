@@ -35,7 +35,17 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     transfer: false,
     community: 0,
   })
+  const noOrg = {
+    country: null,
+    products: false,
+    paymenData: false,
+    transfer: false,
+    community: 0,
+  }
 
+  const handleNoOrg = () => {
+    setFilters(noOrg)
+  }
   const changeSelect = (motive: string, select: any) => {
     const temp = { ...filters }
     if (motive === 'country') {
@@ -51,7 +61,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
   const [maxPage, setMaxPage] = useState(projectos.totalPages)
   const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)
-  console.log(projectos)
   const changeFilters = (res: boolean, motive: string) => {
     const temp = { ...filters }
     if (motive === 'products') {
@@ -141,6 +150,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
                   quantity={quantityOng}
                   button={handlePagination}
                   visible={visible}
+                  handleNoOrg={handleNoOrg}
                 />
               </div>
             </div>
