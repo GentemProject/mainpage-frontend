@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Container from '../components/home/container'
@@ -26,7 +26,14 @@ export default function Home({ orgs }: any) {
     setOngs(orgs)
     setIsloading(false)
   }, [])
-
+  const g = (
+    <Fragment>
+      <strong>gentem </strong>es un directorio abierto de organizaciones sin
+      ánimo de lucro que trabajan para mejorar el mundo en el que vivimos.
+      Puedes buscarlas por ubicación, tipo de comunidades con las que trabajan,
+      y forma de ayudarlas.
+    </Fragment>
+  )
   return (
     <>
       <Head>
@@ -39,15 +46,9 @@ export default function Home({ orgs }: any) {
           <Banner />
           <div className={styles.home}>
             <Fl>
-              <Colab
-                desc="Te conectamos con ONGs, fundaciones y cualquier tipo de iniciativas cuyo objetivo es el mismo: Trabajar por un futuro mejor."
-                btn="¡Ayuda ya!"
-                colorBtn=" #237ed5"
-              />
+              <Colab desc={g} btn="¡Ayuda ya!" colorBtn=" #237ed5" />
             </Fl>
-            <Fl>
-              <Stats />
-            </Fl>
+
             <Fl>
               <Info />
             </Fl>
@@ -57,6 +58,9 @@ export default function Home({ orgs }: any) {
                 btn="Apoya una organización"
                 colorBtn="#F44B53"
               />
+            </Fl>
+            <Fl>
+              <Stats />
             </Fl>
             <Fl>
               <Nos />

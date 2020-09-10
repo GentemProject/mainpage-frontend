@@ -10,8 +10,7 @@ function Banner() {
         <div className={styles.content}>
           <div className={styles.text}>
             <span>
-              Apoya a iniciaitivas sociales que estén en sintonía con tus
-              creencias y valores
+              Descubre las organizaciones que trabajan por un futuro mejor
             </span>
           </div>
           <div className={styles.btnBanner}>

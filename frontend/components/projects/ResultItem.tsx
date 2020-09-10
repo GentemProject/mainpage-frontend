@@ -65,13 +65,13 @@ function ResultItem(props: any) {
           </div>
           <div className={style.additionals}>
             {props.products && (
-              <div className={style.optionFilters}>Productos</div>
+              <div className={style.optionFilters}>Donar productos</div>
             )}
             {props.link && (
               <div className={style.optionFilters}>Donar Online</div>
             )}
             {props.bank && (
-              <div className={style.optionFilters}>Transferencia</div>
+              <div className={style.optionFilters}>Transferencia bancaria</div>
             )}
           </div>
         </div>

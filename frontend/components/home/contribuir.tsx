@@ -14,13 +14,19 @@ function Cont() {
           </p>
         </div>
         <div className={styles.btnFl}>
-          <button
-            className={styles.btnContribuir}
-            style={{ background: '#237ed5' }}
+          <a
+            href="https://gentem.typeform.com/to/qN1hfz"
+            rel="noopener noreferrer"
+            target={'_blank'}
           >
-            <span>Regístrate </span>
-            <Heart />
-          </button>
+            <button
+              className={styles.btnContribuir}
+              style={{ background: '#237ed5' }}
+            >
+              <span>Regístrate </span>
+              <Heart />
+            </button>
+          </a>
         </div>
       </div>
     </div>

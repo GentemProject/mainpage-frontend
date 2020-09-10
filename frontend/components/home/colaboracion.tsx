@@ -1,5 +1,6 @@
 import React from 'react'
 import * as styles from '../../styles/home/home.module.scss'
+import Link from 'next/link'
 function Col(props: any) {
   return (
     <div className={styles.containerColabor}>
@@ -8,12 +9,14 @@ function Col(props: any) {
           <span>{props.desc}</span>
         </div>
         <div className={styles.btnFl}>
-          <button
-            className={styles.btnColab}
-            style={{ background: props.colorBtn }}
-          >
-            <span>{props.btn}</span>
-          </button>
+          <Link href="/projects">
+            <button
+              className={styles.btnColab}
+              style={{ background: props.colorBtn }}
+            >
+              <span>{props.btn}</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

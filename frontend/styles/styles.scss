@@ -67,7 +67,7 @@ button {
 @media (max-width: 800px) {
 .ReactModalPortal {
   position: absolute;
-  z-index: 2;
+  z-index: 99;
   display: block;
 }
 }
@@ -163,6 +163,7 @@ button {
         position: fixed;
         bottom: 0;
         height: auto;
+        z-index: 99;
         display: flex;
         align-items: center;
         background-color: #ffcf53;

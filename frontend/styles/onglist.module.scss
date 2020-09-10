@@ -11,7 +11,7 @@
 
 .ongListContent {
   margin-top: 48px;
-  padding: 0 $layout-xl;
+  //padding: 0 $layout-xl;
   height: auto;
   background: none;
   display: flex;
@@ -164,7 +164,10 @@
 .additionals{
   display: grid;
   grid-row: 4;
-  grid-template:100% / repeat(3, 20%);
+  grid-column-gap: 10px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(110px, 150px);
+  grid-template-rows:100%; 
   align-items: end;
 }
 .optionFilters{
@@ -181,12 +184,14 @@
 }
 
 .itemDetailsDesc h6 {
+  display: none;
   grid-row: 2;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .itemDetailsFooter {
+  
   display: grid;
   grid-template: 100% / 60% 40%;
   justify-content: space-between;
@@ -290,6 +295,7 @@
 }
 .noOrganizationBtn{
   width: auto;
+  cursor: pointer;
   max-width: 400px;
   box-shadow: 0px 8px 8px rgba(35, 126, 213, 0.15);
   border-radius: 2px;
@@ -356,9 +362,9 @@
     width: 132px;
     height: 132px;
   }
-  .resultItemDetails {
-    
-  }
+ .additionals {
+   
+ }
   .itemDetailsDesc {
     display: none;
   }
@@ -416,14 +422,15 @@
       url('https://gentem.org/landing/img/hero_l.jpg');
   }
   .ongListContent {
-    padding: 0 $layout-xs-p;
+  //  padding: 0 $layout-xs-p;
   }
+
 }
 
 // S
 @media (min-width: 800px) {
   .ongListContent {
-    padding: 0 $layout-s;
+    //padding: 0 $layout-s;
     margin-top: 48px;
   }
   .ongListSearch {
@@ -453,7 +460,7 @@
       url('https://gentem.org/landing/img/hero_xl.jpg');
   }
   .ongListContent {
-    padding: 0 $layout-s-p;
+    //padding: 0 $layout-s-p;
   }
   .ongListSearch {
     width: 345px;
@@ -461,6 +468,9 @@
   }
   .ongListResult {
     margin-left: 48px;
+  }
+  .additionals {
+  //  grid-auto-columns: 20%;
   }
 }
 
@@ -475,7 +485,7 @@
       url('https://gentem.org/landing/img/hero_xxl.jpg');
   }
   .ongListContent {
-    padding: 0 $layout-m;
+   // padding: 0 $layout-m;
   }
   .ongListSearch {
     width: 300px;
@@ -498,7 +508,7 @@
     display: block;
   }
   .itemDetailsFooter {
-    grid-row: 3;
+    //grid-row: 3;
     grid-template: 100% / 60% 40%;
   }
   .detailsFooterTarget {
@@ -515,7 +525,7 @@
 // XL
 @media (min-width: 1224px) {
   .ongListContent {
-    padding: 0 $layout-xl;
+    //padding: 0 $layout-xl;
   }
   .ongListSearch {
     width: 392px;

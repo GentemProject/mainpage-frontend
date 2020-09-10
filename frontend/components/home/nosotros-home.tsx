@@ -1,6 +1,7 @@
 import React from 'react'
 const iSearch = '/search.svg'
 const iHelp = '/help.svg'
+import Link from 'next/link'
 const iSelect = '/select.svg'
 import * as styles from '../../styles/home/home.module.scss'
 function Noshome() {
@@ -28,9 +29,11 @@ function Noshome() {
                 donación mediante los diferentes métodos presentados"
       />
       <div className={styles.btnFl}>
-        <button className={styles.btnColab} style={{ background: '#237ed5' }}>
-          <span>¡Ayuda ya!</span>
-        </button>
+        <Link href="/projects">
+          <button className={styles.btnColab} style={{ background: '#237ed5' }}>
+            <span>¡Ayuda ya!</span>
+          </button>
+        </Link>
       </div>
     </div>
   )

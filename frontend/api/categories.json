@@ -4,7 +4,7 @@
       "cat_id": [
         0
       ],
-      "cat_name": "Todas las ONGs"
+      "cat_name": "Todas las comunidades"
     },
     {
       "cat_id": [
@@ -149,12 +149,6 @@
         24
       ],
       "cat_name": "Animales"
-    },
-    {
-      "cat_id": [
-        999
-      ],
-      "cat_name": "ONGs"
     }
   ]
 }
