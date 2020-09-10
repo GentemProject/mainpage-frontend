@@ -1,4 +1,5 @@
 export interface Organization {
+  totalOrg: string
   primaryData: {
     name: string
     communityId: [number]
