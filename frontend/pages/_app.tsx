@@ -18,6 +18,7 @@ const tagManagerArgs = {
 }
 
 export default function App({ Component, pageProps }) {
+  const [visible, setVisible] = useState(true)
   const [visibleEffect, setVisibleEffect] = useState('beta')
   useEffect(() => {
     TagManager.initialize(tagManagerArgs)
@@ -25,6 +26,9 @@ export default function App({ Component, pageProps }) {
 
   const handleVisible = async () => {
     await setVisibleEffect('beta betaClose')
+    await setTimeout(() => {
+      setVisible(false)
+    }, 300)
   }
   return (
     <>
@@ -127,23 +131,25 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <Component {...pageProps} />
-      <div className={visibleEffect}>
-        <div className="betaContainer">
-          <div className="infoImg">
-            <img src="/svg/advertencia.svg" alt="Advertencia icono" />
-          </div>
-          <div>
-            <strong>Versión BETA</strong>
-          </div>
-          <div className="betaText">
-            Esta es una versión de prueba. Si tienes algún comentario o duda,
-            por favor escríbenos y haznos saber 😉
-          </div>
-          <div onClick={handleVisible} className="betaBtn">
-            <span>Cerrar</span>
+      {visible && (
+        <div className={visibleEffect}>
+          <div className="betaContainer">
+            <div className="infoImg">
+              <img src="/svg/advertencia.svg" alt="Advertencia icono" />
+            </div>
+            <div>
+              <strong>Versión BETA</strong>
+            </div>
+            <div className="betaText">
+              Esta es una versión de prueba. Si tienes algún comentario o duda,
+              por favor escríbenos y haznos saber 😉
+            </div>
+            <div onClick={handleVisible} className="betaBtn">
+              <span>Cerrar</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
