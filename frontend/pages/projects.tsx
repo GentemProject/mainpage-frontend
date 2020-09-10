@@ -30,9 +30,9 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
     country: null,
-    products: true,
-    paymenData: true,
-    transfer: true,
+    products: false,
+    paymenData: false,
+    transfer: false,
     community: 0,
   })
 
@@ -160,9 +160,9 @@ export const getStaticProps = async () => {
   })
   const filters = {
     country: null,
-    products: true,
-    paymenData: true,
-    transfer: true,
+    products: false,
+    paymenData: false,
+    transfer: false,
     community: 0,
   }
   let projectos

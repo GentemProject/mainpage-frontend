@@ -61,11 +61,11 @@ function Contenido(props: any) {
           </FormControl>
         </SearchSelect>
         <SearchSelect
-          title="Comunidad afectada"
-          info="Selecciona la comunidad a la que quieras apoyar"
+          title="Causa afectada"
+          info="Selecciona la causa a la que quieras apoyar"
         >
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
-            <InputLabel id="demo-simple-select-label">Comunidad</InputLabel>
+            <InputLabel id="demo-simple-select-label">Causa</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"

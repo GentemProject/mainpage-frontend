@@ -58,6 +58,9 @@ button {
   background: none;
   border: none;
   outline: none;
+  span {
+     font-family: 'Nunito', serif;
+  }
 }
 
 .ReactModalPortal {
@@ -167,6 +170,10 @@ button {
         display: flex;
         align-items: center;
         background-color: #ffcf53;
+}
+.beta.betaClose {
+  transition: ease-out 300ms;
+  opacity: 0;
 }
 .betaContainer{
         padding: 20px 20px;
