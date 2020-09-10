@@ -4,7 +4,6 @@ import Modal from 'react-modal'
 
 // Components & Usables
 import { ModalContent } from './Contenido'
-import TargetBase from '../usables/TargetBase'
 import ResultItem from './ResultItem'
 
 // Svg
@@ -24,6 +23,7 @@ function ContenidoSider(props: any) {
     changeSelect,
     changeFilters,
     filters,
+    totalOrgFilter,
   } = props
   const [open, setOpen] = useState(false)
   const [proyectLength, setProyectLength] = useState()
@@ -39,11 +39,17 @@ function ContenidoSider(props: any) {
       setProyectLength(ong.length)
     })
   }, [proyectos])
-
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
-        <h6>{quantity} proyectos registrados</h6>
+        {totalOrgFilter === quantity ? (
+          <h6>Mostrando todas las organizaciones registradas</h6>
+        ) : (
+          <h6>
+            Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
+          </h6>
+        )}
+
         <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>

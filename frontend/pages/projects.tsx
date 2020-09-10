@@ -47,9 +47,11 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     setFilters(temp)
   }
 
-  const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
   const [page, setPage] = useState(0)
-  const [maxPage, setMaxPage] = useState(0)
+  const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
+  const [maxPage, setMaxPage] = useState(projectos.totalPages)
+  const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)
+  console.log(projectos)
   const changeFilters = (res: boolean, motive: string) => {
     const temp = { ...filters }
     if (motive === 'products') {
@@ -66,7 +68,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const mounted = useRef(false)
   useEffect(() => {
     const changeFilters = () => {
-      /*       setPage(0); */
       getForFilters(0, filters).then((datos) => {
         NProgress.start()
         if (datos === 'no hay nada') {
@@ -76,8 +77,10 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
           setResultfilters(datos)
           NProgress.done()
         }
+        setPage(0)
         setArrayProjectos([datos.data])
         setMaxPage(datos.totalPages)
+        setTotalOrg(datos.totalOrg)
       })
     }
     if (mounted.current) {
@@ -90,7 +93,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const [visible, setVisible] = useState(true)
 
   const handlePagination = async () => {
-    setPage(page + 1)
     getForFilters(page, filters).then((datos) => {
       NProgress.start()
       if (datos === 'no hay nada') {
@@ -101,6 +103,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
         NProgress.done()
       }
       setArrayProjectos([...arrayProjectos, datos.data])
+      setPage(page + 1)
     })
   }
 
@@ -134,6 +137,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
                   changeFilters={changeFilters}
                   filters={filters}
                   proyectos={arrayProjectos}
+                  totalOrgFilter={totalOrg}
                   quantity={quantityOng}
                   button={handlePagination}
                   visible={visible}
