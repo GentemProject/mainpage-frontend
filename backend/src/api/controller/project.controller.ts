@@ -36,13 +36,13 @@ const ProjectCtrl = {
     let valuePais: any;
     let valueComm: any;
     if (country === 'null') {
-      valuePais = { $ne: false };
+      valuePais = { $nin: false };
       console.log(valuePais);
     } else {
       valuePais = country;
     }
     if (community === '0') {
-      valueComm = { $ne: false };
+      valueComm = { $nin: false };
       console.log(valueComm);
     } else {
       valueComm = { $eq: community };
