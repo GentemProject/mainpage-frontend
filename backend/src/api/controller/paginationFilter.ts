@@ -18,6 +18,7 @@ export async function paginationFilter(filter, model, req, res) {
       .find(filter)
       .skip(show)
       .limit(perPage)
+      .sort({ _id: -1 })
       .then(data =>
         res.json({
           totalOrg: cuantity,

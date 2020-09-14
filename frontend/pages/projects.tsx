@@ -57,7 +57,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     setFilters(temp)
   }
 
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
   const [maxPage, setMaxPage] = useState(projectos.totalPages)
   const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)

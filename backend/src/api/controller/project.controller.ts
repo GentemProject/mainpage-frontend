@@ -118,17 +118,18 @@ const ProjectCtrl = {
     let valuePais: any;
     let valueComm: any;
     if (country === 'null') {
-      valuePais = { $ne: null };
+      valuePais = { $nin: false };
       console.log(valuePais);
     } else {
       valuePais = country;
     }
     if (community === '0') {
-      valueComm = { $ne: null };
+      valueComm = { $nin: false };
       console.log(valueComm);
     } else {
       valueComm = { $eq: community };
     }
+
     if (products === 'true' && transfer === 'true' && paymentData === 'true') {
       let filter = {
         'location.country': valuePais,
@@ -142,7 +143,10 @@ const ProjectCtrl = {
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'false' && transfer === 'false' && paymentData === 'false') {
-      let filter = {};
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.communityId': valueComm,
+      };
       await paginationFilter(filter, projectModel, req, res);
     }
     if (products === 'true' && transfer === 'false' && paymentData === 'false') {
