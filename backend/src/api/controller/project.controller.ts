@@ -74,7 +74,7 @@ const ProjectCtrl = {
         communityId: req.body.primaryData.communityId,
         name: req.body.primaryData.name,
         logo: req.body.primaryData.logo,
-        objective: req.body.primaryData.objective
+        objective: req.body.primaryData.objective,
         /*         description: req.body.primaryData.description,
                 howUseDonation: req.body.primaryData.howUseDonation,
                 sponsors: req.body.primaryData.sponsors, */
@@ -102,15 +102,15 @@ const ProjectCtrl = {
       adminInfo: {
         adminName: req.body.adminInfo.adminName,
         adminEmail: req.body.adminInfo.adminEmail,
-      }
-    })
+      },
+    });
     await model.save((err: any) => {
       if (err) {
         return res.json(err);
       } else {
-        return res.json(model)
+        return res.json(model);
       }
-    })
+    });
   },
   getForFilters: async (req: Request, res: Response) => {
     const { country, products, paymentData, transfer, community } = req.params;
