@@ -1,4 +1,5 @@
 const BASE_API = 'https://api.gentem.org'
+//const BASE_API = 'http://localhost:3030'
 interface paramsFilters {
   country: string | boolean
   products: boolean
