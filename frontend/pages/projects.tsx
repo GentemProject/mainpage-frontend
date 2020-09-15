@@ -160,7 +160,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
 }
 
 export default OngList
-
 export const getStaticProps = async () => {
   let lengthOng
   await getAll().then((length) => {

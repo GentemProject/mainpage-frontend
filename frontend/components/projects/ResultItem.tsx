@@ -60,7 +60,7 @@ function ResultItem(props: any) {
             <div className={style.detailsFooterLocation}>
               {props.location
                 ? `${props.location.city}, ${props.location.country}`
-                : 'Sin nombrar'}
+                : ''}
             </div>
           </div>
           <div className={style.additionals}>
