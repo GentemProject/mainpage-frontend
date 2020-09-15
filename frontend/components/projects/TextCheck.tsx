@@ -72,11 +72,10 @@ const IOSSwitch = withStyles((theme: Theme) =>
 })
 
 export default function TextCheck({ title, desc, change, name, boolean }) {
-  const [check, setCheck] = useState({
-    checkedB: boolean,
-  })
+  const [check, setCheck] = useState(boolean)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheck({ ...check, [event.target.name]: event.target.checked })
+    console.log(event.target.name)
     change(event.target.checked, name)
   }
 
@@ -90,7 +89,7 @@ export default function TextCheck({ title, desc, change, name, boolean }) {
               <IOSSwitch
                 checked={check.checkedB}
                 onChange={handleChange}
-                name="checkedB"
+                name={name}
               />
             }
             label=""

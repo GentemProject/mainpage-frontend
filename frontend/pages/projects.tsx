@@ -28,13 +28,7 @@ interface Props {
 const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const quantityOng = lengthOng
   const [resultfilters, setResultfilters] = useState<any>()
-  const [filters, setFilters] = useState<filters>({
-    country: null,
-    products: false,
-    paymenData: false,
-    transfer: false,
-    community: 0,
-  })
+
   const noOrg = {
     country: null,
     products: false,
@@ -42,10 +36,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     transfer: false,
     community: 0,
   }
-
-  const handleNoOrg = () => {
-    setFilters(noOrg)
-  }
+  const [filters, setFilters] = useState<filters>(noOrg)
   const changeSelect = (motive: string, select: any) => {
     const temp = { ...filters }
     if (motive === 'country') {
@@ -115,6 +106,8 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
       setPage(page + 1)
     })
   }
+
+  const handleNoOrg = () => setFilters(noOrg)
 
   useEffect(() => {
     if (page === maxPage) {
