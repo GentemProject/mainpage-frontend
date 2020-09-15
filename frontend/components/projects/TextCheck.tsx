@@ -88,7 +88,7 @@ export default function TextCheck({ title, desc, change, name, boolean }) {
           <FormControlLabel
             control={
               <IOSSwitch
-                checked={check.checkedB}
+                checked={boolean}
                 onChange={handleChange}
                 name="checkedB"
               />
