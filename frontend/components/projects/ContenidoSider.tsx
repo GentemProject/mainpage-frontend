@@ -24,8 +24,8 @@ function ContenidoSider(props: any) {
     changeFilters,
     filters,
     totalOrgFilter,
-    handleNoOrg,
   } = props
+
   const [open, setOpen] = useState(false)
   const [proyectLength, setProyectLength] = useState()
   const handleOpen = () => {
@@ -70,7 +70,7 @@ function ContenidoSider(props: any) {
         </Modal>
       </div>
       {proyectLength === 0 ? (
-        <NoOrganization handleNoOrg={handleNoOrg} />
+        <NoOrganization changeFilters={changeFilters} />
       ) : (
         <LazyContenidoSider
           button={button}
@@ -82,7 +82,10 @@ function ContenidoSider(props: any) {
   )
 }
 
-function NoOrganization({ handleNoOrg }) {
+function NoOrganization({ changeFilters }) {
+  const resetF = () => {
+    changeFilters(false, 'all')
+  }
   return (
     <div className={styles.noOrganization}>
       <div>
@@ -97,8 +100,8 @@ function NoOrganization({ handleNoOrg }) {
         </h5>
       </div>
       <div className={styles.noOrganizationBtnContainer}>
-        <div className={styles.noOrganizationBtn}>
-          <span onClick={handleNoOrg}>Mostrar todas las organizaciones</span>
+        <div onClick={resetF} className={styles.noOrganizationBtn}>
+          <span>Mostrar todas las organizaciones</span>
         </div>
       </div>
     </div>

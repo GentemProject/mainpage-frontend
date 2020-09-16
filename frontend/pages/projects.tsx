@@ -28,17 +28,17 @@ interface Props {
 const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const quantityOng = lengthOng
   const [resultfilters, setResultfilters] = useState<any>()
-
-  const noOrg = {
+  const [filters, setFilters] = useState<filters>({
     country: null,
     products: false,
     paymenData: false,
     transfer: false,
     community: 0,
-  }
-  const [filters, setFilters] = useState<filters>(noOrg)
+  })
+
   const changeSelect = (motive: string, select: any) => {
     const temp = { ...filters }
+
     if (motive === 'country') {
       temp.country = select
     }
@@ -54,6 +54,13 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)
   const changeFilters = (res: boolean, motive: string) => {
     const temp = { ...filters }
+    if (motive === 'all') {
+      temp.products = res
+      temp.paymenData = res
+      temp.transfer = res
+      temp.community = 0
+      temp.country = null
+    }
     if (motive === 'products') {
       temp.products = res
     }
@@ -107,8 +114,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     })
   }
 
-  const handleNoOrg = () => setFilters(noOrg)
-
   useEffect(() => {
     if (page === maxPage) {
       setVisible(false)
@@ -143,7 +148,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
                   quantity={quantityOng}
                   button={handlePagination}
                   visible={visible}
-                  handleNoOrg={handleNoOrg}
+                  setFilters={setFilters}
                 />
               </div>
             </div>
@@ -155,7 +160,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
 }
 
 export default OngList
-
 export const getStaticProps = async () => {
   let lengthOng
   await getAll().then((length) => {
