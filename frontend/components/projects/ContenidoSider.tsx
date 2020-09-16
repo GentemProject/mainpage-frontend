@@ -44,7 +44,7 @@ function ContenidoSider(props: any) {
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
         {totalOrgFilter === quantity ? (
-          <h6>Mostrando todas las organizaciones registradas</h6>
+          <h6>Mostrando las {quantity} organizaciones registradas </h6>
         ) : (
           <h6>
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
