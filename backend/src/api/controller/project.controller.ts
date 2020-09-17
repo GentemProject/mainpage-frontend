@@ -134,11 +134,10 @@ const ProjectCtrl = {
       let filter = {
         'location.country': valuePais,
         'primaryData.communityId': valueComm,
-        $or: [
-          { 'paymentData.products': { $exists: true } },
-          { 'paymentData.link': { $exists: true } },
-          { 'paymentData.bankAccount': { $exists: true } },
-        ],
+
+        'paymentData.products': { $exists: true },
+        'paymentData.link': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
       };
       await paginationFilter(filter, projectModel, req, res);
     }
@@ -161,10 +160,8 @@ const ProjectCtrl = {
       let filter = {
         'location.country': valuePais,
         'primaryData.communityId': valueComm,
-        $or: [
-          { 'paymentData.products': { $exists: true } },
-          { 'paymentData.bankAccount': { $exists: true } },
-        ],
+        'paymentData.products': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
       };
       await paginationFilter(filter, projectModel, req, res);
     }
@@ -172,10 +169,9 @@ const ProjectCtrl = {
       let filter = {
         'location.country': valuePais,
         'primaryData.communityId': valueComm,
-        $or: [
-          { 'paymentData.products': { $exists: true } },
-          { 'paymentData.link': { $exists: true } },
-        ],
+
+        'paymentData.products': { $exists: true },
+        'paymentData.link': { $exists: true },
       };
       await paginationFilter(filter, projectModel, req, res);
     }
@@ -183,10 +179,9 @@ const ProjectCtrl = {
       let filter = {
         'location.country': valuePais,
         'primaryData.communityId': valueComm,
-        $or: [
-          { 'paymentData.link': { $exists: true } },
-          { 'paymentData.bankAccount': { $exists: true } },
-        ],
+
+        'paymentData.link': { $exists: true },
+        'paymentData.bankAccount': { $exists: true },
       };
       await paginationFilter(filter, projectModel, req, res);
     }
