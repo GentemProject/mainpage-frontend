@@ -12,26 +12,23 @@ function Noshome() {
       </div>
       <Content
         img={iSearch}
-        tit="Busca entre las fundaciones"
-        desc="Elige la ubicación y la comunidad que quieres impactar con el
-                tipo de donación que quieras brindar"
+        tit="Busca entre las organizaciones"
+        desc="Elige la ubicación y la causa a la que quieras aportar, junto con el tipo de donación que quieras hacer"
       />
       <Content
         img={iSelect}
         tit="Selecciona la que más te guste"
-        desc="De acuerdo al filtro que hayas realizado, selecciona entre el
-                perfil de cada una de las fundaciones que te presentamos"
+        desc="De acuerdo a los filtros que elijas, selecciona la organización que más te guste entre las registradas"
       />
       <Content
         img={iHelp}
         tit="Ayuda como puedas"
-        desc="   Cuando elijas la fundación que quieres impactar, realiza tu
-                donación mediante los diferentes métodos presentados"
+        desc="Cuando elijas la organización que quieres ayudar, realiza tu donación mediante los diferentes métodos disponibles"
       />
       <div className={styles.btnFl}>
         <Link href="/projects">
           <button className={styles.btnColab} style={{ background: '#237ed5' }}>
-            <span>¡Ayuda ya!</span>
+            <span>Ir a la lista de organizaciones</span>
           </button>
         </Link>
       </div>

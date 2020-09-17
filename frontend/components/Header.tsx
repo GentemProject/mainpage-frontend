@@ -27,7 +27,7 @@ function Header() {
             >
               <div className={styles.headerBtn}>
                 <span className={styles.headerBtnText}>
-                  Únete a gentem
+                  Regístrate
                   <Heart />
                 </span>
               </div>

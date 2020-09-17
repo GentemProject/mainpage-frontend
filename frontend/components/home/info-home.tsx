@@ -11,7 +11,7 @@ function Infohome() {
       <Info
         col="#FFCF53"
         tit="La pobreza extrema azota a todo el mundo"
-        cuerpo="Con la ayuda de cada uno de nosotros, por pequeña que sea, podemos darle a alguien un respiro en tiempos de incertidumbre, y la esperanza de un manaña mejor."
+        cuerpo="Solo imagina estar en los zapatos de alguien cabeza de familia, sin comida en casa, sin una forma de generar ingresos y tus hijos con hambre... ¡es momento de apoyarnos entre todos!"
         i={img1}
         id="1"
       />
@@ -19,7 +19,7 @@ function Infohome() {
         col="#1E8A61"
         tit="Unidos somos 
 más fuertes"
-        cuerpo="Tenemos que trabajar todos juntos, por un futuro mas brillante."
+        cuerpo="No podemos ser indiferentes a lo que pasa cerca de nuestra casa, a los problemas de nuestros vecinos, conocidos o compañeros de trabajo, o a la sociedad en la que vivimos. Hay un futuro mejor, ¡y entre todos podemos construirlo juntos!"
         i={img3}
         id="2"
       />

@@ -1,6 +1,7 @@
 @import './lib/variables.scss';
 @import './layout/layout.scss';
-
+$resultItemIMG-xl: 156px;
+$resultItemIMG-xs: 146px;
 // Global
 
 .ongList {
@@ -129,7 +130,7 @@
   background: #ffffff;
   display: grid;
   grid-template-rows: 100%;
-  grid-template-columns: 136px auto;
+  grid-template-columns: $resultItemIMG-xl auto;
   margin-bottom: 24px;
   &:hover {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
@@ -140,11 +141,6 @@
   grid-row: 1;
   align-self: center;;
   grid-column: 1;
-  width: 136px;
-  height: 136px;
-  min-width: 136px;
-  max-width: 136px;
-  background-size: 136px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -356,11 +352,15 @@
     margin: 0;
   }
   .resultItem {
-    height: 146px;
+    height: $resultItemIMG-xs;
+    grid-template-columns: $resultItemIMG-xs auto;
   }
   .resultItemImg {
-    width: 132px;
-    height: 132px;
+    min-width: $resultItemIMG-xs;
+    max-width: $resultItemIMG-xs;
+    background-size: $resultItemIMG-xs;
+    width: $resultItemIMG-xs;
+    height: $resultItemIMG-xs;
   }
   .itemDetailsDesc {
     display: none;
@@ -492,11 +492,15 @@
     margin-left: 40px;
   }
   .resultItem {
-    height: 156px;
+    height: $resultItemIMG-xl;
+    grid-template-columns: $resultItemIMG-xl auto;
   }
   .resultItemImg {
-    width: 136px;
-    height: 136px;
+    width: $resultItemIMG-xl;
+    height: $resultItemIMG-xl;
+    min-width: $resultItemIMG-xl;
+    max-width: $resultItemIMG-xl;
+    background-size: $resultItemIMG-xl;
   }
   .resultItemDetails {
     //margin: 12px 16px;

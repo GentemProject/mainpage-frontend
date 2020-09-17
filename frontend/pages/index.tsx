@@ -30,15 +30,15 @@ export default function Home({ orgs }: any) {
     <Fragment>
       <strong>gentem </strong>es un directorio abierto de organizaciones sin
       ánimo de lucro que trabajan para mejorar el mundo en el que vivimos.
-      Puedes buscarlas por ubicación, tipo de comunidades con las que trabajan,
-      y forma de ayudarlas.
+      Puedes buscarlas por ubicación, causa por la que trabajan, y formas de
+      donar.
     </Fragment>
   )
   return (
     <>
       <Head>
         <title>
-          gentem | Directorio de proyectos que luchan contra el coronavirus
+          gentem | Directorio abierto de organizaciones sin ánimo de lucro
         </title>
       </Head>
       <Container>
@@ -46,16 +46,19 @@ export default function Home({ orgs }: any) {
           <Banner />
           <div className={styles.home}>
             <Fl>
-              <Colab desc={g} btn="¡Ayuda ya!" colorBtn=" #237ed5" />
+              <Colab
+                desc={g}
+                btn="¡Apoya a una organización!"
+                colorBtn=" #237ed5"
+              />
             </Fl>
-
             <Fl>
               <Info />
             </Fl>
             <Fl>
               <Colab
                 desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-                btn="Apoya una organización"
+                btn="¡Ayuda ya!"
                 colorBtn="#F44B53"
               />
             </Fl>

@@ -8,12 +8,12 @@ function Ongs(props: any) {
     <div>
       <div className={styles.containerOngs}>
         <div className={styles.texto}>
-          <h2>Últimos proyectos en unirse</h2>
+          <h2>Últimas organizaciones en unirse</h2>
         </div>
         <div className={styles.desc}>
           <p>
-            Estos son los proyectos que recientemente se han unido a
-            <strong> gentem</strong>. ¿Qué estás esperando para apoyarlos?
+            Estas son las organizaciones que recientemente se han unido a{' '}
+            <strong>gentem</strong>. ¿Qué estás esperando para ayudarlas?
           </p>
         </div>
 

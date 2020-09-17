@@ -33,6 +33,12 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>gentem</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Directorio abierto de organizaciones sin ánimo de lucro"
+        />
         {/* Generics */}
         <link rel="icon" href="/favicons/favicon-16x16.png" sizes="16x16" />
         <link rel="icon" href="/favicons/favicon-32x32.png" sizes="32x32" />

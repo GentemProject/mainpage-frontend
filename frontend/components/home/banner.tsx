@@ -17,7 +17,7 @@ function Banner() {
             <Link href="/projects">
               <a>
                 <button className={styles.btnHome}>
-                  <span>Ver todos los proyectos</span>
+                  <span>Ver todas las organizaciones</span>
                 </button>
               </a>
             </Link>

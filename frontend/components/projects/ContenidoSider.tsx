@@ -50,7 +50,6 @@ function ContenidoSider(props: any) {
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
           </h6>
         )}
-
         <div className={styles.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
