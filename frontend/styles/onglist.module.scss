@@ -23,12 +23,6 @@ $resultItemIMG-xs: 146px;
 .banner {
   margin-top: 64px;
   height: 228px;
-  background: linear-gradient(
-      0deg,
-      rgba(26, 25, 40, 0.6),
-      rgba(26, 25, 40, 0.6)
-    ),
-    url('https://gentem.org/public/src/img/hero_xxl.jpg');
   position: relative;
   z-index: 0;
 }
@@ -343,7 +337,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('https://gentem.org/landing/img/hero_s.jpg');
+      url('../public/organizations/hero_s.jpg');
   }
   .ongListSearch {
     display: none !important;
@@ -403,7 +397,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('https://gentem.org/landing/img/hero_m.jpg');
+      url('../public/organizations/hero_m.jpg');
   }
 }
 
@@ -416,7 +410,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('https://gentem.org/landing/img/hero_l.jpg');
+      url('../public/organizations/hero_l.jpg');
   }
   .ongListContent {
   //  padding: 0 $layout-xs-p;
@@ -454,7 +448,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('https://gentem.org/landing/img/hero_xl.jpg');
+      url('../public/organizations/hero_xl.jpg');
   }
   .ongListContent {
     //padding: 0 $layout-s-p;
@@ -473,14 +467,6 @@ $resultItemIMG-xs: 146px;
 
 // M
 @media (min-width: 1028px) {
-  .banner {
-    background: linear-gradient(
-        0deg,
-        rgba(26, 25, 40, 0.6),
-        rgba(26, 25, 40, 0.6)
-      ),
-      url('https://gentem.org/landing/img/hero_xxl.jpg');
-  }
   .ongListContent {
    // padding: 0 $layout-m;
   }
@@ -525,6 +511,14 @@ $resultItemIMG-xs: 146px;
 }
 // XL
 @media (min-width: 1224px) {
+    .banner {
+    background: linear-gradient(
+        0deg,
+        rgba(26, 25, 40, 0.6),
+        rgba(26, 25, 40, 0.6)
+      ),
+      url('../public/organizations/hero_xxl.jpg');
+  }
   .ongListContent {
     //padding: 0 $layout-xl;
   }
