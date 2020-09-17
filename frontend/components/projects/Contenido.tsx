@@ -43,12 +43,14 @@ function Contenido(props: any) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={filters.country || ''}
+              value={
+                filters.country === null ? 'Todos los paises' : filters.country
+              }
               onChange={(e) => {
                 changeSelect('country', e.target.value)
               }}
             >
-              <MenuItem value={null}>Todos los paises</MenuItem>
+              <MenuItem value="Todos los paises">Todos los paises</MenuItem>
               {ciudad &&
                 ciudad.map((data) => {
                   return (
@@ -69,7 +71,11 @@ function Contenido(props: any) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={filters.community || ''}
+              value={
+                filters.community === '0'
+                  ? 'Todas las causas'
+                  : filters.community
+              }
               onChange={(e) => {
                 changeSelect('community', e.target.value.toString())
               }}

@@ -40,7 +40,11 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     const temp = { ...filters }
 
     if (motive === 'country') {
-      temp.country = select
+      if (select === 'Todos los paises') {
+        temp.country = null
+      } else {
+        temp.country = select
+      }
     }
     if (motive === 'community') {
       temp.community = select
