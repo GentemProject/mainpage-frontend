@@ -51,11 +51,10 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     }
     setFilters(temp)
   }
-
-  const [page, setPage] = useState(1)
   const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
   const [maxPage, setMaxPage] = useState(projectos.totalPages)
   const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)
+  const [actualPage, setActualPage] = useState(projectos.page)
   const changeFilters = (res: boolean, motive: string) => {
     const temp = { ...filters }
     if (motive === 'all') {
@@ -88,9 +87,10 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
           setResultfilters(datos)
           NProgress.done()
         }
-        setPage(0)
         setArrayProjectos([datos.data])
         setMaxPage(datos.totalPages)
+        console.log(datos)
+        setActualPage(datos.page)
         setTotalOrg(datos.totalOrg)
       })
     }
@@ -103,28 +103,37 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
 
   const [visible, setVisible] = useState(true)
 
-  const handlePagination = async () => {
-    getForFilters(page, filters).then((datos) => {
+  const searchMore = async () => {
+    await getForFilters(actualPage + 1, filters).then((datos) => {
       NProgress.start()
       if (datos === 'no hay nada') {
         setResultfilters(null)
         NProgress.done()
       } else {
         setResultfilters(datos)
+        setActualPage(datos.page)
         NProgress.done()
+        /*         console.log(datos) */
       }
       setArrayProjectos([...arrayProjectos, datos.data])
-      setPage(page + 1)
     })
   }
 
+  const handlePagination = async () => {
+    console.log(actualPage, maxPage)
+    /*    
+        await setPage(actualPage + 1)
+        await console.log('post', page) */
+    await searchMore()
+  }
+
   useEffect(() => {
-    if (page === maxPage) {
+    if (actualPage === maxPage) {
       setVisible(false)
     } else {
       setVisible(true)
     }
-  }, [page, maxPage])
+  }, [actualPage, maxPage])
   return (
     <>
       <Head>

@@ -4,7 +4,7 @@ export async function paginationFilter(filter, model, req, res) {
   try {
     const perPage: number = parseInt(req.query.limit as string);
     /*     console.log(perPage, 'perPage'); */
-    const totalPages: number = Math.floor(cuantity / perPage);
+    const totalPages: number = Math.round(cuantity / perPage);
     /*     console.log(totalPages, 'totalPages'); */
     let page: number = parseInt(req.query.skip as string);
     /*     console.log(page, 'page'); */
