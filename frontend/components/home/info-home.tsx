@@ -27,7 +27,7 @@ más fuertes"
         col="#237ED5"
         tit="Iniciativas 
 sociales reales"
-        cuerpo="Queremos que tu ayuda llegue a la población que realmente quieres impactar, por eso las fundaciones que encontrás en gentem han sido verificadas por nuestro equipo."
+        cuerpo="Queremos que tu ayuda llegue a la causa que realmente quieres apoyar, por eso las organizaciones que encuentras en gentem han sido filtradas por nuestro equipo."
         i={img2}
         id="3"
       />
