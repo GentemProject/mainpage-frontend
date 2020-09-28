@@ -112,6 +112,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
       } else {
         setResultfilters(datos)
         setActualPage(datos.page)
+        console.log(datos.page)
         NProgress.done()
         /*         console.log(datos) */
       }
@@ -125,6 +126,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
         await setPage(actualPage + 1)
         await console.log('post', page) */
     await searchMore()
+    console.log(actualPage, maxPage, 'dea')
   }
 
   useEffect(() => {
