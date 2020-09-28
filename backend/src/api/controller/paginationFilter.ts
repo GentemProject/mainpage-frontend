@@ -1,18 +1,17 @@
 export async function paginationFilter(filter, model, req, res) {
   let cuantity = await model.countDocuments(filter);
-  /*   console.log(filter); */
   try {
     const perPage: number = parseInt(req.query.limit as string);
-    /*     console.log(perPage, 'perPage'); */
-    const totalPages: number = Math.round(cuantity / perPage);
-    /*     console.log(totalPages, 'totalPages'); */
+    let totalPages: number = Math.floor(cuantity / perPage);
     let page: number = parseInt(req.query.skip as string);
-    /*     console.log(page, 'page'); */
+    if (Math.round(cuantity - perPage * totalPages) === 0) {
+      totalPages = totalPages - 1;
+    }
     if (page > totalPages) {
       res.end();
     }
     const show = page * perPage;
-    /*     console.log(show, 'show'); */
+    console.log('Quantity:', cuantity, 'Por Pagina:', perPage, 'Paginas totales:', totalPages);
 
     model
       .find(filter)
