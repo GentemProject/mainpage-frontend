@@ -24,10 +24,10 @@ build:frontend:
   script:
     - cd frontend
     - yarn install
-    - yarn export
+    - yarn build
   artifacts:
     paths:
-      - frontend/out
+      - frontend/_next
   only:
     changes:
       - frontend/**/*
@@ -54,7 +54,7 @@ deploy:frontend:
   image: garland/aws-cli-docker:latest
   script:
     - cd frontend
-    - aws s3 cp ./out s3://gentem/ --recursive --acl public-read
+    - aws s3 cp ./_next s3://gentem/ --recursive --acl public-read
     - aws cloudfront create-invalidation --distribution-id E3K0FAMHGVOUZH --paths '/*'
   dependencies:
     - build:frontend
