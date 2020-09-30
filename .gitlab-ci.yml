@@ -24,7 +24,7 @@ build:frontend:
   script:
     - cd frontend
     - yarn install
-    - yarn export
+    - yarn build
   artifacts:
     paths:
       - frontend/_next
