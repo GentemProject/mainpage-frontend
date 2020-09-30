@@ -68,12 +68,12 @@ const ORG: NextPage<Props> = (props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  /*   const res = await fetch('https://api.gentem.org/api/projects')
-    const projects = await res.json()
-    const paths = projects.map((org) => ({
-      params: { slug: org.slug },
-    }))*/
-  return { paths: [], fallback: true }
+  const res = await fetch('https://api.gentem.org/api/projects')
+  const projects = await res.json()
+  const paths = projects.map((org) => ({
+    params: { slug: org.slug },
+  }))
+  return { paths, fallback: false }
   /* return { paths: [], fallback: false } */
 }
 
