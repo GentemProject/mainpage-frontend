@@ -1,6 +1,6 @@
 {
   "name": "with-typescript-eslint-jest",
-  "author": "@erikdstock",
+  "author": "@gentem",
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
@@ -37,7 +37,7 @@
     "fork-ts-checker-webpack-plugin": "^5.0.12",
     "google-map-react": "^1.1.7",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "latest",
+    "next": "^9.5.3",
     "nextjs-sitemap-generator": "^1.0.0",
     "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",

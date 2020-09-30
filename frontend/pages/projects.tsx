@@ -89,7 +89,6 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
         }
         setArrayProjectos([datos.data])
         setMaxPage(datos.totalPages)
-        console.log(datos)
         setActualPage(datos.page)
         setTotalOrg(datos.totalOrg)
       })
@@ -112,21 +111,14 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
       } else {
         setResultfilters(datos)
         setActualPage(datos.page)
-        console.log(datos.page)
         NProgress.done()
-        /*         console.log(datos) */
       }
       setArrayProjectos([...arrayProjectos, datos.data])
     })
   }
 
   const handlePagination = async () => {
-    console.log(actualPage, maxPage)
-    /*    
-        await setPage(actualPage + 1)
-        await console.log('post', page) */
     await searchMore()
-    console.log(actualPage, maxPage, 'dea')
   }
 
   useEffect(() => {
@@ -203,5 +195,6 @@ export const getStaticProps = async () => {
       projectos,
       lengthOng,
     },
+    revalidate: 20,
   }
 }

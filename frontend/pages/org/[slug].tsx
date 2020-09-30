@@ -19,24 +19,6 @@ interface Props {
   organization: Organization
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch('https://api.gentem.org/api/projects')
-  const projects = await res.json()
-  /*   const paths = projects.map((org) => `/org/${org.slug}`) */
-  const paths = projects.map((org) => ({
-    params: { slug: org.slug },
-  }))
-  return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
-  const organizations = await res.json()
-  const organization = organizations[0]
-
-  return { props: { organization } }
-}
-
 const ORG: NextPage<Props> = (props) => {
   const { organization } = props
   if (!organization) {
@@ -83,6 +65,24 @@ const ORG: NextPage<Props> = (props) => {
       </Layout>
     </>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  /*   const res = await fetch('https://api.gentem.org/api/projects')
+    const projects = await res.json()
+    const paths = projects.map((org) => ({
+      params: { slug: org.slug },
+    }))
+    return { paths, fallback: false } */
+  return { paths: [], fallback: true }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
+  const organizations = await res.json()
+  const organization = organizations[0]
+
+  return { props: { organization }, revalidate: 20 }
 }
 
 export default ORG
