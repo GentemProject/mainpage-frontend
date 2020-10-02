@@ -149,6 +149,12 @@
         24
       ],
       "cat_name": "Animales"
+    },
+    {
+      "cat_id": [
+        25
+      ],
+      "cat_name": "Medio Ambiente"
     }
   ]
 }

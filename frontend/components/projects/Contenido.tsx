@@ -31,13 +31,13 @@ function Contenido(props: any) {
     <div className={styles.ongListSearch}>
       <div className={styles.ongListSearchContainer}>
         <div className="container__info">
-          <h6> Usa los filtros para encontrar proyectos que quieras apoyar </h6>
+          <h6>
+            {' '}
+            Usa los filtros para encontrar las organizaciones que quieras apoyar
+          </h6>
         </div>
 
-        <SearchSelect
-          title="Ubicación"
-          info="Selecciona un país en el que quieres que tu donación tenga efecto"
-        >
+        <SearchSelect title="Ubicación" info="Filtra por país">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
@@ -62,10 +62,7 @@ function Contenido(props: any) {
             </Select>
           </FormControl>
         </SearchSelect>
-        <SearchSelect
-          title="Causa afectada"
-          info="Selecciona la causa a la que quieras apoyar"
-        >
+        <SearchSelect title="Causa afectada" info="Filtra por causa">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">Causa</InputLabel>
             <Select
@@ -90,7 +87,7 @@ function Contenido(props: any) {
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"
-          info="Selecciona la forma en la que quieras donar"
+          info="Filtra según la forma en la que quieras donar"
         >
           <TextCheck
             title="Donar online"

@@ -33,11 +33,40 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>gentem</title>
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+                  "@type": "ListItem",
+          "position": 1,
+          "name": "Registra tu organización",
+          "item": "https://gentem.org/registro.html"
+        },{
+                  "@type": "ListItem",
+          "position": 2,
+          "name": "Instagram",
+          "item": "https://www.instagram.com/gentem_org/"
+        },{
+                  "@type": "ListItem",
+          "position": 3,
+          "name": "LinkedIn",
+          "item": "https://www.linkedin.com/company/gentem-org/"
+        },{
+                  "@type": "ListItem",
+          "position": 4,
+          "name": "Facebook",
+          "item": "https://www.facebook.com/gentemorg/"
+        }]
+      }`}
+        </script>
+        <title>
+          gentem | Directorio abierto de organizaciones sin ánimo de lucro
+        </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="Directorio abierto de organizaciones sin ánimo de lucro"
+          content="Gentem es una plataforma donde las organizaciones sin ánimo de lucro pueden darse a conocer a donantes potenciales y mejorar su presencia online, lo que genera nuevas y mejores oportunidades en términos de donaciones y de alianzas estratégicas."
         />
         {/* Generics */}
         <link rel="icon" href="/favicons/favicon-16x16.png" sizes="16x16" />

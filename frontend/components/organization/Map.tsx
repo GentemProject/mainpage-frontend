@@ -22,16 +22,9 @@ function Map(props: any) {
         defaultZoom={zoom}
         options={{ styles: styles }}
       >
-        {props.location ? (
+        {props.location && (
           <Marcador
             location={props.location}
-            lat={geometryY}
-            lng={geometryX}
-            name="My Marker"
-            color="blue"
-          />
-        ) : (
-          <Marcador
             lat={geometryY}
             lng={geometryX}
             name="My Marker"
@@ -63,11 +56,8 @@ export function Marcador(props: any) {
         <div className={style.address}>
           <div className={style.textContainer}>
             <div className={style.textContainerCity}>
-              {props.location
-                ? `${props.location.city}, ${props.location.country}`
-                : `Desde LATAM, Hacia el mundo`}
-              {/*          {props.region ? props.region : 'Desde LATAM'},{' '}
-              {props.pais ? props.pais : 'Hacia el mundo'} */}
+              {props.location &&
+                `${props.location.city}, ${props.location.country}`}
             </div>
           </div>
         </div>
