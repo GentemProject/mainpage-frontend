@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import * as styles from '../../styles/home/home.module.scss'
-
+import Link from 'next/link'
 /* const logoDefault = '/logoDefault.png' */
 const logoDefault = '/logoDefault.png'
 function Ongs(props: any) {
@@ -26,6 +26,7 @@ function Ongs(props: any) {
                 key={data.primaryData.name}
                 i={data.primaryData.logo ? data.primaryData.logo : logoDefault}
                 alt={data.primaryData.name}
+                slug={data.slug}
               />
             ))
           )}
@@ -36,11 +37,13 @@ function Ongs(props: any) {
 }
 function Ficha(props: any) {
   return (
+  <Link key={props.slug} href="/org/[slug]" as={`/org/${props.slug}`}>
     <div className={styles.ficha}>
-      <div className={styles.img}>
-        <img src={props.i} alt={props.alt} />
+      <div className={styles.img} style={{backgroundImage: `url(${props.i})`}}>
+        {//<img src={props.i} alt={props.alt} />
+        }
       </div>
-    </div>
+    </div></Link>
   )
 }
 export default Ongs

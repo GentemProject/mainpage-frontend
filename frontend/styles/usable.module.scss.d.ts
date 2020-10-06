@@ -4,4 +4,11 @@ export const layout: string
 export const layoutTop: string
 export const button: string
 export const dividerHorizontal: string
-export const select: string
+export const containerSelect: string;
+export const select: string;
+export const boxSelect: string;
+export const ReactModalContainer: string
+export const ReactPortalCustom: string;
+export const ReactOverlay: string;
+export const modal: string;
+

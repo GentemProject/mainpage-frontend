@@ -5,9 +5,8 @@ import * as styles from '../../styles/home/home.module.scss'
 function Banner() {
   return (
     <div className={styles.containerBanner}>
-      <div className={styles.imgBannerI}></div>
-      <div className={styles.contentBanner}>
-        <div className={styles.content}>
+      {/*<div className={styles.imgBannerI}></div> */}
+      <div className={styles.content}>
           <div className={styles.text}>
             <span>
               Descubre las organizaciones que trabajan por un futuro mejor
@@ -23,7 +22,6 @@ function Banner() {
             </Link>
           </div>
         </div>
-      </div>
     </div>
   )
 }
