@@ -50,33 +50,52 @@ projectSchema.index({ 'ĺocation.country': 'text' }, { sparse: false });
 const projectModel = mongoose.model('Project', projectSchema);
 export default projectModel;
 
-const oldSchema = new Schema(
-  {
-    slug: String,
-    name: String,
+/* const organizationSchema = new Schema({
+  slug: {
+    type: String,
+  },
+  primaryData: {
+    name: {
+      type: String,
+      trim: true,
+    },
     logo: String,
     objective: String,
-    communityworkwith: [Number],
     description: String,
-    howusedonations: String,
-    location: String,
+    howUseDonation: String,
     sponsors: [String],
-    paymentslink: String,
-    accounts: String,
-    instructionstodeliverproducts: String,
-    website: String,
+    causeId: [Number],
+  },
+  contact: {
     email: String,
-    phones: String,
+    phone: String,
+    website: String,
+  },
+  socialMedia: {
     whatsapp: String,
     instagram: String,
     facebook: String,
-    twitter: String,
     linkedin: String,
+    twitter: String,
+  },
+  donationData: {
+    link: String,
+    bankAccount: String,
+    products: String,
+  },
+  location: {
+    coordenates: {
+      x: Number,
+      y: Number
+    },
     city: String,
     country: String,
-    createtAt: Number,
   },
-  { strict: false },
-);
-
-export const oldModel = mongoose.model('organiz', oldSchema, 'organiz');
+  adminInfo: {
+    adminName: String,
+    adminEmail: String,
+  },
+},
+  {
+    timestamps: true,
+  }) */

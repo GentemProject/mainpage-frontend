@@ -8,18 +8,18 @@ const {
   getForFilters,
   getDistinctCountry,
   getOrg,
-  getOld,
   getLastest,
   getPagination,
+  mapCoordenates
 } = projectCtrl;
 
 router.get('/', getAllProjects);
-router.get('/organizations', getOld);
 router.get('/pagination', getPagination);
 router.get('/pagination/page/:page', getPagination);
 router.get('/filters/:country&:products&:paymentData&:transfer&:community', getForFilters);
 router.get('/lastest/:quanty', getLastest);
 router.get('/distinct/', getDistinctCountry);
+router.get('/mapcoordenates', mapCoordenates)
 router.get('/:id', getOrg);
 router.post('/', createProject);
 

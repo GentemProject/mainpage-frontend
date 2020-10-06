@@ -1,18 +1,9 @@
 import { Request, Response } from 'express';
-import projectModel, { oldModel } from '../schemas/project';
+import projectModel from '../schemas/project';
 import { paginationFilter } from './paginationFilter';
+import { useCoordenate } from './mapCoordenate';
 
 const ProjectCtrl = {
-  getOld: async (req: Request, res: Response) => {
-    oldModel.find({}, (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      }
-      if (result) {
-        return res.json(result);
-      }
-    });
-  },
   getAllProjects: async (req: Request, res: Response) => {
     projectModel.find({}, (err: any, result: any) => {
       if (err) {
@@ -239,6 +230,9 @@ const ProjectCtrl = {
         return res.json(result);
       });
   },
+  mapCoordenates: async (req: Request, res: Response) => {
+    useCoordenate(req, res)
+  }
 };
 
 export default ProjectCtrl;
