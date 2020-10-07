@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import projectModel from '../schemas/project';
+import projectModel, { organizationModel } from '../schemas/project';
 import { paginationFilter } from './paginationFilter';
 import { useCoordenate } from './mapCoordenate';
 
@@ -230,9 +230,55 @@ const ProjectCtrl = {
         return res.json(result);
       });
   },
-  mapCoordenates: async (req: Request, res: Response) => {
-    useCoordenate(req, res)
-  }
+  createOrganization: async (req: Request, res: Response) => {
+    const coordenates = await useCoordenate(req.body.location.coordenates, res);
+    const model = await new organizationModel({
+      slug: req.body.slug,
+      primaryData: {
+        communityId: req.body.primaryData.communityId,
+        name: req.body.primaryData.name,
+        logo: req.body.primaryData.logo,
+        objective: req.body.primaryData.objective,
+        description: req.body.primaryData.description,
+        howUseDonation: req.body.primaryData.howUseDonation,
+        sponsors: req.body.primaryData.sponsors,
+      },
+      contact: {
+        email: req.body.contact.email,
+        phone: req.body.contact.phone,
+        website: req.body.contact.website,
+      },
+
+      socialMedia: {
+        whatsapp: req.body.socialMedia.whatsapp,
+        instagram: req.body.socialMedia.instagram,
+        facebook: req.body.socialMedia.facebook,
+        linkedin: req.body.socialMedia.linkedin,
+        twitter: req.body.socialMedia.twitter,
+      },
+      paymentData: {
+        link: req.body.paymentData.link,
+        bankAccount: req.body.paymentData.bankAccount,
+        products: req.body.paymentData.link,
+      },
+      location: {
+        coordenates: coordenates,
+        city: req.body.location.city,
+        country: req.body.location.country,
+      },
+      adminInfo: {
+        adminName: req.body.adminInfo.adminName,
+        adminEmail: req.body.adminInfo.adminEmail,
+      },
+    });
+    await model.save((err: any) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        return res.json(model);
+      }
+    });
+  },
 };
 
 export default ProjectCtrl;

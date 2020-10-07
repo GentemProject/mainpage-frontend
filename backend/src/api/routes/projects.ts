@@ -10,7 +10,7 @@ const {
   getOrg,
   getLastest,
   getPagination,
-  mapCoordenates
+  createOrganization,
 } = projectCtrl;
 
 router.get('/', getAllProjects);
@@ -19,7 +19,7 @@ router.get('/pagination/page/:page', getPagination);
 router.get('/filters/:country&:products&:paymentData&:transfer&:community', getForFilters);
 router.get('/lastest/:quanty', getLastest);
 router.get('/distinct/', getDistinctCountry);
-router.get('/mapcoordenates', mapCoordenates)
+router.post('/neworganization', createOrganization);
 router.get('/:id', getOrg);
 router.post('/', createProject);
 

@@ -50,52 +50,60 @@ projectSchema.index({ 'ĺocation.country': 'text' }, { sparse: false });
 const projectModel = mongoose.model('Project', projectSchema);
 export default projectModel;
 
-/* const organizationSchema = new Schema({
-  slug: {
-    type: String,
-  },
-  primaryData: {
-    name: {
+const organizationSchema = new Schema(
+  {
+    slug: {
       type: String,
-      trim: true,
+      unique: true,
+      required: true,
     },
-    logo: String,
-    objective: String,
-    description: String,
-    howUseDonation: String,
-    sponsors: [String],
-    causeId: [Number],
-  },
-  contact: {
-    email: String,
-    phone: String,
-    website: String,
-  },
-  socialMedia: {
-    whatsapp: String,
-    instagram: String,
-    facebook: String,
-    linkedin: String,
-    twitter: String,
-  },
-  donationData: {
-    link: String,
-    bankAccount: String,
-    products: String,
-  },
-  location: {
-    coordenates: {
-      x: Number,
-      y: Number
+    primaryData: {
+      name: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      logo: String,
+      objective: String,
+      description: String,
+      howUseDonation: String,
+      sponsors: [String],
+      causeId: [Number],
     },
-    city: String,
-    country: String,
+    contact: {
+      email: String,
+      phone: String,
+      website: String,
+    },
+    socialMedia: {
+      whatsapp: String,
+      instagram: String,
+      facebook: String,
+      linkedin: String,
+      twitter: String,
+    },
+    donationData: {
+      link: String,
+      bankAccount: String,
+      products: String,
+    },
+    location: {
+      coordenates: {
+        x: Number,
+        y: Number,
+      },
+      city: String,
+      country: String,
+    },
+    adminInfo: {
+      adminName: String,
+      adminEmail: String,
+    },
   },
-  adminInfo: {
-    adminName: String,
-    adminEmail: String,
-  },
-},
   {
     timestamps: true,
-  }) */
+  },
+);
+
+organizationSchema.index({ 'ĺocation.country': 'text' }, { sparse: false });
+export const organizationModel = mongoose.model('Organization', organizationSchema);
