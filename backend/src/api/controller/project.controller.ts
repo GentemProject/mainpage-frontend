@@ -248,7 +248,6 @@ const ProjectCtrl = {
         phone: req.body.contact.phone,
         website: req.body.contact.website,
       },
-
       socialMedia: {
         whatsapp: req.body.socialMedia.whatsapp,
         instagram: req.body.socialMedia.instagram,
