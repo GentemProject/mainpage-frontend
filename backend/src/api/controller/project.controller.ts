@@ -5,11 +5,22 @@ import { useCoordenate } from './mapCoordenate';
 
 const ProjectCtrl = {
   getAllProjects: async (req: Request, res: Response) => {
+    /*     projectModel.find({}, (err: any, result: any) => {
+      if (err) {
+        return res.json(err);
+      }
+      if (result) {
+        return res.json(result);
+      }
+    }); */
     projectModel.find({}, (err: any, result: any) => {
       if (err) {
         return res.json(err);
       }
       if (result) {
+        result.map(org => {
+          console.log(org.location.coordenates);
+        });
         return res.json(result);
       }
     });
@@ -231,7 +242,8 @@ const ProjectCtrl = {
       });
   },
   createOrganization: async (req: Request, res: Response) => {
-    const coordenates = await useCoordenate(req.body.location.coordenates, res);
+    /*
+     const coordenates = await useCoordenate(req.body.location.coordenates, res);
     const model = await new organizationModel({
       slug: req.body.slug,
       primaryData: {
@@ -270,13 +282,73 @@ const ProjectCtrl = {
         adminEmail: req.body.adminInfo.adminEmail,
       },
     });
-    await model.save((err: any) => {
+     */
+    let num = 0;
+    const resultado = await paginationFilter({}, projectModel, req, res);
+    resultado.map(async org => {
+      let coordenates;
+      if (org.location.map) {
+        coordenates = await useCoordenate(org.location.map, res);
+      }
+      const model = await new organizationModel({
+        slug: org.slug,
+        primaryData: {
+          communityId: org.primaryData.communityId,
+          name: org.primaryData.name,
+          logo: org.primaryData.logo,
+          objective: org.primaryData.objective,
+          description: org.primaryData.description,
+          howUseDonation: org.primaryData.howUseDonation,
+          sponsors: org.primaryData.sponsors,
+        },
+        contact: {
+          email: org.contact.email,
+          phone: org.contact.phone,
+          website: org.contact.website,
+        },
+        socialMedia: {
+          whatsapp: org.contact.whatsapp,
+          instagram: org.contact.instagram,
+          facebook: org.contact.facebook,
+          linkedin: org.contact.linkedin,
+          twitter: org.contact.twitter,
+        },
+        donationData: {
+          link: org.paymentData.link,
+          bankAccount: org.paymentData.bankAccount,
+          products: org.paymentData.link,
+        },
+        location: {
+          coordenates: coordenates,
+          city: org.location.city,
+          country: org.location.country,
+        },
+        adminInfo: {
+          adminName: org.adminInfo.adminName,
+          adminEmail: org.adminInfo.adminEmail,
+        },
+      });
+      await model.save((err: any) => {
+        if (err) {
+          return res.json(err);
+        } else {
+          /*  return res.json(model); */
+          num = num + 1;
+          console.log(org.slug, num);
+        }
+      });
+    });
+    /*        projectModel.find({}, (err: any, result: any) => {
       if (err) {
         return res.json(err);
-      } else {
-        return res.json(model);
       }
-    });
+      if (result) {
+        result.map(async org => {
+
+        });
+                return res.json(result);
+      }
+    }); */
   },
 };
 
