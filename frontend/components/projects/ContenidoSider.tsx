@@ -11,6 +11,7 @@ import Close from '../svg/close'
 
 // Styles
 import * as styles from '../../styles/onglist.module.scss'
+import Organization from './Organization'
 
 Modal.setAppElement('#__next')
 
@@ -133,9 +134,12 @@ function LazyContenidoSider({ button, proyectos, visible }) {
         ? proyectos.map((page: any) =>
             page.map((ong: any) => {
               return (
-                <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
+                <>
+                  <Organization />
+                  {/*     <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
                   <a>
-                    <ResultItem
+              
+                  <ResultItem
                       products={
                         ong.paymentData ? ong.paymentData.products : null
                       }
@@ -149,9 +153,11 @@ function LazyContenidoSider({ button, proyectos, visible }) {
                       desc={ong.primaryData.description}
                       logo={ong.primaryData.logo}
                       location={ong.location}
-                    />
+                    /> 
                   </a>
                 </Link>
+              */}
+                </>
               )
             })
           )
