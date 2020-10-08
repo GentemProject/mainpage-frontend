@@ -15,7 +15,7 @@ import { getDistinct } from '../../api/filters'
 import * as api from '../../api/categories.json'
 import * as styles from '../../styles/onglist.module.scss'
 import { TextCheck } from '../../components/usables/buttons/inputs/switch'
-import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
+//import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
 function Contenido(props: any) {
   const { changeSelect, changeFilters, filters } = props
   const [ciudad, setCiudad] = useState([])
@@ -86,6 +86,7 @@ function Contenido(props: any) {
               ))}
             </Select>
           </FormControl>
+          {/*
           <Selectt
           onClick={(e) => {
             changeSelect('community', e.target.value.toString())}}
@@ -100,6 +101,7 @@ function Contenido(props: any) {
               </Optionn>
             ))}
           </Selectt>
+         */}
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"

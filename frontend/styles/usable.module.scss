@@ -168,6 +168,7 @@
 }
 .ReactModalPortal {
   display: flex;
+  position: absolute;
 }
 
 .ReactPortalCustom {
@@ -176,6 +177,6 @@
   background: red;
   position: absolute;
 }
-.ReactOverlay {
-  background: green;
+.openModal{
+  filter: brightness(0.5)
 }
