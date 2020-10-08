@@ -8,8 +8,7 @@ const img3 = '/together.png'
 function Infohome() {
   return (
     <div className={styles.containerInfoHome}>
-     
-       <Info
+      <Info
         col="#237ED5"
         tit="Iniciativas 
 sociales reales"

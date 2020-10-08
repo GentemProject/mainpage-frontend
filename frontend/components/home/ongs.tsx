@@ -37,13 +37,18 @@ function Ongs(props: any) {
 }
 function Ficha(props: any) {
   return (
-  <Link key={props.slug} href="/org/[slug]" as={`/org/${props.slug}`}>
-    <div className={styles.ficha}>
-      <div className={styles.img} style={{backgroundImage: `url(${props.i})`}}>
-        {//<img src={props.i} alt={props.alt} />
-        }
+    <Link key={props.slug} href="/org/[slug]" as={`/org/${props.slug}`}>
+      <div className={styles.ficha}>
+        <div
+          className={styles.img}
+          style={{ backgroundImage: `url(${props.i})` }}
+        >
+          {
+            //<img src={props.i} alt={props.alt} />
+          }
+        </div>
       </div>
-    </div></Link>
+    </Link>
   )
 }
 export default Ongs
