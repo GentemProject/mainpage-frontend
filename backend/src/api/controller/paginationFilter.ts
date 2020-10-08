@@ -12,7 +12,7 @@ export async function paginationFilter(filter, model, req, res) {
     }
     const show = page * perPage;
 
-    /*     model
+    model
       .find(filter)
       .skip(show)
       .limit(perPage)
@@ -25,19 +25,7 @@ export async function paginationFilter(filter, model, req, res) {
           data: data,
         }),
       )
-      .catch(error => console.log(error)); */
-    let datan;
-    await model
-      .find(filter)
-      .skip(show)
-      .limit(perPage)
-      .sort({ _id: -1 })
-      .then(data => {
-        datan = data;
-        return datan;
-      })
       .catch(error => console.log(error));
-    return await datan;
   } catch (error) {
     return res.status(500).json(error);
   }
