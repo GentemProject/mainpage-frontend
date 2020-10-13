@@ -445,9 +445,7 @@ $resultItemIMG-xs: 146px;
       ),
       url('../public/organizations/hero_xl.jpg');
   }
-  .ongListContent {
-    //padding: 0 $layout-s-p;
-  }
+
   .ongListSearch {
     width: 345px;
     max-width: 345px;
@@ -455,15 +453,14 @@ $resultItemIMG-xs: 146px;
   .ongListResult {
     margin-left: 48px;
   }
-  .additionals {
-    //  grid-auto-columns: 20%;
-  }
 }
 
 // M
 @media (min-width: 1028px) {
-  .ongListContent {
-    // padding: 0 $layout-m;
+  .organizationGrid {
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: repeat(2, minmax(308px, 376px));
   }
   .ongListSearch {
     width: 300px;
@@ -482,9 +479,6 @@ $resultItemIMG-xs: 146px;
     min-width: $resultItemIMG-xl;
     max-width: $resultItemIMG-xl;
     background-size: $resultItemIMG-xl;
-  }
-  .resultItemDetails {
-    //margin: 12px 16px;
   }
   .itemDetailsDesc {
     display: block;
@@ -505,7 +499,10 @@ $resultItemIMG-xs: 146px;
 }
 // XL
 @media (min-width: 1224px) {
-  .banner {
+  .organizationGrid {
+    grid-template-columns: repeat(2, minmax(364px, 392px));
+  }
+  .ongLis .banner {
     background: linear-gradient(
         0deg,
         rgba(26, 25, 40, 0.6),

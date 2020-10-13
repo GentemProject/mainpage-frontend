@@ -129,7 +129,7 @@ function LazyContenidoSider({ button, proyectos, visible }) {
   })
 
   return (
-    <div ref={elementRef}>
+    <div className={styles.organizationGrid} ref={elementRef}>
       {show
         ? proyectos.map((page: any) =>
             page.map((ong: any) => {
