@@ -11,6 +11,7 @@ export const spinnerIcon: string
 export const nprogressSpinner: string
 export const nprogressCustomParent: string
 export const beta: string
+export const betaClose: string
 export const betaContainer: string
 export const infoImg: string
 export const betaText: string
