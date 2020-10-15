@@ -12,6 +12,14 @@ export async function paginationFilter(filter, model, req, res) {
     }
     const show = page * perPage;
 
+    /*  return model
+      .find(filter)
+      .skip(show)
+      .limit(perPage)
+      .sort({ _id: -1 })
+      .then(data => {
+        return data;
+      }); */
     model
       .find(filter)
       .skip(show)

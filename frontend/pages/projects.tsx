@@ -7,16 +7,16 @@ import NProgress from 'nprogress'
 import { Contenido, ContenidoSider, Banner } from '../components/projects/'
 import Layout from '../components/Layout'
 import Loader from '../components/usables/Loader'
-import { getForFilters, getAll } from '../api/filters'
+import { getForFilters, getAllOrganizations } from '../api/filters'
 // Interfaces
 import { Organization } from '../interfaces/organization'
 
 interface filters {
   country: string | boolean
   products: boolean
-  paymenData: boolean
+  donationData: boolean
   transfer: boolean
-  community: number
+  causeId: number
 }
 // Styles
 import * as styles from '../styles/onglist.module.scss'
@@ -31,9 +31,9 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   const [filters, setFilters] = useState<filters>({
     country: null,
     products: false,
-    paymenData: false,
+    donationData: false,
     transfer: false,
-    community: 0,
+    causeId: 0,
   })
 
   const changeSelect = (motive: string, select: any) => {
@@ -46,8 +46,8 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
         temp.country = select
       }
     }
-    if (motive === 'community') {
-      temp.community = select
+    if (motive === 'causeId') {
+      temp.causeId = select
     }
     setFilters(temp)
   }
@@ -59,16 +59,16 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     const temp = { ...filters }
     if (motive === 'all') {
       temp.products = res
-      temp.paymenData = res
+      temp.donationData = res
       temp.transfer = res
-      temp.community = 0
+      temp.causeId = 0
       temp.country = null
     }
     if (motive === 'products') {
       temp.products = res
     }
-    if (motive === 'paymenData') {
-      temp.paymenData = res
+    if (motive === 'donationData') {
+      temp.donationData = res
     }
     if (motive === 'transfer') {
       temp.transfer = res
@@ -169,15 +169,15 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
 export default OngList
 export const getStaticProps = async () => {
   let lengthOng
-  await getAll().then((length) => {
+  await getAllOrganizations().then((length) => {
     lengthOng = length
   })
   const filters = {
     country: null,
     products: false,
-    paymenData: false,
+    donationData: false,
     transfer: false,
-    community: 0,
+    causeId: 0,
   }
   let projectos
   const page = 0

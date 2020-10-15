@@ -55,7 +55,7 @@ export function Marcador(props: any) {
         </div>
         <div className={style.address}>
           <div className={style.textContainer}>
-            <div className={style.textContainerCity}>
+            <div /* className={style.textContainerCity} */>
               {props.location &&
                 `${props.location.city}, ${props.location.country}`}
             </div>

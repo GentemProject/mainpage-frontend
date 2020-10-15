@@ -135,7 +135,22 @@ function LazyContenidoSider({ button, proyectos, visible }) {
             page.map((ong: any) => {
               return (
                 <>
-                  <Organization />
+                  {console.log(ong)}
+                  <Organization
+                    key={ong.slug}
+                    products={
+                      ong.donationData ? ong.donationData.products : null
+                    }
+                    link={ong.donationData ? ong.donationData.link : null}
+                    bank={
+                      ong.donationData ? ong.donationData.bankAccount : null
+                    }
+                    causeId={ong.primaryData.causeId}
+                    id={ong._id}
+                    name={ong.primaryData.name}
+                    logo={ong.primaryData.logo}
+                    location={ong.location}
+                  />
                   {/*     <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
                   <a>
               

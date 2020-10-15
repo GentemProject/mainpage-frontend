@@ -70,11 +70,6 @@ $image-m: 132px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-
-  /*   display: grid;
-  grid-template-columns: repeat(auto-fit, calc(50% - 40px));
-  overflow: hidden; */
-  /*   column-gap: 8px; */
 }
 .filterSpan {
   max-width: max-content;

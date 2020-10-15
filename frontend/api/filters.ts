@@ -2,9 +2,9 @@ const API = process.env.API_BACKEND
 interface paramsFilters {
   country: string | boolean
   products: boolean
-  paymenData: boolean
+  donationData: boolean
   transfer: boolean
-  community: number
+  causeId: number
 }
 
 export const getPagination = async (skip = 0, limit = 15) => {
@@ -43,6 +43,18 @@ export const getAll = async () => {
     return error
   }
 }
+export const getAllOrganizations = async () => {
+  try {
+    const request = await fetch(`${API}/api/projects/getall`)
+    const response = await request.json()
+    const data = response
+    const length = data.length
+
+    return length
+  } catch (error) {
+    return error
+  }
+}
 export const getForId = async (id: string) => {
   try {
     const request = await fetch(`${API}/api/projects/id/${id}`)
@@ -58,7 +70,7 @@ export const getForFilters = async (skip = 0, params: paramsFilters) => {
   const limit = 15
   try {
     const request = await fetch(
-      `${API}/api/projects/filters/${params.country}&${params.products}&${params.paymenData}&${params.transfer}&${params.community}?skip=${skip}&limit=${limit}`
+      `${API}/api/projects/filters/${params.country}&${params.products}&${params.donationData}&${params.transfer}&${params.causeId}?skip=${skip}&limit=${limit}`
     )
     const response = await request.json()
     const data = response

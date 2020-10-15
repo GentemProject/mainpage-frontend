@@ -32,7 +32,6 @@ function Contenido(props: any) {
       <div className={styles.ongListSearchContainer}>
         <div className="container__info">
           <h6>
-            {' '}
             Usa los filtros para encontrar las organizaciones que quieras apoyar
           </h6>
         </div>

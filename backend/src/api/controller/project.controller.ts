@@ -5,22 +5,11 @@ import { useCoordenate } from './mapCoordenate';
 
 const ProjectCtrl = {
   getAllProjects: async (req: Request, res: Response) => {
-    /*     projectModel.find({}, (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      }
-      if (result) {
-        return res.json(result);
-      }
-    }); */
     projectModel.find({}, (err: any, result: any) => {
       if (err) {
         return res.json(err);
       }
       if (result) {
-        result.map(org => {
-          console.log(org.location.coordenates);
-        });
         return res.json(result);
       }
     });
@@ -28,94 +17,8 @@ const ProjectCtrl = {
   getPagination: async (req: Request, res: Response) => {
     await paginationFilter({}, projectModel, req, res);
   },
-  createProject: async (req: Request, res: Response) => {
-    /*     interface organization {
-          slug: {
-            type: string,
-          },
-          primaryData: {
-            name: {
-              type: string,
-              trim: true,
-            },
-            logo: string,
-            objective: string,
-            description: string,
-            howUseDonation: string,
-            sponsors: [string],
-            communityId: [number],
-          },
-          contact: {
-            email: string,
-            phone: string,
-            whatsapp: string,
-            instagram: string,
-            facebook: string,
-            linkedin: string,
-            twitter: string,
-            website: string,
-          },
-          paymentData: {
-            link: string,
-            bankAccount: string,
-            products: string,
-          },
-          location: {
-            map: string,
-            city: string,
-            country: string,
-          },
-          adminInfo: {
-            adminName: string,
-            adminEmail: string,
-          },
-        } */
-    const model = await new projectModel({
-      slug: req.body.slug,
-      primaryData: {
-        communityId: req.body.primaryData.communityId,
-        name: req.body.primaryData.name,
-        logo: req.body.primaryData.logo,
-        objective: req.body.primaryData.objective,
-        /*         description: req.body.primaryData.description,
-                howUseDonation: req.body.primaryData.howUseDonation,
-                sponsors: req.body.primaryData.sponsors, */
-      },
-      /*         contact: {
-                email: req.body.contact.email,
-                phone: req.body.contact.phone,
-                whatsapp: req.body.contact.whatsapp,
-                instagram: req.body.contact.instagram,
-                facebook: req.body.contact.facebook,
-                linkedin: req.body.contact.linkedin,
-                twitter: req.body.contact.twitter,
-                website: req.body.contact.website,
-              }, */
-      /*        paymentData: {
-               link: req.body.paymentData.link,
-               bankAccount: req.body.paymentData.bankAccount,
-               products: req.body.paymentData.link,
-             }, */
-      location: {
-        map: req.body.location.map,
-        city: req.body.location.city,
-        country: req.body.location.country,
-      },
-      adminInfo: {
-        adminName: req.body.adminInfo.adminName,
-        adminEmail: req.body.adminInfo.adminEmail,
-      },
-    });
-    await model.save((err: any) => {
-      if (err) {
-        return res.json(err);
-      } else {
-        return res.json(model);
-      }
-    });
-  },
   getForFilters: async (req: Request, res: Response) => {
-    const { country, products, paymentData, transfer, community } = req.params;
+    const { country, products, donationData, transfer, causeId } = req.params;
 
     let valuePais: any;
     let valueComm: any;
@@ -125,86 +28,83 @@ const ProjectCtrl = {
     } else {
       valuePais = country;
     }
-    if (community === '0') {
+    if (causeId === '0') {
       valueComm = { $nin: false };
       console.log(valueComm);
     } else {
-      valueComm = { $eq: community };
+      valueComm = { $eq: causeId };
     }
 
-    if (products === 'true' && transfer === 'true' && paymentData === 'true') {
+    if (products === 'true' && transfer === 'true' && donationData === 'true') {
       let filter = {
         'location.country': valuePais,
-        'primaryData.communityId': valueComm,
+        'primaryData.causeId': valueComm,
+        'donationData.products': { $exists: true },
+        'donationData.link': { $exists: true },
+        'donationData.bankAccount': { $exists: true },
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'false' && transfer === 'false' && donationData === 'false') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'true' && transfer === 'false' && donationData === 'false') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
+        'donationData.products': { $exists: true },
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'true' && transfer === 'true' && donationData === 'false') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
+        'donationData.products': { $exists: true },
+        'donationData.bankAccount': { $exists: true },
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'true' && transfer === 'false' && donationData === 'true') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
+        'donationData.products': { $exists: true },
+        'donationData.link': { $exists: true },
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'false' && transfer === 'true' && donationData === 'true') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
+        'donationData.link': { $exists: true },
+        'donationData.bankAccount': { $exists: true },
+      };
+      await paginationFilter(filter, organizationModel, req, res);
+    }
+    if (products === 'false' && transfer === 'false' && donationData === 'true') {
+      let filter = {
+        'location.country': valuePais,
+        'primaryData.causeId': valueComm,
 
-        'paymentData.products': { $exists: true },
-        'paymentData.link': { $exists: true },
-        'paymentData.bankAccount': { $exists: true },
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'false' && transfer === 'false' && paymentData === 'false') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'true' && transfer === 'false' && paymentData === 'false') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-        'paymentData.products': { $exists: true },
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'true' && transfer === 'true' && paymentData === 'false') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-        'paymentData.products': { $exists: true },
-        'paymentData.bankAccount': { $exists: true },
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'true' && transfer === 'false' && paymentData === 'true') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-
-        'paymentData.products': { $exists: true },
-        'paymentData.link': { $exists: true },
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'false' && transfer === 'true' && paymentData === 'true') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-
-        'paymentData.link': { $exists: true },
-        'paymentData.bankAccount': { $exists: true },
-      };
-      await paginationFilter(filter, projectModel, req, res);
-    }
-    if (products === 'false' && transfer === 'false' && paymentData === 'true') {
-      let filter = {
-        'location.country': valuePais,
-        'primaryData.communityId': valueComm,
-
-        'paymentData.link': { $exists: true },
+        'donationData.link': { $exists: true },
       };
 
-      await paginationFilter(filter, projectModel, req, res);
+      await paginationFilter(filter, organizationModel, req, res);
     }
-    if (products === 'false' && transfer === 'true' && paymentData === 'false') {
+    if (products === 'false' && transfer === 'true' && donationData === 'false') {
       let filter = {
         'location.country': valuePais,
-        'primaryData.communityId': valueComm,
+        'primaryData.causeId': valueComm,
 
-        'paymentData.bankAccount': { $exists: true },
+        'donationData.bankAccount': { $exists: true },
       };
-      await paginationFilter(filter, projectModel, req, res);
+      await paginationFilter(filter, organizationModel, req, res);
     }
   },
   getDistinctCountry: async (req: Request, res: Response) => {
@@ -241,50 +141,20 @@ const ProjectCtrl = {
         return res.json(result);
       });
   },
-  createOrganization: async (req: Request, res: Response) => {
-    /*
-     const coordenates = await useCoordenate(req.body.location.coordenates, res);
-    const model = await new organizationModel({
-      slug: req.body.slug,
-      primaryData: {
-        communityId: req.body.primaryData.communityId,
-        name: req.body.primaryData.name,
-        logo: req.body.primaryData.logo,
-        objective: req.body.primaryData.objective,
-        description: req.body.primaryData.description,
-        howUseDonation: req.body.primaryData.howUseDonation,
-        sponsors: req.body.primaryData.sponsors,
-      },
-      contact: {
-        email: req.body.contact.email,
-        phone: req.body.contact.phone,
-        website: req.body.contact.website,
-      },
-      socialMedia: {
-        whatsapp: req.body.socialMedia.whatsapp,
-        instagram: req.body.socialMedia.instagram,
-        facebook: req.body.socialMedia.facebook,
-        linkedin: req.body.socialMedia.linkedin,
-        twitter: req.body.socialMedia.twitter,
-      },
-      paymentData: {
-        link: req.body.paymentData.link,
-        bankAccount: req.body.paymentData.bankAccount,
-        products: req.body.paymentData.link,
-      },
-      location: {
-        coordenates: coordenates,
-        city: req.body.location.city,
-        country: req.body.location.country,
-      },
-      adminInfo: {
-        adminName: req.body.adminInfo.adminName,
-        adminEmail: req.body.adminInfo.adminEmail,
-      },
+  getAllOrganizations: async (req: Request, res: Response) => {
+    organizationModel.find({}, (err: any, result: any) => {
+      if (err) {
+        return res.json(err);
+      }
+      if (result) {
+        return res.json(result);
+      }
     });
-     */
+  },
+  createOrganization: async (req: Request, res: Response) => {
     let num = 0;
     const resultado = await paginationFilter({}, projectModel, req, res);
+    console.log(resultado);
     resultado.map(async org => {
       let coordenates;
       if (org.location.map) {
@@ -293,7 +163,7 @@ const ProjectCtrl = {
       const model = await new organizationModel({
         slug: org.slug,
         primaryData: {
-          communityId: org.primaryData.communityId,
+          causeId: org.primaryData.communityId,
           name: org.primaryData.name,
           logo: org.primaryData.logo,
           objective: org.primaryData.objective,
@@ -327,28 +197,18 @@ const ProjectCtrl = {
           adminName: org.adminInfo.adminName,
           adminEmail: org.adminInfo.adminEmail,
         },
+        createdAt: org.createdAt,
+        updatedAt: org.createdAt,
       });
       await model.save((err: any) => {
         if (err) {
           return res.json(err);
         } else {
-          /*  return res.json(model); */
           num = num + 1;
           console.log(org.slug, num);
         }
       });
     });
-    /*        projectModel.find({}, (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      }
-      if (result) {
-        result.map(async org => {
-
-        });
-                return res.json(result);
-      }
-    }); */
   },
 };
 
