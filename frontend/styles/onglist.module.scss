@@ -486,7 +486,7 @@ $resultItemIMG-xs: 146px;
 }
 // XL
 @media (min-width: 1224px) {
-  <<<<<<< HEAD .organizationGrid {
+  .organizationGrid {
     grid-template-columns: repeat(2, minmax(364px, 392px));
   }
   .ongLis .banner {
@@ -497,7 +497,7 @@ $resultItemIMG-xs: 146px;
       ),
       url('../public/organizations/hero_xxl.jpg');
   }
-  =======>>>>>>>e3f33897a4d3e24baf237c998f6b289653caef0e .ongListContent {
+  .ongListContent {
     //padding: 0 $layout-xl;
   }
   .ongListSearch {
