@@ -11,8 +11,15 @@ export async function paginationFilter(filter, model, req, res) {
       res.end();
     }
     const show = page * perPage;
-    console.log('Quantity:', cuantity, 'Por Pagina:', perPage, 'Paginas totales:', totalPages);
 
+    /*  return model
+      .find(filter)
+      .skip(show)
+      .limit(perPage)
+      .sort({ _id: -1 })
+      .then(data => {
+        return data;
+      }); */
     model
       .find(filter)
       .skip(show)

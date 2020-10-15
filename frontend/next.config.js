@@ -1,8 +1,16 @@
 const fetch = require('isomorphic-unfetch')
-
+let API_BACKEND
+if (process.env.NODE_ENV === 'development') {
+  API_BACKEND = 'http://localhost:3030'
+}
+if (process.env.NODE_ENV === 'production') {
+  API_BACKEND = 'https://api.gentem.org'
+}
 module.exports = {
+  env: {
+    API_BACKEND: API_BACKEND,
+  },
   trailingSlash: true,
-
   distDir: '_next',
   generateBuildId: async () => {
     if (process.env.BUILD_ID) {
@@ -20,7 +28,7 @@ module.exports = {
       '/projects': { page: '/projects' },
       '/admin': { page: '/admin' },
     }
-    const res = await fetch('https://api.gentem.org/api/projects')
+    const res = await fetch('https://api.gentem.org/api/projects/getall')
     const data = await res.json()
     const orgs = data.map((entry) => entry)
     orgs.forEach((org) => {

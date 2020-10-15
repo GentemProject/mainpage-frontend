@@ -8,4 +8,3 @@ export const headerContent: string
 export const headerLogo: string
 export const headerBtn: string
 export const headerBtnText: string
-export const construction: string

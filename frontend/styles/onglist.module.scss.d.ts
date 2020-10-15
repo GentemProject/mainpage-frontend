@@ -18,6 +18,8 @@ export const ongListResultFilter: string
 export const resultItem: string
 export const resultItemImg: string
 export const resultItemDetails: string
+export const additionals: string
+export const optionFilters: string
 export const itemDetailsTitle: string
 export const itemDetailsDesc: string
 export const itemDetailsFooter: string
@@ -37,6 +39,5 @@ export const listModal: string
 export const modalClose: string
 export const ongListModal: string
 export const ongListModalLogo: string
-export const estiloNegro: string
-export const optionFilters: string
-export const additionals: string
+export const organizationGrid: string
+export const ongLis: string

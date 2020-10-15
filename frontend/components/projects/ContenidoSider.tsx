@@ -1,16 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 import Modal from 'react-modal'
 
 // Components & Usables
 import { ModalContent } from './Contenido'
-import ResultItem from './ResultItem'
 
 // Svg
 import Close from '../svg/close'
 
 // Styles
 import * as styles from '../../styles/onglist.module.scss'
+import Organization from './Organization'
 
 Modal.setAppElement('#__next')
 
@@ -128,34 +127,35 @@ function LazyContenidoSider({ button, proyectos, visible }) {
   })
 
   return (
-    <div ref={elementRef}>
-      {show
-        ? proyectos.map((page: any) =>
-            page.map((ong: any) => {
-              return (
-                <Link key={ong.slug} href="/org/[slug]" as={`/org/${ong.slug}`}>
-                  <a>
-                    <ResultItem
+    <>
+      <div className={styles.organizationGrid} ref={elementRef}>
+        {show
+          ? proyectos.map((page: any) =>
+              page.map((ong: any) => {
+                return (
+                  <>
+                    <Organization
+                      key={ong.slug}
+                      slug={ong.slug}
                       products={
-                        ong.paymentData ? ong.paymentData.products : null
+                        ong.donationData ? ong.donationData.products : null
                       }
-                      link={ong.paymentData ? ong.paymentData.link : null}
+                      link={ong.donationData ? ong.donationData.link : null}
                       bank={
-                        ong.paymentData ? ong.paymentData.bankAccount : null
+                        ong.donationData ? ong.donationData.bankAccount : null
                       }
-                      communityId={ong.primaryData.communityId}
+                      causeId={ong.primaryData.causeId}
                       id={ong._id}
                       name={ong.primaryData.name}
-                      desc={ong.primaryData.description}
                       logo={ong.primaryData.logo}
                       location={ong.location}
                     />
-                  </a>
-                </Link>
-              )
-            })
-          )
-        : null}
+                  </>
+                )
+              })
+            )
+          : null}
+      </div>
       {visible && (
         <div className={styles.seeMoreContainer}>
           <div onClick={button} className={styles.seeMore}>
@@ -163,7 +163,7 @@ function LazyContenidoSider({ button, proyectos, visible }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

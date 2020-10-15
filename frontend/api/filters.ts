@@ -1,17 +1,16 @@
-const BASE_API = 'https://api.gentem.org'
-/* const BASE_API = 'http://localhost:3030' */
+const API = process.env.API_BACKEND
 interface paramsFilters {
   country: string | boolean
   products: boolean
-  paymenData: boolean
+  donationData: boolean
   transfer: boolean
-  community: number
+  causeId: number
 }
 
 export const getPagination = async (skip = 0, limit = 15) => {
   try {
     const request = await fetch(
-      `${BASE_API}/api/projects/pagination?skip=${skip}&limit=${limit}`
+      `${API}/api/projects/pagination?skip=${skip}&limit=${limit}`
     )
     const projectos = await request.json()
     const data = projectos
@@ -23,7 +22,7 @@ export const getPagination = async (skip = 0, limit = 15) => {
 
 export const getDistinct = async () => {
   try {
-    const request = await fetch(`${BASE_API}/api/projects/distinct`)
+    const request = await fetch(`${API}/api/projects/distinct`)
     const response = await request.json()
     const data = response
 
@@ -34,7 +33,7 @@ export const getDistinct = async () => {
 }
 export const getAll = async () => {
   try {
-    const request = await fetch(`${BASE_API}/api/projects/`)
+    const request = await fetch(`${API}/api/projects/`)
     const response = await request.json()
     const data = response
     const length = data.length
@@ -44,12 +43,35 @@ export const getAll = async () => {
     return error
   }
 }
-export const getForId = async (id: string) => {
+export const getAllOrganizations = async () => {
   try {
-    const request = await fetch(`${BASE_API}/api/projects/id/${id}`)
+    const request = await fetch(`${API}/api/projects/getall`)
     const response = await request.json()
     const data = response
+    const length = data.length
+
+    return length
+  } catch (error) {
+    return error
+  }
+}
+export const getAllOrganizationsPath = async () => {
+  try {
+    const request = await fetch(`${API}/api/projects/getall`)
+    const response = await request.json()
+    const data = response
+
     return data
+  } catch (error) {
+    return error
+  }
+}
+export const getForId = async (id: any) => {
+  try {
+    const request = await fetch(`${API}/api/projects/${id}`)
+    const response = await request.json()
+    const data = response
+    return data[0]
   } catch (error) {
     return error
   }
@@ -59,7 +81,7 @@ export const getForFilters = async (skip = 0, params: paramsFilters) => {
   const limit = 15
   try {
     const request = await fetch(
-      `${BASE_API}/api/projects/filters/${params.country}&${params.products}&${params.paymenData}&${params.transfer}&${params.community}?skip=${skip}&limit=${limit}`
+      `${API}/api/projects/filters/${params.country}&${params.products}&${params.donationData}&${params.transfer}&${params.causeId}?skip=${skip}&limit=${limit}`
     )
     const response = await request.json()
     const data = response
@@ -70,7 +92,7 @@ export const getForFilters = async (skip = 0, params: paramsFilters) => {
 }
 export const getLastest = async (quanty: number) => {
   try {
-    const request = await fetch(`${BASE_API}/api/projects/lastest/${quanty}`)
+    const request = await fetch(`${API}/api/projects/lastest/${quanty}`)
     const response = await request.json()
     const data = response
     return data
