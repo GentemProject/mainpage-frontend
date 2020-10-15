@@ -118,7 +118,7 @@ const ProjectCtrl = {
   },
   getOrg: async (req: Request, res: Response) => {
     const slug = req.params.id;
-    projectModel.find(
+    organizationModel.find(
       {
         slug: slug,
       },

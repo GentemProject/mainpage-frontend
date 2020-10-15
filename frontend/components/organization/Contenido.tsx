@@ -27,12 +27,12 @@ function Contenido(props: any) {
     setOpen(false)
   }
 
-  const [communityArray, setCommunityArray] = useState<any>([])
+  const [causeArray, setCauseArray] = useState<any>([])
 
-  const communityWorkWith = props.communityworkwith
+  const { causeId } = props
   useEffect(() => {
-    useAllCategories({ setCommunityArray, communityWorkWith })
-  }, [communityWorkWith])
+    useAllCategories({ setCauseArray, causeId })
+  }, [causeId])
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>
@@ -65,7 +65,7 @@ function Contenido(props: any) {
               {props.objetive}
             </p>
           </div>
-          <TargetBase array={communityArray} filter={filter} />
+          <TargetBase array={causeArray} filter={filter} />
 
           <h3 className={styles.ongProfileInfoDescription}>
             {props.description}
@@ -82,7 +82,7 @@ function Contenido(props: any) {
           </div>
         )}
 
-        {props.sponsors.length !== 0 ? (
+        {/*         {props.sponsors.length !== 0 ? (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
             <Divider
@@ -101,7 +101,7 @@ function Contenido(props: any) {
         ) : (
           false
         )}
-
+ */}
         {props.contact && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
@@ -145,7 +145,7 @@ function Contenido(props: any) {
           </div>
         )}
 
-        {props.contact && (
+        {props.socialMedia && (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
             <Divider
@@ -154,45 +154,45 @@ function Contenido(props: any) {
               }}
             />
             <div className="OngProfile__Social--Networks">
-              {props.contact.whatsapp && (
+              {props.socialMedia.whatsapp && (
                 <a
-                  href={`https://api.whatsapp.com/send?phone=${props.contact.whatsapp}`}
+                  href={`https://api.whatsapp.com/send?phone=${props.socialMedia.whatsapp}`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/whatsapp.svg" alt="whatsapp logo" />
                 </a>
               )}
-              {props.contact.instagram && (
+              {props.socialMedia.instagram && (
                 <a
-                  href={props.contact.instagram}
+                  href={props.socialMedia.instagram}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/insta.svg" alt="instagram logo" />
                 </a>
               )}
-              {props.contact.facebook && (
+              {props.socialMedia.facebook && (
                 <a
-                  href={props.contact.facebook}
+                  href={props.socialMedia.facebook}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/fb.svg" alt="facebook logo" />
                 </a>
               )}
-              {props.contact.twitter && (
+              {props.socialMedia.twitter && (
                 <a
-                  href={props.contact.twitter}
+                  href={props.socialMedia.twitter}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/twitter.svg" alt="twitter logo" />
                 </a>
               )}
-              {props.contact.linkedin && (
+              {props.socialMedia.linkedin && (
                 <a
-                  href={props.contact.linkedin}
+                  href={props.socialMedia.linkedin}
                   rel="noopener noreferrer"
                   target="_blank"
                 >

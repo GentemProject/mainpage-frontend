@@ -1,37 +1,22 @@
-import { useState, useEffect } from 'react'
-import useLocation from '../../components/usables/useLocation'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
+import { getForId } from '../../api/filters'
 import { Contenido, ContenidoSider } from '../../components/organization'
 import Layout from '../../components/Layout'
 import Map from '../../components/organization/Map'
 
-// Interfaces
-import { Organization } from '../../interfaces/organization'
-
 // Styles
 import * as styles from '../../styles/organization.module.scss'
 
-interface Props {
-  organization: Organization
-}
-
-const ORG: NextPage<Props> = (props) => {
-  const { organization } = props
+const ORG: NextPage = (props) => {
+  const { organization }: any = props
   if (!organization) {
     return <>loading..</>
   }
-  const [orgLocation, setOrgLocation] = useState<any>()
-  const location = useLocation(orgLocation)
   const ong = organization
-  if (ong.location) {
-    useEffect(() => {
-      setOrgLocation(ong.location.map)
-    }, [])
-  }
 
   return (
     <>
@@ -41,10 +26,11 @@ const ORG: NextPage<Props> = (props) => {
       <Layout>
         <div className={styles.ongProfile}>
           <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-            <Map location={ong.location} coordenates={location}></Map>
+            <Map location={ong.location}></Map>
+
             <div className={`${styles.ongProfileContent} ${styles.layout}`}>
               <Contenido
-                communityworkwith={ong.primaryData.communityId}
+                causeId={ong.primaryData.causeId}
                 name={ong.primaryData.name}
                 description={ong.primaryData.description}
                 logo={ong.primaryData.logo}
@@ -52,12 +38,13 @@ const ORG: NextPage<Props> = (props) => {
                 howusedonation={ong.primaryData.howUseDonation}
                 sponsors={ong.primaryData.sponsors}
                 contact={ong.contact}
-                paymentData={ong.paymentData}
-                city={ong.location}
+                socialMedia={ong.socialMedia}
+                paymentData={ong.donationData}
+                location={ong.location}
               />
               <ContenidoSider
                 name={ong.primaryData.name}
-                paymentData={ong.paymentData}
+                paymentData={ong.donationData}
               />
             </div>
           </div>
@@ -68,7 +55,7 @@ const ORG: NextPage<Props> = (props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch('https://api.gentem.org/api/projects')
+  const res = await fetch('https://api.gentem.org/api/projects/getall')
   const projects = await res.json()
   const paths = projects.map((org) => ({
     params: { slug: org.slug },
@@ -78,9 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`https://api.gentem.org/api/projects/${params.slug}`)
-  const organizations = await res.json()
-  const organization = organizations[0]
+  const organization = await getForId(params.slug)
 
   return { props: { organization }, revalidate: 20 }
 }

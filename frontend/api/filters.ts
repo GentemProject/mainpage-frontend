@@ -55,12 +55,12 @@ export const getAllOrganizations = async () => {
     return error
   }
 }
-export const getForId = async (id: string) => {
+export const getForId = async (id: any) => {
   try {
-    const request = await fetch(`${API}/api/projects/id/${id}`)
+    const request = await fetch(`${API}/api/projects/${id}`)
     const response = await request.json()
     const data = response
-    return data
+    return data[0]
   } catch (error) {
     return error
   }

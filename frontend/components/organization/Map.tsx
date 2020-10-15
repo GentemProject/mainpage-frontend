@@ -4,13 +4,22 @@ import GoogleMapReact from 'google-map-react'
 import * as style from '../../styles/organization.module.scss'
 
 function Map(props: any) {
-  const geometryY = parseFloat(props.coordenates.props.ygriega) || -26.231718
-  const geometryX = parseFloat(props.coordenates.props.equis) || -63.2485696
+  const { location } = props
+  const [coordenates, setCoordenates] = useState({
+    y: -26.231718,
+    x: -63.2485696,
+  })
   const [zoom, setZoom] = useState(1)
-
   useEffect(() => {
-    setZoom(props.coordenates.props.zoom)
-  }, [props.coordenates.props.zoom])
+    if (location.coordenates) {
+      setCoordenates({
+        x: location.coordenates.x,
+        y: location.coordenates.y,
+      })
+      console.log('ndeaa')
+      setZoom(12)
+    }
+  }, [location])
 
   return (
     <div className={style.map}>
@@ -18,15 +27,15 @@ function Map(props: any) {
         bootstrapURLKeys={{
           key: 'AIzaSyAQyrX0Pjjnrlz--nYA-UapCAragOrRdtw',
         }}
-        defaultCenter={{ lat: geometryY, lng: geometryX }}
+        defaultCenter={{ lat: coordenates.y, lng: coordenates.x }}
         defaultZoom={zoom}
         options={{ styles: styles }}
       >
         {props.location && (
           <Marcador
             location={props.location}
-            lat={geometryY}
-            lng={geometryX}
+            lat={coordenates.y}
+            lng={coordenates.x}
             name="My Marker"
             color="blue"
           />
@@ -39,7 +48,7 @@ function Map(props: any) {
 export default Map
 
 export function Marcador(props: any) {
-  const { color, name } = props
+  const { color, name, location } = props
 
   return (
     <>
@@ -56,8 +65,7 @@ export function Marcador(props: any) {
         <div className={style.address}>
           <div className={style.textContainer}>
             <div /* className={style.textContainerCity} */>
-              {props.location &&
-                `${props.location.city}, ${props.location.country}`}
+              {location && `${location.city}, ${location.country}`}
             </div>
           </div>
         </div>
