@@ -28,7 +28,7 @@ module.exports = {
       '/projects': { page: '/projects' },
       '/admin': { page: '/admin' },
     }
-    const res = await fetch('https://api.gentem.org/api/projects')
+    const res = await fetch('https://api.gentem.org/api/projects/getall')
     const data = await res.json()
     const orgs = data.map((entry) => entry)
     orgs.forEach((org) => {

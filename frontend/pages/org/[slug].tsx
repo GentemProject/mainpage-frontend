@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
-import { getForId } from '../../api/filters'
+import { getForId, getAllOrganizationsPath } from '../../api/filters'
 import { Contenido, ContenidoSider } from '../../components/organization'
 import Layout from '../../components/Layout'
 import Map from '../../components/organization/Map'
@@ -55,11 +55,16 @@ const ORG: NextPage = (props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch('https://api.gentem.org/api/projects/getall')
-  const projects = await res.json()
-  const paths = projects.map((org) => ({
+  let paths
+  await getAllOrganizationsPath().then((data) => {
+    paths = data.map((org) => ({
+      params: { slug: org.slug },
+    }))
+    return paths
+  })
+  /*   const paths = await res.map((org) => ({
     params: { slug: org.slug },
-  }))
+  })) */
   return { paths, fallback: false }
   /* return { paths: [], fallback: false } */
 }
