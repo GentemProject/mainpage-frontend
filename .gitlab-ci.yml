@@ -54,8 +54,8 @@ deploy:frontend:
   image: garland/aws-cli-docker:latest
   script:
     - cd frontend
-    - aws s3 cp ./out s3://gentem.org/ --recursive --acl public-read
-    - aws cloudfront create-invalidation --distribution-id E33MJIEDS5RXK9 --paths '/*'
+    - aws s3 cp ./out s3://gentem/ --recursive --acl public-read
+    - aws cloudfront create-invalidation --distribution-id E3K0FAMHGVOUZH --paths '/*'
   dependencies:
     - build:frontend
   only:
