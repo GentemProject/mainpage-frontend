@@ -45,7 +45,7 @@ deploy:backend:
     - build:backend
   only:
     refs:
-      - master
+      - ${ branch }
     changes:
       - backend/**/*
 
@@ -55,11 +55,11 @@ deploy:frontend:
   script:
     - cd frontend
     - aws s3 cp ./out ${s3} --recursive --acl public-read
-    - aws cloudfront create-invalidation --distribution-id {cloudfront} --paths '/*'
+    - aws cloudfront create-invalidation --distribution-id ${cloudfront} --paths '/*'
   dependencies:
     - build:frontend
   only:
     refs:
-      - master
+      - ${ branch }
     changes:
       - frontend/**/*
