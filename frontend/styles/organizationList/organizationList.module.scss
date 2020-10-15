@@ -30,6 +30,7 @@ $image-m: 132px;
   display: grid;
   grid-template-columns: fit-content($image-s) 1fr;
   column-gap: 8px;
+  align-items: center;
 }
 .image {
   background-repeat: no-repeat;
@@ -42,9 +43,9 @@ $image-m: 132px;
   align-items: center;
 }
 .name {
-  white-space: nowrap;
+  /*   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   span {
     font-weight: bold;
     font-size: 18px;
@@ -70,6 +71,8 @@ $image-m: 132px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
 }
 .filterSpan {
   max-width: max-content;

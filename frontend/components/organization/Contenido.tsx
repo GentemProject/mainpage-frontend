@@ -11,7 +11,6 @@ import { ResponsiveDonate } from './ContenidoSider'
 import { Button, Divider } from '../usables/buttons'
 import TargetBase from '../usables/TargetBase'
 import { useAllCategories } from '../usables/useCategories'
-import cat from '../../api/categories.json'
 
 // Styles
 import * as styles from '../../styles/organization.module.scss'

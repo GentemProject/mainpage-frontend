@@ -1,17 +1,30 @@
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ScrollContainer from 'react-indiana-drag-scroll'
-import style from '../../styles/organizationList/organizationList.module.scss'
+import { useAllCategories } from '../usables/useCategories'
 import Arrow from '../svg/arrow'
+import style from '../../styles/organizationList/organizationList.module.scss'
 
 function Organization(props) {
-  const { key, products, link, bank, causeId, name, logo, location } = props
+  const { slug, products, link, bank, causeId, name, logo, location } = props
+  const [causeArray, setCauseArray] = useState<any>([])
+  useEffect(() => {
+    useAllCategories({ setCauseArray, causeId })
+  }, [causeId])
   return (
     <div className={style.layout}>
       <div className={style.infoContainer}>
-        <div
-          className={style.image}
-          style={{ backgroundImage: `url(${logo})` }}
-        />
+        {logo ? (
+          <div
+            className={style.image}
+            style={{ backgroundImage: `url(${logo})` }}
+          />
+        ) : (
+          <div
+            className={style.image}
+            style={{ backgroundImage: `url(/logoDefault.png)` }}
+          />
+        )}
         <div className={style.textContainer}>
           <div className={style.name}>
             <span>{name}</span>
@@ -28,16 +41,14 @@ function Organization(props) {
           <div className={style.filterTitle}>
             Causas o comunidades con las que trabajan
           </div>
-          {/* <div> */}
           <ScrollContainer vertical={false} className={style.spanContainer}>
-            {causeId.map((cause) => (
+            {causeArray.map((cause) => (
               <div key={cause} className={style.filterSpan}>
                 <span>{cause}</span>
               </div>
             ))}
           </ScrollContainer>
         </div>
-        {/* </div> */}
         {(link || bank || products) && (
           <div className={style.donation}>
             <div className={style.filterTitle}>Formas de donar</div>
@@ -63,7 +74,7 @@ function Organization(props) {
         )}
       </div>
       <div className={style.link}>
-        <Link href="/org/[slug]" as={`/org/${key}`}>
+        <Link href="/org/[slug]" as={`/org/${slug}`}>
           <a>
             <span>IR AL PERFIL</span> <Arrow />
           </a>
