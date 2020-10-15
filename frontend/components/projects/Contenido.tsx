@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 // Components
 import SearchSelect from './SearchSelect'
-import TextCheck from './TextCheck'
+//import TextCheck from './TextCheck'
 
 // Material UI for Select
 import FormControl from '@material-ui/core/FormControl'
@@ -14,6 +14,8 @@ import { getDistinct } from '../../api/filters'
 // Style & Api test
 import * as api from '../../api/categories.json'
 import * as styles from '../../styles/onglist.module.scss'
+import { TextCheck } from '../../components/usables/buttons/inputs/switch'
+//import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
 function Contenido(props: any) {
   const { changeSelect, changeFilters, filters } = props
   const [ciudad, setCiudad] = useState([])
@@ -83,6 +85,22 @@ function Contenido(props: any) {
               ))}
             </Select>
           </FormControl>
+          {/*
+          <Selectt
+          onClick={(e) => {
+            changeSelect('community', e.target.value.toString())}}
+            value={filters.community}
+            onChange={(e) => {
+              changeSelect('community', e.target.value.toString())
+            }}
+          >
+            {api.data.map((cat) => (
+              <Optionn key={cat.cat_id[0]} value={cat.cat_id[0]}>
+                {cat.cat_name}
+              </Optionn>
+            ))}
+          </Selectt>
+         */}
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"

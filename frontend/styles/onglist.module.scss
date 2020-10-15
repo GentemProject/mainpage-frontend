@@ -21,9 +21,14 @@ $resultItemIMG-xs: 146px;
 // banner
 
 .banner {
-  margin-top: 64px;
-  height: 228px;
+  height: 252px;
   position: relative;
+  background: url(../public/banner.jpg);
+  background-position: center;
+  background-size: cover;
+
+  background-repeat: no-repeat;
+  width: auto;
   z-index: 0;
 }
 
@@ -34,7 +39,7 @@ $resultItemIMG-xs: 146px;
   align-items: center;
   position: relative;
   z-index: 1;
-  height: 228px;
+  height: 252px;
 
   & h2 {
     color: white !important;
@@ -326,14 +331,8 @@ $resultItemIMG-xs: 146px;
     margin-top: 24px;
   }
   .banner {
-    height: 252px;
+    //height: 252px;
     padding: 0 24px;
-    background: linear-gradient(
-        0deg,
-        rgba(26, 25, 40, 0.6),
-        rgba(26, 25, 40, 0.6)
-      ),
-      url('../public/organizations/hero_s.jpg');
   }
   .ongListSearch {
     display: none !important;
@@ -388,26 +387,11 @@ $resultItemIMG-xs: 146px;
 // XS
 @media (min-width: 424px) {
   .banner {
-    background: linear-gradient(
-        0deg,
-        rgba(26, 25, 40, 0.6),
-        rgba(26, 25, 40, 0.6)
-      ),
-      url('../public/organizations/hero_m.jpg');
   }
 }
 
 // XS Portrait
 @media (min-width: 796px) {
-  .banner {
-    height: 228px;
-    background: linear-gradient(
-        0deg,
-        rgba(26, 25, 40, 0.6),
-        rgba(26, 25, 40, 0.6)
-      ),
-      url('../public/organizations/hero_l.jpg');
-  }
   .ongListContent {
     //  padding: 0 $layout-xs-p;
   }
@@ -446,6 +430,9 @@ $resultItemIMG-xs: 146px;
       url('../public/organizations/hero_xl.jpg');
   }
 
+  .ongListContent {
+    //padding: 0 $layout-s-p;
+  }
   .ongListSearch {
     width: 345px;
     max-width: 345px;
@@ -499,7 +486,7 @@ $resultItemIMG-xs: 146px;
 }
 // XL
 @media (min-width: 1224px) {
-  .organizationGrid {
+  <<<<<<< HEAD .organizationGrid {
     grid-template-columns: repeat(2, minmax(364px, 392px));
   }
   .ongLis .banner {
@@ -510,7 +497,7 @@ $resultItemIMG-xs: 146px;
       ),
       url('../public/organizations/hero_xxl.jpg');
   }
-  .ongListContent {
+  =======>>>>>>>e3f33897a4d3e24baf237c998f6b289653caef0e .ongListContent {
     //padding: 0 $layout-xl;
   }
   .ongListSearch {

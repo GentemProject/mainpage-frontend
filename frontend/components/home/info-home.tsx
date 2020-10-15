@@ -9,11 +9,12 @@ function Infohome() {
   return (
     <div className={styles.containerInfoHome}>
       <Info
-        col="#FFCF53"
-        tit="La pobreza extrema azota a todo el mundo"
-        cuerpo="Solo imagina estar en los zapatos de alguien cabeza de familia, sin comida en casa, sin una forma de generar ingresos y tus hijos con hambre... ¡es momento de apoyarnos entre todos!"
-        i={img1}
-        id="1"
+        col="#237ED5"
+        tit="Iniciativas 
+sociales reales"
+        cuerpo="Queremos que tu ayuda llegue a la causa que realmente quieres apoyar, por eso las organizaciones que encuentras en gentem han sido filtradas por nuestro equipo."
+        i={img2}
+        id="3"
       />
       <Info
         col="#1E8A61"
@@ -24,12 +25,11 @@ más fuertes"
         id="2"
       />
       <Info
-        col="#237ED5"
-        tit="Iniciativas 
-sociales reales"
-        cuerpo="Queremos que tu ayuda llegue a la causa que realmente quieres apoyar, por eso las organizaciones que encuentras en gentem han sido filtradas por nuestro equipo."
-        i={img2}
-        id="3"
+        col="#FFCF53"
+        tit="La pobreza extrema azota a todo el mundo"
+        cuerpo="Solo imagina estar en los zapatos de alguien cabeza de familia, sin comida en casa, sin una forma de generar ingresos y tus hijos con hambre... ¡es momento de apoyarnos entre todos!"
+        i={img1}
+        id="1"
       />
     </div>
   )
