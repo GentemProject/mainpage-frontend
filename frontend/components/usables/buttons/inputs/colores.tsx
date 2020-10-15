@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 export const colores = {
   negro: '#313131',
   gris: '#D7D7D7',
+  grisClaro: '#E5E5E5',
   azulOscuro: '#145899',
   celeste: '#237ED5',
 }
