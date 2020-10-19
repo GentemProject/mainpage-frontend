@@ -1,22 +1,9 @@
 import { Request, Response } from 'express';
-import projectModel, { organizationModel } from '../schemas/project';
+import { organizationModel } from '../schemas/project';
 import { paginationFilter } from './paginationFilter';
 import { useCoordenate } from './mapCoordenate';
 
 const ProjectCtrl = {
-  getAllProjects: async (req: Request, res: Response) => {
-    projectModel.find({}, (err: any, result: any) => {
-      if (err) {
-        return res.json(err);
-      }
-      if (result) {
-        return res.json(result);
-      }
-    });
-  },
-  getPagination: async (req: Request, res: Response) => {
-    await paginationFilter({}, projectModel, req, res);
-  },
   getForFilters: async (req: Request, res: Response) => {
     const { country, products, donationData, transfer, causeId } = req.params;
 
@@ -108,7 +95,7 @@ const ProjectCtrl = {
     }
   },
   getDistinctCountry: async (req: Request, res: Response) => {
-    projectModel
+    organizationModel
       .find({})
       .collation({ locale: 'es', strength: 1 })
       .distinct('location.country')
@@ -133,7 +120,7 @@ const ProjectCtrl = {
   },
   getLastest: async (req: Request, res: Response) => {
     const quanty = req.params.quanty;
-    projectModel
+    organizationModel
       .find({})
       .sort({ createdAt: -1 })
       .limit(parseInt(quanty, 10))
@@ -152,10 +139,8 @@ const ProjectCtrl = {
     });
   },
   createOrganization: async (req: Request, res: Response) => {
+    const org = req.body
     let num = 0;
-    const resultado = await paginationFilter({}, projectModel, req, res);
-    console.log(resultado);
-    resultado.map(async org => {
       let coordenates;
       if (org.location.map) {
         coordenates = await useCoordenate(org.location.map, res);
@@ -208,7 +193,6 @@ const ProjectCtrl = {
           console.log(org.slug, num);
         }
       });
-    });
   },
 };
 
