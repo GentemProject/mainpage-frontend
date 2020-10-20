@@ -10,3 +10,4 @@ export const filterTitle: string
 export const spanContainer: string
 export const filterSpan: string
 export const link: string
+export const filterContainer: string

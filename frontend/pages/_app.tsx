@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
+import Close from '../components/svg/close'
 
 // Loading
 import NProgress from 'nprogress'
@@ -33,6 +34,31 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>
+          gentem | Directorio abierto de organizaciones sin ánimo de lucro
+        </title>
+        <meta property="og:title" content="gentem" />
+        <meta
+          property="og:description"
+          content="Directorio abierto de organizaciones sin ánimo de lucro"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gentem.org/" />
+        <meta property="og:locale" content="es_AR" />
+        <meta property="og:image" content="/logoDefault.png" />
+        <meta property="og:image:secure_url" content="/logoDefault.png" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="300" />
+        <meta
+          property="og:image:alt"
+          content="Directorio abierto de organizaciones sin ánimo de lucro"
+        />
+        <meta property="fb:app_id" content="741948256347443" />
+        <meta
+          name="facebook-domain-verification"
+          content="krvnpqtmsw0yghzqjvndx6x58jjc9p"
+        />
         <script type="application/ld+json">
           {`{
             "@context": "https://schema.org/",
@@ -60,9 +86,6 @@ export default function App({ Component, pageProps }) {
         }]
       }`}
         </script>
-        <title>
-          gentem | Directorio abierto de organizaciones sin ánimo de lucro
-        </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
@@ -169,18 +192,12 @@ export default function App({ Component, pageProps }) {
       {visible && (
         <div className={visibleEffect}>
           <div className="betaContainer">
-            <div className="infoImg">
-              <img src="/svg/advertencia.svg" alt="Advertencia icono" />
-            </div>
-            <div>
-              <strong>Versión BETA</strong>
-            </div>
             <div className="betaText">
-              Esta es una versión de prueba. Si tienes algún comentario o duda,
-              por favor escríbenos y haznos saber 😉
+              Al usar este sitio, automáticamente aceptas el uso de cookies para
+              analíticas, contenido personalizado y ads.
             </div>
             <div onClick={handleVisible} className="betaBtn">
-              <span>Cerrar</span>
+              <Close />
             </div>
           </div>
         </div>

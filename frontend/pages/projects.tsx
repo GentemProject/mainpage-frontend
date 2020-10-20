@@ -20,6 +20,7 @@ interface filters {
 }
 // Styles
 import * as styles from '../styles/onglist.module.scss'
+import FilterContainer from '../components/projects/filterContainer'
 
 interface Props {
   projectos: Organization
@@ -140,7 +141,7 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
             <Banner />
             <div className={styles.layoutCenter}>
               <div className={`${styles.ongListContent} ${styles.layout}`}>
-                <Contenido
+                <FilterContainer
                   changeFilters={changeFilters}
                   changeSelect={changeSelect}
                   filters={filters}

@@ -42,6 +42,9 @@ function ContenidoSider(props: any) {
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
+        <div className={styles.quantityBtn} onClick={handleOpen}>
+          FILTROS
+        </div>
         {totalOrgFilter === quantity ? (
           <h6>Mostrando las {quantity} organizaciones registradas </h6>
         ) : (
@@ -49,9 +52,6 @@ function ContenidoSider(props: any) {
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
           </h6>
         )}
-        <div className={styles.quantityBtn} onClick={handleOpen}>
-          FILTROS
-        </div>
         <Modal
           className={styles.listModal}
           isOpen={open}
