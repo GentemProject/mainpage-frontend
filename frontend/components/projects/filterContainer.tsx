@@ -9,7 +9,7 @@ function FilterContainer(props: any) {
   return (
     <>
       <div className={style.filterContainer}>
-        <div className={style.description}>
+        <div>
           <h6>
             Usa los filtros para encontrar las organizaciones que quieras apoyar
           </h6>

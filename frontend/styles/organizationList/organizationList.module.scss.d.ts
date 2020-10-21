@@ -1,3 +1,4 @@
+export const filterContainer: string
 export const layout: string
 export const infoContainer: string
 export const image: string
@@ -10,4 +11,4 @@ export const filterTitle: string
 export const spanContainer: string
 export const filterSpan: string
 export const link: string
-export const filterContainer: string
+export const optionSelected: string

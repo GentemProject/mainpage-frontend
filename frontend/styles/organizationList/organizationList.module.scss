@@ -140,6 +140,10 @@ $image-m: 132px;
 // XS
 
 @media (min-width: 320px) {
+  .optionSelected {
+    display: flex;
+  }
+  // Sider
   .filterContainer {
     display: none;
   }
@@ -156,6 +160,10 @@ $image-m: 132px;
 }
 
 @media (min-width: 800px) {
+  .optionSelected {
+    display: none;
+  }
+  // Sider
   .filterContainer {
     display: grid;
   }

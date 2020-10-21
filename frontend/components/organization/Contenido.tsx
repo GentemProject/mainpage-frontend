@@ -33,6 +33,7 @@ function Contenido(props: any) {
   useEffect(() => {
     useAllCategories({ setCauseArray, causeId })
   }, [causeId])
+
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>
