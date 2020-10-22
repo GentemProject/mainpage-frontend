@@ -1,32 +1,28 @@
-import aws from 'aws-sdk';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
+// import bodyParser from 'body-parser';
+// import cookieParser from 'cookie-parser';
+// import csrf from 'csurf';
+// import methodOverride from 'method-override';
+// import pino from 'pino-http';
+// import './utils/database';
+// import { authApi } from './api/auth';
+// /* import organizationsApi from './api/routes'; */
+// import { projects } from './api/routes/projects';
+// import { error404, handleRouteErrors } from './logs/errors';
+// import { logRequest } from './logs/log-request';
+
+
 import cors from 'cors';
-import csrf from 'csurf';
+import aws from 'aws-sdk';
 import express from 'express';
-import methodOverride from 'method-override';
-import pino from 'pino-http';
-import './utils/database';
-import { authApi } from './api/auth';
-/* import organizationsApi from './api/routes'; */
-import { projects } from './api/routes/projects';
-import { error404, handleRouteErrors } from './logs/errors';
-import { logRequest } from './logs/log-request';
+import { ApolloServer } from 'apollo-server-express';
+import { apolloServerConfig } from './graphql';
+import { env } from './config';
+
+
 export function init() {
   aws.config.update({ region: 'us-east-1' });
   const app = express();
 
-  /* Server Configurations */
-  app.use(
-    pino({
-      autoLogging: false,
-      serializers: {
-        req: (_req: express.Request) => null,
-      },
-    }),
-  );
-  app.use(cookieParser());
-  app.use(csrf({ cookie: true, ignoreMethods: ['GET', 'HEAD', 'OPTIONS'] }));
   app.use(
     cors({
       origin: [
@@ -39,37 +35,46 @@ export function init() {
       ],
     }),
   );
-  app.use(bodyParser.json());
-  app.use(
-    bodyParser.urlencoded({
-      extended: true,
-    }),
-  );
-  app.use(methodOverride());
-  app.use(logRequest);
 
-  /* Server Routes */
-  app.use(authApi);
-  app.use('/api/projects', projects);
-  /*  app.use(organizationsApi); */
+  const apolloServer = new ApolloServer(apolloServerConfig);
+  apolloServer.applyMiddleware({ app });
 
-  /* Server Errors */
-  app.use(error404);
-  app.use(handleRouteErrors);
+  // /* Server Configurations */
+  // app.use(
+  //   pino({
+  //     autoLogging: false,
+  //     serializers: {
+  //       req: (_req: express.Request) => null,
+  //     },
+  //   }),
+  // );
+  // app.use(cookieParser());
+  // app.use(csrf({ cookie: true, ignoreMethods: ['GET', 'HEAD', 'OPTIONS'] }));
+  // app.use(bodyParser.json());
+  // app.use(
+  //   bodyParser.urlencoded({
+  //     extended: true,
+  //   }),
+  // );
+  // app.use(methodOverride());
+  // app.use(logRequest);
+
+  // /* Server Routes */
+  // app.use(authApi);
+  // app.use('/api/projects', projects);
+  // /*  app.use(organizationsApi); */
+
+  // /* Server Errors */
+  // app.use(error404);
+  // app.use(handleRouteErrors);
 
   return app;
 }
 
 if (require.main === module) {
-  // called directly i.e. "node app"
-  const PORT = 3030;
-  init().listen(PORT, (err: Error) => {
-    if (err) {
-      // tslint:disable-next-line: no-console
-      console.error(err);
-    }
-    // tslint:disable-next-line: no-console
-    console.log('server listening on', PORT);
+  init().listen(env.PORT, () => {
+    console.log(`🌎 Environment:`, env.NODE_ENV);
+    console.log(`🚀 Graphql server is running on http://localhost:3000/graphql`);
   });
 } else {
   // required as a module => executed on aws lambda
