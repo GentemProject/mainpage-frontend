@@ -1,8 +1,8 @@
 // Components
 import SearchSelect from './SearchSelect'
 // Style
-import style from '../../styles/organizationList/organizationList.module.scss'
-import { TextCheck } from '../../components/usables/buttons/inputs/switch'
+import style from './organizationList.module.scss'
+import { TextCheck } from '../usables/buttons/inputs/switch'
 
 function FilterContainer(props: any) {
   const { changeFilters, filters, changeSelect } = props

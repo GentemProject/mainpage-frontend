@@ -13,8 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { getDistinct } from '../../api/filters'
 // Style & Api test
 import * as api from '../../api/categories.json'
-import * as styles from '../../styles/onglist.module.scss'
-import { TextCheck } from '../../components/usables/buttons/inputs/switch'
+import styles from './onglist.module.scss'
+import { TextCheck } from '../usables/buttons/inputs/switch'
 //import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
 function Contenido(props: any) {
   const { changeSelect, changeFilters, filters } = props

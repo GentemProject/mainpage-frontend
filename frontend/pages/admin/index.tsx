@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Modal from 'react-modal'
 
-import Layout from '../../components/Layout'
 import Close from '../../components/svg/close'
 
 import * as styles from '../../styles/admin/admin.module.scss'
@@ -17,7 +16,7 @@ function Create() {
     setOpen(false)
   }
   return (
-    <Layout>
+    <>
       <div className={styles.admin}>
         <div className={styles.title}>
           <h2>Gentem Admin</h2>
@@ -148,7 +147,7 @@ function Create() {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

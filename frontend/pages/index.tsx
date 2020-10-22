@@ -1,6 +1,5 @@
 import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
-import Layout from '../components/Layout'
 import Container from '../components/home/container'
 import Banner from '../components/home/banner'
 import Fl from '../components/home/fl-1'
@@ -18,11 +17,6 @@ export default function Home({ orgs }: any) {
   const [isLoading, setIsloading] = useState<boolean>(true)
 
   useEffect(() => {
-    /*     getLastest(8).then((data) => {
-      setOngs(data)
-      console.log(data)
-
-    }) */
     setOngs(orgs)
     setIsloading(false)
   }, [])
@@ -42,40 +36,38 @@ export default function Home({ orgs }: any) {
         </title>
       </Head>
       <Container>
-        <Layout>
-          <Banner />
-          <div className={styles.home}>
-            <Fl>
-              <Colab
-                desc={g}
-                btn="¡Apoya a una organización!"
-                colorBtn=" #237ed5"
-              />
-            </Fl>
-            <Fl>
-              <Info />
-            </Fl>
-            <Fl>
-              <Colab
-                desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-                btn="¡Ayuda ya!"
-                colorBtn="#F44B53"
-              />
-            </Fl>
-            <Fl>
-              <Stats />
-            </Fl>
-            <Fl>
-              <Nos />
-            </Fl>
-            <Fl>
-              <Ongs ongs={ongs} load={isLoading} />
-            </Fl>
-          </div>
+        <Banner />
+        <div className={styles.home}>
           <Fl>
-            <Contribuir />
+            <Colab
+              desc={g}
+              btn="¡Apoya a una organización!"
+              colorBtn=" #237ed5"
+            />
           </Fl>
-        </Layout>
+          <Fl>
+            <Info />
+          </Fl>
+          <Fl>
+            <Colab
+              desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
+              btn="¡Ayuda ya!"
+              colorBtn="#F44B53"
+            />
+          </Fl>
+          <Fl>
+            <Stats />
+          </Fl>
+          <Fl>
+            <Nos />
+          </Fl>
+          <Fl>
+            <Ongs ongs={ongs} load={isLoading} />
+          </Fl>
+        </div>
+        <Fl>
+          <Contribuir />
+        </Fl>
       </Container>
     </>
   )

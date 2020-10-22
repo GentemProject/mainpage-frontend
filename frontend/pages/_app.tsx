@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
-import Close from '../components/svg/close'
+import Close from '@/components/svg/close'
+import Layout from '@/components/Layout'
 
 // Loading
 import NProgress from 'nprogress'
@@ -188,7 +189,9 @@ export default function App({ Component, pageProps }) {
           content="/favicons/ms/browserconfig.xml"
         />
       </Head>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       {visible && (
         <div className={visibleEffect}>
           <div className="betaContainer">

@@ -18,6 +18,19 @@ $no-bg: transparent;
   margin: 12px 0;
 }
 
+// Breakpoints sizes:
+// xxs 320px
+// xs 420px
+// s 800px
+// m 1028px
+// l 1224px
+
+$padding-xxs: 0 16px;
+$padding-xs: 0 16px;
+$padding-s: 0 24px;
+$padding-m: 0 32px;
+$padding-l: 0 40px;
+
 // ONG PROFILE
 $hero-xxs: 320px;
 $hero-xs: 424px;

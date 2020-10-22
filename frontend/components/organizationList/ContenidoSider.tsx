@@ -10,8 +10,8 @@ import { useOneCategorie } from '../usables/useCategories'
 import Close from '../svg/close'
 
 // Styles
-import * as styles from '../../styles/onglist.module.scss'
-import style from '../../styles/organizationList/organizationList.module.scss'
+import styles from './onglist.module.scss'
+import style from './organizationList.module.scss'
 import Organization from './Organization'
 
 Modal.setAppElement('#__next')

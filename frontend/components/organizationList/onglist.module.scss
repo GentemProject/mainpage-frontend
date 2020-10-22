@@ -1,5 +1,5 @@
-@import './lib/variables.scss';
-@import './layout/layout.scss';
+@import '../../styles/lib/variables.scss';
+@import '../../styles/layout/layout.scss';
 $resultItemIMG-xl: 156px;
 $resultItemIMG-xs: 146px;
 // Global
@@ -23,7 +23,7 @@ $resultItemIMG-xs: 146px;
 .banner {
   height: 252px;
   position: relative;
-  background: url(../public/banner.jpg);
+  background: url(/banner.jpg);
   background-position: center;
   background-size: cover;
 
@@ -437,7 +437,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('../public/organizations/hero_xl.jpg');
+      url('/organizations/hero_xl.jpg');
   }
 
   .ongListContent {
@@ -503,7 +503,7 @@ $resultItemIMG-xs: 146px;
         rgba(26, 25, 40, 0.6),
         rgba(26, 25, 40, 0.6)
       ),
-      url('../public/organizations/hero_xxl.jpg');
+      url('/organizations/hero_xxl.jpg');
   }
   .ongListContent {
     //padding: 0 $layout-xl;

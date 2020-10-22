@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from 'react'
 import NProgress from 'nprogress'
 
 // Components & Usables
-import { Contenido, ContenidoSider, Banner } from '../components/projects/'
-import Layout from '../components/Layout'
+import {
+  Contenido,
+  ContenidoSider,
+  Banner,
+} from '../components/organizationList'
 import Loader from '../components/usables/Loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
 // Interfaces
@@ -19,8 +22,8 @@ interface filters {
   causeId: number
 }
 // Styles
-import * as styles from '../styles/onglist.module.scss'
-import FilterContainer from '../components/projects/filterContainer'
+import styles from '../components/organizationList/onglist.module.scss'
+import FilterContainer from '../components/organizationList/filterContainer'
 
 interface Props {
   projectos: Organization
@@ -132,37 +135,35 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
   return (
     <>
       <Head>
-        <title>gentem | Proyectos</title>
+        <title>Organizaciones | gentem</title>
       </Head>
-      <Layout>
-        {projectos.data.length < 0 && <Loader></Loader>}
-        {projectos.data.length > 0 && (
-          <div className={styles.ongList}>
-            <Banner />
-            <div className={styles.layoutCenter}>
-              <div className={`${styles.ongListContent} ${styles.layout}`}>
-                <FilterContainer
-                  changeFilters={changeFilters}
-                  changeSelect={changeSelect}
-                  filters={filters}
-                />
-                <ContenidoSider
-                  ONGs={resultfilters ? resultfilters : projectos.data}
-                  changeSelect={changeSelect}
-                  changeFilters={changeFilters}
-                  filters={filters}
-                  proyectos={arrayProjectos}
-                  totalOrgFilter={totalOrg}
-                  quantity={quantityOng}
-                  button={handlePagination}
-                  visible={visible}
-                  setFilters={setFilters}
-                />
-              </div>
+      {projectos.data.length < 0 && <Loader></Loader>}
+      {projectos.data.length > 0 && (
+        <div className={styles.ongList}>
+          <Banner />
+          <div className={styles.layoutCenter}>
+            <div className={`${styles.ongListContent} ${styles.layout}`}>
+              <FilterContainer
+                changeFilters={changeFilters}
+                changeSelect={changeSelect}
+                filters={filters}
+              />
+              <ContenidoSider
+                ONGs={resultfilters ? resultfilters : projectos.data}
+                changeSelect={changeSelect}
+                changeFilters={changeFilters}
+                filters={filters}
+                proyectos={arrayProjectos}
+                totalOrgFilter={totalOrg}
+                quantity={quantityOng}
+                button={handlePagination}
+                visible={visible}
+                setFilters={setFilters}
+              />
             </div>
           </div>
-        )}
-      </Layout>
+        </div>
+      )}
     </>
   )
 }

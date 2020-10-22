@@ -1,5 +1,5 @@
-@import './lib/variables.scss';
-@import './layout/layout.scss';
+@import '../../styles/lib/variables.scss';
+@import '../../styles/layout/layout.scss';
 
 .ongProfile {
   background-color: $bgwhite;
@@ -637,14 +637,13 @@
     color: #1a1928;
   }
 
-
   .textContainerCountry {
     padding-top: 12px;
     font-weight: bold;
   }
 
-  // Modal 
-  .ongProfileModal{
+  // Modal
+  .ongProfileModal {
     display: none;
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Modal from 'react-modal'
+import Modal from '../../../organizationList/node_modules/react-modal'
 import { listModal } from '../../../../styles/onglist.module.scss'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
