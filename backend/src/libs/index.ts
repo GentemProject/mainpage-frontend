@@ -1,1 +1,1 @@
-export * from './FirebaseApi'
+export * from './FirebaseApi';

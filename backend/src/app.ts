@@ -10,14 +10,12 @@
 // import { error404, handleRouteErrors } from './logs/errors';
 // import { logRequest } from './logs/log-request';
 
-
 import cors from 'cors';
 import aws from 'aws-sdk';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { apolloServerConfig } from './graphql';
 import { env } from './config';
-
 
 export function init() {
   aws.config.update({ region: 'us-east-1' });

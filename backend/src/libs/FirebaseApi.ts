@@ -23,17 +23,28 @@ export class FirebaseApi {
     });
   }
 
-  async createUser(options: { uid: string; email: string; password: string }) {
-    return await this.firebase.auth().createUser(options)
+  createToken(options: {
+    firebaseId: string;
+    customClaims?: {
+      isAdmin: boolean;
+    };
+  }) {
+    return this.firebase.auth().createCustomToken(options.firebaseId, options.customClaims);
   }
 
-  async verifyIdToken(options: { token: string }) {
-    return await this.firebase.auth().verifyIdToken(options.token);
+  verifyIdToken(options: { token: string }) {
+    return this.firebase.auth().verifyIdToken(options.token);
   }
 
-  async setCustomClaims(options: { auth_id: string; is_admin: boolean }) {
-    return await this.firebase
-      .auth()
-      .setCustomUserClaims(options.auth_id, { is_admin: options.is_admin });
+  createUser(options: { email: string; password: string }) {
+    return this.firebase.auth().createUser(options);
+  }
+
+  updateUser(options: { firebaseId: string; update: { email: string; password: string } }) {
+    return this.firebase.auth().updateUser(options.firebaseId, options.update);
+  }
+
+  deleteUser(options: { firebaseId: string }) {
+    return this.firebase.auth().deleteUser(options.firebaseId);
   }
 }

@@ -1,7 +1,8 @@
 import { ExpressContext } from 'apollo-server-express/dist/ApolloServer';
 
-// import { logger } from '../utils';
-import { firebaseAdmin } from './firebase';
+import { logger } from '../utils';
+import { firebase } from './firebase';
+import { getUser } from '../services/users';
 
 export async function getAuth(context: ExpressContext) {
   try {
@@ -9,21 +10,26 @@ export async function getAuth(context: ExpressContext) {
     const authorization = req.headers['authorization'];
 
     if (!authorization) {
-      return { uid: null };
+      return { userId: null, isAdmin: false };
     }
 
     const token = authorization.split(' ')[1];
 
-    const decodedToken = await firebaseAdmin.verifyIdToken({
+    const decodedToken = await firebase.verifyIdToken({
       token,
     });
 
-    const uid = decodedToken.uid
+    const user = await getUser({ firebaseId: decodedToken.uid });
 
-    // logger.child({ userId }).info('middleware getAuth token');
+    if (!user) {
+      return { userId: null, isAdmin: false };
+    }
 
-    return { uid };
+    logger.child({ userId: user._id }).info('middleware getAuth token');
+
+    return { userId: user._id, isAdmin: user.isAdmin };
   } catch (error) {
-    return { uid: null };
+    logger.child({ error }).info('middleware getAuth token error');
+    return { userId: null, isAdmin: false };
   }
 }

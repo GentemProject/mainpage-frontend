@@ -1,18 +1,15 @@
 import { ExpressContext } from 'apollo-server-express/dist/ApolloServer';
-import { connectDatabase } from '../middlewares/connectDatabase';
-import { getAuth } from '../middlewares/getAuth';
 
-// import { connectDatabase } from '../middlewares';
+import { connectDatabase, getAuth } from '../middlewares';
 
 export interface Context {
-  uid: string | null
+  userId: string;
+  isAdmin: boolean;
 }
 
 export const context = async (context: ExpressContext): Promise<Context> => {
-  await connectDatabase()
-  const { uid } = await getAuth(context);
+  await connectDatabase();
+  const { userId, isAdmin } = await getAuth(context);
 
-//   await connectDatabase();
-
-  return { uid };
+  return { userId, isAdmin };
 };

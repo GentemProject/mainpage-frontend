@@ -1,4 +1,28 @@
 type Query {
-    # Authentication
-    getToken: String
+	# Authentication
+	getToken: String
+
+	# Users
+	getMe: User
+}
+
+type Mutation {
+	# Authentication
+    signIn(email: String!, password: String!): Auth
+    signUp(name: String!, email: String!, password: String!): Auth
+}
+
+type Auth {
+	token: String
+	user: User
+}
+
+type User {
+	id: ID
+	firebaseId: String
+	isAdmin: String
+	name: String
+	email: String
+	createdAt: String
+	updatedAt: String
 }
