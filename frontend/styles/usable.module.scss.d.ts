@@ -12,3 +12,6 @@ export const ReactPortalCustom: string
 export const ReactOverlay: string
 export const modal: string
 export const modalOpen: string
+export const activeSelect: string
+export const active: string
+export const value: string
