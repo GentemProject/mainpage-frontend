@@ -70,6 +70,7 @@ function TextArea({ desc, onChange }) {
             padding: 0 4px;
             display: flex;
             position: absolute;
+            user-select: none;
             transition: transform 0.2s;
             transform: translate(5px, 10px);
             color: ${colores.gris};

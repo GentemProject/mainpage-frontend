@@ -65,7 +65,7 @@
   clear: both;
   width: 100%;
   min-width: 100%;
-/*   margin: 24px 0; */
+  /*   margin: 24px 0; */
   padding: 6px 0 12px;
 }
 // End Divider
@@ -96,7 +96,7 @@
     color: white;
   }*/
 
-  /*   &:hover option {
+/*   &:hover option {
     background-color: red;
   } */
 //}
@@ -105,78 +105,127 @@
 
 // Styles Select Custom
 
-
 .containerSelect {
-  width: 250px;
-  height: 38px;
+  width: 350px;
+  height: 50px;
   margin: 20px 0;
-  select {
-    border: none;
-    margin: 0;
-    background: none;
-    outline: none;
-    display: none;
-  }
-  input[type='text'] {
-    display: none;
-  }
-  option {
-    display: none;
-  }
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   label {
-    display: none;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    align-items: center;
+    transition: $transition;
+    span {
+      color: #d7d7d7;
+      font-weight: bold;
+      height: 25px;
+      cursor: pointer;
+      user-select: none;
+      background: #fff;
+      display: flex;
+      padding: 0 8px;
+      border-radius: 10px;
+      transition: $transition;
+    }
   }
 }
-.boxSelect {
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px solid grey;
-}
+
+/*
+ *
+ * negro: '#313131',
+  gris: '#D7D7D7',
+  grisClaro: '#E5E5E5',
+  azulOscuro: '#145899',
+  celeste: '#237ED5',
+ * */
 .select {
-  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  border: 2px solid #d7d7d7;
+  border-radius: 5px;
+  input[type='text'] {
+    position: absolute;
+    background: transparent;
+    border: 0;
+    color: #313131;
+    z-index: -11;
+    pointer-events: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+}
+.activeSelect {
+  border-color: #237ed5;
+  label {
+    span {
+      color: #237ed5;
+      transform: translate(10px, -25px);
+    }
+  }
 }
 .extend {
   width: 100%;
   height: 0;
   z-index: 22;
-  background: red;
+  display: flex;
+  position: absolute;
+  transition: $transition;
+  transition-delay: 0.3s;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #fff;
+  ul {
+    list-style: none;
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+  }
 }
 .active {
-  height: auto;
-}
-
-.active select {
-  display: flex;
-}
-.active option {
-  display: flex;
-}
-.active label {
-  display: block;
-}
-.ReactModalContainer {
-  width: 300px;
-  height: 200px;
-  display: grid;
-  place-items: center;
-  z-index: 12;
-}
-
-.modal {
-    box-sizing: border-box;
-    padding: 20px;
-}
-.ReactModalPortal {
-  display: flex;
-  position: absolute;
-}
-
-.ReactPortalCustom {
-  width: 200px;
   height: 300px;
-  background: red;
-  position: absolute;
+  transition: $transition;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.2));
+  transition-delay: 0.1s;
+  ul {
+    visibility: visible;
+  }
 }
-.openModal{
-  filter: brightness(0.5)
+
+.option {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  transition: $transition;
+  cursor: pointer;
+  width: 100%;
+  padding: 0 15px;
+  span {
+    color: #d7d7d7;
+    transition: $transition;
+    display: flex;
+    font-weight: bold;
+    height: 100%;
+    align-items: center;
+  }
+  &:hover {
+    background: rgba(200, 200, 200, 0.1);
+  }
+  &:hover > span {
+    transform: translateX(5px);
+  }
 }

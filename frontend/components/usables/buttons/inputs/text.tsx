@@ -78,6 +78,7 @@ function Text({ onChange, desc }) {
             width: auto;
             display: flex;
             z-index: 3;
+            user-select: none;
             cursor: pointer;
             font-weight: bold;
             background: white;

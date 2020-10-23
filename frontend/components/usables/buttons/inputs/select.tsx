@@ -1,55 +1,121 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Modal from 'react-modal'
 import { listModal } from '../../../../styles/onglist.module.scss'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
-export const Selectt = ({ onClick, onChange, value, children }) => {
+export const Select = ({ onChange, value, children, id }) => {
   const [select, setSel] = useState(false)
   const [val, setVal] = useState(undefined)
+  const isRef = React.useRef(null)
+  const [current, setCurrent] = useState({
+    target: {
+      value: value,
+    },
+  })
+
   const handleClick = (e) => {
-    setSel(select ? false : true)
+    setSel(true)
   }
-  useEffect(() => {
-    console.log(select)
-  }, [select])
+  const isBlur = () => {
+    isRef.current.onselectstart = () => {
+      return false
+    }
+    isRef.current.selectionEnd = 0
+  }
+
   const handleVal = (e) => {
-    console.log(e.target.value)
-    setVal(e.target.value)
+    const temp = { ...current }
+    temp.target.value = e
+    setCurrent(temp)
+    onChange(current)
+    setSel(false)
   }
   return (
-    <>
+    <div className={styles.containerSelect}>
       <div
-        className={styles.containerSelect}
-        style={{ background: select === true ? 'green' : 'red' }}
+        className={
+          (current.target.value !== null && current.target.value !== '') ||
+          select === true
+            ? styles.select + ' ' + styles.activeSelect
+            : styles.select
+        }
       >
-        <div className={styles.select}>
-          <div className={styles.boxSelect} onClick={handleClick}>
-            {value}
-          </div>
-        </div>
+        <label htmlFor={'inp' + id}>
+          <span>Ingrese region</span>
+        </label>
+        <input
+          value={value}
+          id={'inp' + id}
+          onFocus={handleClick}
+          onClick={isBlur}
+          ref={isRef}
+          readOnly
+          type="text"
+        />
       </div>
-      <Modal
-        isOpen={select}
-        className={styles.ReactModalContainer}
-        portalClassName={styles.ReactOverlay}
-        overlayClassName={styles.ReactOverlay}
-        bodyOpenClassName={styles.modalOpen}
-        role="select"
+      <div
+        className={select ? styles.extend + ' ' + styles.active : styles.extend}
       >
-        <div className={styles.modal}>
-          <ul onClick={handleVal} onChange={onChange}>
-            {children}
-          </ul>
-        </div>
-      </Modal>
-    </>
+        <ul>{children(handleVal)}</ul>
+      </div>
+    </div>
   )
 }
 
-export const Optionn = (props: any) => {
+export const Option = ({ desc, value, val }) => {
+  const r = React.useRef(null)
+  const handleValue = () => {
+    val(r.current.dataset.value)
+  }
   return (
-    <li role="option" value={props.value}>
-      {props.children}
+    <li
+      className={styles.option}
+      ref={r}
+      data-value={value}
+      onClick={handleValue}
+    >
+      <span>{desc}</span>
     </li>
   )
 }
+
+/*
+ *
+ *
+ *          <li
+            className={styles.option}
+            onClick={(e) => handleVal(isRef.current.childNodes[0].value)}
+            value="4"
+          >
+            <span>Papaeyda</span>
+          </li>
+          <li
+            className={styles.option}
+            onClick={(e) =>
+              handleVal(isRef.current.childNodes[1].dataset.value)
+            }
+            data-value="24"
+          >
+            <span>P22apaeyda</span>
+          </li>
+          <li
+            className={styles.option}
+            //        onClick={handleLi}
+            ref={refBack}
+            data-value="9"
+            onClick={han}
+          >
+            <span>El que tiene la solucion</span>
+          </li>
+          <li
+            className={styles.option}
+            // onClick={handleLi}
+            ref={refBack}
+            data-value="91"
+            onClick={handleRef}
+          >
+            <span>El que tiene la solucion 2</span>
+          </li>
+
+ *
+ * */
