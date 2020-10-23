@@ -3,7 +3,7 @@ import Modal from 'react-modal'
 import { listModal } from '../../../../styles/onglist.module.scss'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
-export const Select = ({ onClick, onChange, value, children, id }, props) => {
+export const Select = ({ onChange, value, children, id }) => {
   const [select, setSel] = useState(false)
   const [val, setVal] = useState(undefined)
   const isRef = React.useRef(null)
@@ -65,7 +65,6 @@ export const Select = ({ onClick, onChange, value, children, id }, props) => {
 export const Option = ({ desc, value, val }) => {
   const r = React.useRef(null)
   const handleValue = () => {
-    console.log(val)
     val(r.current.dataset.value)
   }
   return (

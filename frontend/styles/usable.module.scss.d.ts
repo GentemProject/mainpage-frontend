@@ -15,3 +15,5 @@ export const modalOpen: string
 export const activeSelect: string
 export const active: string
 export const value: string
+export const option: string
+export const extend: string
