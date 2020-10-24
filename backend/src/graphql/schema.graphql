@@ -13,8 +13,12 @@ type Query {
 
 type Mutation {
 	# Authentication
-    signIn(email: String!, password: String!): Auth
-    signUp(name: String!, email: String!, password: String!): Auth
+	signIn(email: String!, password: String!): Auth
+	signUp(name: String!, email: String!, password: String!): Auth
+
+	# Causes
+	createCause(name: String!): Cause
+	deleteCause(causeId: String!): Boolean
 }
 
 type Auth {

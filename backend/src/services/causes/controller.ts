@@ -2,6 +2,31 @@ import { logger } from '../../utils';
 
 import { CauseModel } from '.';
 
+export async function createCause(options: { name: string }) {
+  try {
+    logger.info('createCause controller');
+    return await CauseModel.create({ name: options.name });
+  } catch (error) {
+    logger.child(error).error('error createCause controller');
+    return null;
+  }
+}
+
+export async function deleteCause(options: { causeId: string }) {
+  try {
+    logger.info('deleteCause controller');
+    const cause = await CauseModel.findByIdAndDelete(options.causeId);
+    if (!cause) {
+      throw new Error('We can delete it.');
+    }
+
+    return true;
+  } catch (error) {
+    logger.child({ error: error.message }).error('error deleteCause controller');
+    return false;
+  }
+}
+
 export async function getCause(options: { causeId: string }) {
   try {
     logger.info('getCause controller');
