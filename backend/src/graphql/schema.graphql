@@ -1,6 +1,6 @@
 type Query {
 	# Authentication
-	getToken: String
+	getToken(token: String!): String
 
 	# Users
 	getMe: User
@@ -13,7 +13,8 @@ type Mutation {
 }
 
 type Auth {
-	token: String
+	accessToken: String
+	refreshToken: String
 	user: User
 }
 

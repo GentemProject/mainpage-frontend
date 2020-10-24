@@ -8,10 +8,9 @@ import { getUser } from './controller';
 export const usersQueries = {
   getMe: async (_root: any, _options: any, context: Context) => {
     try {
-      const userId = context.userId;
+      logger.info('mutation signUp');
 
-      logger.child({ userId }).info('query getMe');
-
+      const { userId } = context;
       if (!userId) {
         throw new AuthenticationError('token expired.');
       }

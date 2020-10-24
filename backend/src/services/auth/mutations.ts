@@ -2,10 +2,11 @@ import bcrypt from 'bcryptjs';
 import { AuthenticationError } from 'apollo-server-express';
 
 import { Context } from '../../graphql';
-import { firebase } from '../../middlewares';
 import { logger } from '../../utils';
 
 import { createUser, getUser } from '../users';
+import { generateAccessToken } from '.';
+import { generateRefreshToken } from './controller';
 
 export const authMutations = {
   signUp: async (
@@ -21,17 +22,9 @@ export const authMutations = {
         throw new AuthenticationError('You are logged.');
       }
 
-      // First we create the user in firebase
-      logger.info('creating firebase user...');
-      const userInFirebase = await firebase.createUser({
-        email: options.email,
-        password: options.password,
-      });
-
       // then we save the user info in mongodb
       logger.info('creating user in mongodb...');
       const user = await createUser({
-        firebaseId: userInFirebase.uid,
         isAdmin: false,
         name: options.name,
         email: options.email,
@@ -44,9 +37,10 @@ export const authMutations = {
 
       // then create the jwt token
       logger.info('creating jwt token...');
-      const token = await firebase.createToken({ firebaseId: user.firebaseId });
+      const accessToken = await generateAccessToken(user.id);
+      const refreshToken = await generateRefreshToken(user.id);
 
-      return { token, user };
+      return { accessToken, refreshToken, user };
     } catch (error) {
       throw new Error(error);
     }
@@ -76,9 +70,10 @@ export const authMutations = {
 
       // then create the jwt token
       logger.info('creating jwt token...');
-      const token = await firebase.createToken({ firebaseId: user.firebaseId });
+      const accessToken = await generateAccessToken(user.id);
+      const refreshToken = await generateRefreshToken(user.id);
 
-      return { token, user };
+      return { accessToken, refreshToken, user };
     } catch (error) {
       throw new Error(error);
     }

@@ -1,13 +1,9 @@
 import { UserModel } from './model';
 import { logger } from '../../utils';
 
-export async function getUser(options: { firebaseId?: string; userId?: string; email?: string }) {
+export async function getUser(options: { userId?: string; email?: string }) {
   try {
     let filters = {};
-
-    if (options.firebaseId) {
-      filters = { ...filters, firebaseId: options.firebaseId };
-    }
 
     if (options.userId) {
       filters = { ...filters, _id: options.userId };
@@ -26,7 +22,6 @@ export async function getUser(options: { firebaseId?: string; userId?: string; e
 }
 
 export async function createUser(options: {
-  firebaseId: string;
   isAdmin: boolean;
   name: string;
   email: string;

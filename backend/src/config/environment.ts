@@ -10,6 +10,8 @@ export const env = envalid.cleanEnv(
     NODE_ENV: str(),
     X_MONGO_URL: str(),
     X_MONGO_DATABASE: str(),
+    JWT_TOKEN_SECRET: str(),
+    JWT_TOKEN_SECRET_REFRESH: str(),
     X_FIREBASE_PROJECT_ID: str(),
     X_FIREBASE_CLIENT_EMAIL: str(),
     X_FIREBASE_PRIVATE_KEY: str(),

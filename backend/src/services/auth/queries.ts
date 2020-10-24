@@ -1,11 +1,18 @@
 import { logger } from '../../utils';
 
+import { verifyRefreshToken } from '.';
+
 export const authQueries = {
-  getToken: async (_root: any, _options: any) => {
+  getToken: async (_root: any, options: { token: string }) => {
     try {
       logger.info('query getToken');
 
-      const accessToken = 'Testing!!';
+      const token = options.token;
+      if (!token) {
+        throw new Error('You need provide a token.');
+      }
+
+      const accessToken = verifyRefreshToken(token);
 
       return accessToken;
     } catch (error) {

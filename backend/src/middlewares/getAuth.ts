@@ -1,8 +1,8 @@
 import { ExpressContext } from 'apollo-server-express/dist/ApolloServer';
 
 import { logger } from '../utils';
-import { firebase } from './firebase';
 import { getUser } from '../services/users';
+import { verifyAccessToken } from '../services/auth';
 
 export async function getAuth(context: ExpressContext) {
   try {
@@ -15,11 +15,9 @@ export async function getAuth(context: ExpressContext) {
 
     const token = authorization.split(' ')[1];
 
-    const decodedToken = await firebase.verifyIdToken({
-      token,
-    });
+    const { userId } = await verifyAccessToken(token);
 
-    const user = await getUser({ firebaseId: decodedToken.uid });
+    const user = await getUser({ userId });
 
     if (!user) {
       return { userId: null, isAdmin: false };

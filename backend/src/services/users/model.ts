@@ -6,11 +6,6 @@ import { UserInterface } from './interface';
 
 const UserSchema = new mongoose.Schema(
   {
-    firebaseId: {
-      type: String,
-      required: true,
-      createIndexes: { unique: true },
-    },
     isAdmin: {
       type: Boolean,
       default: false,
@@ -23,6 +18,7 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      index: true,
       unique: true,
       trim: true,
       lowercase: true,
