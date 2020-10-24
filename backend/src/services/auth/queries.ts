@@ -3,7 +3,7 @@ import { logger } from '../../utils';
 import { verifyRefreshToken } from '.';
 
 export const authQueries = {
-  getToken: async (_root: any, options: { token: string }) => {
+  getNewAccessToken: async (_root: any, options: { token: string }) => {
     try {
       logger.info('query getToken');
 

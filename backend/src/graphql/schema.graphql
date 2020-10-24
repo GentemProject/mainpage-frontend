@@ -1,6 +1,6 @@
 type Query {
 	# Authentication
-	getToken(token: String!): String
+	getNewAccessToken(token: String!): String
 
 	# Users
 	getMe: User
