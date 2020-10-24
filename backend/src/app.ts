@@ -1,15 +1,3 @@
-// import bodyParser from 'body-parser';
-// import cookieParser from 'cookie-parser';
-// import csrf from 'csurf';
-// import methodOverride from 'method-override';
-// import pino from 'pino-http';
-// import './utils/database';
-// import { authApi } from './api/auth';
-// /* import organizationsApi from './api/routes'; */
-// import { projects } from './api/routes/projects';
-// import { error404, handleRouteErrors } from './logs/errors';
-// import { logRequest } from './logs/log-request';
-
 import cors from 'cors';
 import aws from 'aws-sdk';
 import express from 'express';
@@ -36,35 +24,6 @@ export function init() {
 
   const apolloServer = new ApolloServer(apolloServerConfig);
   apolloServer.applyMiddleware({ app });
-
-  // /* Server Configurations */
-  // app.use(
-  //   pino({
-  //     autoLogging: false,
-  //     serializers: {
-  //       req: (_req: express.Request) => null,
-  //     },
-  //   }),
-  // );
-  // app.use(cookieParser());
-  // app.use(csrf({ cookie: true, ignoreMethods: ['GET', 'HEAD', 'OPTIONS'] }));
-  // app.use(bodyParser.json());
-  // app.use(
-  //   bodyParser.urlencoded({
-  //     extended: true,
-  //   }),
-  // );
-  // app.use(methodOverride());
-  // app.use(logRequest);
-
-  // /* Server Routes */
-  // app.use(authApi);
-  // app.use('/api/projects', projects);
-  // /*  app.use(organizationsApi); */
-
-  // /* Server Errors */
-  // app.use(error404);
-  // app.use(handleRouteErrors);
 
   return app;
 }
