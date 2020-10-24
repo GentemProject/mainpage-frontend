@@ -4,6 +4,11 @@ type Query {
 
 	# Users
 	getMe: User
+
+	# Causes
+	getCauses: [Cause]
+
+	# Organizations
 }
 
 type Mutation {
@@ -20,10 +25,36 @@ type Auth {
 
 type User {
 	id: ID
-	firebaseId: String
 	isAdmin: String
 	name: String
 	email: String
 	createdAt: String
 	updatedAt: String
+}
+
+type Cause {
+	id: ID
+	name: String
+	createdAt: String
+	updatedAt: String
+}
+
+type Organization {
+	id: ID
+	instructionstodeliverproducts: String
+	location: String
+	city: String
+	country: String
+	whatsapp: String
+	email: String
+	name: String
+	phones: String
+	adminemail: String
+	objective: String
+	howusedonations: String
+	adminname: String
+	communityworkwith: String
+	description: String
+	createdAt: String
+	slug: String
 }
