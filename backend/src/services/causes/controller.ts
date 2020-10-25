@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { logger } from '../../utils';
 
 import { CauseModel } from '.';
@@ -37,10 +38,21 @@ export async function getCause(options: { causeId: string }) {
   }
 }
 
-export async function getCauses() {
+export async function getCauses(options: { causesIds?: string[] }) {
   try {
+    let filter = {};
+
+    if (options.causesIds) {
+      filter = {
+        ...filter,
+        _id: {
+          $in: options.causesIds.map(causeId => mongoose.Types.ObjectId(causeId)),
+        },
+      };
+    }
+
     logger.info('getCauses controller');
-    return await CauseModel.find().exec();
+    return await CauseModel.find(filter).exec();
   } catch (error) {
     logger.child(error).error('error getCauses controller');
     return [];

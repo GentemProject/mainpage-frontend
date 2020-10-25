@@ -20,7 +20,7 @@ const OrganizationSchema = new mongoose.Schema(
       trim: true,
     },
     causesIds: {
-      type: [String],
+      type: [mongoose.Types.ObjectId],
       required: true,
     },
     goal: {

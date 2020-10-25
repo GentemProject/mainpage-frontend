@@ -1,7 +1,11 @@
 import { authMutations, authQueries } from '../services/auth';
 import { usersQueries } from '../services/users';
 import { causesMutations, causesQueries } from '../services/causes';
-import { organizationsMutations, organizationsQueries } from '../services/organizations';
+import {
+  organizationsMutations,
+  organizationsQueries,
+  OrganizationsTypes,
+} from '../services/organizations';
 
 export const resolvers = {
   Query: {
@@ -15,4 +19,5 @@ export const resolvers = {
     ...causesMutations,
     ...organizationsMutations,
   },
+  ...OrganizationsTypes,
 };

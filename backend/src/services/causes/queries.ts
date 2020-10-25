@@ -7,7 +7,7 @@ export const causesQueries = {
     try {
       logger.info('query getCauses');
 
-      const causes = await getCauses();
+      const causes = await getCauses({});
 
       return causes;
     } catch (error) {
