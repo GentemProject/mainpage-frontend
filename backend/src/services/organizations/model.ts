@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import slugify from 'slugify-mongoose';
 
 import { OrganizationInterface } from '.';
 
@@ -6,11 +7,11 @@ const OrganizationSchema = new mongoose.Schema(
   {
     slug: {
       type: String,
-      required: true,
       lowercase: true,
       trim: true,
       index: true,
       unique: true,
+      slug: 'name',
     },
     name: {
       type: String,
@@ -45,17 +46,14 @@ const OrganizationSchema = new mongoose.Schema(
     city: {
       type: String,
       index: true,
-      unique: true,
     },
     state: {
       type: String,
       index: true,
-      unique: true,
     },
     country: {
       type: String,
       index: true,
-      unique: true,
     },
     address: {
       type: String,
@@ -78,7 +76,6 @@ const OrganizationSchema = new mongoose.Schema(
     userId: {
       type: String,
       index: true,
-      unique: true,
     },
     adminName: {
       type: String,
@@ -115,6 +112,8 @@ const OrganizationSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+OrganizationSchema.plugin(slugify);
 
 export const OrganizationModel = mongoose.model<OrganizationInterface>(
   'Organization',

@@ -3034,6 +3034,20 @@ sliced@1.0.1:
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
 
+slug@^0.9.1:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/slug/-/slug-0.9.4.tgz#fad5f1ef33150830c7688cd8500514576eccabd8"
+  integrity sha512-3YHq0TeJ4+AIFbJm+4UWSQs5A1mmeWOTQqydW3OoPmQfNKxlO96NDRTIrp+TBkmvEsEFrd+Z/LXw8OD/6OlZ5g==
+  dependencies:
+    unicode ">= 0.3.1"
+
+slugify-mongoose@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/slugify-mongoose/-/slugify-mongoose-1.0.2.tgz#cf5b1f69a7ef91c3a61b14c36aaf162c95248745"
+  integrity sha512-hNLQdBNR6SdegAfTkcn87XpbqUedNNJT41ii04/WFXhgOFCCzVmPUCO7vvUoK6N5gTXiy0ul0of1ZSFVlYVFWg==
+  dependencies:
+    slug "^0.9.1"
+
 sonic-boom@^1.0.2:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/sonic-boom/-/sonic-boom-1.3.0.tgz#5c77c846ce6c395dddf2eb8e8e65f9cc576f2e76"
@@ -3286,6 +3300,11 @@ typescript@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
   integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
+
+"unicode@>= 0.3.1":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/unicode/-/unicode-12.1.0.tgz#7ee53a7a0ca5539b353419432823d8da58bbbf33"
+  integrity sha512-Ty6+Ew21DiYTWLYtd05RF/X4c1ekOvOgANyHbBj0h3MaXpfaGr2Rdmc0hMFuGQLyPLb9cU4ArNxl0bTF5HSzXw==
 
 unixify@1.0.0:
   version "1.0.0"

@@ -10,12 +10,13 @@ type Query {
 
 	# Organizations
 	getOrganizations(
+		limit: Float,
 		userId: String,
 		lastOrganizationId: String,
 		causeId: String,
 		country: String
 	): [Organization]
-	getOrganization(id: String, slug: String): Organization
+	getOrganization(organizationId: String, slug: String): Organization
 }
 
 type Mutation {
@@ -30,8 +31,6 @@ type Mutation {
 	#Organizations
 	createOrganization(
 		name: String!
-		slug: String!
-		name: String!
 
 		causesIds: [String]!
 
@@ -42,15 +41,15 @@ type Mutation {
 		logoUrl: String!
 		wallUrl: String
 
-		city: String!
+		city: String
 		state: String
-		country: String!
+		country: String
 		address: String
 		coordinateX: Float
 		coordinateY: Float
 
-		contactEmail: String!
-		contactPhone: String!
+		contactEmail: String
+		contactPhone: String
 		contactWebsite: String
 
 		userId: String
