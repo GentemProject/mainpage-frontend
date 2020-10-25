@@ -8,7 +8,7 @@ export const OrganizationsTypes = {
       try {
         return await getCauses({ causesIds: organization.causesIds });
       } catch (error) {
-        logger.child(error).error('error getOrganization query');
+        logger.child(error).error('error getType type');
         return [];
       }
     },
