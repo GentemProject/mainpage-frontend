@@ -10,7 +10,8 @@
     "dev": "tsc-watch --onSuccess \"node build/app.js\"",
     "format": "prettier --write \"src/**/*.ts\" --write \"package.json\"",
     "format:check": "prettier --check \"src/**/*.ts\" --check \"package.json\"",
-    "start": "node ./src/app.ts"
+    "start": "node ./src/app.ts",
+    "migrate:all": "ts-node src/scripts/migrateCauses.ts && ts-node src/scripts/migrateOrgs.ts"
   },
   "dependencies": {
     "apollo-server-express": "^2.18.2",

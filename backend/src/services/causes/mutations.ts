@@ -10,9 +10,9 @@ export const causesMutations = {
     try {
       logger.info('mutation createCause');
 
-      const { userId } = context;
+      const { isAdmin } = context;
 
-      if (!userId) {
+      if (!isAdmin) {
         throw new AuthenticationError('Only admins can create causes.');
       }
       const cause = await createCause(options);
@@ -26,9 +26,9 @@ export const causesMutations = {
     try {
       logger.info('mutation createCause');
 
-      const { userId } = context;
+      const { isAdmin } = context;
 
-      if (!userId) {
+      if (!isAdmin) {
         throw new AuthenticationError('Only admins can delete causes.');
       }
       const success = await deleteCause(options);

@@ -38,7 +38,7 @@ export async function getCause(options: { causeId: string }) {
   }
 }
 
-export async function getCauses(options: { causesIds?: string[] }) {
+export async function getCauses(options: { causesIds?: mongoose.Types.ObjectId[] }) {
   try {
     let filter = {};
 
@@ -46,7 +46,7 @@ export async function getCauses(options: { causesIds?: string[] }) {
       filter = {
         ...filter,
         _id: {
-          $in: options.causesIds.map(causeId => mongoose.Types.ObjectId(causeId)),
+          $in: options.causesIds,
         },
       };
     }

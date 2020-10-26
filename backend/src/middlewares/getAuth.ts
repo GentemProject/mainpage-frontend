@@ -23,7 +23,7 @@ export async function getAuth(context: ExpressContext) {
       throw new Error('No user');
     }
 
-    logger.child({ userId: user._id }).info('middleware getAuth token');
+    logger.child({ userId: user._id, isAdmin: user.isAdmin }).info('middleware getAuth token');
 
     return { userId: user._id, isAdmin: user.isAdmin };
   } catch (error) {

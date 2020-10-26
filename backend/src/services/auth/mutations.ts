@@ -37,8 +37,12 @@ export const authMutations = {
 
       // then create the jwt token
       logger.info('creating jwt token...');
-      const accessToken = await generateAccessToken(user.id);
-      const refreshToken = await generateRefreshToken(user.id);
+      const payload = {
+        userId: user.id,
+        isAdmin: user.isAdmin,
+      };
+      const accessToken = await generateAccessToken(payload);
+      const refreshToken = await generateRefreshToken(payload);
 
       return { accessToken, refreshToken, user };
     } catch (error) {
@@ -70,8 +74,12 @@ export const authMutations = {
 
       // then create the jwt token
       logger.info('creating jwt token...');
-      const accessToken = await generateAccessToken(user.id);
-      const refreshToken = await generateRefreshToken(user.id);
+      const payload = {
+        userId: user.id,
+        isAdmin: user.isAdmin,
+      };
+      const accessToken = await generateAccessToken(payload);
+      const refreshToken = await generateRefreshToken(payload);
 
       return { accessToken, refreshToken, user };
     } catch (error) {

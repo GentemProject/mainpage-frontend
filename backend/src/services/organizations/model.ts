@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import slugify from 'slugify-mongoose';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const slugify = require('slugify-mongoose');
 
 import { OrganizationInterface } from '.';
 
@@ -58,11 +59,8 @@ const OrganizationSchema = new mongoose.Schema(
     address: {
       type: String,
     },
-    coordinateX: {
-      type: Number,
-    },
-    coordinateY: {
-      type: Number,
+    mapUrl: {
+      type: String,
     },
     contactEmail: {
       type: String,

@@ -4,7 +4,7 @@ export interface OrganizationInterface extends mongoose.Document {
   slug?: string;
   name: string;
 
-  causesIds: string[];
+  causesIds: mongoose.Types.ObjectId[];
 
   goal: string;
   description: string;
@@ -17,8 +17,7 @@ export interface OrganizationInterface extends mongoose.Document {
   state?: string;
   country?: string;
   address?: string;
-  coordinateX?: number;
-  coordinateY?: number;
+  mapUrl?: string;
 
   contactEmail?: string;
   contactPhone?: string;

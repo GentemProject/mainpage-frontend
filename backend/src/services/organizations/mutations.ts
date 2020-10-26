@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { logger } from '../../utils';
 
 import { OrganizationModel } from '.';
@@ -21,8 +22,7 @@ export const organizationsMutations = {
       state?: string;
       country?: string;
       address?: string;
-      coordinateX?: number;
-      coordinateY?: number;
+      mapUrl?: string;
 
       contactEmail?: string;
       contactPhone?: string;
@@ -44,7 +44,12 @@ export const organizationsMutations = {
   ) => {
     try {
       logger.info('mutation createOrganization');
-      const organization = await OrganizationModel.create(options);
+
+      const organizationMapped = {
+        ...options,
+        causesIds: options.causesIds.map(causeId => mongoose.Types.ObjectId(causeId)),
+      };
+      const organization = await OrganizationModel.create(organizationMapped);
       return organization;
     } catch (error) {
       logger.child(error).error('error getOrganizations controller');
