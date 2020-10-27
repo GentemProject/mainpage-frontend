@@ -3,7 +3,7 @@ import Link from 'next/link'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useAllCategories } from '../usables/useCategories'
 import Arrow from '../svg/arrow'
-import style from '../../styles/organizationList/organizationList.module.scss'
+import style from './organizationList.module.scss'
 
 function Organization(props) {
   const { slug, products, link, bank, causeId, name, logo, location } = props
@@ -37,7 +37,7 @@ function Organization(props) {
         </div>
       </div>
       <div className={style.causeAndDonations}>
-        <div /* className={style.cause} */>
+        <div>
           <div className={style.filterTitle}>
             Causas o comunidades con las que trabajan
           </div>

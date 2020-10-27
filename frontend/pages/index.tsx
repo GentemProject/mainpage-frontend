@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
-import Layout from '../components/Layout'
+import LayoutContainer from '@/components/Layout/LayoutContainer'
 import Container from '../components/home/container'
 import Banner from '../components/home/banner'
 import Fl from '../components/home/fl-1'
@@ -18,11 +18,6 @@ export default function Home({ orgs }: any) {
   const [isLoading, setIsloading] = useState<boolean>(true)
 
   useEffect(() => {
-    /*     getLastest(8).then((data) => {
-      setOngs(data)
-      console.log(data)
-
-    }) */
     setOngs(orgs)
     setIsloading(false)
   }, [])
@@ -42,8 +37,8 @@ export default function Home({ orgs }: any) {
         </title>
       </Head>
       <Container>
-        <Layout>
-          <Banner />
+        <Banner />
+        <LayoutContainer>
           <div className={styles.home}>
             <Fl>
               <Colab
@@ -72,10 +67,10 @@ export default function Home({ orgs }: any) {
               <Ongs ongs={ongs} load={isLoading} />
             </Fl>
           </div>
-          <Fl>
-            <Contribuir />
-          </Fl>
-        </Layout>
+        </LayoutContainer>
+        <Fl>
+          <Contribuir />
+        </Fl>
       </Container>
     </>
   )

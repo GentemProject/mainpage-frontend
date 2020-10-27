@@ -21,3 +21,19 @@ export function useAllCategories(props: any) {
     })
   })
 }
+
+// useOneCategorie
+
+// Trae todas las Categorias que tiene una ONG
+// Se usa así:
+// useEffect(() => {
+//    useOneCategorie ({ setCause, causeId })
+// }, [causeId])
+
+export function useOneCategorie(props: any) {
+  const { setCause, causeId } = props
+  const catdata = cat.data
+  return catdata.map((target: any) => {
+    causeId === target.cat_id[0] ? setCause(target.cat_name) : false
+  })
+}

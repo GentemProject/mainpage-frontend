@@ -1,4 +1,4 @@
-@import './lib/variables.scss';
+@import '../../../styles/lib/variables.scss';
 $centrado: center;
 
 .footer {
@@ -11,17 +11,14 @@ $centrado: center;
   align-items: center;
   background-color: $bgfooter;
 }
-
 .footerContact {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-
 .mail-color {
   color: $blue;
   font-weight: 600;
-
   & a {
     color: $blue;
 
@@ -30,69 +27,41 @@ $centrado: center;
     }
   }
 }
-
 .socialMedia {
   padding-bottom: 24px;
   display: flex;
   justify-content: $centrado;
 }
-
 .socialMedia > div {
   padding-right: 10px;
 }
-
 .socialMediaIcon > svg {
   font-size: 25px;
   color: $blue;
 }
-
 .language {
   display: flex;
   justify-content: $centrado;
   align-items: center;
 }
-
 .activate {
   color: $blue;
   font-weight: 600;
 }
-
 .circle {
   border: 1px solid #353535;
   margin-left: 10px;
   margin-right: 10px;
 }
-
 // Super XS
 @media (min-width: 320px) {
   .footer {
     height: 350px;
   }
 }
-
 // XS
 @media (min-width: 424px) {
   .footer {
     height: 300px;
   }
-}
-
-// XS Portrait
-@media (min-width: 796px) {
-}
-
-// S
-@media (min-width: 800px) {
-}
-
-// S Portrait
-@media (min-width: 1016px) {
-}
-
-// M
-@media (min-width: 1028px) {
-}
-
-// L
-@media (min-width: 1224px) {
 }

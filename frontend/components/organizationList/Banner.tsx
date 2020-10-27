@@ -1,5 +1,4 @@
-import React from 'react'
-import * as styles from '../../styles/onglist.module.scss'
+import styles from './onglist.module.scss'
 
 function Banner() {
   return (

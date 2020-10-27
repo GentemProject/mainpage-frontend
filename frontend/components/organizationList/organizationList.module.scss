@@ -8,18 +8,47 @@ $image-m: 132px;
   width: $imageSize;
   height: $imageSize;
 }
+
+// FilterContainer
+
+.filterContainer {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(1px, max-content));
+  row-gap: 48px;
+  height: fit-content;
+}
+
+@media (min-width: 800px) {
+  .filterContainer {
+    min-width: 266px;
+    max-width: 310px;
+  }
+}
+
+@media (min-width: 1028px) {
+  .filterContainer {
+    min-width: 304px;
+    max-width: 368px;
+  }
+}
+@media (min-width: 122px) {
+  .filterContainer {
+    min-width: 368px;
+    max-width: 392px;
+  }
+}
+
+// Organization Cards
 .layout {
   background-color: #ffffff;
   width: auto;
   height: auto;
-  box-shadow: rgba(0, 0, 0, 0.1);
   filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.2));
   border-radius: 6px;
   display: grid;
   grid-template-rows: repeat(3, minmax(min-content, max-content));
   row-gap: 12px;
   padding: 12px 8px;
-  margin-bottom: 40px;
   &:hover {
     transition: ease-in 300ms;
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
@@ -110,21 +139,16 @@ $image-m: 132px;
 
 // XS
 
-@media (min-width: 424px) {
+@media (min-width: 320px) {
+  .optionSelected {
+    display: flex;
+  }
+  // Sider
+  .filterContainer {
+    display: none;
+  }
   .layout {
-    height: auto;
-    box-shadow: rgba(0, 0, 0, 0.1);
-    filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.2));
-    border-radius: 6px;
-    display: grid;
-    grid-template-rows: repeat(3, minmax(min-content, max-content));
-    row-gap: 12px;
     padding: 24px 16px;
-    margin-bottom: 40px;
-    &:hover {
-      transition: ease-in 300ms;
-      filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
-    }
   }
   .infoContainer {
     grid-template-columns: fit-content($image-m) 1fr;
@@ -132,6 +156,16 @@ $image-m: 132px;
   }
   .image {
     @include imageSize($image-m);
+  }
+}
+
+@media (min-width: 800px) {
+  .optionSelected {
+    display: none;
+  }
+  // Sider
+  .filterContainer {
+    display: grid;
   }
 }
 

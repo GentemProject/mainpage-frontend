@@ -1,5 +1,5 @@
 import { Divider, Button } from '../usables/buttons'
-import * as styles from '../../styles/organization.module.scss'
+import styles from './organization.module.scss'
 
 function ContenidoSider(props: any) {
   return (

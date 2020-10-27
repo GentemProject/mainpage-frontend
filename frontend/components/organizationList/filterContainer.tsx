@@ -1,23 +1,19 @@
 import { useState, useEffect } from 'react'
-
 // Components
 import SearchSelect from './SearchSelect'
-//import TextCheck from './TextCheck'
-
+import { TextCheck } from '../usables/buttons/inputs/switch'
+import { getDistinct } from '../../api/filters'
 // Material UI for Select
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-//APi
-import { getDistinct } from '../../api/filters'
-// Style & Api test
+// Style
+import style from './organizationList.module.scss'
 import * as api from '../../api/categories.json'
-import * as styles from '../../styles/onglist.module.scss'
-import { TextCheck } from '../../components/usables/buttons/inputs/switch'
-//import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
-function Contenido(props: any) {
-  const { changeSelect, changeFilters, filters } = props
+
+function FilterContainer(props: any) {
+  const { changeFilters, filters, changeSelect } = props
   const [ciudad, setCiudad] = useState([])
   useEffect(() => {
     getDistinct().then(
@@ -30,14 +26,13 @@ function Contenido(props: any) {
     )
   }, [])
   return (
-    <div className={styles.ongListSearch}>
-      <div className={styles.ongListSearchContainer}>
-        <div className="container__info">
+    <>
+      <div className={style.filterContainer}>
+        <div>
           <h6>
             Usa los filtros para encontrar las organizaciones que quieras apoyar
           </h6>
         </div>
-
         <SearchSelect title="Ubicación" info="Filtra por país">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
@@ -85,22 +80,6 @@ function Contenido(props: any) {
               ))}
             </Select>
           </FormControl>
-          {/*
-          <Selectt
-          onClick={(e) => {
-            changeSelect('community', e.target.value.toString())}}
-            value={filters.community}
-            onChange={(e) => {
-              changeSelect('community', e.target.value.toString())
-            }}
-          >
-            {api.data.map((cat) => (
-              <Optionn key={cat.cat_id[0]} value={cat.cat_id[0]}>
-                {cat.cat_name}
-              </Optionn>
-            ))}
-          </Selectt>
-         */}
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"
@@ -129,24 +108,8 @@ function Contenido(props: any) {
           />
         </SearchSelect>
       </div>
-    </div>
+    </>
   )
 }
 
-export default Contenido
-
-export function ModalContent(props: any) {
-  const { changeSelect, changeFilters, filters } = props
-  return (
-    <div className={styles.ongListModal}>
-      <div className={styles.ongListModalLogo}>
-        <img src="/logoAnimado.svg" alt="logo" />
-      </div>
-      <Contenido
-        changeSelect={changeSelect}
-        filters={filters}
-        changeFilters={changeFilters}
-      />
-    </div>
-  )
-}
+export default FilterContainer

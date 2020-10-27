@@ -1,5 +1,5 @@
-@import './lib/variables.scss';
-@import './layout/layout.scss';
+@import '../../styles/lib/variables.scss';
+@import '../../styles/layout/layout.scss';
 
 .ongProfile {
   background-color: $bgwhite;
@@ -12,7 +12,6 @@
 }
 
 .ongProfileContent {
-  padding: $layout-xl;
   height: auto;
   background: none;
   display: flex;
@@ -425,10 +424,6 @@
 // Responsive
 // UltraResponsive XXS(?
 @media (min-width: 320px) {
-  .ongProfileContent {
-    padding: 0 $layout-xs;
-  }
-
   .map {
     height: 168px !important;
   }
@@ -536,10 +531,6 @@
 
 // XS Portrait
 @media (min-width: 796px) {
-  .ongProfileContent {
-    padding: 0 $layout-xs-p;
-  }
-
   .ongProfileUserImgBreadcrumb {
     max-width: $breadcrumb-xs-p;
   }
@@ -567,10 +558,6 @@
 
 // S
 @media (min-width: 800px) {
-  .ongProfileContent {
-    padding: 0 $layout-s;
-  }
-
   .map {
     height: 228px !important;
   }
@@ -637,24 +624,19 @@
     color: #1a1928;
   }
 
-
   .textContainerCountry {
     padding-top: 12px;
     font-weight: bold;
   }
 
-  // Modal 
-  .ongProfileModal{
+  // Modal
+  .ongProfileModal {
     display: none;
   }
 }
 
 // S Portrait
 @media (min-width: 1016px) {
-  .ongProfileContent {
-    padding: 0 $layout-s-p;
-  }
-
   .ongProfileUserImgBreadcrumb {
     max-width: $breadcrumb-s-p;
   }
@@ -666,10 +648,6 @@
 
 // M
 @media (min-width: 1028px) {
-  .ongProfileContent {
-    padding: 0 $layout-m;
-  }
-
   .ongProfileHero {
     margin-right: $hero-m-mr;
   }
@@ -690,10 +668,6 @@
 
 // XL
 @media (min-width: 1224px) {
-  .ongProfileContent {
-    padding: 0 $layout-xl;
-  }
-
   .ongProfileHero {
     width: $hero-xl;
   }
