@@ -139,60 +139,60 @@ const ProjectCtrl = {
     });
   },
   createOrganization: async (req: Request, res: Response) => {
-    const org = req.body
+    const org = req.body;
     let num = 0;
-      let coordenates;
-      if (org.location.map) {
-        coordenates = await useCoordenate(org.location.map, res);
+    let coordenates;
+    if (org.location.map) {
+      coordenates = await useCoordenate(org.location.map, res);
+    }
+    const model = await new organizationModel({
+      slug: org.slug,
+      primaryData: {
+        causeId: org.primaryData.communityId,
+        name: org.primaryData.name,
+        logo: org.primaryData.logo,
+        objective: org.primaryData.objective,
+        description: org.primaryData.description,
+        howUseDonation: org.primaryData.howUseDonation,
+        sponsors: org.primaryData.sponsors,
+      },
+      contact: {
+        email: org.contact.email,
+        phone: org.contact.phone,
+        website: org.contact.website,
+      },
+      socialMedia: {
+        whatsapp: org.contact.whatsapp,
+        instagram: org.contact.instagram,
+        facebook: org.contact.facebook,
+        linkedin: org.contact.linkedin,
+        twitter: org.contact.twitter,
+      },
+      donationData: {
+        link: org.paymentData.link,
+        bankAccount: org.paymentData.bankAccount,
+        products: org.paymentData.link,
+      },
+      location: {
+        coordenates: coordenates,
+        city: org.location.city,
+        country: org.location.country,
+      },
+      adminInfo: {
+        adminName: org.adminInfo.adminName,
+        adminEmail: org.adminInfo.adminEmail,
+      },
+      createdAt: org.createdAt,
+      updatedAt: org.createdAt,
+    });
+    await model.save((err: any) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        num = num + 1;
+        console.log(org.slug, num);
       }
-      const model = await new organizationModel({
-        slug: org.slug,
-        primaryData: {
-          causeId: org.primaryData.communityId,
-          name: org.primaryData.name,
-          logo: org.primaryData.logo,
-          objective: org.primaryData.objective,
-          description: org.primaryData.description,
-          howUseDonation: org.primaryData.howUseDonation,
-          sponsors: org.primaryData.sponsors,
-        },
-        contact: {
-          email: org.contact.email,
-          phone: org.contact.phone,
-          website: org.contact.website,
-        },
-        socialMedia: {
-          whatsapp: org.contact.whatsapp,
-          instagram: org.contact.instagram,
-          facebook: org.contact.facebook,
-          linkedin: org.contact.linkedin,
-          twitter: org.contact.twitter,
-        },
-        donationData: {
-          link: org.paymentData.link,
-          bankAccount: org.paymentData.bankAccount,
-          products: org.paymentData.link,
-        },
-        location: {
-          coordenates: coordenates,
-          city: org.location.city,
-          country: org.location.country,
-        },
-        adminInfo: {
-          adminName: org.adminInfo.adminName,
-          adminEmail: org.adminInfo.adminEmail,
-        },
-        createdAt: org.createdAt,
-        updatedAt: org.createdAt,
-      });
-      await model.save((err: any) => {
-        if (err) {
-          return res.json(err);
-        } else {
-          num = num + 1;
-          console.log(org.slug, num);
-        }
-      });
+    });
   },
 };
 
