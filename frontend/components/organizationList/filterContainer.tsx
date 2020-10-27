@@ -1,11 +1,30 @@
+import { useState, useEffect } from 'react'
 // Components
 import SearchSelect from './SearchSelect'
+import { TextCheck } from '../usables/buttons/inputs/switch'
+import { getDistinct } from '../../api/filters'
+// Material UI for Select
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
 // Style
 import style from './organizationList.module.scss'
-import { TextCheck } from '../usables/buttons/inputs/switch'
+import * as api from '../../api/categories.json'
 
 function FilterContainer(props: any) {
   const { changeFilters, filters, changeSelect } = props
+  const [ciudad, setCiudad] = useState([])
+  useEffect(() => {
+    getDistinct().then(
+      (data) => {
+        setCiudad(data)
+      },
+      (error) => {
+        setCiudad(error)
+      }
+    )
+  }, [])
   return (
     <>
       <div className={style.filterContainer}>
@@ -15,10 +34,52 @@ function FilterContainer(props: any) {
           </h6>
         </div>
         <SearchSelect title="Ubicación" info="Filtra por país">
-          El select de uri
+          <FormControl style={{ width: '100%', marginTop: '12px' }}>
+            <InputLabel id="demo-simple-select-label">País</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={
+                filters.country === null ? 'Todos los paises' : filters.country
+              }
+              onChange={(e) => {
+                changeSelect('country', e.target.value)
+              }}
+            >
+              <MenuItem value="Todos los paises">Todos los paises</MenuItem>
+              {ciudad &&
+                ciudad.map((data) => {
+                  return (
+                    <MenuItem key={data} value={data}>
+                      {data}
+                    </MenuItem>
+                  )
+                })}
+            </Select>
+          </FormControl>
         </SearchSelect>
         <SearchSelect title="Causa afectada" info="Filtra por causa">
-          Select de uri
+          <FormControl style={{ width: '100%', marginTop: '12px' }}>
+            <InputLabel id="demo-simple-select-label">Causa</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={
+                filters.community === '0'
+                  ? 'Todas las causas'
+                  : filters.community
+              }
+              onChange={(e) => {
+                changeSelect('community', e.target.value.toString())
+              }}
+            >
+              {api.data.map((cat) => (
+                <MenuItem key={cat.cat_id[0]} value={cat.cat_id[0]}>
+                  {cat.cat_name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"

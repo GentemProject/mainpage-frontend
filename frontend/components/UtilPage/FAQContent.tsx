@@ -9,12 +9,12 @@ function FAQContent() {
       <div className={style.containerBanner}>
         <div className={style.content}>
           <div className={style.text}>
-            <span>Preguntas frecuentes</span>
+            <h1 className={style.h1}>Preguntas frecuentes</h1>
           </div>
         </div>
       </div>
       <LayoutContainer>
-        <div className={style.faqContainer}>
+        <div className={style.utilContainer}>
           <Collapse id="queesgentem" title="¿Qué es gentem?">
             <p>
               gentem es un directorio abierto de organizaciones sin ánimo de

@@ -1,12 +1,11 @@
 @import '../../styles/lib/variables.scss';
 @import '../../styles/layout/layout.scss';
-.faq {
-}
 
 .containerBanner {
   box-sizing: border-box;
   width: 100%;
-  height: 505px;
+  padding-top: $size-header;
+  height: 300px;
   background: url(/banner.jpg);
   background-position: center;
   display: grid;
@@ -31,28 +30,32 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
-      span {
+      .h1 {
         display: flex;
         color: #fff;
         width: 100%;
         line-height: 1.2;
-        font-size: 28px;
-        font-weight: 400;
+        font-size: 36px !important;
+        font-weight: 400 !important;
       }
-    }
-
-    .btnBanner {
-      display: inline-flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 25px 0;
     }
   }
 }
-.faqContainer {
+.bold {
+  font-weight: bold;
+}
+.utilContainer {
   margin: 60px 0;
+  & p {
+    padding: 6px 0 18px;
+  }
+  h2 {
+    font-weight: 400 !important;
+    font-size: 28px !important;
+  }
+  & li {
+    padding-bottom: 8px;
+  }
 }
 .faqCollapse {
   background: #fff;
@@ -80,9 +83,6 @@
       transition: 0.4s linear 0s;
       transform: rotate(-90deg);
     }
-    & > div {
-      max-height: 20em;
-    }
   }
 }
 
@@ -101,20 +101,20 @@
 .faqCollapse + .faqCollapse a {
   border-top: 1px solid rgba(255, 255, 255, 0.7);
 }
-
 @media (min-width: 320px) {
-  .containerBanner {
-    .content {
-      .text {
-        span {
-          font-size: 28px;
-
-          font-style: normal;
-          font-weight: 400;
-
-          line-height: 1.2;
-          color: #fff;
-        }
+  .faqCollapse {
+    &:target {
+      > div {
+        max-height: 35em;
+      }
+    }
+  }
+}
+@media (min-width: 800px) {
+  .faqCollapse {
+    &:target {
+      > div {
+        max-height: 20em;
       }
     }
   }
