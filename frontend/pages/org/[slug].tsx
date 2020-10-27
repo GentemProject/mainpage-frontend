@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
+import LayoutContainer from '@/components/Layout/LayoutContainer'
 import { getForId, getAllOrganizationsPath } from '../../api/filters'
 import { Contenido, ContenidoSider } from '../../components/organization'
 import Map from '../../components/organization/Map'
@@ -24,27 +25,28 @@ const ORG: NextPage = (props) => {
       </Head>
       <div className={styles.ongProfile}>
         <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-          <Map location={ong.location}></Map>
-
-          <div className={`${styles.ongProfileContent} ${styles.layout}`}>
-            <Contenido
-              causeId={ong.primaryData.causeId}
-              name={ong.primaryData.name}
-              description={ong.primaryData.description}
-              logo={ong.primaryData.logo}
-              objetive={ong.primaryData.objective}
-              howusedonation={ong.primaryData.howUseDonation}
-              sponsors={ong.primaryData.sponsors}
-              contact={ong.contact}
-              socialMedia={ong.socialMedia}
-              paymentData={ong.donationData}
-              location={ong.location}
-            />
-            <ContenidoSider
-              name={ong.primaryData.name}
-              paymentData={ong.donationData}
-            />
-          </div>
+          <Map location={ong.location} />
+          <LayoutContainer>
+            <div className={`${styles.ongProfileContent} ${styles.layout}`}>
+              <Contenido
+                causeId={ong.primaryData.causeId}
+                name={ong.primaryData.name}
+                description={ong.primaryData.description}
+                logo={ong.primaryData.logo}
+                objetive={ong.primaryData.objective}
+                howusedonation={ong.primaryData.howUseDonation}
+                sponsors={ong.primaryData.sponsors}
+                contact={ong.contact}
+                socialMedia={ong.socialMedia}
+                paymentData={ong.donationData}
+                location={ong.location}
+              />
+              <ContenidoSider
+                name={ong.primaryData.name}
+                paymentData={ong.donationData}
+              />
+            </div>
+          </LayoutContainer>
         </div>
       </div>
     </>

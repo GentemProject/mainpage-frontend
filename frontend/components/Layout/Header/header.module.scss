@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 64px;
+  height: $size-header;
   align-items: center;
 }
 
@@ -109,7 +109,7 @@
   .headerContent {
     margin: 0 auto;
     max-width: 1224px;
-    padding: $padding-l;
+    padding: 0;
     /*     box-sizing: content-box; */
   }
 }

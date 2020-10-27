@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
+import LayoutContainer from '@/components/Layout/LayoutContainer'
 import Container from '../components/home/container'
 import Banner from '../components/home/banner'
 import Fl from '../components/home/fl-1'
@@ -37,34 +38,36 @@ export default function Home({ orgs }: any) {
       </Head>
       <Container>
         <Banner />
-        <div className={styles.home}>
-          <Fl>
-            <Colab
-              desc={g}
-              btn="¡Apoya a una organización!"
-              colorBtn=" #237ed5"
-            />
-          </Fl>
-          <Fl>
-            <Info />
-          </Fl>
-          <Fl>
-            <Colab
-              desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-              btn="¡Ayuda ya!"
-              colorBtn="#F44B53"
-            />
-          </Fl>
-          <Fl>
-            <Stats />
-          </Fl>
-          <Fl>
-            <Nos />
-          </Fl>
-          <Fl>
-            <Ongs ongs={ongs} load={isLoading} />
-          </Fl>
-        </div>
+        <LayoutContainer>
+          <div className={styles.home}>
+            <Fl>
+              <Colab
+                desc={g}
+                btn="¡Apoya a una organización!"
+                colorBtn=" #237ed5"
+              />
+            </Fl>
+            <Fl>
+              <Info />
+            </Fl>
+            <Fl>
+              <Colab
+                desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
+                btn="¡Ayuda ya!"
+                colorBtn="#F44B53"
+              />
+            </Fl>
+            <Fl>
+              <Stats />
+            </Fl>
+            <Fl>
+              <Nos />
+            </Fl>
+            <Fl>
+              <Ongs ongs={ongs} load={isLoading} />
+            </Fl>
+          </div>
+        </LayoutContainer>
         <Fl>
           <Contribuir />
         </Fl>

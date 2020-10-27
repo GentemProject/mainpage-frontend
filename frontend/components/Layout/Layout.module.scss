@@ -1,4 +1,4 @@
-/* @import '../../styles/lib/variables.scss';
+@import '../../styles/lib/variables.scss';
 
 // XXS
 @media (min-width: 320px) {
@@ -29,7 +29,6 @@
   .children {
     margin: 0 auto;
     max-width: 1224px;
-    padding: $padding-l;
+    padding: 0;
   }
 }
- */

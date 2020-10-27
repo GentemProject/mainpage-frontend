@@ -24,6 +24,7 @@ interface filters {
 // Styles
 import styles from '../components/organizationList/onglist.module.scss'
 import FilterContainer from '../components/organizationList/filterContainer'
+import LayoutContainer from '@/components/Layout/LayoutContainer'
 
 interface Props {
   projectos: Organization
@@ -141,27 +142,29 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
       {projectos.data.length > 0 && (
         <div className={styles.ongList}>
           <Banner />
-          <div className={styles.layoutCenter}>
-            <div className={`${styles.ongListContent} ${styles.layout}`}>
-              <FilterContainer
-                changeFilters={changeFilters}
-                changeSelect={changeSelect}
-                filters={filters}
-              />
-              <ContenidoSider
-                ONGs={resultfilters ? resultfilters : projectos.data}
-                changeSelect={changeSelect}
-                changeFilters={changeFilters}
-                filters={filters}
-                proyectos={arrayProjectos}
-                totalOrgFilter={totalOrg}
-                quantity={quantityOng}
-                button={handlePagination}
-                visible={visible}
-                setFilters={setFilters}
-              />
+          <LayoutContainer>
+            <div className={styles.layoutCenter}>
+              <div className={`${styles.ongListContent} ${styles.layout}`}>
+                <FilterContainer
+                  changeFilters={changeFilters}
+                  changeSelect={changeSelect}
+                  filters={filters}
+                />
+                <ContenidoSider
+                  ONGs={resultfilters ? resultfilters : projectos.data}
+                  changeSelect={changeSelect}
+                  changeFilters={changeFilters}
+                  filters={filters}
+                  proyectos={arrayProjectos}
+                  totalOrgFilter={totalOrg}
+                  quantity={quantityOng}
+                  button={handlePagination}
+                  visible={visible}
+                  setFilters={setFilters}
+                />
+              </div>
             </div>
-          </div>
+          </LayoutContainer>
         </div>
       )}
     </>

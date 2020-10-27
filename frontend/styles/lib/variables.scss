@@ -52,3 +52,8 @@ $breadcrumb-s: calc(#{$hero-s} - #{$hero-s-mr});
 $breadcrumb-s-p: calc(#{$hero-s-p} - #{$hero-s-mr});
 $breadcrumb-m: calc(#{$hero-m} - #{$hero-m-mr});
 $breadcrumb-xl: calc(#{$hero-m} - #{$hero-m-mr});
+
+// Sizes
+
+$size-header: 64px;
+$size-banner: calc(500px - #{$size-header});
