@@ -14,3 +14,5 @@ export const modal: string
 export const reactModalPortal: string
 export const reactPortalCustom: string
 export const openModal: string
+export const reactOverlay: string
+export const modalOpen: string

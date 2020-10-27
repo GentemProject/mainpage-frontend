@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import Modal from '../../../organizationList/node_modules/react-modal'
-import { listModal } from '../../../../styles/onglist.module.scss'
+import Modal from 'react-modal'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
 export const Selectt = ({ onClick, onChange, value, children }) => {
@@ -30,9 +29,9 @@ export const Selectt = ({ onClick, onChange, value, children }) => {
       </div>
       <Modal
         isOpen={select}
-        className={styles.ReactModalContainer}
-        portalClassName={styles.ReactOverlay}
-        overlayClassName={styles.ReactOverlay}
+        className={styles.reactModalContainer}
+        portalClassName={styles.reactOverlay}
+        overlayClassName={styles.reactOverlay}
         bodyOpenClassName={styles.modalOpen}
         role="select"
       >
