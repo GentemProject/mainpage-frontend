@@ -1,17 +1,17 @@
 import Link from 'next/link'
 
 // SVG
-import Logo from './svg/Logo'
-import Heart from './svg/heart'
+import Logo from '../../svg/Logo'
+import Heart from '../../svg/heart'
 
 // Styles
-import * as styles from '../styles/header.module.scss'
+import styles from './header.module.scss'
 
 function Header() {
   return (
     <>
-      <div className={`${styles.layoutCenter} ${styles.fixed}`}>
-        <div className={`${styles.headerContent} ${styles.layout}`}>
+      <div className={`${styles.fixed}`}>
+        <div className={`${styles.headerContent}`}>
           <div className={styles.headerLogo}>
             <Link href="/">
               <a>

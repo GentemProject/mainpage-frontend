@@ -13,7 +13,7 @@ import TargetBase from '../usables/TargetBase'
 import { useAllCategories } from '../usables/useCategories'
 
 // Styles
-import * as styles from '../../styles/organization.module.scss'
+import styles from './organization.module.scss'
 
 Modal.setAppElement('#__next')
 
@@ -33,6 +33,7 @@ function Contenido(props: any) {
   useEffect(() => {
     useAllCategories({ setCauseArray, causeId })
   }, [causeId])
+
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>

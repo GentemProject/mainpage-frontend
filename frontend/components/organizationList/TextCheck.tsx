@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch'
 
 // Styles
-import * as styles from '../../styles/onglist.module.scss'
+import styles from './onglist.module.scss'
 
 interface Styles extends Partial<Record<SwitchClassKey, string>> {
   focusVisible?: string

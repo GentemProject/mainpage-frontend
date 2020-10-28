@@ -5,7 +5,6 @@
   margin-top: 64px;
 }
 .home {
-  padding: 0 $layout-xs;
   height: auto;
   max-width: 1224px;
   margin: 0 auto;
@@ -88,14 +87,16 @@
   }
 }
 .containerBanner {
+  padding-top: $size-header;
+  /*   margin-bottom: $size-banner; */
   width: 100%;
-  height: 505px;
-  background: url(../../public/banner.jpg);
+  height: $size-banner;
+  background: url(/banner.jpg);
   background-position: center;
   display: grid;
   position: relative;
   place-items: center;
-  button{
+  button {
     margin: 0;
   }
   .content {
@@ -117,7 +118,7 @@
       span {
         display: flex;
         color: #fff;
-        width:  100%;
+        width: 100%;
         line-height: 1.2;
         font-size: 28px;
         font-weight: 400;
@@ -471,10 +472,6 @@
 
 /*326*/
 @media screen and (min-width: 320px) {
-  .home {
-    padding: 0 $layout-xs;
-  }
-
   .containerBanner {
     .content {
       padding: 0 $layout-xs;
@@ -610,10 +607,6 @@
 
 /*424*/
 @media screen and(min-width: 424px) {
-  .home {
-    padding: 0 $layout-xs;
-  }
-
   .containerColabor .colaborar {
     width: 100%;
   }
@@ -649,10 +642,6 @@
 /*796*/
 
 @media screen and(min-width: 796px) {
-  .home {
-    padding: 0 $layout-xs-p;
-  }
-
   .containerColabor {
     .texto {
       padding: 0 (98px-$layout-xs-p);
@@ -669,10 +658,6 @@
 /*800*/
 
 @media (min-width: 800px) {
-  .home {
-    padding: 0 $layout-s;
-  }
-
   .containerBanner {
     .content {
       padding: 0 $layout-s-p;
@@ -759,10 +744,6 @@
 /*1016*/
 
 @media (min-width: 1016px) {
-  .home {
-    padding: 0 $layout-s-p;
-  }
-
   .containerInfoHome {
     grid-template: repeat(3, 448px) / 100%;
     grid-row-gap: 110px;
@@ -807,10 +788,6 @@
 /* 1028 */
 
 @media screen and (min-width: 1028px) {
-  .home {
-    padding: 0 $layout-m;
-  }
-
   .containerStats {
     grid-template-rows: auto auto 30px;
     .infoStats {
@@ -827,10 +804,6 @@
   }
 }
 @media screen and (min-width: 1224px) {
-  .home {
-    padding: 0 $layout-xl;
-  }
-
   .containerOngs {
     .desc {
       width: 100%;

@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react'
 import Modal from 'react-modal'
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 // Components & Usables
 import { ModalContent } from './Contenido'
+import { useOneCategorie } from '../usables/useCategories'
 
 // Svg
 import Close from '../svg/close'
 
 // Styles
-import * as styles from '../../styles/onglist.module.scss'
+import styles from './onglist.module.scss'
+import style from './organizationList.module.scss'
 import Organization from './Organization'
 
 Modal.setAppElement('#__next')
@@ -24,9 +27,10 @@ function ContenidoSider(props: any) {
     filters,
     totalOrgFilter,
   } = props
-
+  const { causeId } = filters
   const [open, setOpen] = useState(false)
   const [proyectLength, setProyectLength] = useState()
+  const [cause, setCause] = useState<any>('')
   const handleOpen = () => {
     setOpen(true)
   }
@@ -39,9 +43,15 @@ function ContenidoSider(props: any) {
       setProyectLength(ong.length)
     })
   }, [proyectos])
+  useEffect(() => {
+    useOneCategorie({ setCause, causeId })
+  }, [causeId])
   return (
     <div className={styles.ongListResult}>
       <div className={styles.ongListResultQuantity}>
+        <div className={styles.quantityBtn} onClick={handleOpen}>
+          FILTROS
+        </div>
         {totalOrgFilter === quantity ? (
           <h6>Mostrando las {quantity} organizaciones registradas </h6>
         ) : (
@@ -49,9 +59,6 @@ function ContenidoSider(props: any) {
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
           </h6>
         )}
-        <div className={styles.quantityBtn} onClick={handleOpen}>
-          FILTROS
-        </div>
         <Modal
           className={styles.listModal}
           isOpen={open}
@@ -66,6 +73,36 @@ function ContenidoSider(props: any) {
             changeFilters={changeFilters}
           />
         </Modal>
+        <ScrollContainer
+          vertical={false}
+          className={`${style.spanContainer} ${style.optionSelected}`}
+        >
+          {filters.causeId !== 0 && (
+            <div className={style.filterSpan}>
+              <span>{cause}</span>
+            </div>
+          )}
+          {filters.country !== null && (
+            <div className={style.filterSpan}>
+              <span>{filters.country}</span>
+            </div>
+          )}
+          {filters.products && (
+            <div className={style.filterSpan}>
+              <span>Entrega de productos</span>
+            </div>
+          )}
+          {filters.donationData && (
+            <div className={style.filterSpan}>
+              <span>Pasarela de pagos</span>
+            </div>
+          )}
+          {filters.transfer && (
+            <div className={style.filterSpan}>
+              <span>Transferencia bancaria</span>
+            </div>
+          )}
+        </ScrollContainer>
       </div>
       {proyectLength === 0 ? (
         <NoOrganization changeFilters={changeFilters} />

@@ -3,13 +3,13 @@ import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
+import LayoutContainer from '@/components/Layout/LayoutContainer'
 import { getForId, getAllOrganizationsPath } from '../../api/filters'
 import { Contenido, ContenidoSider } from '../../components/organization'
-import Layout from '../../components/Layout'
 import Map from '../../components/organization/Map'
 
 // Styles
-import * as styles from '../../styles/organization.module.scss'
+import styles from '../../components/organization/organization.module.scss'
 
 const ORG: NextPage = (props) => {
   const { organization }: any = props
@@ -21,13 +21,12 @@ const ORG: NextPage = (props) => {
   return (
     <>
       <Head>
-        <title>gentem | {ong.primaryData.name}</title>
+        <title>{ong.primaryData.name} | gentem</title>
       </Head>
-      <Layout>
-        <div className={styles.ongProfile}>
-          <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-            <Map location={ong.location}></Map>
-
+      <div className={styles.ongProfile}>
+        <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
+          <Map location={ong.location} />
+          <LayoutContainer>
             <div className={`${styles.ongProfileContent} ${styles.layout}`}>
               <Contenido
                 causeId={ong.primaryData.causeId}
@@ -47,9 +46,9 @@ const ORG: NextPage = (props) => {
                 paymentData={ong.donationData}
               />
             </div>
-          </div>
+          </LayoutContainer>
         </div>
-      </Layout>
+      </div>
     </>
   )
 }

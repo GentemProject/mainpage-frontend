@@ -11,9 +11,6 @@ export const btnHome: string
 export const btnContribuir: string
 export const btnColab: string
 export const containerBanner: string
-export const imgBannerI: string
-export const imgBanner: string
-export const contentBanner: string
 export const content: string
 export const text: string
 export const btnBanner: string

@@ -1,11 +1,11 @@
 import Header from './Header'
 import Footer from './Footer'
 
-function Layout(props: any) {
+function Layout({ children }) {
   return (
     <>
       <Header />
-      {props.children}
+      {children}
       <Footer />
     </>
   )

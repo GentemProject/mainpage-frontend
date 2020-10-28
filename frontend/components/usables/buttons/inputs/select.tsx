@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import Modal from 'react-modal'
-import { listModal } from '../../../../styles/onglist.module.scss'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
 export const Select = ({ onChange, value, children, id, label }) => {

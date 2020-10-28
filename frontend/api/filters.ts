@@ -7,19 +7,6 @@ interface paramsFilters {
   causeId: number
 }
 
-export const getPagination = async (skip = 0, limit = 15) => {
-  try {
-    const request = await fetch(
-      `${API}/api/projects/pagination?skip=${skip}&limit=${limit}`
-    )
-    const projectos = await request.json()
-    const data = projectos
-    return data
-  } catch (error) {
-    return error
-  }
-}
-
 export const getDistinct = async () => {
   try {
     const request = await fetch(`${API}/api/projects/distinct`)
