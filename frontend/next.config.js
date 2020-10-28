@@ -27,6 +27,9 @@ module.exports = {
       '/': { page: '/' },
       '/projects': { page: '/projects' },
       '/admin': { page: '/admin' },
+      '/util/preguntas-frecuentes': { page: '/util/preguntas-frecuentes' },
+      '/util/privacidad': { page: '/util/privacidad' },
+      '/util/terminos': { page: '/util/terminos' },
     }
     const res = await fetch('https://api.gentem.org/api/projects/getall')
     const data = await res.json()
