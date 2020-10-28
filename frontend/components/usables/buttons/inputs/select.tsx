@@ -1,18 +1,21 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Modal from 'react-modal'
 import { listModal } from '../../../../styles/onglist.module.scss'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
-export const Select = ({ onChange, value, children, id }) => {
+export const Select = ({ onChange, value, children, id, label }) => {
   const [select, setSel] = useState(false)
   const [val, setVal] = useState(undefined)
   const isRef = React.useRef(null)
+
   const [current, setCurrent] = useState({
     target: {
       value: value,
     },
   })
-
+  useEffect(() => {
+    console.log('children', children)
+  }, [children])
   const handleClick = (e) => {
     setSel(true)
   }
@@ -22,7 +25,6 @@ export const Select = ({ onChange, value, children, id }) => {
     }
     isRef.current.selectionEnd = 0
   }
-
   const handleVal = (e) => {
     const temp = { ...current }
     temp.target.value = e
@@ -41,7 +43,7 @@ export const Select = ({ onChange, value, children, id }) => {
         }
       >
         <label htmlFor={'inp' + id}>
-          <span>Ingrese region</span>
+          <span>{label}</span>
         </label>
         <input
           value={value}
@@ -56,14 +58,14 @@ export const Select = ({ onChange, value, children, id }) => {
       <div
         className={select ? styles.extend + ' ' + styles.active : styles.extend}
       >
-        <ul>{children(handleVal)}</ul>
+        <ul>{select ? children(handleVal) : null}</ul>
       </div>
     </div>
   )
 }
-
 export const Option = ({ desc, value, val }) => {
   const r = React.useRef(null)
+
   const handleValue = () => {
     val(r.current.dataset.value)
   }
