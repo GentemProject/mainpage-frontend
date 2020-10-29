@@ -25,7 +25,6 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     TagManager.initialize(tagManagerArgs)
   }, [])
-
   const handleVisible = async () => {
     await setVisibleEffect('beta betaClose')
     await setTimeout(() => {
@@ -45,7 +44,6 @@ export default function App({ Component, pageProps }) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gentem.org/" />
-        <meta property="og:locale" content="es_AR" />
         <meta property="og:image" content="/logoDefault.png" />
         <meta property="og:image:secure_url" content="/logoDefault.png" />
         <meta property="og:image:type" content="image/jpeg" />
@@ -96,7 +94,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicons/favicon-16x16.png" sizes="16x16" />
         <link rel="icon" href="/favicons/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" href="/favicons/favicon-96x96.png" sizes="96x96" />
-
         {/* Android */}
         <link
           rel="shortcut icon"
@@ -175,7 +172,6 @@ export default function App({ Component, pageProps }) {
           href="/favicons/apple/apple-icon-180x180.png"
           sizes="180x180"
         />
-
         {/* Windows 8 IE 10 */}
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta

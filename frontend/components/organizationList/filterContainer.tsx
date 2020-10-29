@@ -65,12 +65,10 @@ function FilterContainer(props: any) {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={
-                filters.community === '0'
-                  ? 'Todas las causas'
-                  : filters.community
+                filters.causeId === '0' ? 'Todas las causas' : filters.causeId
               }
               onChange={(e) => {
-                changeSelect('community', e.target.value.toString())
+                changeSelect('causeId', e.target.value.toString())
               }}
             >
               {api.data.map((cat) => (
