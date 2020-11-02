@@ -8,7 +8,7 @@ import {
   Contenido,
   ContenidoSider,
   Banner,
-} from '../components/organizationList'
+} from '../components/specific/causeLIst/organizationList'
 import Loader from '../components/usables/Loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
 // Interfaces
@@ -22,8 +22,8 @@ interface filters {
 }
 // Styles
 import styles from '../components/organizationList/onglist.module.scss'
-import FilterContainer from '../components/organizationList/filterContainer'
-import LayoutContainer from '@/components/Layout/LayoutContainer'
+import FilterContainer from '../components/specific/causeLIst/organizationList/filterContainer'
+import LayoutContainer from '@/components/utils/architecture/Layout/container'
 
 interface Props {
   projectos: Organization

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
 import Close from '@/components/svg/close'
-import Layout from '@/components/Layout'
+import Layout from '@/components/utils/architecture/Layout'
 
 // Loading
 import NProgress from 'nprogress'

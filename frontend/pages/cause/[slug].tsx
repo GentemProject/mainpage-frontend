@@ -3,10 +3,10 @@ import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
-import LayoutContainer from '@/components/Layout/LayoutContainer'
+import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import { getForId, getAllOrganizationsPath } from '../../api/filters'
-import { Contenido, ContenidoSider } from '../../components/organization'
-import Map from '../../components/organization/Map'
+import { Contenido, ContenidoSider } from '../../components/specific/cause/organization'
+import Map from '../../components/specific/cause/organization/Map'
 
 // Styles
 import styles from '../../components/organization/organization.module.scss'
