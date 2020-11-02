@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Modal from 'react-modal'
 import * as styles from '../../../../styles/usable.module.scss'
 Modal.setAppElement('#__next')
 export const Select = ({ onChange, value, children, id, label }) => {
   const [select, setSel] = useState(false)
-  const [val, setVal] = useState(undefined)
+  const [val, setVal] = useState(null)
   const isRef = React.useRef(null)
-
   const [current, setCurrent] = useState({
     target: {
       value: value,
@@ -14,7 +13,8 @@ export const Select = ({ onChange, value, children, id, label }) => {
   })
   useEffect(() => {
     console.log('children', children)
-  }, [children])
+  }, [])
+
   const handleClick = (e) => {
     setSel(true)
   }
@@ -24,13 +24,29 @@ export const Select = ({ onChange, value, children, id, label }) => {
     }
     isRef.current.selectionEnd = 0
   }
-  const handleVal = (e) => {
+  const handleVals = (e) => {
     const temp = { ...current }
     temp.target.value = e
-    setCurrent(temp)
-    onChange(current)
+    console.log(typeof e)
+    //setCurrent(temp)
+    onChange(e)
     setSel(false)
   }
+  useEffect(() => {
+    // onChange(val)
+    console.log('asads childrem', value)
+  }, [children])
+  const handleVal = useCallback(
+    (e) => {
+      const temp = { ...current }
+      temp.target.value = e
+      //setCurrent(temp)
+      onChange(e)
+      setSel(false)
+    },
+    [value]
+  )
+
   return (
     <div className={styles.containerSelect}>
       <div
@@ -57,7 +73,7 @@ export const Select = ({ onChange, value, children, id, label }) => {
       <div
         className={select ? styles.extend + ' ' + styles.active : styles.extend}
       >
-        <ul>{select ? children(handleVal) : null}</ul>
+        <ul>{children(onChange)}</ul>
       </div>
     </div>
   )

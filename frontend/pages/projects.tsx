@@ -13,7 +13,6 @@ import Loader from '../components/usables/Loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
 // Interfaces
 import { Organization } from '../interfaces/organization'
-
 interface filters {
   country: string | boolean
   products: boolean

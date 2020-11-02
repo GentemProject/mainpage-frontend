@@ -4,10 +4,11 @@ import SearchSelect from './SearchSelect'
 import { TextCheck } from '../usables/buttons/inputs/switch'
 import { getDistinct } from '../../api/filters'
 // Material UI for Select
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
+//import FormControl from '@material-ui/core/FormControl'
+//import Select from '@material-ui/core/Select'
+//import InputLabel from '@material-ui/core/InputLabel'
+//import MenuItem from '@material-ui/core/MenuItem'
+import { Select, Option } from '../usables/buttons/inputs/select'
 // Style
 import style from './organizationList.module.scss'
 import * as api from '../../api/categories.json'
@@ -34,7 +35,8 @@ function FilterContainer(props: any) {
           </h6>
         </div>
         <SearchSelect title="Ubicación" info="Filtra por país">
-          <FormControl style={{ width: '100%', marginTop: '12px' }}>
+          {/* 
+         <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -57,29 +59,27 @@ function FilterContainer(props: any) {
                 })}
             </Select>
           </FormControl>
+         */}
         </SearchSelect>
         <SearchSelect title="Causa afectada" info="Filtra por causa">
-          <FormControl style={{ width: '100%', marginTop: '12px' }}>
-            <InputLabel id="demo-simple-select-label">Causa</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={
-                filters.community === '0'
-                  ? 'Todas las causas'
-                  : filters.community
-              }
-              onChange={(e) => {
-                changeSelect('community', e.target.value.toString())
-              }}
-            >
-              {api.data.map((cat) => (
-                <MenuItem key={cat.cat_id[0]} value={cat.cat_id[0]}>
-                  {cat.cat_name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Select
+            label="Ingrese causa"
+            onChange={(e) => {
+              changeSelect('causeId', e)
+            }}
+            id="causa"
+          >
+            {(val) =>
+              api.data.map((cat, index) => (
+                <Option
+                  key={cat.cat_name}
+                  val={val}
+                  value={cat.cat_id[0]}
+                  desc={cat.cat_name}
+                />
+              ))
+            }
+          </Select>
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"

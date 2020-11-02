@@ -5,10 +5,12 @@ import SearchSelect from './SearchSelect'
 //import TextCheck from './TextCheck'
 
 // Material UI for Select
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
+//import FormControl from '@material-ui/core/FormControl'
+//import Select from '@material-ui/core/Select'
+//import InputLabel from '@material-ui/core/InputLabel'
+//import MenuItem from '@material-ui/core/MenuItem'
+import { Select, Option } from '../usables/buttons/inputs/select'
+
 //APi
 import { getDistinct } from '../../api/filters'
 // Style & Api test
@@ -39,7 +41,8 @@ function Contenido(props: any) {
         </div>
 
         <SearchSelect title="Ubicación" info="Filtra por país">
-          <FormControl style={{ width: '100%', marginTop: '12px' }}>
+          {/*
+            *          <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -62,8 +65,46 @@ function Contenido(props: any) {
                 })}
             </Select>
           </FormControl>
+
+            * */}
+          <Select
+            label="Ingrese causa"
+            onChange={(e) => {
+              changeSelect('causeId', e.target.value.toString())
+            }}
+            value={filters.causeId}
+          >
+            {api.data.map((cat) => {
+              ;(val) => (
+                <Option
+                  key={cat.cat_id[0]}
+                  val={val}
+                  id={cat.cat_name}
+                  value={cat.cat_id[0]}
+                >
+                  {cat.cat_name}
+                </Option>
+              )
+            })}
+          </Select>
         </SearchSelect>
         <SearchSelect title="Causa afectada" info="Filtra por causa">
+          {/*
+          <Select
+          onClick={(e) => {
+            changeSelect('community', e.target.value.toString())}}
+            value={filters.community}
+            onChange={(e) => {
+              changeSelect('community', e.target.value.toString())
+            }}
+          >
+            {api.data.map((cat) => (
+              <Optionn key={cat.cat_id[0]} value={cat.cat_id[0]}>
+                {cat.cat_name}
+              </Optionn>
+            ))}
+          </Selectt>
+
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">Causa</InputLabel>
             <Select
@@ -85,21 +126,7 @@ function Contenido(props: any) {
               ))}
             </Select>
           </FormControl>
-          {/*
-          <Selectt
-          onClick={(e) => {
-            changeSelect('community', e.target.value.toString())}}
-            value={filters.community}
-            onChange={(e) => {
-              changeSelect('community', e.target.value.toString())
-            }}
-          >
-            {api.data.map((cat) => (
-              <Optionn key={cat.cat_id[0]} value={cat.cat_id[0]}>
-                {cat.cat_name}
-              </Optionn>
-            ))}
-          </Selectt>
+
          */}
         </SearchSelect>
         <SearchSelect
