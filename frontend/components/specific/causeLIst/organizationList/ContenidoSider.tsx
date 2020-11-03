@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import Modal from '@/components/specific/cause/organization/node_modules/react-modal'
+import Modal from 'react-modal'
 import ScrollContainer from 'react-indiana-drag-scroll'
 
 // Components & Usables
 import { ModalContent } from './Contenido'
-import { useOneCategorie } from '../usables/useCategories'
+import { useOneCategorie } from '@/hooks/useCategories'
 
 // Svg
 import Close from '../../../svg/close'

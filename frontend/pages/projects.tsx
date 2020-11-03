@@ -9,7 +9,7 @@ import {
   ContenidoSider,
   Banner,
 } from '../components/specific/causeLIst/organizationList'
-import Loader from '../components/usables/Loader'
+import Loader from '@/components/utils/architecture/loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
 // Interfaces
 import { Organization } from '../interfaces/organization'

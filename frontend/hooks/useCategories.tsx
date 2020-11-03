@@ -1,4 +1,4 @@
-import cat from '../../api/categories.json'
+import cat from '../api/categories.json'
 
 //  useAllCategories
 

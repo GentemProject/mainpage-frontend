@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 
-import * as styles from '../../../../styles/usable.module.scss'
+import styles from '../../../../styles/usable.module.scss'
 
 export const Select = ({ onChange, value, children, id, label }) => {
   const [select, setSel] = useState(false)
