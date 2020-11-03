@@ -5,7 +5,10 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 // Usables & Componentes
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import { getForId, getAllOrganizationsPath } from '../../api/filters'
-import { Contenido, ContenidoSider } from '../../components/specific/cause/organization'
+import {
+  Contenido,
+  ContenidoSider,
+} from '../../components/specific/cause/organization'
 import Map from '../../components/specific/cause/organization/Map'
 
 // Styles
