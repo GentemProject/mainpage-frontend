@@ -1,6 +1,5 @@
-import React from 'react'
-import FlDos from './fl-2'
-import * as styles from '../../styles/home/home.module.scss'
+/* import FlDos from './fl-2' */
+import styles from '../style.module.scss'
 const img1 = '/poverty.png'
 const img2 = '/real.png'
 const img3 = '/together.png'

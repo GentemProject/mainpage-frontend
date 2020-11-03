@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Container from '../../components/actualizacion de componentes/Container'
+import Container from '@/components/utils/architecture/Layout/container'
 import Textarea from '../../components/utils/interactive/inputs/form/textarea/textarea'
-import Text from '../../components/usables/buttons/inputs/text'
-import Radio from '../../components/utils/interactive/inputs/form/radio/radio'
-import { Select, Option } from '../../components/utils/interactive/inputs/form/select/select'
+import Text from '@/components/utils/interactive/inputs/form/text'
+import Radio from '../../components/utils/interactive/inputs/form/radio'
+import {
+  Select,
+  Option,
+} from '../../components/utils/interactive/inputs/form/select'
 
 function Testing() {
   const [changes, setChanges] = useState({

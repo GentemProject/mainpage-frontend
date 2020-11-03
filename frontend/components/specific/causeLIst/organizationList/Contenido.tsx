@@ -9,14 +9,14 @@ import SearchSelect from './SearchSelect'
 //import Select from '@material-ui/core/Select'
 //import InputLabel from '@material-ui/core/InputLabel'
 //import MenuItem from '@material-ui/core/MenuItem'
-import { Select, Option } from '../../../utils/interactive/inputs/form/select/select'
+import { Select, Option } from '../../../utils/interactive/inputs/form/select'
 
 //APi
 import { getDistinct } from '../../../../api/filters'
 // Style & Api test
 import * as api from '../../../../api/categories.json'
 import styles from './onglist.module.scss'
-import { TextCheck } from '../../../utils/interactive/inputs/form/switch/switch'
+import { TextCheck } from '../../../utils/interactive/inputs/form/switch'
 //import {Selectt, Optionn} from '../../components/usables/buttons/inputs/select'
 function Contenido(props: any) {
   const { changeSelect, changeFilters, filters } = props
@@ -67,7 +67,6 @@ function Contenido(props: any) {
           </FormControl>
 
             * */}
-       
         </SearchSelect>
         <SearchSelect title="Causa afectada" info="Filtra por causa">
           {/*

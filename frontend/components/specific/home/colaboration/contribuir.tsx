@@ -1,6 +1,6 @@
 import React from 'react'
 import Heart from '../../../svg/heart'
-import * as styles from '../../styles/home/home.module.scss'
+import styles from '../style.module.scss'
 function Cont() {
   return (
     <div className={styles.containerContribuir}>

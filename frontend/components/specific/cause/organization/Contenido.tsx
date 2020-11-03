@@ -10,7 +10,7 @@ import Close from '../../../svg/close'
 import { ResponsiveDonate } from './ContenidoSider'
 import { Button, Divider } from '../../../usables/buttons'
 import TargetBase from '../../../usables/TargetBase'
-import { useAllCategories } from '../usables/useCategories'
+import { useAllCategories } from '../../../../hooks/useCategories'
 
 // Styles
 import styles from './organization.module.scss'

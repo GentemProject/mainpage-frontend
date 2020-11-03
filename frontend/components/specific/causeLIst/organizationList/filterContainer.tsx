@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 // Components
 import SearchSelect from './SearchSelect'
-import { TextCheck } from '../../../utils/interactive/inputs/form/switch/switch'
+import { TextCheck } from '../../../utils/interactive/inputs/form/switch'
 import { getDistinct } from '../../../../api/filters'
 // Material UI for Select
 //import FormControl from '@material-ui/core/FormControl'
 //import Select from '@material-ui/core/Select'
 //import InputLabel from '@material-ui/core/InputLabel'
 //import MenuItem from '@material-ui/core/MenuItem'
-import { Select, Option } from '../../../utils/interactive/inputs/form/select/select'
+import { Select, Option } from '../../../utils/interactive/inputs/form/select'
 // Style
 import style from './organizationList.module.scss'
 import * as api from '../../../../api/categories.json'

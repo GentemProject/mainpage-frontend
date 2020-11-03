@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from '../../styles/home/home.module.scss'
+import styles from '../style.module.scss'
 import Link from 'next/link'
 function Col(props: any) {
   return (

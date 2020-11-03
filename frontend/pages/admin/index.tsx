@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Modal from '@/components/specific/cause/organization/node_modules/react-modal'
+import Modal from 'react-modal'
 
 import Close from '../../components/svg/close'
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import * as styles from '../../styles/home/home.module.scss'
+import styles from '../style.module.scss'
 function pos(b: string) {
   let a: string = b
   a = a + ''

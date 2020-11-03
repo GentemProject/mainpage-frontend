@@ -3,7 +3,7 @@ const iSearch = '/search.svg'
 const iHelp = '/help.svg'
 import Link from 'next/link'
 const iSelect = '/select.svg'
-import * as styles from '../../styles/home/home.module.scss'
+import styles from '../style.module.scss'
 function Noshome() {
   return (
     <div className={styles.containerAbout}>

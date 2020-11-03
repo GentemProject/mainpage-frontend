@@ -1,16 +1,18 @@
 import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
-import Container from '../components/----home-----/container'
-import Banner from '../components/utils/architecture/hero/intex'
+/* import Container from '../components/----home-----/container' */
+import Container from '@/components/utils/architecture/Layout/container'
+import Banner from '@/components/utils/architecture/hero'
 import Fl from '../components/----home-----/fl-1'
-import Colab from '../components/specific/home/colaboration/colaboracion'
-import Stats from '../components/specific/home/stats/stats'
-import Info from '../components/----home-----/info-home'
-import Nos from '../components/specific/home/about/nosotros-home'
-import Ongs from '../components/utils/interactive/recentOng/ongs'
-import Contribuir from '../components/specific/home/colaboration/contribuir'
-import * as styles from '../styles/home/home.module.scss'
+import Colab from '@/components/specific/home/colaboration/colaboracion'
+import Stats from '@/components/specific/home/stats/stats'
+/* import Info from '../components/----home-----/info-home' */
+import Info from '@/components/specific/home/info/info-home'
+import Nos from '@/components/specific/home/about/nosotros-home'
+import Ongs from '@/components/utils/interactive/recentOng/ongs'
+import Contribuir from '@/components/specific/home/colaboration/contribuir'
+import styles from '../styles/home/home.module.scss'
 import { getLastest } from '../api/filters'
 
 export default function Home({ orgs }: any) {

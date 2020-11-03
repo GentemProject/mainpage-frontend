@@ -1,6 +1,4 @@
-@import '../lib/variables.scss';
-@import '../layout/layout.scss';
-
+@import '../../../styles/variables.scss';
 .fakeSpace {
   margin-top: 64px;
 }
@@ -429,7 +427,7 @@
 .containerContribuir {
   width: 100%;
   height: 400px;
-  background: #ffcf53 url('../../public/manos.png');
+  background: #ffcf53 url('/public/manos.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -474,7 +472,7 @@
 @media screen and (min-width: 320px) {
   .containerBanner {
     .content {
-      padding: 0 $layout-xs;
+      padding: 0 $padding-xs;
       .text {
         span {
           font-size: 28px;
@@ -594,7 +592,7 @@
       height: 426px;
     }
     .content {
-      padding: 44px $layout-xs 0;
+      padding: 44px $padding-xs 0;
       .texto {
         text-align: center;
       }
@@ -631,7 +629,7 @@
     height: 426px;
     background-size: cover;
     .content {
-      padding: 84px $layout-xs;
+      padding: 84px $padding-xs;
     }
   }
   .containerContribuir .img {
@@ -644,13 +642,13 @@
 @media screen and(min-width: 796px) {
   .containerColabor {
     .texto {
-      padding: 0 (98px-$layout-xs-p);
+      padding: 0 (98px-$padding-xs);
     }
   }
 
   .containerContribuir {
     .content {
-      padding: 84px (98px-$layout-s-p);
+      padding: 84px (98px-$padding-s);
     }
   }
 }
@@ -660,11 +658,11 @@
 @media (min-width: 800px) {
   .containerBanner {
     .content {
-      padding: 0 $layout-s-p;
+      padding: 0 $padding-s;
     }
   }
   .containerColabor {
-    //padding: 120px (100px-$layout-s);
+    //padding: 120px (100px-$padding-s);
     .colaborar {
       .texto {
         padding: 0;

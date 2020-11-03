@@ -1,5 +1,6 @@
-import React, { useEffect, useState, Fragment } from 'react'
-import * as styles from '../../styles/home/home.module.scss'
+import { useEffect, useState, Fragment } from 'react'
+// Aislar componente o es especifico?
+import styles from '../../../specific/home/style.module.scss'
 import Link from 'next/link'
 /* const logoDefault = '/logoDefault.png' */
 const logoDefault = '/logoDefault.png'

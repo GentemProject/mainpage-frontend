@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { colores, useChange } from './colores'
+import { colores, useChange } from '../colores'
 function Text({ onChange, desc }) {
   const [stat, setStat] = useState(false)
   const isRef = React.useRef(null)

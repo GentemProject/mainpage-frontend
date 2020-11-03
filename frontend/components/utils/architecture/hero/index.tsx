@@ -1,6 +1,6 @@
-import React from 'react'
 import Link from 'next/link'
-import * as styles from '../../styles/home/home.module.scss'
+// Cambiar y aislar componente luego
+import styles from '../../../specific/home/style.module.scss'
 
 function Banner() {
   return (
