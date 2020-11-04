@@ -115,7 +115,13 @@ function Testing() {
         <h2>{changes.inp}</h2>
         <h2>{changes.rad}</h2>
            */}
-        <Select onChange={handleSelect} value={changes.sel} id="puto">
+        <Select
+          // cambia el label que me tira error paadre
+          label="asd"
+          onChange={handleSelect}
+          value={changes.sel}
+          id="puto"
+        >
           {(val) => (
             <>
               <Option desc="vamo nwelll" value="1" val={val} />
