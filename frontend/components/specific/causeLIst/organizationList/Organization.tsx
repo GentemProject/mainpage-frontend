@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ScrollContainer from 'react-indiana-drag-scroll'
-import { useAllCategories } from '../usables/useCategories'
+import { useAllCategories } from '@/hooks/useCategories'
 import Arrow from '../../../svg/arrow'
 import style from './organizationList.module.scss'
 

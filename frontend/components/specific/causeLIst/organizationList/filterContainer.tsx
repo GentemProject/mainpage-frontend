@@ -64,6 +64,8 @@ function FilterContainer(props: any) {
         <SearchSelect title="Causa afectada" info="Filtra por causa">
           <Select
             label="Ingrese causa"
+            // Nose que va en value pero me tira error, cambialo paadre
+            value="asd"
             onChange={(e) => {
               changeSelect('causeId', e)
             }}
