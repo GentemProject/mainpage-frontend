@@ -4,7 +4,7 @@ import LayoutContainer from '@/components/utils/architecture/Layout/container'
 /* import Container from '../components/----home-----/container' */
 import Container from '@/components/utils/architecture/Layout/container'
 import Banner from '@/components/utils/architecture/hero'
-import Fl from '../components/----home-----/fl-1'
+/* import Fl from '../components/----home-----/fl-1' */
 import Colab from '@/components/specific/home/colaboration/colaboracion'
 import Stats from '@/components/specific/home/stats/stats'
 /* import Info from '../components/----home-----/info-home' */
@@ -42,37 +42,37 @@ export default function Home({ orgs }: any) {
         <Banner />
         <LayoutContainer>
           <div className={styles.home}>
-            <Fl>
-              <Colab
-                desc={g}
-                btn="¡Apoya a una organización!"
-                colorBtn=" #237ed5"
-              />
-            </Fl>
-            <Fl>
-              <Info />
-            </Fl>
-            <Fl>
-              <Colab
-                desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-                btn="¡Ayuda ya!"
-                colorBtn="#F44B53"
-              />
-            </Fl>
-            <Fl>
-              <Stats />
-            </Fl>
-            <Fl>
-              <Nos />
-            </Fl>
-            <Fl>
-              <Ongs ongs={ongs} load={isLoading} />
-            </Fl>
+            {/*  <Fl> */}
+            <Colab
+              desc={g}
+              btn="¡Apoya a una organización!"
+              colorBtn=" #237ed5"
+            />
+            {/* </Fl> */}
+            {/*  <Fl> */}
+            <Info />
+            {/* </Fl> */}
+            {/*  <Fl> */}
+            <Colab
+              desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
+              btn="¡Ayuda ya!"
+              colorBtn="#F44B53"
+            />
+            {/* </Fl> */}
+            {/*  <Fl> */}
+            <Stats />
+            {/* </Fl> */}
+            {/*  <Fl> */}
+            <Nos />
+            {/* </Fl> */}
+            {/*  <Fl> */}
+            <Ongs ongs={ongs} load={isLoading} />
+            {/* </Fl> */}
           </div>
         </LayoutContainer>
-        <Fl>
-          <Contribuir />
-        </Fl>
+        {/*  <Fl> */}
+        <Contribuir />
+        {/* </Fl> */}
       </Container>
     </>
   )
