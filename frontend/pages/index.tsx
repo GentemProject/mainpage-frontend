@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 /* import Container from '../components/----home-----/container' */
-import Banner from '@/components/utils/architecture/hero'
+/* import Banner from '@/components/utils/architecture/hero' */
 /* import Fl from '../components/----home-----/fl-1' */
 import Colab from '@/components/specific/home/colaboration/colaboracion'
 import Stats from '@/components/specific/home/stats/stats'

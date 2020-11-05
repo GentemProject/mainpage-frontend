@@ -2,7 +2,7 @@ import Link from 'next/link'
 // Cambiar y aislar componente luego
 import styles from '../../../specific/home/style.module.scss'
 
-function Banner(props: string) {
+/* function Banner(props: string) {
   const { height, img, desc, button } = props
   return (
     <div
@@ -11,9 +11,11 @@ function Banner(props: string) {
         height: height ? height : '500px',
         backgroundImage: `url(${img})`,
       }}
-    >
-      {/*<div className={styles.imgBannerI}></div> */}
-      <div className={styles.content}>
+    > */
+{
+  /*<div className={styles.imgBannerI}></div> */
+}
+/*  <div className={styles.content}>
         <div className={styles.text}>
           <span>{desc}</span>
         </div>
@@ -33,3 +35,4 @@ function Banner(props: string) {
   )
 }
 export default Banner
+ */
