@@ -2,7 +2,6 @@ import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 /* import Container from '../components/----home-----/container' */
-import Container from '@/components/utils/architecture/Layout/container'
 import Banner from '@/components/utils/architecture/hero'
 /* import Fl from '../components/----home-----/fl-1' */
 import Colab from '@/components/specific/home/colaboration/colaboracion'
@@ -10,9 +9,9 @@ import Stats from '@/components/specific/home/stats/stats'
 /* import Info from '../components/----home-----/info-home' */
 import Info from '@/components/specific/home/info/info-home'
 import Nos from '@/components/specific/home/about/nosotros-home'
-import Ongs from '@/components/utils/interactive/recentOng/ongs'
+import Ongs from '@/components/utils/interactive/recentOng/'
 import Contribuir from '@/components/specific/home/colaboration/contribuir'
-import styles from '../styles/home/home.module.scss'
+import styles from '@/components/specific/home/style.module.scss'
 import { getLastest } from '../api/filters'
 
 export default function Home({ orgs }: any) {
@@ -38,43 +37,28 @@ export default function Home({ orgs }: any) {
           gentem | Directorio abierto de organizaciones sin ánimo de lucro
         </title>
       </Head>
-      <Container>
-        <Banner />
+        <Banner img='../banner.jpg' button='Ver todas las organizaciones' desc='Descubre las organizaciones que trabajan por un futuro mejor' />
         <LayoutContainer>
           <div className={styles.home}>
-            {/*  <Fl> */}
-            <Colab
+             <Colab
               desc={g}
               btn="¡Apoya a una organización!"
               colorBtn=" #237ed5"
             />
-            {/* </Fl> */}
-            {/*  <Fl> */}
-            <Info />
-            {/* </Fl> */}
-            {/*  <Fl> */}
-            <Colab
+              <Info />
+             <Colab
               desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
               btn="¡Ayuda ya!"
               colorBtn="#F44B53"
             />
-            {/* </Fl> */}
-            {/*  <Fl> */}
-            <Stats />
-            {/* </Fl> */}
-            {/*  <Fl> */}
+                     <Stats />
+          
             <Nos />
-            {/* </Fl> */}
-            {/*  <Fl> */}
-            <Ongs ongs={ongs} load={isLoading} />
-            {/* </Fl> */}
-          </div>
+           <Ongs ongs={ongs} load={isLoading} />
+                   </div>
         </LayoutContainer>
-        {/*  <Fl> */}
         <Contribuir />
-        {/* </Fl> */}
-      </Container>
-    </>
+     </>
   )
 }
 

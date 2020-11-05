@@ -21,7 +21,6 @@ interface filters {
   causeId: number
 }
 // Styles
-import styles from '../components/organizationList/onglist.module.scss'
 import FilterContainer from '../components/specific/causeLIst/organizationList/filterContainer'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 

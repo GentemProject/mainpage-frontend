@@ -88,8 +88,8 @@
   padding-top: $size-header;
   /*   margin-bottom: $size-banner; */
   width: 100%;
-  height: $size-banner;
-  background: url(/banner.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
   background-position: center;
   display: grid;
   position: relative;

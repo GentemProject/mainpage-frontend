@@ -2,16 +2,20 @@ import Link from 'next/link'
 // Cambiar y aislar componente luego
 import styles from '../../../specific/home/style.module.scss'
 
-function Banner() {
+function Banner(props: string) {
+  const {height, img, desc, button} = props;
   return (
-    <div className={styles.containerBanner}>
+    <div className={styles.containerBanner} style={{height: height ? height : '500px', backgroundImage: `url(${img})`}}>
       {/*<div className={styles.imgBannerI}></div> */}
       <div className={styles.content}>
         <div className={styles.text}>
           <span>
-            Descubre las organizaciones que trabajan por un futuro mejor
+            {desc}
           </span>
         </div>
+        {
+          button && button !== '' && 
+            (
         <div className={styles.btnBanner}>
           <Link href="/projects">
             <a>
@@ -21,6 +25,11 @@ function Banner() {
             </a>
           </Link>
         </div>
+
+          )
+          
+
+        }
       </div>
     </div>
   )

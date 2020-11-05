@@ -38,7 +38,7 @@ function Ongs(props: any) {
 }
 function Ficha(props: any) {
   return (
-    <Link key={props.slug} href="/org/[slug]" as={`/org/${props.slug}`}>
+    <Link key={props.slug} href="/cause/[slug]" as={`/cause/${props.slug}`}>
       <div className={styles.ficha}>
         <div
           className={styles.img}
