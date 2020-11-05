@@ -37,28 +37,32 @@ export default function Home({ orgs }: any) {
           gentem | Directorio abierto de organizaciones sin ánimo de lucro
         </title>
       </Head>
-        <Banner img='../banner.jpg' button='Ver todas las organizaciones' desc='Descubre las organizaciones que trabajan por un futuro mejor' />
-        <LayoutContainer>
-          <div className={styles.home}>
-             <Colab
-              desc={g}
-              btn="¡Apoya a una organización!"
-              colorBtn=" #237ed5"
-            />
-              <Info />
-             <Colab
-              desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-              btn="¡Ayuda ya!"
-              colorBtn="#F44B53"
-            />
-                     <Stats />
-          
-            <Nos />
-           <Ongs ongs={ongs} load={isLoading} />
-                   </div>
-        </LayoutContainer>
-        <Contribuir />
-     </>
+      {/*     <Banner
+        img="../banner.jpg"
+        button="Ver todas las organizaciones"
+        desc="Descubre las organizaciones que trabajan por un futuro mejor"
+      /> */}
+      <LayoutContainer>
+        <div className={styles.home}>
+          <Colab
+            desc={g}
+            btn="¡Apoya a una organización!"
+            colorBtn=" #237ed5"
+          />
+          <Info />
+          <Colab
+            desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
+            btn="¡Ayuda ya!"
+            colorBtn="#F44B53"
+          />
+          <Stats />
+
+          <Nos />
+          <Ongs ongs={ongs} load={isLoading} />
+        </div>
+      </LayoutContainer>
+      <Contribuir />
+    </>
   )
 }
 
