@@ -3,16 +3,8 @@ import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
-import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import { getForId, getAllOrganizationsPath } from '../../api/filters'
-import {
-  Contenido,
-  ContenidoSider,
-} from '../../components/specific/cause/organization'
-import Map from '../../components/specific/cause/organization/Map'
-
-// Styles
-import styles from '../../components/organization/organization.module.scss'
+import Cause from '@/components/specific/cause'
 
 const ORG: NextPage = (props) => {
   const { organization }: any = props
@@ -26,32 +18,19 @@ const ORG: NextPage = (props) => {
       <Head>
         <title>{ong.primaryData.name} | gentem</title>
       </Head>
-      <div className={styles.ongProfile}>
-        <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-          <Map location={ong.location} />
-          <LayoutContainer>
-            <div className={`${styles.ongProfileContent} ${styles.layout}`}>
-              <Contenido
-                causeId={ong.primaryData.causeId}
-                name={ong.primaryData.name}
-                description={ong.primaryData.description}
-                logo={ong.primaryData.logo}
-                objetive={ong.primaryData.objective}
-                howusedonation={ong.primaryData.howUseDonation}
-                sponsors={ong.primaryData.sponsors}
-                contact={ong.contact}
-                socialMedia={ong.socialMedia}
-                paymentData={ong.donationData}
-                location={ong.location}
-              />
-              <ContenidoSider
-                name={ong.primaryData.name}
-                paymentData={ong.donationData}
-              />
-            </div>
-          </LayoutContainer>
-        </div>
-      </div>
+      <Cause
+        causeId={ong.primaryData.causeId}
+        name={ong.primaryData.name}
+        description={ong.primaryData.description}
+        logo={ong.primaryData.logo}
+        objetive={ong.primaryData.objective}
+        howusedonation={ong.primaryData.howUseDonation}
+        sponsors={ong.primaryData.sponsors}
+        contact={ong.contact}
+        socialMedia={ong.socialMedia}
+        paymentData={ong.donationData}
+        location={ong.location}
+      />
     </>
   )
 }
@@ -64,11 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }))
     return paths
   })
-  /*   const paths = await res.map((org) => ({
-    params: { slug: org.slug },
-  })) */
   return { paths, fallback: false }
-  /* return { paths: [], fallback: false } */
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

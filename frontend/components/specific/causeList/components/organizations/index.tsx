@@ -3,15 +3,14 @@ import Modal from 'react-modal'
 import ScrollContainer from 'react-indiana-drag-scroll'
 
 // Components & Usables
-import { ModalContent } from './Contenido'
+import ModalContent from '../modal'
 import { useOneCategorie } from '@/hooks/useCategories'
 
 // Svg
-import Close from '../../../svg/close'
+import Close from '../../../../svg/close'
 
 // Styles
-import styles from './onglist.module.scss'
-import style from './organizationList.module.scss'
+import style from '../../style.module.scss'
 import Organization from './Organization'
 
 Modal.setAppElement('#__next')
@@ -47,9 +46,9 @@ function ContenidoSider(props: any) {
     useOneCategorie({ setCause, causeId })
   }, [causeId])
   return (
-    <div className={styles.ongListResult}>
-      <div className={styles.ongListResultQuantity}>
-        <div className={styles.quantityBtn} onClick={handleOpen}>
+    <div className={style.ongListResult}>
+      <div className={style.ongListResultQuantity}>
+        <div className={style.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
         {totalOrgFilter === quantity ? (
@@ -60,11 +59,11 @@ function ContenidoSider(props: any) {
           </h6>
         )}
         <Modal
-          className={styles.listModal}
+          className={style.listModal}
           isOpen={open}
           onRequestClose={handleClose}
         >
-          <button className={styles.modalClose} onClick={handleClose}>
+          <button className={style.modalClose} onClick={handleClose}>
             <Close />
           </button>
           <ModalContent
@@ -122,7 +121,7 @@ function NoOrganization({ changeFilters }) {
     changeFilters(false, 'all')
   }
   return (
-    <div className={styles.noOrganization}>
+    <div className={style.noOrganization}>
       <div>
         <h3>
           No encontramos ninguna organización con los filtros que escogiste
@@ -134,8 +133,8 @@ function NoOrganization({ changeFilters }) {
           que quieras ayudar
         </h5>
       </div>
-      <div className={styles.noOrganizationBtnContainer}>
-        <div onClick={resetF} className={styles.noOrganizationBtn}>
+      <div className={style.noOrganizationBtnContainer}>
+        <div onClick={resetF} className={style.noOrganizationBtn}>
           <span>Mostrar todas las organizaciones</span>
         </div>
       </div>
@@ -165,7 +164,7 @@ function LazyContenidoSider({ button, proyectos, visible }) {
 
   return (
     <>
-      <div className={styles.organizationGrid} ref={elementRef}>
+      <div className={style.organizationGrid} ref={elementRef}>
         {show
           ? proyectos.map((page: any) =>
               page.map((ong: any) => {
@@ -194,9 +193,9 @@ function LazyContenidoSider({ button, proyectos, visible }) {
           : null}
       </div>
       {visible && (
-        <div className={styles.seeMoreContainer}>
-          <div onClick={button} className={styles.seeMore}>
-            <span className={styles.seeMoreText}>Ver más</span>
+        <div className={style.seeMoreContainer}>
+          <div onClick={button} className={style.seeMore}>
+            <span className={style.seeMoreText}>Ver más</span>
           </div>
         </div>
       )}

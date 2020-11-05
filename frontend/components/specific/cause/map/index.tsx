@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 
-import style from './organization.module.scss'
+import style from '../style.module.scss'
 
 function Map(props: any) {
   const { location } = props

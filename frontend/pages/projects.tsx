@@ -4,13 +4,9 @@ import { useState, useEffect, useRef } from 'react'
 import NProgress from 'nprogress'
 
 // Components & Usables
-import {
-  Contenido,
-  ContenidoSider,
-  Banner,
-} from '../components/specific/causeLIst/organizationList'
 import Loader from '@/components/utils/architecture/loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
+import CauseList from '@/components/specific/causeList'
 // Interfaces
 import { Organization } from '../interfaces/organization'
 interface filters {
@@ -20,10 +16,6 @@ interface filters {
   transfer: boolean
   causeId: number
 }
-// Styles
-import FilterContainer from '../components/specific/causeLIst/organizationList/filterContainer'
-import LayoutContainer from '@/components/utils/architecture/Layout/container'
-
 interface Props {
   projectos: Organization
   lengthOng: number
@@ -138,32 +130,18 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
       </Head>
       {projectos.data.length < 0 && <Loader></Loader>}
       {projectos.data.length > 0 && (
-        <div className={styles.ongList}>
-          <Banner />
-          <LayoutContainer>
-            <div className={styles.layoutCenter}>
-              <div className={`${styles.ongListContent} ${styles.layout}`}>
-                <FilterContainer
-                  changeFilters={changeFilters}
-                  changeSelect={changeSelect}
-                  filters={filters}
-                />
-                <ContenidoSider
-                  ONGs={resultfilters ? resultfilters : projectos.data}
-                  changeSelect={changeSelect}
-                  changeFilters={changeFilters}
-                  filters={filters}
-                  proyectos={arrayProjectos}
-                  totalOrgFilter={totalOrg}
-                  quantity={quantityOng}
-                  button={handlePagination}
-                  visible={visible}
-                  setFilters={setFilters}
-                />
-              </div>
-            </div>
-          </LayoutContainer>
-        </div>
+        <CauseList
+          changeFilters={changeFilters}
+          changeSelect={changeSelect}
+          filters={filters}
+          ONGs={resultfilters ? resultfilters : projectos.data}
+          proyectos={arrayProjectos}
+          totalOrgFilter={totalOrg}
+          quantity={quantityOng}
+          button={handlePagination}
+          visible={visible}
+          setFilters={setFilters}
+        />
       )}
     </>
   )

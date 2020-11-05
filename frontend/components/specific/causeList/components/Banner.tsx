@@ -1,4 +1,4 @@
-import styles from './onglist.module.scss'
+import styles from '../style.module.scss'
 
 function Banner() {
   return (

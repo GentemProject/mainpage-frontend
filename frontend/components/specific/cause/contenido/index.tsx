@@ -7,13 +7,13 @@ import Message from '../../../svg/Message'
 import Close from '../../../svg/close'
 
 // Usables & Componentes
-import { ResponsiveDonate } from './ContenidoSider'
+import { ResponsiveDonate } from '../donationData'
 import { Button, Divider } from '../../../usables/buttons'
 import TargetBase from '../../../usables/TargetBase'
-import { useAllCategories } from '../../../../hooks/useCategories'
+import { useAllCategories } from '@/hooks/useCategories'
 
 // Styles
-import styles from './organization.module.scss'
+import styles from '../style.module.scss'
 
 Modal.setAppElement('#__next')
 

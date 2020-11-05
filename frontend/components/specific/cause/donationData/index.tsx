@@ -1,7 +1,7 @@
 import { Divider, Button } from '../../../usables/buttons'
-import styles from './organization.module.scss'
+import styles from '../style.module.scss'
 
-function ContenidoSider(props: any) {
+function DonationData(props: any) {
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
@@ -16,7 +16,7 @@ function ContenidoSider(props: any) {
     </div>
   )
 }
-export default ContenidoSider
+export default DonationData
 
 export function ResponsiveDonate(props) {
   return (

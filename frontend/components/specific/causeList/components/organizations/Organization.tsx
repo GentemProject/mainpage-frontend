@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useAllCategories } from '@/hooks/useCategories'
-import Arrow from '../../../svg/arrow'
-import style from './organizationList.module.scss'
+import Arrow from '../../../../svg/arrow'
+import style from '../../style.module.scss'
 
 function Organization(props) {
   const { slug, products, link, bank, causeId, name, logo, location } = props
@@ -30,9 +30,7 @@ function Organization(props) {
             <span>{name}</span>
           </div>
           <div className={style.location}>
-            <span>
-              {location.city}, {location.country}
-            </span>
+            <span>{location && (location.city, location.country)}</span>
           </div>
         </div>
       </div>
