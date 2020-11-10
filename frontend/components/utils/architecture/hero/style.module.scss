@@ -1,0 +1,38 @@
+@import '../../../../styles/variables.scss';
+.containerBanner {
+
+  /*   margin-bottom: $size-banner; */
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  position: relative;
+  place-items: center;
+  .content {
+    max-width: 800px;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-row-gap: 30px;
+    justify-items: center;
+    align-items: center;
+    .text {
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      span {
+        display: flex;
+        color: #fff;
+        width: 100%;
+        line-height: 1.2;
+        font-size: 28px;
+        font-weight: 400;
+      }
+    }
+  }
+}

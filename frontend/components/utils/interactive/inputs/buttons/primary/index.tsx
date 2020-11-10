@@ -1,5 +1,5 @@
 function Button(props: string) {
-  const { desc, width, color, colorFont } = props
+  const { desc, color, colorFont } = props
   return (
     <div className="containerButton">
       <button className="button">
@@ -9,13 +9,14 @@ function Button(props: string) {
         {`
           .containerButton {
             max-width: 350px;
-            width: ${width};
+            width: auto;
             background: ${color};
             display: flex;
+            padding: 0 48px;
             align-items: center;
             justify-content: center;
             height: 48px;
-            border-radius: 5px;
+            border-radius: 3px;
           }
           .button {
             width: 100%;

@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 /* import Container from '../components/----home-----/container' */
-/* import Banner from '@/components/utils/architecture/hero' */
+import Banner from '@/components/utils/architecture/hero'
 /* import Fl from '../components/----home-----/fl-1' */
 import Colab from '@/components/specific/home/colaboration/colaboracion'
 import Stats from '@/components/specific/home/stats/stats'
@@ -13,7 +13,8 @@ import Ongs from '@/components/utils/interactive/recentOng/'
 import Contribuir from '@/components/specific/home/colaboration/contribuir'
 import styles from '@/components/specific/home/style.module.scss'
 import { getLastest } from '../api/filters'
-
+import Link from 'next/link'
+import Button from '@/components/utils/interactive/inputs/buttons/primary'
 export default function Home({ orgs }: any) {
   const [ongs, setOngs] = useState<any>()
   const [isLoading, setIsloading] = useState<boolean>(true)
@@ -30,6 +31,15 @@ export default function Home({ orgs }: any) {
       donar.
     </Fragment>
   )
+  const contentBanner = (
+    <div className={styles.btnBanner}>
+      <Link href="/projects">
+        <a>
+          <Button desc="Ver todas las organizaciones" color="#f44b53" />
+        </a>
+      </Link>
+    </div>
+  )
   return (
     <>
       <Head>
@@ -37,12 +47,15 @@ export default function Home({ orgs }: any) {
           gentem | Directorio abierto de organizaciones sin ánimo de lucro
         </title>
       </Head>
-      {/*     <Banner
-        img="../banner.jpg"
-        button="Ver todas las organizaciones"
-        desc="Descubre las organizaciones que trabajan por un futuro mejor"
-      /> */}
-      <LayoutContainer>
+      <LayoutContainer
+        scaped={
+          <Banner
+            img="../banner.jpg"
+            content={contentBanner}
+            desc="Descubre las organizaciones que trabajan por un futuro mejor"
+          />
+        }
+      >
         <div className={styles.home}>
           <Colab
             desc={g}

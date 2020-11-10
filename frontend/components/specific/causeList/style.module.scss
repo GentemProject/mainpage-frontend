@@ -211,44 +211,10 @@ $resultItemIMG-xs: 146px;
 }
 
 // banner
+.descBanner{
+  color: white;
 
-.banner {
-  margin-top: $size-header;
-  height: 252px;
-  position: relative;
-  background: linear-gradient(
-      0deg,
-      rgba(26, 25, 40, 0.6),
-      rgba(26, 25, 40, 0.6)
-    ),
-    url('/organizations/hero_xl.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: auto;
-  z-index: 0;
 }
-
-.bannerContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  height: 252px;
-
-  & h2 {
-    color: white !important;
-    text-align: center;
-  }
-
-  & h5 {
-    color: white !important;
-    text-align: center;
-  }
-}
-
 // Contenido
 .ongListSearch {
   width: 392px;

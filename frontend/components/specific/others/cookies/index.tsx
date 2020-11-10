@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import LayoutContainer from '../../../utils/architecture/Layout/container'
-import style from './util.module.scss'
+import style from '../style.module.scss'
 
 function TermsConditionContent() {
   return (

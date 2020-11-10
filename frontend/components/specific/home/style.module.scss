@@ -84,55 +84,6 @@
     color: #fff;
   }
 }
-.containerBanner {
-  padding-top: $size-header;
-  /*   margin-bottom: $size-banner; */
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  display: grid;
-  position: relative;
-  place-items: center;
-  button {
-    margin: 0;
-  }
-  .content {
-    max-width: 800px;
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .text {
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      span {
-        display: flex;
-        color: #fff;
-        width: 100%;
-        line-height: 1.2;
-        font-size: 28px;
-        font-weight: 400;
-      }
-    }
-
-    .btnBanner {
-      display: inline-flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 25px 0;
-    }
-  }
-}
 .btnFl {
   display: flex;
   flex-direction: column;
