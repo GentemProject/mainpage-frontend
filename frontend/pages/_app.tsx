@@ -20,7 +20,14 @@ const tagManagerArgs = {
 }
 
 export default function App({ Component, pageProps }) {
-  const [visible, setVisible] = useState(true)
+  let cookiesVisible
+  if (typeof window !== 'undefined') {
+    cookiesVisible = localStorage.getItem('cookies-visible')
+  }
+  const active = null || 'active'
+  const [visible, setVisible] = useState(
+    cookiesVisible === active ? false : true
+  )
   const [visibleEffect, setVisibleEffect] = useState('beta')
   useEffect(() => {
     TagManager.initialize(tagManagerArgs)
@@ -31,6 +38,7 @@ export default function App({ Component, pageProps }) {
     await setTimeout(() => {
       setVisible(false)
     }, 300)
+    localStorage.setItem('cookies-visible', visible ? 'active' : 'inactive')
   }
   return (
     <>
