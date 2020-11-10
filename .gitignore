@@ -24,8 +24,9 @@ frontend/_next/
 
 
 # Environment configuration file
-.env
-.env.local
+.env.production
+.env.development
+.env.staging
 # Backup files
 *.bak
 
