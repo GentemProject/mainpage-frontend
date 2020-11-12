@@ -2,7 +2,7 @@ import Link from 'next/link'
 // Cambiar y aislar componente luego
 import styles from './style.module.scss'
 
-function Banner(props: string) {
+function Banner(props) {
   const { height, img, desc, content } = props
   return (
     <div

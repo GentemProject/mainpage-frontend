@@ -1,13 +1,41 @@
-import * as axios from 'axios'
+import fetch from 'cross-fetch'
+import { useMemo } from 'react'
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client'
 
-const apiProd = 'https://api.gentem.org'
+/* const API = process.env.API_BACKEND; */
+const API = 'http://localhost:3100'
+let apolloClient: ApolloClient<NormalizedCacheObject>
 
-export const BASE_API = apiProd
+function createApolloClient() {
+  return new ApolloClient({
+    ssrMode: typeof window === 'undefined',
+    link: new HttpLink({
+      uri: `${API}/graphql`,
+      fetch,
+      credentials: 'include',
+    }),
+    cache: new InMemoryCache(),
+  })
+}
 
-export const api: axios.AxiosInstance = axios.default.create({
-  baseURL: BASE_API,
-})
+export function initializeApollo(initialState = null) {
+  const _apolloClient = apolloClient ?? createApolloClient()
 
-api.defaults.headers.post['Content-Type'] = 'application/json'
-api.defaults.headers.delete['Content-Type'] = 'application/json'
-api.defaults.headers.put['Content-Type'] = 'application/json'
+  if (initialState) {
+    _apolloClient.cache.restore(initialState)
+  }
+  if (typeof window === 'undefined') return _apolloClient
+  apolloClient = apolloClient ?? _apolloClient
+
+  return apolloClient
+}
+
+export function useApollo(initialState) {
+  const store = useMemo(() => initializeApollo(initialState), [initialState])
+  return store
+}

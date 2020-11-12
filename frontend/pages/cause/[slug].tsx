@@ -1,55 +1,77 @@
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
-import { getForId, getAllOrganizationsPath } from '../../api/filters'
 import Cause from '@/components/specific/cause'
 
-const ORG: NextPage = (props) => {
-  const { organization }: any = props
-  if (!organization) {
-    return <>loading..</>
-  }
-  const ong = organization
+// Apollo
+import { initializeApollo } from '../../api'
+import { useQuery, gql } from '@apollo/client'
 
+const querySchema = gql`
+  query Organization($slug: String) {
+    getOrganization(slug: $slug) {
+      name
+      description
+      logoUrl
+      goal
+      howItIsUsingDonations
+      contactEmail
+      contactPhone
+      contactWebsite
+      facebookUrl
+      twitterUrl
+      instagramUrl
+      donationBankAccountName
+      donationBankAccountType
+      donationBankAccountNumber
+      donationLinks
+      causes {
+        name
+      }
+    }
+  }
+`
+
+const ORG: NextPage = () => {
+  const router = useRouter()
+  const { slug } = router.query
+  const { data, loading } = useQuery(querySchema, { variables: { slug } })
+  const ong = data.getOrganization
+
+  if (loading) return <span>Loading...</span>
+  console.log(data.getOrganization)
   return (
     <>
+      ndeaa
       <Head>
-        <title>{ong.primaryData.name} | gentem</title>
+        <title>{ong.name} | gentem</title>
       </Head>
-      <Cause
-        causeId={ong.primaryData.causeId}
-        name={ong.primaryData.name}
-        description={ong.primaryData.description}
-        logo={ong.primaryData.logo}
-        objetive={ong.primaryData.objective}
-        howusedonation={ong.primaryData.howUseDonation}
-        sponsors={ong.primaryData.sponsors}
-        contact={ong.contact}
-        socialMedia={ong.socialMedia}
-        paymentData={ong.donationData}
-        location={ong.location}
-      />
+      {/* <Cause data={...ong} /> */}
     </>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+/* export const getStaticPaths: GetStaticPaths = async () => {
   let paths
-  await getAllOrganizationsPath().then((data) => {
-    paths = data.map((org) => ({
-      params: { slug: org.slug },
-    }))
-    return paths
-  })
+  paths = [{ params: { slug: 'kawsay' } }]
   return { paths, fallback: false }
-}
+} */
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const organization = await getForId(params.slug)
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const apolloClient = initializeApollo()
 
-  return { props: { organization }, revalidate: 20 }
+  await apolloClient.query({
+    query: querySchema,
+    variables: { slug: params.slug },
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  }
 }
 
 export default ORG

@@ -1,4 +1,4 @@
-function Button(props: string) {
+function Button(props) {
   const { desc, color, colorFont } = props
   return (
     <div className="containerButton">

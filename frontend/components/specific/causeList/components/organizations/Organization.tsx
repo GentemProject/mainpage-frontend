@@ -72,7 +72,7 @@ function Organization(props) {
         )}
       </div>
       <div className={style.link}>
-        <Link href="/org/[slug]" as={`/org/${slug}`}>
+        <Link href="/cause/[slug]" as={`/cause/${slug}`}>
           <a>
             <span>IR AL PERFIL</span> <Arrow />
           </a>

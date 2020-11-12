@@ -2,24 +2,33 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
+
+// Apollo
+import { useApollo } from '../api'
+import { ApolloProvider } from '@apollo/client'
+
+// Components
 import Close from '@/components/svg/close'
 import Layout from '@/components/utils/architecture/Layout'
 
 // Loading
 import NProgress from 'nprogress'
-
-// Styles
-import '../styles/styles.scss'
-
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
+
+// Styles
+import '../styles/styles.scss'
 
 const tagManagerArgs = {
   gtmId: 'GTM-KS8MP9B',
 }
 
 export default function App({ Component, pageProps }) {
+  // Apollo
+  const client = useApollo(pageProps.initialApolloState)
+
+  // Cookies visible
   let cookiesVisible
   if (typeof window !== 'undefined') {
     cookiesVisible = localStorage.getItem('cookies-visible')
@@ -198,7 +207,9 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <Layout>
-        <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
       </Layout>
       {visible && (
         <div className={visibleEffect}>

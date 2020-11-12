@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import NextArrow from '../../../svg/nextArrow'
-import style from './util.module.scss'
+import style from '../style.module.scss'
 
 function FAQContent() {
   return (
