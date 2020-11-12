@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react'
 import NProgress from 'nprogress'
@@ -7,9 +7,28 @@ import NProgress from 'nprogress'
 import Loader from '@/components/utils/architecture/loader'
 import { getForFilters, getAllOrganizations } from '../api/filters'
 import CauseList from '@/components/specific/causeList'
+
+// Apollo
+import { initializeApollo } from '../api'
+import { useQuery, gql } from '@apollo/client'
+
 // Interfaces
 import { Organization } from '../interfaces/organization'
-interface filters {
+
+const querySchema = gql`
+  query Organizations {
+    getOrganizations(limit: 12) {
+      name
+      slug
+      country
+      logoUrl
+      causes {
+        name
+      }
+    }
+  }
+`
+/* interface filters {
   country: string | boolean
   products: boolean
   donationData: boolean
@@ -18,10 +37,10 @@ interface filters {
 }
 interface Props {
   projectos: Organization
-  lengthOng: number
 }
-const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
-  const quantityOng = lengthOng
+lengthOng: number */
+const OngList: NextPage /* <Props> */ = (/* { projectos, lengthOng } */) => {
+  /*  const quantityOng = lengthOng
   const [resultfilters, setResultfilters] = useState<any>()
   const [filters, setFilters] = useState<filters>({
     country: null,
@@ -122,15 +141,19 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
     } else {
       setVisible(true)
     }
-  }, [actualPage, maxPage])
+  }, [actualPage, maxPage]) */
+
+  const [filters, setFilters] = useState({})
+  const { data, loading } = useQuery(querySchema, { variables: {} })
+
+  if (loading) return <span>Loading...</span>
+  console.log(data)
   return (
     <>
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
-      {projectos.data.length < 0 && <Loader></Loader>}
-      {projectos.data.length > 0 && (
-        <CauseList
+      {/* <CauseList
           changeFilters={changeFilters}
           changeSelect={changeSelect}
           filters={filters}
@@ -141,41 +164,23 @@ const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
           button={handlePagination}
           visible={visible}
           setFilters={setFilters}
-        />
-      )}
+        /> */}
     </>
   )
 }
 
 export default OngList
-export const getStaticProps = async () => {
-  let lengthOng
-  await getAllOrganizations().then((length) => {
-    lengthOng = length
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: querySchema,
   })
-  const filters = {
-    country: null,
-    products: false,
-    donationData: false,
-    transfer: false,
-    causeId: 0,
-  }
-  let projectos
-  const page = 0
-  await getForFilters(page, filters).then((datos) => {
-    if (datos === 'no hay nada') {
-      projectos = null
-      return projectos
-    } else {
-      projectos = datos
-      return projectos
-    }
-  })
+
   return {
     props: {
-      projectos,
-      lengthOng,
+      initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 20,
   }
 }
