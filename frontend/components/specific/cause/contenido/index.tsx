@@ -10,7 +10,6 @@ import Close from '../../../svg/close'
 import { ResponsiveDonate } from '../donationData'
 import { Button, Divider } from '../../../usables/buttons'
 import TargetBase from '../../../usables/TargetBase'
-import { useAllCategories } from '@/hooks/useCategories'
 
 // Styles
 import styles from '../style.module.scss'
@@ -27,22 +26,36 @@ function Contenido(props: any) {
     setOpen(false)
   }
 
-  const [causeArray, setCauseArray] = useState<any>([])
+  const {
+    name,
+    description,
+    logo,
+    goal,
+    howItIsUsingDonations,
+    email,
+    phone,
+    whatsapp,
+    website,
+    facebook,
+    instagram,
+    twitter,
+    bankAccount,
+    donationLinks,
+    city,
+    country,
+    causes,
+  } = props
 
-  const { causeId } = props
-  useEffect(() => {
-    useAllCategories({ setCauseArray, causeId })
-  }, [causeId])
-
+  console.log(causes)
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>
       <div className="OngProfile__Hero--User">
         <div className={styles.ongProfileUserImgBreadcrumb}>
           <div className={styles.ongProfileUserImg}>
-            {props.logo ? (
+            {logo ? (
               <div
-                style={{ backgroundImage: `url(${props.logo})` }}
+                style={{ backgroundImage: `url(${logo})` }}
                 className={styles.ongProfileUserImg}
               />
             ) : (
@@ -56,29 +69,25 @@ function Contenido(props: any) {
             <Link href="/projects">
               <a>Proyectos </a>
             </Link>
-            / {props.name}
+            / {name}
           </div>
         </div>
         <div className={styles.ongProfileUserInfo}>
-          <h2 className={styles.ongProfileInfoTitle}>{props.name}</h2>
+          <h2 className={styles.ongProfileInfoTitle}>{name}</h2>
           <div className="OngProfile__User--Objective">
-            <p className={styles.ongProfileObjectiveDescription}>
-              {props.objetive}
-            </p>
+            <p className={styles.ongProfileObjectiveDescription}>{goal}</p>
           </div>
-          <TargetBase array={causeArray} filter={filter} />
+          <TargetBase array={causes} filter={filter} />
 
-          <h3 className={styles.ongProfileInfoDescription}>
-            {props.description}
-          </h3>
+          <h3 className={styles.ongProfileInfoDescription}>{description}</h3>
         </div>
-        {props.howusedonation && (
+        {howItIsUsingDonations && (
           <div className={styles.ongProfileUserHowUseDonation}>
             <h3 className={styles.ongProfileHowUseDonationTitle}>
               ¿Cómo usamos las donaciones que recibimos?
             </h3>
             <p className={styles.ongProfileHowUseDonationDescription}>
-              {props.howusedonation}
+              {howItIsUsingDonations}
             </p>
           </div>
         )}
@@ -103,7 +112,7 @@ function Contenido(props: any) {
           false
         )}
  */}
-        {props.contact && (
+        {(website || email || phone) && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
             <Divider
@@ -112,41 +121,35 @@ function Contenido(props: any) {
               }}
             />
             <div className={styles.ongProfileContactInfo}>
-              {props.contact.website && (
+              {website && (
                 <div className="OngProfile__Info-Web">
                   <strong>Website</strong> <br />
                   <span>
-                    <a
-                      href={props.contact.website}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      {props.contact.website}
+                    <a href={website} rel="noopener noreferrer" target="_blank">
+                      {website}
                     </a>
                   </span>
                 </div>
               )}
-              {props.contact.email && (
+              {email && (
                 <div className="OngProfile__Info-Email">
                   <strong>Email</strong> <br />
                   <span>
-                    <a href={`mailto://${props.contact.email}`}>
-                      {props.contact.email}
-                    </a>
+                    <a href={`mailto://${email}`}>{email}</a>
                   </span>
                 </div>
               )}
-              {props.contact.phones && (
+              {phone && (
                 <div className={styles.ongProfileInfoTel}>
                   <strong>Teléfono</strong> <br />
-                  <span>{props.contact.phones}</span>
+                  <span>{phone}</span>
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {props.socialMedia && (
+        {(whatsapp || instagram || facebook || twitter) && (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
             <Divider
@@ -155,55 +158,43 @@ function Contenido(props: any) {
               }}
             />
             <div className="OngProfile__Social--Networks">
-              {props.socialMedia.whatsapp && (
+              {whatsapp && (
                 <a
-                  href={`https://api.whatsapp.com/send?phone=${props.socialMedia.whatsapp}`}
+                  href={`https://api.whatsapp.com/send?phone=${whatsapp}`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/whatsapp.svg" alt="whatsapp logo" />
                 </a>
               )}
-              {props.socialMedia.instagram && (
-                <a
-                  href={props.socialMedia.instagram}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+              {instagram && (
+                <a href={instagram} rel="noopener noreferrer" target="_blank">
                   <img src="/insta.svg" alt="instagram logo" />
                 </a>
               )}
-              {props.socialMedia.facebook && (
-                <a
-                  href={props.socialMedia.facebook}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+              {facebook && (
+                <a href={facebook} rel="noopener noreferrer" target="_blank">
                   <img src="/fb.svg" alt="facebook logo" />
                 </a>
               )}
-              {props.socialMedia.twitter && (
-                <a
-                  href={props.socialMedia.twitter}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+              {twitter && (
+                <a href={twitter} rel="noopener noreferrer" target="_blank">
                   <img src="/twitter.svg" alt="twitter logo" />
                 </a>
               )}
-              {props.socialMedia.linkedin && (
+              {/*               {linkedin && (
                 <a
-                  href={props.socialMedia.linkedin}
+                  href={linkedin}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img src="/linkedIn.svg" alt="linkedin logo" />
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         )}
-        {props.location && (
+        {(city || country) && (
           <div className={styles.ongProfileUserAddress}>
             <h4 className={styles.ongProfileAddressTitle}> Área de trabajo </h4>
             <Divider
@@ -217,14 +208,14 @@ function Contenido(props: any) {
               </div>
               <div className="OngProfile__Info--Data">
                 <span>
-                  {props.location.country}, {props.location.city}
+                  {country}, {city}
                 </span>
               </div>
             </div>
           </div>
         )}
 
-        {props.paymentData && (
+        {(bankAccount || donationLinks) && (
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
@@ -246,9 +237,10 @@ function Contenido(props: any) {
                 </button>
                 <div className="Modal__Active">
                   <ResponsiveDonate
-                    logo={props.logo}
-                    name={props.name}
-                    paymentData={props.paymentData}
+                    logo={logo}
+                    name={name}
+                    bankAccount={bankAccount}
+                    donationLinks={donationLinks}
                   />
                 </div>
               </Modal>

@@ -20,13 +20,14 @@ const querySchema = gql`
       contactEmail
       contactPhone
       contactWebsite
+      whatsappPhone
       facebookUrl
       twitterUrl
       instagramUrl
       donationBankAccountName
-      donationBankAccountType
-      donationBankAccountNumber
       donationLinks
+      city
+      country
       causes {
         name
       }
@@ -48,7 +49,7 @@ const ORG: NextPage = () => {
       <Head>
         <title>{ong.name} | gentem</title>
       </Head>
-      {/* <Cause data={...ong} /> */}
+      <Cause data={ong} />
     </>
   )
 }

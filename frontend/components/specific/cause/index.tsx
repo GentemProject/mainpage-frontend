@@ -5,40 +5,40 @@ import DonationData from './donationData'
 
 import styles from './style.module.scss'
 
-function Cause(props) {
-  const {
-    causeId,
-    name,
-    description,
-    logo,
-    objective,
-    howusedonation,
-    sponsors,
-    contact,
-    socialMedia,
-    paymentData,
-    location,
-  } = props
+function Cause({ data }) {
   return (
     <div className={styles.ongProfile}>
       <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-        <Map location={location} />
+        {/* <Map location={location} /> */}
         <LayoutContainer>
           <div className={`${styles.ongProfileContent} ${styles.layout}`}>
             <Contenido
-              causeId={causeId}
-              name={name}
-              description={description}
-              logo={logo}
-              objective={objective}
-              howusedonation={howusedonation}
-              sponsors={sponsors}
-              contact={contact}
-              socialMedia={socialMedia}
-              paymentData={paymentData}
-              location={location}
+              name={data.name}
+              description={data.description}
+              logo={data.logoUrl}
+              goal={data.goal}
+              howItIsUsingDonations={data.howItIsUsingDonations}
+              email={data.contactEmail}
+              phone={data.contactPhone}
+              whatsapp={data.whatsappPhone}
+              website={data.contactEmail}
+              facebook={data.facebookUrl}
+              instagram={data.instagramUrl}
+              twitter={data.twitterUrl}
+              bankAccount={data.donationBankAccountName}
+              donationLinks={data.donationLinks}
+              city={data.city}
+              country={data.country}
+              causes={data.causes}
+              // sponsors={data.sponsors}
+              // linkedIn={data.linkedInUrl}
             />
-            <DonationData name={name} paymentData={paymentData} />
+            <DonationData
+              logo={data.logoUrl}
+              name={data.name}
+              bankAccount={data.donationBankAccountName}
+              donationLinks={data.donationLinks}
+            />
           </div>
         </LayoutContainer>
       </div>

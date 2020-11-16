@@ -14,10 +14,9 @@ import { useQuery, gql } from '@apollo/client'
 
 // Interfaces
 import { Organization } from '../interfaces/organization'
-
 const querySchema = gql`
-  query Organizations {
-    getOrganizations(limit: 12) {
+  query Organizations($causeId: String, $country: String) {
+    getOrganizations(limit: 12, causeId: $causeId, country: $country) {
       name
       slug
       country
@@ -28,6 +27,11 @@ const querySchema = gql`
     }
   }
 `
+
+let filters = {
+  country: '',
+  causeId: '',
+}
 /* interface filters {
   country: string | boolean
   products: boolean
@@ -143,8 +147,17 @@ const OngList: NextPage /* <Props> */ = (/* { projectos, lengthOng } */) => {
     }
   }, [actualPage, maxPage]) */
 
-  const [filters, setFilters] = useState({})
-  const { data, loading } = useQuery(querySchema, { variables: {} })
+  /*   const [filters, setFilters] = useState() */
+  const { data, loading } = useQuery(querySchema, {
+    variables: { causeId: filters.causeId, country: filters.country },
+  })
+  const handleClick = () => {
+    filters = { ...filters, country: 'Argentina' }
+    return filters
+  }
+  useEffect(() => {
+    console.log(filters)
+  }, [filters])
 
   if (loading) return <span>Loading...</span>
   console.log(data)
@@ -153,6 +166,13 @@ const OngList: NextPage /* <Props> */ = (/* { projectos, lengthOng } */) => {
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
+      <button
+        onClick={handleClick}
+        style={{ margin: '100px', backgroundColor: 'grey' }}
+      >
+        NDEAAAAA
+      </button>
+      {console.log(filters)}
       {/* <CauseList
           changeFilters={changeFilters}
           changeSelect={changeSelect}
@@ -176,6 +196,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   await apolloClient.query({
     query: querySchema,
+    variables: { causeId: filters.causeId, country: filters.country },
   })
 
   return {
