@@ -99,9 +99,8 @@ export const TextCheck = (props: any) => {
   const [check, setCheck] = useState(props.boolean)
   const handleCheck = (e: any) => {
     setCheck(e.target.checked)
-    props.change(e.target.checked, props.name)
+    props.change(e.target.checked)
   }
-
   return (
     <div className="textCheck">
       <div className="title">

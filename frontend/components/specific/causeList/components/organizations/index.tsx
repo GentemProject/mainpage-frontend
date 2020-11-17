@@ -16,18 +16,7 @@ import Organization from './Organization'
 Modal.setAppElement('#__next')
 
 function ContenidoSider(props: any) {
-  const {
-    /*     button,
-    proyectos,
-    visible,
-    quantity, */
-    organizations,
-    loading,
-    /*     changeSelect,
-    changeFilters,
-    filters, */
-    /*     totalOrgFilter, */
-  } = props
+  const { organizations, resetFilters } = props
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(true)
@@ -94,23 +83,20 @@ function ContenidoSider(props: any) {
           )}
         </ScrollContainer> */}
       </div>
-      {!loading && <LazyContenidoSider organizations={organizations} />}
-      {/*    {proyectLength === 0 ? (
-        <> */}
-      {/* <NoOrganization changeFilters={changeFilters} /> */}
-      {/*       'No org' */}
-      {/*  </>
+      {organizations.length === 0 ? (
+        <>
+          <NoOrganization resetFilters={resetFilters} />
+        </>
       ) : (
-        
-      )} */}
+        <>
+          <LazyContenidoSider organizations={organizations} />
+        </>
+      )}
     </div>
   )
 }
 
-function NoOrganization({ changeFilters }) {
-  const resetF = () => {
-    changeFilters(false, 'all')
-  }
+function NoOrganization({ resetFilters }) {
   return (
     <div className={style.noOrganization}>
       <div>
@@ -125,7 +111,7 @@ function NoOrganization({ changeFilters }) {
         </h5>
       </div>
       <div className={style.noOrganizationBtnContainer}>
-        <div onClick={resetF} className={style.noOrganizationBtn}>
+        <div onClick={resetFilters} className={style.noOrganizationBtn}>
           <span>Mostrar todas las organizaciones</span>
         </div>
       </div>
@@ -138,18 +124,20 @@ function LazyContenidoSider({ organizations }) {
     <>
       <div className={style.organizationGrid}>
         {organizations.map((org) => (
-          <Organization
-            // Primary data
-            id={org.id}
-            key={org.slug}
-            slug={org.slug}
-            name={org.name}
-            logo={org.logoUrl}
-            causes={org.causes}
-            // Donation data
-            links={org.donationLinks}
-            bankAccount={org.donationBankAccountName}
-          />
+          <>
+            <Organization
+              // Primary data
+              id={org.id}
+              key={org.slug}
+              slug={org.slug}
+              name={org.name}
+              logo={org.logoUrl}
+              causes={org.causes}
+              // Donation data
+              link={org.donationLinks}
+              bankAccount={org.donationBankAccountName}
+            />
+          </>
         ))}
       </div>
       {/*  {visible && (

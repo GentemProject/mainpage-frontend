@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
+import { useQuery, gql } from '@apollo/client'
+
 // Components
 import SearchSelect from '../SearchSelect'
 import { TextCheck } from '../../../../utils/interactive/inputs/form/switch'
 import { getDistinct } from '../../../../../api/filters'
-// Material UI for Select
-//import FormControl from '@material-ui/core/FormControl'
-//import Select from '@material-ui/core/Select'
-//import InputLabel from '@material-ui/core/InputLabel'
-//import MenuItem from '@material-ui/core/MenuItem'
-import {
+
+/*  Material UI for Select */
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+/* import {
   Select,
   Option,
-} from '../../../../utils/interactive/inputs/form/select'
+} from '../../../../utils/interactive/inputs/form/select' */
 // Style
 import style from '../../style.module.scss'
-import * as api from '../../../../../api/categories.json'
-
-function Filter(props: any) {
-  const { changeFilters, filters, changeSelect } = props
+function Filter({ select, checkbox, filters }) {
   const [ciudad, setCiudad] = useState([])
   useEffect(() => {
     getDistinct().then(
@@ -29,6 +29,20 @@ function Filter(props: any) {
       }
     )
   }, [])
+
+  // getCause from GraphQL
+  const querySchema = gql`
+    {
+      getCauses {
+        id
+        name
+      }
+    }
+  `
+  const { data, loading } = useQuery(querySchema, {
+    variables: filters,
+    ssr: true,
+  })
   return (
     <>
       <div className={style.filterContainer}>
@@ -38,17 +52,16 @@ function Filter(props: any) {
           </h6>
         </div>
         <SearchSelect title="Ubicación" info="Filtra por país">
-          {/* 
-         <FormControl style={{ width: '100%', marginTop: '12px' }}>
+          <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={
-                filters.country === null ? 'Todos los paises' : filters.country
+                filters.country === '' ? 'Todos los paises' : filters.country
               }
-              onChange={(e) => {
-                changeSelect('country', e.target.value)
+              onChange={async (e) => {
+                await select.handleCountry(e.target.value)
               }}
             >
               <MenuItem value="Todos los paises">Todos los paises</MenuItem>
@@ -62,29 +75,31 @@ function Filter(props: any) {
                 })}
             </Select>
           </FormControl>
-         */}
         </SearchSelect>
         <SearchSelect title="Causa afectada" info="Filtra por causa">
-          <Select
-            label="Ingrese causa"
-            // Nose que va en value pero me tira error, cambialo paadre
-            value="asd"
-            onChange={(e) => {
-              changeSelect('causeId', e)
-            }}
-            id="causa"
-          >
-            {(val) =>
-              api.data.map((cat, index) => (
-                <Option
-                  key={cat.cat_name}
-                  val={val}
-                  value={cat.cat_id[0]}
-                  desc={cat.cat_name}
-                />
-              ))
-            }
-          </Select>
+          <FormControl style={{ width: '100%', marginTop: '12px' }}>
+            <InputLabel id="demo-simple-select-label">Causa</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={
+                filters.causeId === '' ? 'Todas las causas' : filters.causeId
+              }
+              onChange={async (e) => {
+                await select.handleCauseId(e.target.value)
+              }}
+            >
+              <MenuItem value="">Todos las causas</MenuItem>
+              {!loading &&
+                data.getCauses.map((data) => {
+                  return (
+                    <MenuItem key={data.id} value={data.id}>
+                      {data.name}
+                    </MenuItem>
+                  )
+                })}
+            </Select>
+          </FormControl>
         </SearchSelect>
         <SearchSelect
           title="Tipo de donación"
@@ -93,24 +108,25 @@ function Filter(props: any) {
           <TextCheck
             title="Donar online"
             desc="Link para donar desde casa"
-            change={changeFilters}
-            boolean={filters.paymenData}
+            change={checkbox.handleDonationLinks}
+            boolean={filters.donationLinks}
             name="paymenData"
           />
           <TextCheck
             title="Transferencia bancaria"
             desc="Información de las cuentas para que hagas una transferencia"
-            change={changeFilters}
-            boolean={filters.transfer}
+            change={checkbox.handleDonationBankAccountName}
+            boolean={filters.donationBankAccountName}
             name="transfer"
           />
+          {/*
           <TextCheck
             title="Donar productos"
             desc="Información sobre como entregar los productos que quieras donar"
             change={changeFilters}
             boolean={filters.products}
             name="products"
-          />
+          /> */}
         </SearchSelect>
       </div>
     </>

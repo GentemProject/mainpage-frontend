@@ -33,6 +33,8 @@ export const organizationsQueries = {
       lastOrganizationId: string;
       causeId: string;
       country: string;
+      donationLinks: boolean;
+      donationBankAccountName: boolean;
     },
   ) => {
     try {
@@ -55,6 +57,12 @@ export const organizationsQueries = {
       }
       if (options.country) {
         filters = { ...filters, country: options.country };
+      }
+      if (options.donationLinks) {
+        filters = { ...filters, donationLinks: { $exists: true, $ne: '' } };
+      }
+      if (options.donationBankAccountName) {
+        filters = { ...filters, donationBankAccountName: { $exists: true, $ne: '' } };
       }
 
       logger.child(filters).info('filters getOrganizations query');

@@ -50,7 +50,7 @@ function Organization(props) {
             ))}
           </ScrollContainer>
         </div>
-        {(link || bankAccount || products) && (
+        {(link[0] !== '' || bankAccount || products) && (
           <div className={style.donation}>
             <div className={style.filterTitle}>Formas de donar</div>
 
