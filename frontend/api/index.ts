@@ -17,7 +17,7 @@ function createApolloClient() {
     link: new HttpLink({
       uri: `${API}/graphql`,
       fetch,
-      credentials: 'include',
+      credentials: '',
     }),
     cache: new InMemoryCache(),
   })

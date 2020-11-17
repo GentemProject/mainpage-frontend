@@ -17,10 +17,13 @@ import { Organization } from '../interfaces/organization'
 const querySchema = gql`
   query Organizations($causeId: String, $country: String) {
     getOrganizations(limit: 12, causeId: $causeId, country: $country) {
+      id
       name
       slug
       country
       logoUrl
+      donationLinks
+      donationBankAccountName
       causes {
         name
       }
@@ -28,7 +31,7 @@ const querySchema = gql`
   }
 `
 
-let filters = {
+const filtersDefault = {
   country: '',
   causeId: '',
 }
@@ -147,33 +150,46 @@ const OngList: NextPage /* <Props> */ = (/* { projectos, lengthOng } */) => {
     }
   }, [actualPage, maxPage]) */
 
-  /*   const [filters, setFilters] = useState() */
-  const { data, loading } = useQuery(querySchema, {
-    variables: { causeId: filters.causeId, country: filters.country },
+  const [filters, setFilters] = useState(filtersDefault)
+  const { data, loading, error, refetch } = useQuery(querySchema, {
+    variables: filters,
+    ssr: true,
   })
-  const handleClick = () => {
-    filters = { ...filters, country: 'Argentina' }
-    return filters
+  const handleCountry = async () => {
+    await setFilters({ ...filters, country: 'Argentina' })
+    await refetch()
   }
-  useEffect(() => {
-    console.log(filters)
-  }, [filters])
-
-  if (loading) return <span>Loading...</span>
-  console.log(data)
+  const handleCauseId = async () => {
+    await setFilters({ ...filters, causeId: '5fa1cce577801bb175042fc5' })
+    await refetch()
+  }
+  if (error) {
+    console.log(error)
+  }
   return (
     <>
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
-      <button
-        onClick={handleClick}
-        style={{ margin: '100px', backgroundColor: 'grey' }}
-      >
-        NDEAAAAA
-      </button>
+      <>
+        <button
+          onClick={handleCountry}
+          style={{ margin: '100px', backgroundColor: 'grey' }}
+        >
+          Change country
+        </button>
+        <br />
+        <button
+          onClick={handleCauseId}
+          style={{ margin: '100px', backgroundColor: 'grey' }}
+        >
+          Change CauseId
+        </button>
+      </>
+      {console.log(data)}
       {console.log(filters)}
-      {/* <CauseList
+      <CauseList loading={loading} organizations={data.getOrganizations} />
+      {/*       <CauseList
           changeFilters={changeFilters}
           changeSelect={changeSelect}
           filters={filters}
@@ -196,7 +212,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   await apolloClient.query({
     query: querySchema,
-    variables: { causeId: filters.causeId, country: filters.country },
+    variables: filtersDefault,
   })
 
   return {

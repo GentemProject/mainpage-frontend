@@ -38,7 +38,7 @@ export const organizationsQueries = {
     try {
       logger.info('query getOrganizations');
 
-      let limit = 10;
+      let limit = 12;
       if (options.limit) {
         limit = options.limit;
       }

@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ScrollContainer from 'react-indiana-drag-scroll'
-import { useAllCategories } from '@/hooks/useCategories'
 import Arrow from '../../../../svg/arrow'
 import style from '../../style.module.scss'
 
 function Organization(props) {
-  const { slug, products, link, bank, causeId, name, logo, location } = props
-  const [causeArray, setCauseArray] = useState<any>([])
-  useEffect(() => {
-    useAllCategories({ setCauseArray, causeId })
-  }, [causeId])
+  const {
+    slug,
+    products,
+    link,
+    bankAccount,
+    causes,
+    name,
+    logo,
+    location,
+  } = props
   return (
     <div className={style.layout}>
       <div className={style.infoContainer}>
@@ -40,14 +43,14 @@ function Organization(props) {
             Causas o comunidades con las que trabajan
           </div>
           <ScrollContainer vertical={false} className={style.spanContainer}>
-            {causeArray.map((cause) => (
-              <div key={cause} className={style.filterSpan}>
-                <span>{cause}</span>
+            {causes.map((cause) => (
+              <div key={Math.random()} className={style.filterSpan}>
+                <span>{cause.name}</span>
               </div>
             ))}
           </ScrollContainer>
         </div>
-        {(link || bank || products) && (
+        {(link || bankAccount || products) && (
           <div className={style.donation}>
             <div className={style.filterTitle}>Formas de donar</div>
 
@@ -57,7 +60,7 @@ function Organization(props) {
                   <span>Pasarela de pagos</span>
                 </div>
               )}
-              {bank && (
+              {bankAccount && (
                 <div className={style.filterSpan}>
                   <span>Transferencia bancaria</span>
                 </div>

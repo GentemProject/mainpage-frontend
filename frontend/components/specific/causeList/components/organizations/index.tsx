@@ -17,19 +17,18 @@ Modal.setAppElement('#__next')
 
 function ContenidoSider(props: any) {
   const {
-    button,
+    /*     button,
     proyectos,
     visible,
-    quantity,
-    changeSelect,
+    quantity, */
+    organizations,
+    loading,
+    /*     changeSelect,
     changeFilters,
-    filters,
-    totalOrgFilter,
+    filters, */
+    /*     totalOrgFilter, */
   } = props
-  const { causeId } = filters
   const [open, setOpen] = useState(false)
-  const [proyectLength, setProyectLength] = useState()
-  const [cause, setCause] = useState<any>('')
   const handleOpen = () => {
     setOpen(true)
   }
@@ -37,28 +36,20 @@ function ContenidoSider(props: any) {
     setOpen(false)
   }
 
-  useEffect(() => {
-    proyectos.map((ong) => {
-      setProyectLength(ong.length)
-    })
-  }, [proyectos])
-  useEffect(() => {
-    useOneCategorie({ setCause, causeId })
-  }, [causeId])
   return (
     <div className={style.ongListResult}>
       <div className={style.ongListResultQuantity}>
         <div className={style.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
-        {totalOrgFilter === quantity ? (
+        {/*         {totalOrgFilter === quantity ? (
           <h6>Mostrando las {quantity} organizaciones registradas </h6>
         ) : (
           <h6>
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
           </h6>
-        )}
-        <Modal
+        )} */}
+        {/*  <Modal
           className={style.listModal}
           isOpen={open}
           onRequestClose={handleClose}
@@ -71,8 +62,8 @@ function ContenidoSider(props: any) {
             changeSelect={changeSelect}
             changeFilters={changeFilters}
           />
-        </Modal>
-        <ScrollContainer
+        </Modal> */}
+        {/*         <ScrollContainer
           vertical={false}
           className={`${style.spanContainer} ${style.optionSelected}`}
         >
@@ -101,17 +92,17 @@ function ContenidoSider(props: any) {
               <span>Transferencia bancaria</span>
             </div>
           )}
-        </ScrollContainer>
+        </ScrollContainer> */}
       </div>
-      {proyectLength === 0 ? (
-        <NoOrganization changeFilters={changeFilters} />
+      {!loading && <LazyContenidoSider organizations={organizations} />}
+      {/*    {proyectLength === 0 ? (
+        <> */}
+      {/* <NoOrganization changeFilters={changeFilters} /> */}
+      {/*       'No org' */}
+      {/*  </>
       ) : (
-        <LazyContenidoSider
-          button={button}
-          proyectos={proyectos}
-          visible={visible}
-        />
-      )}
+        
+      )} */}
     </div>
   )
 }
@@ -142,63 +133,32 @@ function NoOrganization({ changeFilters }) {
   )
 }
 
-function LazyContenidoSider({ button, proyectos, visible }) {
-  const [show, setShow] = useState(false)
-  const elementRef = useRef()
-
-  useEffect(() => {
-    const onChange = (entries /* observer */) => {
-      const el = entries[0]
-      if (el.isIntersecting) {
-        setShow(true)
-        /* observer.disconnect() */
-      }
-    }
-    const observer = new IntersectionObserver(onChange, {
-      rootMargin: '500px',
-    })
-    observer.observe(elementRef.current)
-
-    /*   return () => observer.disconnect() */
-  })
-
+function LazyContenidoSider({ organizations }) {
   return (
     <>
-      <div className={style.organizationGrid} ref={elementRef}>
-        {show
-          ? proyectos.map((page: any) =>
-              page.map((ong: any) => {
-                return (
-                  <>
-                    <Organization
-                      key={ong.slug}
-                      slug={ong.slug}
-                      products={
-                        ong.donationData ? ong.donationData.products : null
-                      }
-                      link={ong.donationData ? ong.donationData.link : null}
-                      bank={
-                        ong.donationData ? ong.donationData.bankAccount : null
-                      }
-                      causeId={ong.primaryData.causeId}
-                      id={ong._id}
-                      name={ong.primaryData.name}
-                      logo={ong.primaryData.logo}
-                      location={ong.location}
-                    />
-                  </>
-                )
-              })
-            )
-          : null}
+      <div className={style.organizationGrid}>
+        {organizations.map((org) => (
+          <Organization
+            // Primary data
+            id={org.id}
+            key={org.slug}
+            slug={org.slug}
+            name={org.name}
+            logo={org.logoUrl}
+            causes={org.causes}
+            // Donation data
+            links={org.donationLinks}
+            bankAccount={org.donationBankAccountName}
+          />
+        ))}
       </div>
-      {visible && (
+      {/*  {visible && (
         <div className={style.seeMoreContainer}>
           <div onClick={button} className={style.seeMore}>
             <span className={style.seeMoreText}>Ver más</span>
           </div>
         </div>
-      )}
+      )} */}
     </>
   )
 }

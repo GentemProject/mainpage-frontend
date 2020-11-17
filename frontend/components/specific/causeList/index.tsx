@@ -7,16 +7,18 @@ import styles from './style.module.scss'
 
 function CauseList(props) {
   const {
-    changeFilters,
+    /*     changeFilters,
     changeSelect,
-    filters,
-    ONGs,
-    proyectos,
-    totalOrgFilter,
-    quantity,
-    button,
-    visible,
-    setFilters,
+    filters, */
+    /*     ONGs,
+    proyectos, */
+    organizations,
+    loading,
+    /*     totalOrgFilter, */
+    /*     quantity, */
+    /*     button, */
+    /*     visible, */
+    /*     setFilters, */
   } = props
   const contentBanner = (
     <span className={styles.descBanner}>
@@ -37,22 +39,24 @@ function CauseList(props) {
       >
         <div className={styles.layoutCenter}>
           <div className={`${styles.ongListContent}`}>
-            <Filter
+            {/*             <Filter
               changeFilters={changeFilters}
               changeSelect={changeSelect}
               filters={filters}
-            />
+            /> */}
             <ContenidoSider
-              ONGs={ONGs}
-              changeSelect={changeSelect}
+              organizations={organizations}
+              loading={loading}
+              /*               ONGs={ONGs} */
+              /*               changeSelect={changeSelect}
               changeFilters={changeFilters}
               filters={filters}
-              proyectos={proyectos}
               totalOrgFilter={totalOrgFilter}
-              quantity={quantity}
+              setFilters={setFilters} */
+              /*               proyectos={proyectos} */
+              /*               quantity={quantity}
               button={button}
-              visible={visible}
-              setFilters={setFilters}
+              visible={visible} */
             />
           </div>
         </div>
