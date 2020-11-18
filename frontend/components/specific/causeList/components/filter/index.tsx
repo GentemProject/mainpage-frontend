@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem'
   Select,
   Option,
 } from '../../../../utils/interactive/inputs/form/select' */
+
 // Style
 import style from '../../style.module.scss'
 function Filter({ select, checkbox, filters }) {

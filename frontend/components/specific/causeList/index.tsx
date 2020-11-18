@@ -36,7 +36,10 @@ function CauseList({
             <ContenidoSider
               organizations={organizations}
               resetFilters={resetFilters}
-              loading={loading}
+              // Modal filter
+              select={select}
+              filters={filters}
+              checkbox={checkbox}
             />
           </div>
         </div>

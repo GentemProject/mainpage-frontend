@@ -15,8 +15,13 @@ import Organization from './Organization'
 
 Modal.setAppElement('#__next')
 
-function ContenidoSider(props: any) {
-  const { organizations, resetFilters } = props
+function ContenidoSider({
+  organizations,
+  resetFilters,
+  select,
+  filters,
+  checkbox,
+}) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(true)
@@ -38,7 +43,7 @@ function ContenidoSider(props: any) {
             Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
           </h6>
         )} */}
-        {/*  <Modal
+        <Modal
           className={style.listModal}
           isOpen={open}
           onRequestClose={handleClose}
@@ -46,42 +51,39 @@ function ContenidoSider(props: any) {
           <button className={style.modalClose} onClick={handleClose}>
             <Close />
           </button>
-          <ModalContent
-            filters={filters}
-            changeSelect={changeSelect}
-            changeFilters={changeFilters}
-          />
-        </Modal> */}
-        {/*         <ScrollContainer
+          <ModalContent filters={filters} select={select} checkbox={checkbox} />
+        </Modal>
+        <ScrollContainer
           vertical={false}
           className={`${style.spanContainer} ${style.optionSelected}`}
         >
-          {filters.causeId !== 0 && (
+          {console.log(filters)}
+          {filters.causeId !== '' && (
             <div className={style.filterSpan}>
-              <span>{cause}</span>
+              <span>{filters.causeId}</span>
             </div>
           )}
-          {filters.country !== null && (
+          {filters.country !== '' && (
             <div className={style.filterSpan}>
               <span>{filters.country}</span>
             </div>
           )}
-          {filters.products && (
+          {/*           {filters.products && (
             <div className={style.filterSpan}>
               <span>Entrega de productos</span>
             </div>
-          )}
-          {filters.donationData && (
+          )} */}
+          {filters.donationLinks && (
             <div className={style.filterSpan}>
               <span>Pasarela de pagos</span>
             </div>
           )}
-          {filters.transfer && (
+          {filters.donationBankAccountName && (
             <div className={style.filterSpan}>
               <span>Transferencia bancaria</span>
             </div>
           )}
-        </ScrollContainer> */}
+        </ScrollContainer>
       </div>
       {organizations.length === 0 ? (
         <>

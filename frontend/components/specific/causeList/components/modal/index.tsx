@@ -2,17 +2,13 @@ import Filter from '../filter'
 import styles from '../../style.module.scss'
 
 function ModalContent(props: any) {
-  const { changeSelect, changeFilters, filters } = props
+  const { select, filters, checkbox } = props
   return (
     <div className={styles.ongListModal}>
       <div className={styles.ongListModalLogo}>
         <img src="/logoAnimado.svg" alt="logo" />
       </div>
-      <Filter
-        changeSelect={changeSelect}
-        filters={filters}
-        changeFilters={changeFilters}
-      />
+      <Filter select={select} filters={filters} checkbox={checkbox} />
     </div>
   )
 }
