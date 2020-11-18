@@ -4,7 +4,6 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 
 // Components & Usables
 import ModalContent from '../modal'
-import { useOneCategorie } from '@/hooks/useCategories'
 
 // Svg
 import Close from '../../../../svg/close'
@@ -16,12 +15,14 @@ import Organization from './Organization'
 Modal.setAppElement('#__next')
 
 function ContenidoSider({
-  organizations,
+  data,
   resetFilters,
   select,
   filters,
   checkbox,
+  handleNextPage,
 }) {
+  const { organizations, pageData } = data
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(true)
@@ -36,13 +37,11 @@ function ContenidoSider({
         <div className={style.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
-        {/*         {totalOrgFilter === quantity ? (
-          <h6>Mostrando las {quantity} organizaciones registradas </h6>
-        ) : (
+        {pageData.totalOrganizations && (
           <h6>
-            Mostrando {totalOrgFilter} de {quantity} organizaciones registradas
+            Mostrando {pageData.totalOrganizations} organizaciones registradas
           </h6>
-        )} */}
+        )}
         <Modal
           className={style.listModal}
           isOpen={open}
@@ -91,7 +90,11 @@ function ContenidoSider({
         </>
       ) : (
         <>
-          <LazyContenidoSider organizations={organizations} />
+          <OrganizationsSider
+            organizations={organizations}
+            hasNext={pageData.hasNextPage}
+            handleNextPage={handleNextPage}
+          />
         </>
       )}
     </div>
@@ -121,7 +124,7 @@ function NoOrganization({ resetFilters }) {
   )
 }
 
-function LazyContenidoSider({ organizations }) {
+function OrganizationsSider({ organizations, hasNext, handleNextPage }) {
   return (
     <>
       <div className={style.organizationGrid}>
@@ -142,13 +145,13 @@ function LazyContenidoSider({ organizations }) {
           </>
         ))}
       </div>
-      {/*  {visible && (
+      {hasNext && (
         <div className={style.seeMoreContainer}>
-          <div onClick={button} className={style.seeMore}>
+          <div onClick={handleNextPage} className={style.seeMore}>
             <span className={style.seeMoreText}>Ver más</span>
           </div>
         </div>
-      )} */}
+      )}
     </>
   )
 }

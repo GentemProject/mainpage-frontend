@@ -58,14 +58,14 @@ function Filter({ select, checkbox, filters }) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={
-                filters.country === '' ? 'Todos los paises' : filters.country
-              }
+              value={filters.country}
               onChange={async (e) => {
                 await select.handleCountry(e.target.value)
               }}
             >
-              <MenuItem value="Todos los paises">Todos los paises</MenuItem>
+              <MenuItem value="">
+                <em>Todos los paises</em>
+              </MenuItem>
               {ciudad &&
                 ciudad.map((data) => {
                   return (
@@ -83,14 +83,12 @@ function Filter({ select, checkbox, filters }) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={
-                filters.causeId === '' ? 'Todas las causas' : filters.causeId
-              }
+              value={filters.causeId}
               onChange={async (e) => {
                 await select.handleCauseId(e.target.value)
               }}
             >
-              <MenuItem value="">Todos las causas</MenuItem>
+              <MenuItem value="">Todas las causas</MenuItem>
               {!loading &&
                 data.getCauses.map((data) => {
                   return (

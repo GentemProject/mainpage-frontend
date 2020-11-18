@@ -17,7 +17,8 @@ type Query {
     country: String
     donationLinks: Boolean
     donationBankAccountName: Boolean
-  ): [Organization]
+    page: Float!
+  ): OrgCount
   getOrganization(organizationId: String, slug: String): Organization
 }
 
@@ -132,4 +133,16 @@ type Organization {
 
   createdAt: String
   updatedAt: String
+}
+
+type OrgCount {
+  pageData: PageData
+  organizations: [Organization]
+}
+
+type PageData {
+  totalOrganizations: Float
+  currentPage: Float
+  totalPages: Float
+  hasNextPage: Boolean
 }

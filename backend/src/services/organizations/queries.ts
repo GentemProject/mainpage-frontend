@@ -35,6 +35,8 @@ export const organizationsQueries = {
       country: string;
       donationLinks: boolean;
       donationBankAccountName: boolean;
+      totalLength: boolean;
+      page: number;
     },
   ) => {
     try {
@@ -44,6 +46,7 @@ export const organizationsQueries = {
       if (options.limit) {
         limit = options.limit;
       }
+      const skip = (options.page * limit) | 0;
 
       let filters = {};
       if (options.userId) {
@@ -67,9 +70,18 @@ export const organizationsQueries = {
 
       logger.child(filters).info('filters getOrganizations query');
 
-      const organizations = await OrganizationModel.find(filters).limit(limit).exec();
-
-      return organizations;
+      const [organizations, count] = await Promise.all([
+        OrganizationModel.find(filters).limit(limit).skip(skip).exec(),
+        OrganizationModel.count(filters),
+      ]);
+      const totalPages = Math.ceil(count / limit) - 1;
+      const pageData = {
+        currentPage: options.page,
+        totalPages: totalPages,
+        hasNextPage: options.page !== totalPages,
+        totalOrganizations: count,
+      };
+      return { organizations: organizations, pageData: pageData };
     } catch (error) {
       logger.child(error).error('error getOrganizations query');
       throw new Error(error);

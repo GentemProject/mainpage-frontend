@@ -18,22 +18,32 @@ const querySchema = gql`
     $country: String
     $donationLinks: Boolean
     $donationBankAccountName: Boolean
+    $page: Float!
   ) {
     getOrganizations(
+      limit: 12
+      page: $page
       causeId: $causeId
       country: $country
       donationLinks: $donationLinks
       donationBankAccountName: $donationBankAccountName
     ) {
-      id
-      name
-      slug
-      country
-      logoUrl
-      donationLinks
-      donationBankAccountName
-      causes {
+      pageData {
+        totalPages
+        hasNextPage
+        totalOrganizations
+      }
+      organizations {
+        id
         name
+        slug
+        country
+        logoUrl
+        donationLinks
+        donationBankAccountName
+        causes {
+          name
+        }
       }
     }
   }
@@ -44,6 +54,7 @@ const filtersDefault = {
   causeId: '',
   donationLinks: false,
   donationBankAccountName: false,
+  page: 0,
 }
 const OngList: NextPage = () => {
   // Filter State
@@ -54,19 +65,27 @@ const OngList: NextPage = () => {
   })
   // Filter handlers
   const handleCountry = async (country) => {
-    await setFilters({ ...filters, country: country })
+    await setFilters({ ...filters, country: country, page: 0 })
     await refetch()
   }
   const handleCauseId = async (causeId) => {
-    await setFilters({ ...filters, causeId: causeId })
+    await setFilters({ ...filters, causeId: causeId, page: 0 })
     await refetch()
   }
   const handleDonationLinks = async (booleanString) => {
-    await setFilters({ ...filters, donationLinks: booleanString })
+    await setFilters({ ...filters, donationLinks: booleanString, page: 0 })
     await refetch()
   }
   const handleDonationBankAccountName = async (booleanString) => {
-    await setFilters({ ...filters, donationBankAccountName: booleanString })
+    await setFilters({
+      ...filters,
+      donationBankAccountName: booleanString,
+      page: 0,
+    })
+    await refetch()
+  }
+  const handleNextPage = async () => {
+    await setFilters({ ...filters, page: filters.page + 1 })
     await refetch()
   }
 
@@ -79,19 +98,19 @@ const OngList: NextPage = () => {
   if (error) {
     console.log(error)
   }
-  console.log(filters)
+  console.log(data)
   return (
     <>
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
       <CauseList
-        loading={loading}
         select={{ handleCauseId, handleCountry }}
         checkbox={{ handleDonationLinks, handleDonationBankAccountName }}
+        handleNextPage={handleNextPage}
         filters={filters}
         resetFilters={resetFilters}
-        organizations={data.getOrganizations}
+        data={data.getOrganizations}
       />
     </>
   )

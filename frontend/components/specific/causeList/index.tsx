@@ -8,10 +8,10 @@ import styles from './style.module.scss'
 function CauseList({
   select,
   filters,
-  organizations,
-  loading,
+  data,
   resetFilters,
   checkbox,
+  handleNextPage,
 }) {
   const contentBanner = (
     <span className={styles.descBanner}>
@@ -34,8 +34,9 @@ function CauseList({
           <div className={`${styles.ongListContent}`}>
             <Filter select={select} filters={filters} checkbox={checkbox} />
             <ContenidoSider
-              organizations={organizations}
+              data={data}
               resetFilters={resetFilters}
+              handleNextPage={handleNextPage}
               // Modal filter
               select={select}
               filters={filters}
