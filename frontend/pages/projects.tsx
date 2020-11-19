@@ -11,7 +11,7 @@ import { Loader } from '@/components/utils/interactive/loader'
 import { initializeApollo } from '../api'
 import { useQuery, gql } from '@apollo/client'
 
-// Interfaces
+// Schema
 const querySchema = gql`
   query Organizations(
     $causeId: String

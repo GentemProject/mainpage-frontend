@@ -19,18 +19,14 @@ function Ongs(props: any) {
         </div>
 
         <div className={styles.containerFichas}>
-          {props.load ? (
-            <span>cargando</span>
-          ) : (
-            props.ongs.map((data) => (
-              <Ficha
-                key={data.primaryData.name}
-                i={data.primaryData.logo ? data.primaryData.logo : logoDefault}
-                alt={data.primaryData.name}
-                slug={data.slug}
-              />
-            ))
-          )}
+          {props.ongs.map((data) => (
+            <Ficha
+              key={data.name}
+              i={data.logoUrl ? data.logoUrl : logoDefault}
+              alt={data.name}
+              slug={data.slug}
+            />
+          ))}
         </div>
       </div>
     </div>

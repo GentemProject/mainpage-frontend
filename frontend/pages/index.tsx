@@ -1,4 +1,5 @@
-import { useState, useEffect, Fragment } from 'react'
+import { Fragment } from 'react'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
 /* import Container from '../components/----home-----/container' */
@@ -15,14 +16,43 @@ import styles from '@/components/specific/home/style.module.scss'
 import { getLastest } from '../api/filters'
 import Link from 'next/link'
 import Button from '@/components/utils/interactive/inputs/buttons/primary'
-export default function Home({ orgs }: any) {
-  const [ongs, setOngs] = useState<any>()
-  const [isLoading, setIsloading] = useState<boolean>(true)
 
-  useEffect(() => {
-    setOngs(orgs)
-    setIsloading(false)
-  }, [])
+// Apollo
+import { initializeApollo } from '../api'
+import { useQuery, gql } from '@apollo/client'
+
+// Schema
+const querySchema = gql`
+  query Organizations(
+    $donationLinks: Boolean
+    $donationBankAccountName: Boolean
+  ) {
+    getOrganizations(
+      limit: 8
+      page: 0
+      donationLinks: $donationLinks
+      donationBankAccountName: $donationBankAccountName
+    ) {
+      organizations {
+        name
+        slug
+        logoUrl
+      }
+    }
+  }
+`
+
+const filtersDefault = {
+  donationLinks: false,
+  donationBankAccountName: false,
+}
+
+export default function Home({ orgs }: any) {
+  const { data, loading, error } = useQuery(querySchema, {
+    variables: filtersDefault,
+    ssr: true,
+  })
+
   const g = (
     <Fragment>
       <strong>gentem </strong>es un directorio abierto de organizaciones sin
@@ -71,7 +101,11 @@ export default function Home({ orgs }: any) {
           <Stats />
 
           <Nos />
-          <Ongs ongs={ongs} load={isLoading} />
+          {loading ? (
+            'Inserte loader'
+          ) : (
+            <Ongs ongs={data.getOrganizations.organizations} />
+          )}
         </div>
       </LayoutContainer>
       <Contribuir />
@@ -79,13 +113,17 @@ export default function Home({ orgs }: any) {
   )
 }
 
-export const getStaticProps = async () => {
-  const orgs = await getLastest(8)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: querySchema,
+    variables: filtersDefault,
+  })
 
   return {
     props: {
-      orgs,
+      initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 20,
   }
 }
