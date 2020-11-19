@@ -71,7 +71,7 @@ export const organizationsQueries = {
       logger.child(filters).info('filters getOrganizations query');
 
       const [organizations, count] = await Promise.all([
-        OrganizationModel.find(filters).limit(limit).skip(skip).exec(),
+        OrganizationModel.find(filters).sort({ createdAt: -1 }).limit(limit).skip(skip).exec(),
         OrganizationModel.count(filters),
       ]);
       const totalPages = Math.ceil(count / limit) - 1;

@@ -56,7 +56,6 @@ function ContenidoSider({
           vertical={false}
           className={`${style.spanContainer} ${style.optionSelected}`}
         >
-          {console.log(filters)}
           {filters.causeId !== '' && (
             <div className={style.filterSpan}>
               <span>{filters.causeId}</span>

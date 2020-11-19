@@ -98,7 +98,6 @@ const OngList: NextPage = () => {
   if (error) {
     console.log(error)
   }
-  console.log(data)
   return (
     <>
       <Head>
