@@ -18,11 +18,9 @@ const querySchema = gql`
     $country: String
     $donationLinks: Boolean
     $donationBankAccountName: Boolean
-    $page: Float!
   ) {
     getOrganizations(
       limit: 12
-      page: $page
       causeId: $causeId
       country: $country
       donationLinks: $donationLinks
@@ -54,7 +52,6 @@ const filtersDefault = {
   causeId: '',
   donationLinks: false,
   donationBankAccountName: false,
-  page: 0,
 }
 const OngList: NextPage = () => {
   // Filter State
@@ -65,28 +62,28 @@ const OngList: NextPage = () => {
   })
   // Filter handlers
   const handleCountry = async (country) => {
-    await setFilters({ ...filters, country: country, page: 0 })
+    await setFilters({ ...filters, country: country })
     await refetch()
   }
   const handleCauseId = async (causeId) => {
-    await setFilters({ ...filters, causeId: causeId, page: 0 })
+    await setFilters({ ...filters, causeId: causeId })
     await refetch()
   }
   const handleDonationLinks = async (booleanString) => {
-    await setFilters({ ...filters, donationLinks: booleanString, page: 0 })
+    await setFilters({ ...filters, donationLinks: booleanString })
     await refetch()
   }
   const handleDonationBankAccountName = async (booleanString) => {
     await setFilters({
       ...filters,
       donationBankAccountName: booleanString,
-      page: 0,
     })
     await refetch()
   }
   const handleNextPage = async () => {
-    await setFilters({ ...filters, page: filters.page + 1 })
-    await refetch()
+    /*   await setFilters({ ...filters, page: filters.page + 1 })
+    await refetch() */
+    console.log('test')
   }
 
   const resetFilters = async () => {

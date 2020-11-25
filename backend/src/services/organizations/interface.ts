@@ -9,14 +9,12 @@ export interface OrganizationInterface extends mongoose.Document {
   goal: string;
   description: string;
   howItIsUsingDonations: string;
+  sponsors: string[];
 
   logoUrl: string;
-  wallUrl?: string;
 
   city?: string;
-  state?: string;
   country?: string;
-  address?: string;
   mapUrl?: string;
 
   contactEmail?: string;
@@ -30,12 +28,12 @@ export interface OrganizationInterface extends mongoose.Document {
   facebookUrl?: string;
   instagramUrl?: string;
   twitterUrl?: string;
+  linkedinUrl?: string;
   whatsappPhone?: string;
 
   donationLinks?: string[];
   donationBankAccountName?: string;
-  donationBankAccountType?: string;
-  donationBankAccountNumber?: string;
+  donationProducts?: string;
 
   createdAt?: string;
   updatedAt?: string;

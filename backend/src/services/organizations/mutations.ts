@@ -14,15 +14,13 @@ export const organizationsMutations = {
       goal: string;
       description: string;
       howItIsUsingDonations: string;
+      sponsors: string[];
 
       logoUrl: string;
-      wallUrl?: string;
 
       city?: string;
-      state?: string;
       country?: string;
-      address?: string;
-      mapUrl?: string;
+      coordenates?: number[];
 
       contactEmail?: string;
       contactPhone?: string;
@@ -35,11 +33,11 @@ export const organizationsMutations = {
       instagramUrl?: string;
       twitterUrl?: string;
       whatsappPhone?: string;
+      linkedinUrl?: string;
 
       donationLinks?: string[];
       donationBankAccountName?: string;
-      donationBankAccountType?: string;
-      donationBankAccountNumber?: string;
+      donationProducts?: string;
     },
   ) => {
     try {

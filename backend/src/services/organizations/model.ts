@@ -23,6 +23,7 @@ const OrganizationSchema = new mongoose.Schema(
     causesIds: {
       type: [mongoose.Types.ObjectId],
       required: true,
+      index: true,
     },
     goal: {
       type: String,
@@ -41,14 +42,7 @@ const OrganizationSchema = new mongoose.Schema(
       required: true,
       default: '',
     },
-    wallUrl: {
-      type: String,
-    },
     city: {
-      type: String,
-      index: true,
-    },
-    state: {
       type: String,
       index: true,
     },
@@ -56,11 +50,11 @@ const OrganizationSchema = new mongoose.Schema(
       type: String,
       index: true,
     },
-    address: {
-      type: String,
+    coordenates: {
+      type: [Number],
     },
-    mapUrl: {
-      type: String,
+    sponsors: {
+      type: [String],
     },
     contactEmail: {
       type: String,
@@ -90,6 +84,9 @@ const OrganizationSchema = new mongoose.Schema(
     twitterUrl: {
       type: String,
     },
+    linkedinUrl: {
+      type: String,
+    },
     whatsappPhone: {
       type: String,
     },
@@ -98,12 +95,11 @@ const OrganizationSchema = new mongoose.Schema(
     },
     donationBankAccountName: {
       type: String,
+      index: true,
     },
-    donationBankAccountType: {
+    donationProducts: {
       type: String,
-    },
-    donationBankAccountNumber: {
-      type: String,
+      index: true,
     },
   },
   {
