@@ -11,7 +11,9 @@ function DonationData({
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
-        {(bankAccount || donationLinks || donationProducts) && (
+        {(bankAccount !== '' ||
+          donationLinks !== '' ||
+          donationProducts[0] !== '') && (
           <ResponsiveDonate
             logo={logo}
             name={name}
@@ -50,7 +52,7 @@ export function ResponsiveDonate({
       <div className={styles.ongProfileHowToDonateTitle}>
         <h3>¿Cómo donar?</h3>
       </div>
-      {donationLinks && (
+      {donationLinks[0] && (
         <div className="OngProfile__HowToDonate--Donate">
           <>
             <h4 className="OngProfile__Donate--Title h4"> Dona Online </h4>
@@ -59,7 +61,11 @@ export function ResponsiveDonate({
                 margin: '12px 0',
               }}
             />
-            <a href={donationLinks} target="_blank" rel="noopener noreferrer">
+            <a
+              href={donationLinks[0]}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button>
                 <span> Haz tu donación online </span>
               </Button>

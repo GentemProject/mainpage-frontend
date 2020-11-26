@@ -42,9 +42,11 @@ function Contenido(props: any) {
     twitter,
     bankAccount,
     donationLinks,
+    donationProducts,
     city,
     country,
     causes,
+    sponsors,
   } = props
   const filter = 0
   return (
@@ -90,8 +92,7 @@ function Contenido(props: any) {
             </p>
           </div>
         )}
-
-        {props.sponsors.length !== 0 ? (
+        {sponsors[0] !== '' ? (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
             <Divider
@@ -100,9 +101,9 @@ function Contenido(props: any) {
               }}
             />
             <div className={styles.ongProfileSponsorsContainer}>
-              {props.sponsors.map((sponsor: any) => (
+              {sponsors.map((sponsor: any) => (
                 <div key={sponsor} className={styles.ongProfileContainerImg}>
-                  <img src={sponsor} alt="Logo sponsor" />
+                  <img src={sponsor} alt={`Logo sponsor de ${name}`} />
                 </div>
               ))}
             </div>
@@ -210,7 +211,9 @@ function Contenido(props: any) {
           </div>
         )}
 
-        {(bankAccount || donationLinks) && (
+        {(bankAccount !== '' ||
+          donationLinks[0] !== '' ||
+          donationProducts !== '') && (
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
@@ -236,6 +239,7 @@ function Contenido(props: any) {
                     name={name}
                     bankAccount={bankAccount}
                     donationLinks={donationLinks}
+                    donationProducts={donationProducts}
                   />
                 </div>
               </Modal>

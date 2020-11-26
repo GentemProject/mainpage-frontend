@@ -7,7 +7,6 @@ import styles from './style.module.scss'
 
 function Cause({ data }) {
   const { coordenates, city, country } = data
-  console.log(data)
   return (
     <div className={styles.ongProfile}>
       <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
@@ -29,6 +28,7 @@ function Cause({ data }) {
               twitter={data.twitterUrl}
               bankAccount={data.donationBankAccountName}
               donationLinks={data.donationLinks}
+              donationProducts={data.donationProducts}
               city={city}
               country={country}
               causes={data.causes}
