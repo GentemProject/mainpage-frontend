@@ -118,14 +118,14 @@ function Filter({ select, checkbox, filters }) {
             boolean={filters.donationBankAccountName}
             name="transfer"
           />
-          {/*
+
           <TextCheck
             title="Donar productos"
             desc="Información sobre como entregar los productos que quieras donar"
-            change={changeFilters}
-            boolean={filters.products}
+            change={checkbox.handleDonationProducts}
+            boolean={filters.donationProducts}
             name="products"
-          /> */}
+          />
         </SearchSelect>
       </div>
     </>

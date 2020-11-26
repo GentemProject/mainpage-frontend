@@ -6223,10 +6223,9 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.com/maps/place/Hermosillo,+Sonora,+Mexico/@29.0820824,-111.1290721,11z/data=!3m1!4b1!4m5!3m4!1s0x86ce84687adfaee5:0xb33d5395e9887ff9!8m2!3d29.0729673!4d-110.9559192",
       "coordenates": {
-      "x": -77.3287548,
-        "y": 3.9699999
+        "x": -111.1290721,
+        "y": 29.0820824
       },
       "country": "México",
       "city": "Hermosillo"
@@ -6275,7 +6274,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.es/maps/place/Cartagena,+Cartagena+Province,+Bolivar,+Colombia/@10.4001968,-75.5435451,13z/data=!3m1!4b1!4m5!3m4!1s0x8ef625e7ae9d1351:0xb161392e033f26ca!8m2!3d10.3932277!4d-75.4832311",
+      "coordenates": {
+        "x": -75.5435451,
+        "y": 10.4001968
+      },
       "country": "Colombia",
       "city": "Cartagena"
     },
@@ -6323,7 +6325,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.com/maps/place/Bogot%C3%A1,+Colombia/@4.6482837,-74.247895,11z/data=!3m1!4b1!4m5!3m4!1s0x8e3f9bfd2da6cb29:0x239d635520a33914!8m2!3d4.7109886!4d-74.072092?hl=es",
+      "coordenates": {
+        "x": -74.247895,
+        "y": 4.6482837
+      },
       "country": "Colombia",
       "city": "Bogotá"
     },
@@ -6371,7 +6376,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.es/maps/place/Maracay,+Aragua,+Venezuela/@10.2671764,-67.6754513,12z/data=!3m1!4b1!4m5!3m4!1s0x8e803c989377fe87:0xb5ff524dadae5b74!8m2!3d10.2441931!4d-67.6066164",
+      "coordenates": {
+        "x": -67.6754513,
+        "y": 10.2671764
+      },
       "country": "Venezuela",
       "city": "Maracay"
     },
@@ -6418,7 +6426,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.es/maps/place/Punto+Fijo,+Falc%C3%B3n,+Venezuela/@11.7063961,-70.2196517,13z/data=!3m1!4b1!4m5!3m4!1s0x8e85ed24b8524353:0x18abea72d12fd565!8m2!3d11.711511!4d-70.1813018",
+      "coordenates": {
+        "x": -70.2196517,
+        "y": 11.7063961
+      },
       "country": "Venezuela",
       "city": "Punto fijo"
     },
@@ -6462,7 +6473,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.es/maps/place/Puebla,+Mexico/@19.040034,-98.2630059,12z/data=!3m1!4b1!4m5!3m4!1s0x85cfc0bd5ebc7a3b:0x48a6461de494ad95!8m2!3d19.0414398!4d-98.2062727",
+      "coordenates": {
+        "x": -98.2630059,
+        "y": 19.040034
+      },
       "country": "México",
       "city": "Puebla"
     },
@@ -6510,7 +6524,10 @@
       "website": ""
     },
     "location": {
-      "map": "https://www.google.es/maps/place/La+Romana,+Dominican+Republic/@18.4326968,-69.0425611,12z/data=!3m1!4b1!4m5!3m4!1s0x8eaf5468f250cc2b:0x174be55fc8eb99d9!8m2!3d18.4338645!4d-68.9658817",
+      "coordenates": {
+        "x": -69.0425611,
+        "y": 18.4326968
+      },
       "country": "República Dominicana",
       "city": "La Romana"
     },

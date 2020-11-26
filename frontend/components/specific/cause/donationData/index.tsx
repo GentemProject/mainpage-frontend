@@ -1,16 +1,23 @@
 import { Divider, Button } from '../../../usables/buttons'
 import styles from '../style.module.scss'
 
-function DonationData({ logo, name, bankAccount, donationLinks }) {
+function DonationData({
+  logo,
+  name,
+  bankAccount,
+  donationLinks,
+  donationProducts,
+}) {
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
-        {(bankAccount || donationLinks) && (
+        {(bankAccount || donationLinks || donationProducts) && (
           <ResponsiveDonate
             logo={logo}
             name={name}
             bankAccount={bankAccount}
             donationLinks={donationLinks}
+            donationProducts={donationProducts}
           />
         )}
       </div>
@@ -19,7 +26,13 @@ function DonationData({ logo, name, bankAccount, donationLinks }) {
 }
 export default DonationData
 
-export function ResponsiveDonate({ logo, name, bankAccount, donationLinks }) {
+export function ResponsiveDonate({
+  logo,
+  name,
+  bankAccount,
+  donationLinks,
+  donationProducts,
+}) {
   return (
     <>
       <div className={styles.ongProfileUserModal}>
@@ -69,7 +82,7 @@ export function ResponsiveDonate({ logo, name, bankAccount, donationLinks }) {
           </span>
         </div>
       )}
-      {/*       {donationProducts && (
+      {donationProducts && (
         <div className={styles.ongProfileHowToDonateDonateProduct}>
           <h4 className="OngProfile__DonateProduct--Title h4">
             Haz una donación de productos
@@ -83,7 +96,7 @@ export function ResponsiveDonate({ logo, name, bankAccount, donationLinks }) {
             <span className="span">{donationProducts}</span>
           </div>
         </div>
-      )} */}
+      )}
     </>
   )
 }

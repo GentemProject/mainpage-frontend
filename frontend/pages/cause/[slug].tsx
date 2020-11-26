@@ -15,7 +15,6 @@ const querySchema = gql`
       name
       description
       logoUrl
-      goal
       howItIsUsingDonations
       contactEmail
       contactPhone
@@ -23,11 +22,17 @@ const querySchema = gql`
       whatsappPhone
       facebookUrl
       twitterUrl
+      linkedinUrl
       instagramUrl
       donationBankAccountName
       donationLinks
       city
       country
+      coordenates {
+        x
+        y
+      }
+      sponsors
       causes {
         name
       }
@@ -42,10 +47,8 @@ const ORG: NextPage = () => {
   const ong = data.getOrganization
 
   if (loading) return <span>Loading...</span>
-  console.log(data.getOrganization)
   return (
     <>
-      ndeaa
       <Head>
         <title>{ong.name} | gentem</title>
       </Head>

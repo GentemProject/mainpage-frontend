@@ -18,6 +18,8 @@ const querySchema = gql`
     $country: String
     $donationLinks: Boolean
     $donationBankAccountName: Boolean
+    $donationProducts: Boolean
+    $lastOrganizationId: String
   ) {
     getOrganizations(
       limit: 12
@@ -25,9 +27,10 @@ const querySchema = gql`
       country: $country
       donationLinks: $donationLinks
       donationBankAccountName: $donationBankAccountName
+      donationProducts: $donationProducts
+      lastOrganizationId: $lastOrganizationId
     ) {
       pageData {
-        totalPages
         hasNextPage
         totalOrganizations
       }
@@ -39,6 +42,7 @@ const querySchema = gql`
         logoUrl
         donationLinks
         donationBankAccountName
+        donationProducts
         causes {
           name
         }
@@ -52,14 +56,19 @@ const filtersDefault = {
   causeId: '',
   donationLinks: false,
   donationBankAccountName: false,
+  donationProducts: false,
+  lastOrganizationId: '',
 }
 const OngList: NextPage = () => {
   // Filter State
   const [filters, setFilters] = useState(filtersDefault)
-  const { data, loading, error, refetch } = useQuery(querySchema, {
-    variables: filters,
-    ssr: true,
-  })
+  const { data, loading, error, refetch, fetchMore, updateQuery } = useQuery(
+    querySchema,
+    {
+      variables: filters,
+      ssr: true,
+    }
+  )
   // Filter handlers
   const handleCountry = async (country) => {
     await setFilters({ ...filters, country: country })
@@ -69,23 +78,39 @@ const OngList: NextPage = () => {
     await setFilters({ ...filters, causeId: causeId })
     await refetch()
   }
-  const handleDonationLinks = async (booleanString) => {
-    await setFilters({ ...filters, donationLinks: booleanString })
+  const handleDonationLinks = async (boolean) => {
+    await setFilters({ ...filters, donationLinks: boolean })
     await refetch()
   }
-  const handleDonationBankAccountName = async (booleanString) => {
+  const handleDonationBankAccountName = async (boolean) => {
     await setFilters({
       ...filters,
-      donationBankAccountName: booleanString,
+      donationBankAccountName: boolean,
+    })
+    await refetch()
+  }
+  const handleDonationProducts = async (boolean) => {
+    await setFilters({
+      ...filters,
+      donationProducts: boolean,
     })
     await refetch()
   }
   const handleNextPage = async () => {
-    /*   await setFilters({ ...filters, page: filters.page + 1 })
-    await refetch() */
-    console.log('test')
+    const organizations = data.getOrganizations.organizations
+    const lastOrganization = organizations[organizations.length - 1]
+    await setFilters({ ...filters, lastOrganizationId: lastOrganization.id })
+    await fetchMore({
+      variables: filters,
+      updateQuery: (prev, { fetchMoreResult }) => {
+        fetchMoreResult.getOrganizations.organizations = [
+          ...fetchMoreResult.getOrganizations.organizations,
+          ...prev.getOrganizations.organizations,
+        ]
+        return fetchMoreResult
+      },
+    })
   }
-
   const resetFilters = async () => {
     await setFilters(filtersDefault)
   }
@@ -95,6 +120,7 @@ const OngList: NextPage = () => {
   if (error) {
     console.log(error)
   }
+  /* console.log(data.getOrganizations.organizations) */
   return (
     <>
       <Head>
@@ -102,7 +128,11 @@ const OngList: NextPage = () => {
       </Head>
       <CauseList
         select={{ handleCauseId, handleCountry }}
-        checkbox={{ handleDonationLinks, handleDonationBankAccountName }}
+        checkbox={{
+          handleDonationLinks,
+          handleDonationBankAccountName,
+          handleDonationProducts,
+        }}
         handleNextPage={handleNextPage}
         filters={filters}
         resetFilters={resetFilters}

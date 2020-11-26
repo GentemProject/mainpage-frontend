@@ -27,15 +27,12 @@ const OrganizationSchema = new mongoose.Schema(
     },
     goal: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
-      required: true,
     },
     howItIsUsingDonations: {
       type: String,
-      required: true,
     },
     logoUrl: {
       type: String,
@@ -51,7 +48,8 @@ const OrganizationSchema = new mongoose.Schema(
       index: true,
     },
     coordenates: {
-      type: [Number],
+      x: Number,
+      y: Number,
     },
     sponsors: {
       type: [String],

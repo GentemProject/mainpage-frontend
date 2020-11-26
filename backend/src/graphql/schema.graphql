@@ -107,7 +107,7 @@ type Organization {
 
   city: String
   country: String
-  coordenates: [Float]
+  coordenates: coordenates
 
   contactEmail: String
   contactPhone: String
@@ -129,6 +129,11 @@ type Organization {
 
   createdAt: String
   updatedAt: String
+}
+
+type coordenates {
+  x: Float
+  y: Float
 }
 
 type OrgCount {

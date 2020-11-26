@@ -24,13 +24,15 @@ async function main() {
         causesIds: newCauses,
         goal: organization.primaryData.objective || '',
         sponsors: organization.primaryData.sponsors || [],
-        description: organization.primaryData.description || 'na',
-        howItIsUsingDonations: organization.primaryData.howUseDonation || 'na',
+        description: organization.primaryData.description || '',
+        howItIsUsingDonations: organization.primaryData.howUseDonation || '',
         logoUrl: organization.primaryData.logo || 'https://gentem.org/logoDefault.png',
         city: organization.location?.city || '',
         country: organization.location?.country || '',
-        coordenateX: organization.location?.coordenates?.x || 0,
-        coordenateY: organization.location?.coordenates?.y || 0,
+        coordenates: {
+          x: organization.location?.coordenates?.x || -26.231718,
+          y: organization.location?.coordenates?.y || -63.2485696,
+        },
         contactEmail: organization.contact?.email || '',
         contactPhone: organization.contact?.phone || '',
         contactWebsite: organization.contact?.website || '',
@@ -42,9 +44,11 @@ async function main() {
         linkedinUrl: organization.socialMedia?.linkedin || '',
         twitterUrl: organization.socialMedia?.twitter || '',
         whatsappPhone: organization.socialMedia?.whatsapp || '',
-        donationLinks: [organization.donationData?.link || ''],
-        donationProducts: organization.donationData?.products || '',
-        donationBankAccountName: organization.donationData?.bankAccount || '',
+        donationLinks: [organization.donationData?.link || organization.paymentData?.link || ''],
+        donationProducts:
+          organization.donationData?.products || organization.paymentData?.products || '',
+        donationBankAccountName:
+          organization.donationData?.bankAccount || organization.paymentData?.bankAccount || '',
       };
     });
     console.log('Inserting in database ...');

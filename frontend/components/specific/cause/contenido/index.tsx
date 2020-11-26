@@ -38,6 +38,7 @@ function Contenido(props: any) {
     website,
     facebook,
     instagram,
+    linkedIn,
     twitter,
     bankAccount,
     donationLinks,
@@ -45,8 +46,6 @@ function Contenido(props: any) {
     country,
     causes,
   } = props
-
-  console.log(causes)
   const filter = 0
   return (
     <div className={styles.ongProfileHero}>
@@ -92,7 +91,7 @@ function Contenido(props: any) {
           </div>
         )}
 
-        {/*         {props.sponsors.length !== 0 ? (
+        {props.sponsors.length !== 0 ? (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
             <Divider
@@ -111,7 +110,7 @@ function Contenido(props: any) {
         ) : (
           false
         )}
- */}
+
         {(website || email || phone) && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
@@ -182,15 +181,11 @@ function Contenido(props: any) {
                   <img src="/twitter.svg" alt="twitter logo" />
                 </a>
               )}
-              {/*               {linkedin && (
-                <a
-                  href={linkedin}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+              {linkedIn && (
+                <a href={linkedIn} rel="noopener noreferrer" target="_blank">
                   <img src="/linkedIn.svg" alt="linkedin logo" />
                 </a>
-              )} */}
+              )}
             </div>
           </div>
         )}

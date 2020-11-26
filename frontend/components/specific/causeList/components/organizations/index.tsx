@@ -66,11 +66,6 @@ function ContenidoSider({
               <span>{filters.country}</span>
             </div>
           )}
-          {/*           {filters.products && (
-            <div className={style.filterSpan}>
-              <span>Entrega de productos</span>
-            </div>
-          )} */}
           {filters.donationLinks && (
             <div className={style.filterSpan}>
               <span>Pasarela de pagos</span>
@@ -79,6 +74,11 @@ function ContenidoSider({
           {filters.donationBankAccountName && (
             <div className={style.filterSpan}>
               <span>Transferencia bancaria</span>
+            </div>
+          )}
+          {filters.donationProducts && (
+            <div className={style.filterSpan}>
+              <span>Entrega de productos</span>
             </div>
           )}
         </ScrollContainer>
@@ -140,6 +140,7 @@ function OrganizationsSider({ organizations, hasNext, handleNextPage }) {
               // Donation data
               link={org.donationLinks}
               bankAccount={org.donationBankAccountName}
+              products={org.donationProducts}
             />
           </>
         ))}

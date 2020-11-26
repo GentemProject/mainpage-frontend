@@ -3,12 +3,12 @@ import GoogleMapReact from 'google-map-react'
 
 import style from '../style.module.scss'
 
-function Map(props: any) {
-  const { location } = props
+function Map({ location }) {
   const [coordenates, setCoordenates] = useState({
     y: -26.231718,
     x: -63.2485696,
   })
+  console.log(location)
   const [zoom, setZoom] = useState(1)
   useEffect(() => {
     if (location.coordenates) {
@@ -16,7 +16,6 @@ function Map(props: any) {
         x: location.coordenates.x,
         y: location.coordenates.y,
       })
-      console.log('ndeaa')
       setZoom(12)
     }
   }, [location])
@@ -31,9 +30,9 @@ function Map(props: any) {
         defaultZoom={zoom}
         options={{ styles: styles }}
       >
-        {props.location && (
+        {location && (
           <Marcador
-            location={props.location}
+            location={location}
             lat={coordenates.y}
             lng={coordenates.x}
             name="My Marker"
@@ -64,9 +63,7 @@ export function Marcador(props: any) {
         </div>
         <div className={style.address}>
           <div className={style.textContainer}>
-            <div /* className={style.textContainerCity} */>
-              {location && `${location.city}, ${location.country}`}
-            </div>
+            <div>{location && `${location.city}, ${location.country}`}</div>
           </div>
         </div>
       </div>
