@@ -10,9 +10,9 @@ type Query {
 
   # Organizations
   getOrganizations(
-    limit: Float
+    first: Float
+    endCursor: String
     userId: String
-    lastOrganizationId: String
     causeId: String
     country: String
     donationLinks: Boolean
@@ -143,7 +143,6 @@ type OrgCount {
 
 type PageData {
   totalOrganizations: Float
-  currentPage: Float
-  totalPages: Float
+  endCursor: String
   hasNextPage: Boolean
 }

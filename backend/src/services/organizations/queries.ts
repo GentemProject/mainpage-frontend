@@ -28,32 +28,30 @@ export const organizationsQueries = {
   getOrganizations: async (
     _root: any,
     options: {
-      limit: number;
+      first: number;
+      endCursor: string;
       userId: string;
-      lastOrganizationId: string;
       causeId: string;
       country: string;
       donationLinks: boolean;
       donationBankAccountName: boolean;
       donationProducts: boolean;
-      /*       totalLength: boolean; */
-      /*       page: number; */
     },
   ) => {
     try {
       logger.info('query getOrganizations');
 
-      let limit = 12;
-      if (options.limit) {
-        limit = options.limit;
+      let first = 12;
+      if (options.first) {
+        first = options.first;
       }
 
       let filters = {};
       if (options.userId) {
         filters = { ...filters, userId: options.userId };
       }
-      if (options.lastOrganizationId) {
-        filters = { ...filters, _id: { $gt: options.lastOrganizationId } };
+      if (options.endCursor) {
+        filters = { ...filters, _id: { $lt: options.endCursor } };
       }
       if (options.causeId) {
         filters = { ...filters, causesIds: options.causeId };
@@ -74,12 +72,13 @@ export const organizationsQueries = {
       logger.child(filters).info('filters getOrganizations query');
 
       const [organizations, count] = await Promise.all([
-        OrganizationModel.find(filters).limit(limit).exec(),
+        OrganizationModel.find(filters).sort({ createdAt: 'descending' }).limit(first).exec(),
         OrganizationModel.count(filters),
       ]);
       const pageData = {
         totalOrganizations: count,
-        hasNextPage: count >= limit,
+        hasNextPage: count > first,
+        endCursor: organizations[organizations.length - 1]._id,
       };
       return { organizations: organizations, pageData: pageData };
     } catch (error) {

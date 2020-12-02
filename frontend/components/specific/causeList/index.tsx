@@ -2,6 +2,7 @@ import Banner from '@/components/utils/architecture/hero'
 import Filter from './components/filter'
 import ContenidoSider from './components/organizations'
 import LayoutContainer from '@/components/utils/architecture/Layout/container'
+import { Loader } from '@/components/utils/interactive/loader'
 
 import styles from './style.module.scss'
 
@@ -12,6 +13,7 @@ function CauseList({
   resetFilters,
   checkbox,
   handleNextPage,
+  loading,
 }) {
   const contentBanner = (
     <span className={styles.descBanner}>
@@ -33,15 +35,19 @@ function CauseList({
         <div className={styles.layoutCenter}>
           <div className={`${styles.ongListContent}`}>
             <Filter select={select} filters={filters} checkbox={checkbox} />
-            <ContenidoSider
-              data={data}
-              resetFilters={resetFilters}
-              handleNextPage={handleNextPage}
-              // Modal filter
-              select={select}
-              filters={filters}
-              checkbox={checkbox}
-            />
+            {loading ? (
+              <Loader />
+            ) : (
+              <ContenidoSider
+                data={data}
+                resetFilters={resetFilters}
+                handleNextPage={handleNextPage}
+                // Modal filter
+                select={select}
+                filters={filters}
+                checkbox={checkbox}
+              />
+            )}
           </div>
         </div>
       </LayoutContainer>

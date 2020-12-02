@@ -208,12 +208,12 @@ $resultItemIMG-xs: 146px;
   height: auto;
   background: none;
   display: flex;
+  justify-content: flex-end;
 }
 
 // banner
-.descBanner{
+.descBanner {
   color: white;
-
 }
 // Contenido
 .ongListSearch {

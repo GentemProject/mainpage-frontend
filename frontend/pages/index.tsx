@@ -28,7 +28,7 @@ const querySchema = gql`
     $donationBankAccountName: Boolean
   ) {
     getOrganizations(
-      limit: 8
+      first: 8
       donationLinks: $donationLinks
       donationBankAccountName: $donationBankAccountName
     ) {

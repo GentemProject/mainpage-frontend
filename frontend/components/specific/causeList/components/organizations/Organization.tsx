@@ -38,18 +38,21 @@ function Organization(props) {
         </div>
       </div>
       <div className={style.causeAndDonations}>
-        <div>
-          <div className={style.filterTitle}>
-            Causas o comunidades con las que trabajan
+        {causes[0] && (
+          <div>
+            <div className={style.filterTitle}>
+              Causas o comunidades con las que trabajan
+            </div>
+            <ScrollContainer vertical={false} className={style.spanContainer}>
+              {causes.map((cause) => (
+                <div key={Math.random()} className={style.filterSpan}>
+                  <span>{cause.name}</span>
+                </div>
+              ))}
+            </ScrollContainer>
           </div>
-          <ScrollContainer vertical={false} className={style.spanContainer}>
-            {causes.map((cause) => (
-              <div key={Math.random()} className={style.filterSpan}>
-                <span>{cause.name}</span>
-              </div>
-            ))}
-          </ScrollContainer>
-        </div>
+        )}
+
         {(link[0] !== '' || bankAccount || products) && (
           <div className={style.donation}>
             <div className={style.filterTitle}>Formas de donar</div>

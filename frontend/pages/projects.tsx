@@ -1,15 +1,38 @@
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useState, useEffect, useRef } from 'react'
-import NProgress from 'nprogress'
+import { useState } from 'react'
 
 // Components & Usables
 import CauseList from '@/components/specific/causeList'
-import { Loader } from '@/components/utils/interactive/loader'
 
 // Apollo
 import { initializeApollo } from '../api'
 import { useQuery, gql } from '@apollo/client'
+
+interface organization {
+  id: string
+  name: string
+  slug: string
+  country: string
+  logoUrl: string
+  donationLinks: string[]
+  donationBankAccountName: string
+  donationProducts: string
+  causes: string[]
+}
+
+interface pageData {
+  totalOrganizations: number
+  hasNextPage: boolean
+  endCursor: string
+}
+
+interface data {
+  getOrganizations: {
+    pageData: pageData
+    organizations: organization[]
+  }
+}
 
 // Schema
 const querySchema = gql`
@@ -19,20 +42,21 @@ const querySchema = gql`
     $donationLinks: Boolean
     $donationBankAccountName: Boolean
     $donationProducts: Boolean
-    $lastOrganizationId: String
+    $endCursor: String
   ) {
     getOrganizations(
-      limit: 12
+      first: 12
+      endCursor: $endCursor
       causeId: $causeId
       country: $country
       donationLinks: $donationLinks
       donationBankAccountName: $donationBankAccountName
       donationProducts: $donationProducts
-      lastOrganizationId: $lastOrganizationId
     ) {
       pageData {
-        hasNextPage
         totalOrganizations
+        hasNextPage
+        endCursor
       }
       organizations {
         id
@@ -57,35 +81,35 @@ const filtersDefault = {
   donationLinks: false,
   donationBankAccountName: false,
   donationProducts: false,
-  lastOrganizationId: '',
+  endCursor: '',
 }
 const OngList: NextPage = () => {
   // Filter State
   const [filters, setFilters] = useState(filtersDefault)
-  const { data, loading, error, refetch, fetchMore, updateQuery } = useQuery(
+  const { data, loading, error, refetch, fetchMore } = useQuery<data>(
     querySchema,
     {
       variables: filters,
-      ssr: true,
     }
   )
   // Filter handlers
   const handleCountry = async (country) => {
-    await setFilters({ ...filters, country: country })
+    await setFilters({ ...filters, country: country, endCursor: '' })
     await refetch()
   }
   const handleCauseId = async (causeId) => {
-    await setFilters({ ...filters, causeId: causeId })
+    await setFilters({ ...filters, causeId: causeId, endCursor: '' })
     await refetch()
   }
   const handleDonationLinks = async (boolean) => {
-    await setFilters({ ...filters, donationLinks: boolean })
+    await setFilters({ ...filters, donationLinks: boolean, endCursor: '' })
     await refetch()
   }
   const handleDonationBankAccountName = async (boolean) => {
     await setFilters({
       ...filters,
       donationBankAccountName: boolean,
+      endCursor: '',
     })
     await refetch()
   }
@@ -93,39 +117,47 @@ const OngList: NextPage = () => {
     await setFilters({
       ...filters,
       donationProducts: boolean,
+      endCursor: '',
     })
     await refetch()
-  }
-  const handleNextPage = async () => {
-    const organizations = data.getOrganizations.organizations
-    const lastOrganization = organizations[organizations.length - 1]
-    await setFilters({ ...filters, lastOrganizationId: lastOrganization.id })
-    await fetchMore({
-      variables: filters,
-      updateQuery: (prev, { fetchMoreResult }) => {
-        fetchMoreResult.getOrganizations.organizations = [
-          ...fetchMoreResult.getOrganizations.organizations,
-          ...prev.getOrganizations.organizations,
-        ]
-        return fetchMoreResult
-      },
-    })
   }
   const resetFilters = async () => {
     await setFilters(filtersDefault)
   }
-  if (loading) {
-    return <Loader />
-  }
   if (error) {
     console.log(error)
   }
-  /* console.log(data.getOrganizations.organizations) */
+  const handleNextPage = async () => {
+    const { endCursor } = data.getOrganizations.pageData
+    await setFilters({ ...filters, endCursor: endCursor })
+    fetchMore({
+      variables: filters,
+      updateQuery: (prevResult: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prevResult
+        return {
+          getOrganizations: {
+            ...data?.getOrganizations,
+            data: [
+              ...data?.getOrganizations?.organizations,
+              ...fetchMoreResult?.getOrganizations?.organizations,
+            ],
+          },
+        }
+        /*         fetchMoreResult.getOrganizations = [
+          ...prevResult.getOrganizations,
+          ...fetchMoreResult.getOrganizations,
+        ]
+        return fetchMoreResult */
+      },
+    })
+  }
   return (
     <>
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
+
+      {!loading && console.log(data.getOrganizations)}
       <CauseList
         select={{ handleCauseId, handleCountry }}
         checkbox={{
@@ -136,7 +168,8 @@ const OngList: NextPage = () => {
         handleNextPage={handleNextPage}
         filters={filters}
         resetFilters={resetFilters}
-        data={data.getOrganizations}
+        loading={loading}
+        data={!loading && data.getOrganizations}
       />
     </>
   )
