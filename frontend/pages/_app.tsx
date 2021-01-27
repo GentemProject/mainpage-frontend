@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import TagManager from 'react-gtm-module'
+import { GTMPageView } from '../components/gtm'
 import Close from '@/components/svg/close'
 import Layout from '@/components/Layout'
 
@@ -15,15 +15,17 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-const tagManagerArgs = {
-  gtmId: 'GTM-KS8MP9B',
-}
-
 export default function App({ Component, pageProps }) {
   const [visible, setVisible] = useState(true)
   const [visibleEffect, setVisibleEffect] = useState('beta')
   useEffect(() => {
-    TagManager.initialize(tagManagerArgs)
+    useEffect(() => {
+      const handleRouteChange = (url: string) => GTMPageView(url)
+      Router.events.on('routeChangeComplete', handleRouteChange)
+      return () => {
+        Router.events.off('routeChangeComplete', handleRouteChange)
+      }
+    }, [])
   }, [])
   const handleVisible = async () => {
     await setVisibleEffect('beta betaClose')
