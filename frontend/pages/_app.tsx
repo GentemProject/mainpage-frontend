@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import { GTMPageView } from '../components/gtm'
@@ -15,17 +16,15 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const [visible, setVisible] = useState(true)
   const [visibleEffect, setVisibleEffect] = useState('beta')
   useEffect(() => {
-    useEffect(() => {
-      const handleRouteChange = (url: string) => GTMPageView(url)
-      Router.events.on('routeChangeComplete', handleRouteChange)
-      return () => {
-        Router.events.off('routeChangeComplete', handleRouteChange)
-      }
-    }, [])
+    const handleRouteChange = (url: string) => GTMPageView(url)
+    Router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange)
+    }
   }, [])
   const handleVisible = async () => {
     await setVisibleEffect('beta betaClose')

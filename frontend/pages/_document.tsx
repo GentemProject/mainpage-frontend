@@ -1,15 +1,21 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
-export default class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return initialProps
   }
 
   render() {
     const GTM_ID = 'GTM-KS8MP9B'
     return (
-      <Html lang="es">
+      <Html>
         <Head>
           {/* Here we can load fonts */}
           {/* Google Tag Manager */}
@@ -31,7 +37,7 @@ export default class CustomDocument extends Document {
           />
           {/* End Google Tag Manager (noscript) */}
         </Head>
-        <body id="page-top">
+        <body>
           <Main />
           <NextScript />
         </body>
@@ -39,3 +45,5 @@ export default class CustomDocument extends Document {
     )
   }
 }
+
+export default MyDocument
