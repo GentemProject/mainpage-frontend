@@ -31,7 +31,7 @@ function Organization(props) {
           </div>
           <div className={style.location}>
             <span>
-              {location.city}, {location.country}
+              {location && (location.city, location.country)}
             </span>
           </div>
         </div>
