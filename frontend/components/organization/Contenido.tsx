@@ -115,7 +115,7 @@ function Contenido(props: any) {
               {props.contact.website && (
                 <div className="OngProfile__Info-Web">
                   <strong>Website</strong> <br />
-                  <span>
+                  <span className="gtm-websiteClick">
                     <a
                       href={props.contact.website}
                       rel="noopener noreferrer"
