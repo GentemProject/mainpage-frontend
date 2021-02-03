@@ -55,7 +55,9 @@ export function ResponsiveDonate(props) {
                   rel="noopener noreferrer"
                 >
                   <Button>
-                    <span> Haz tu donación online </span>
+                    <span className="gtm-donationOnlineClick">
+                      Haz tu donación online
+                    </span>
                   </Button>
                 </a>
               </>

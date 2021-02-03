@@ -30,9 +30,7 @@ function Organization(props) {
             <span>{name}</span>
           </div>
           <div className={style.location}>
-            <span>
-              {location && (location.city, location.country)}
-            </span>
+            <span>{location && (location.city, location.country)}</span>
           </div>
         </div>
       </div>

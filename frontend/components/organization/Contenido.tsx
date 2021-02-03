@@ -129,7 +129,7 @@ function Contenido(props: any) {
               {props.contact.email && (
                 <div className="OngProfile__Info-Email">
                   <strong>Email</strong> <br />
-                  <span>
+                  <span className="gtm-emailClick">
                     <a href={`mailto://${props.contact.email}`}>
                       {props.contact.email}
                     </a>
@@ -160,6 +160,7 @@ function Contenido(props: any) {
                   href={`https://api.whatsapp.com/send?phone=${props.socialMedia.whatsapp}`}
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="gtm-socialWhatsappClick"
                 >
                   <img src="/whatsapp.svg" alt="whatsapp logo" />
                 </a>
@@ -169,6 +170,7 @@ function Contenido(props: any) {
                   href={props.socialMedia.instagram}
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="gtm-socialInstagramClick"
                 >
                   <img src="/insta.svg" alt="instagram logo" />
                 </a>
@@ -178,6 +180,7 @@ function Contenido(props: any) {
                   href={props.socialMedia.facebook}
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="gtm-socialFacebookClick"
                 >
                   <img src="/fb.svg" alt="facebook logo" />
                 </a>
@@ -187,6 +190,7 @@ function Contenido(props: any) {
                   href={props.socialMedia.twitter}
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="gtm-socialTwitterClick"
                 >
                   <img src="/twitter.svg" alt="twitter logo" />
                 </a>
@@ -196,6 +200,7 @@ function Contenido(props: any) {
                   href={props.socialMedia.linkedin}
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="gtm-socialLinkedInClick"
                 >
                   <img src="/linkedIn.svg" alt="linkedin logo" />
                 </a>
@@ -234,7 +239,7 @@ function Contenido(props: any) {
                 }}
                 onClick={handleOpen}
               >
-                <span> ¿Cómo donar? </span>
+                <span className="gtm-howToDonateClick"> ¿Cómo donar? </span>
               </Button>
               <Modal
                 isOpen={open}
