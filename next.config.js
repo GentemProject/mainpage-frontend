@@ -10,7 +10,6 @@ module.exports = {
   env: {
     API_BACKEND: API_BACKEND,
   },
-  trailingSlash: true,
   distDir: '_next',
   generateBuildId: async () => {
     if (process.env.BUILD_ID) {
