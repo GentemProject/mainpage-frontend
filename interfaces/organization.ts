@@ -1,4 +1,4 @@
-export interface Organization {
+export interface OrganizationOld {
   totalOrg: string
   page: number
   primaryData: {
@@ -56,4 +56,73 @@ export interface Organization {
   country: string
   city: string
   length: number
+}
+
+export interface queryI {
+  loading: boolean
+  networkStatus: number
+}
+export interface getOrganizationsHome extends queryI {
+  data: {
+    getOrganizations: OrganizationHome[]
+  }
+}
+
+export interface OrganizationHome {
+  __typename: string
+  name: string
+  slug: string
+  logoUrl: string
+}
+
+export interface getOrganization extends queryI {
+  data: {
+    getOrganization: Organization
+  }
+}
+
+export interface Organization {
+  __typename: string
+  id: string
+  name: string
+  description: string
+  goal: string
+  logoUrl: string
+  howItIsUsingDonations: string
+  contactEmail: string
+  contactPhone: string
+  contactWebsite: string
+  whatsappPhone: string
+  facebookUrl: string
+  twitterUrl: string
+  instagramUrl: string
+  donationBankAccountName: string
+  donationLinks: string[]
+  city: string
+  country: string
+  coordenateX: string
+  coordenateY: string
+  causes: {
+    name: string
+  }[]
+}
+
+export interface getOrganizationsFilters extends queryI {
+  data: {
+    getOrganizations: organizationsProjects[]
+  }
+}
+
+export interface organizationsProjects {
+  id: string
+  slug: string
+  name: string
+  logoUrl: string
+  causes: {
+    name: string
+    id: string
+  }[]
+  country: string
+  donationBankAccountName: string
+  donationLinks: string[]
 }

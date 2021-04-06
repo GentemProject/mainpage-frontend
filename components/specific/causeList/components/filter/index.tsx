@@ -18,9 +18,9 @@ import MenuItem from '@material-ui/core/MenuItem'
 
 // Style
 import style from '../../style.module.scss'
-function Filter({ select, checkbox, filters }) {
+function Filter({ select, /* checkbox, */ filters }) {
   const [ciudad, setCiudad] = useState([])
-  useEffect(() => {
+  /*   useEffect(() => {
     getDistinct().then(
       (data) => {
         setCiudad(data)
@@ -30,7 +30,7 @@ function Filter({ select, checkbox, filters }) {
       }
     )
   }, [])
-
+ */
   // getCause from GraphQL
   const querySchema = gql`
     {
@@ -52,7 +52,7 @@ function Filter({ select, checkbox, filters }) {
             Usa los filtros para encontrar las organizaciones que quieras apoyar
           </h6>
         </div>
-        <SearchSelect title="Ubicación" info="Filtra por país">
+        {/*         <SearchSelect title="Ubicación" info="Filtra por país">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">País</InputLabel>
             <Select
@@ -76,7 +76,7 @@ function Filter({ select, checkbox, filters }) {
                 })}
             </Select>
           </FormControl>
-        </SearchSelect>
+        </SearchSelect> */}
         <SearchSelect title="Causa afectada" info="Filtra por causa">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">Causa</InputLabel>
@@ -84,15 +84,15 @@ function Filter({ select, checkbox, filters }) {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={filters.causeId}
-              onChange={async (e) => {
-                await select.handleCauseId(e.target.value)
+              onChange={(e) => {
+                select.handleCauseId(e.target.value)
               }}
             >
               <MenuItem value="">Todas las causas</MenuItem>
               {!loading &&
-                data.getCauses.map((data) => {
+                data.getCauses.map((data, index) => {
                   return (
-                    <MenuItem key={data.id} value={data.id}>
+                    <MenuItem key={index} value={data.id}>
                       {data.name}
                     </MenuItem>
                   )
@@ -104,7 +104,7 @@ function Filter({ select, checkbox, filters }) {
           title="Tipo de donación"
           info="Filtra según la forma en la que quieras donar"
         >
-          <TextCheck
+          {/* <TextCheck
             title="Donar online"
             desc="Link para donar desde casa"
             change={checkbox.handleDonationLinks}
@@ -125,7 +125,7 @@ function Filter({ select, checkbox, filters }) {
             change={checkbox.handleDonationProducts}
             boolean={filters.donationProducts}
             name="products"
-          />
+          /> */}
         </SearchSelect>
       </div>
     </>

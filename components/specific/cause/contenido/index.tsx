@@ -13,10 +13,29 @@ import TargetBase from '../../../usables/TargetBase'
 
 // Styles
 import styles from '../style.module.scss'
+import { Organization } from 'interfaces/organization'
 
 Modal.setAppElement('#__next')
 
-function Contenido(props: any) {
+function Contenido(props?: {
+  name: Organization['name']
+  description: Organization['description']
+  logo: Organization['logoUrl']
+  goal: Organization['goal']
+  howItIsUsingDonations: Organization['howItIsUsingDonations']
+  email: Organization['contactEmail']
+  phone: Organization['contactPhone']
+  whatsapp: Organization['whatsappPhone']
+  website: Organization['contactWebsite']
+  facebook: Organization['facebookUrl']
+  instagram: Organization['instagramUrl']
+  twitter: Organization['twitterUrl']
+  bankAccount: Organization['donationBankAccountName']
+  donationLinks: Organization['donationLinks']
+  city: Organization['city']
+  country: Organization['country']
+  causes: Organization['causes']
+}) {
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
@@ -38,15 +57,15 @@ function Contenido(props: any) {
     website,
     facebook,
     instagram,
-    linkedIn,
+    /*   linkedIn, */
     twitter,
     bankAccount,
     donationLinks,
-    donationProducts,
+    /*     donationProducts, */
     city,
     country,
     causes,
-    sponsors,
+    /*     sponsors, */
   } = props
   const filter = 0
   return (
@@ -80,9 +99,14 @@ function Contenido(props: any) {
           </div>
           <TargetBase array={causes} filter={filter} />
 
-          <h3 className={styles.ongProfileInfoDescription}>{description}</h3>
+          <h3 className={styles.ongProfileInfoDescription}>
+            {/* We need to change that in the backend */}
+            {description !== 'no description' && description}
+          </h3>
         </div>
-        {howItIsUsingDonations && (
+
+        {/* We need to change that in the backend */}
+        {howItIsUsingDonations !== 'no how it is using donations' && (
           <div className={styles.ongProfileUserHowUseDonation}>
             <h3 className={styles.ongProfileHowUseDonationTitle}>
               ¿Cómo usamos las donaciones que recibimos?
@@ -92,7 +116,7 @@ function Contenido(props: any) {
             </p>
           </div>
         )}
-        {sponsors[0] !== '' ? (
+        {/*         {sponsors[0] !== '' ? (
           <div className={styles.ongProfileUserSponsors}>
             <h4 className={styles.ongProfileSponsorsTitle}>Patrocinadores</h4>
             <Divider
@@ -110,7 +134,7 @@ function Contenido(props: any) {
           </div>
         ) : (
           false
-        )}
+        )} */}
 
         {(website || email || phone) && (
           <div className={styles.ongProfileHowToDonateContact}>
@@ -182,11 +206,11 @@ function Contenido(props: any) {
                   <img src="/twitter.svg" alt="twitter logo" />
                 </a>
               )}
-              {linkedIn && (
+              {/*     {linkedIn && (
                 <a href={linkedIn} rel="noopener noreferrer" target="_blank">
                   <img src="/linkedIn.svg" alt="linkedin logo" />
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         )}
@@ -212,8 +236,9 @@ function Contenido(props: any) {
         )}
 
         {(bankAccount !== '' ||
-          donationLinks[0] !== '' ||
-          donationProducts !== '') && (
+          donationLinks[0] !==
+            '') /* ||
+          donationProducts !== '' */ && (
           <div className={styles.ongProfileFixedHowToDonate}>
             <div>
               <Button
@@ -239,7 +264,7 @@ function Contenido(props: any) {
                     name={name}
                     bankAccount={bankAccount}
                     donationLinks={donationLinks}
-                    donationProducts={donationProducts}
+                    /* donationProducts={donationProducts} */
                   />
                 </div>
               </Modal>

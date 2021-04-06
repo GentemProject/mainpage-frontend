@@ -8,12 +8,15 @@ import Cause from '@/components/specific/cause'
 // Apollo
 import { initializeApollo } from '../../api'
 import { useQuery, gql } from '@apollo/client'
+import { getOrganization } from 'interfaces/organization'
 
 const querySchema = gql`
-  query Organization($slug: String) {
+  query getOrganization($slug: String) {
     getOrganization(slug: $slug) {
+      id
       name
       description
+      goal
       logoUrl
       howItIsUsingDonations
       contactEmail
@@ -22,17 +25,13 @@ const querySchema = gql`
       whatsappPhone
       facebookUrl
       twitterUrl
-      linkedinUrl
       instagramUrl
       donationBankAccountName
       donationLinks
       city
       country
-      coordenates {
-        x
-        y
-      }
-      sponsors
+      coordenateX
+      coordenateY
       causes {
         name
       }
@@ -40,19 +39,19 @@ const querySchema = gql`
   }
 `
 
-const ORG: NextPage = () => {
+const ORG = (props: { query: getOrganization }): JSX.Element => {
   const router = useRouter()
   const { slug } = router.query
-  const { data, loading } = useQuery(querySchema, { variables: { slug } })
-  const ong = data.getOrganization
+  console.log(props.query.data.getOrganization.name)
+  /*   const ong = data.getOrganization */
 
-  if (loading) return <span>Loading...</span>
+  if (props.query.loading) return <span>Loading...</span>
   return (
     <>
       <Head>
-        <title>{ong.name} | gentem</title>
+        <title>{props.query.data.getOrganization.name} | gentem</title>
       </Head>
-      <Cause data={ong} />
+      <Cause data={props.query.data.getOrganization} />
     </>
   )
 }
@@ -66,14 +65,14 @@ const ORG: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const apolloClient = initializeApollo()
 
-  await apolloClient.query({
+  const query = await apolloClient.query({
     query: querySchema,
     variables: { slug: params.slug },
   })
-
+  apolloClient.cache.extract()
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
+      query,
     },
   }
 }

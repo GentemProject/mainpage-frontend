@@ -19,10 +19,9 @@ function ContenidoSider({
   resetFilters,
   select,
   filters,
-  checkbox,
+  /*   checkbox, */
   handleNextPage,
 }) {
-  const { organizations, pageData } = data
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(true)
@@ -37,11 +36,11 @@ function ContenidoSider({
         <div className={style.quantityBtn} onClick={handleOpen}>
           FILTROS
         </div>
-        {pageData.totalOrganizations && (
+        {/*        {pageData.totalOrganizations && (
           <h6>
             Mostrando {pageData.totalOrganizations} organizaciones registradas
           </h6>
-        )}
+        )} */}
         <Modal
           className={style.listModal}
           isOpen={open}
@@ -50,7 +49,7 @@ function ContenidoSider({
           <button className={style.modalClose} onClick={handleClose}>
             <Close />
           </button>
-          <ModalContent filters={filters} select={select} checkbox={checkbox} />
+          {/*  <ModalContent filters={filters} select={select} checkbox={checkbox} /> */}
         </Modal>
         <ScrollContainer
           vertical={false}
@@ -83,15 +82,15 @@ function ContenidoSider({
           )}
         </ScrollContainer>
       </div>
-      {organizations.length === 0 ? (
+      {data.length === 0 ? (
         <>
           <NoOrganization resetFilters={resetFilters} />
         </>
       ) : (
         <>
           <OrganizationsSider
-            organizations={organizations}
-            hasNext={pageData.hasNextPage}
+            organizations={data}
+            /*  hasNext={pageData.hasNextPage} */
             handleNextPage={handleNextPage}
           />
         </>
@@ -123,35 +122,33 @@ function NoOrganization({ resetFilters }) {
   )
 }
 
-function OrganizationsSider({ organizations, hasNext, handleNextPage }) {
+function OrganizationsSider({ organizations, /* hasNext, */ handleNextPage }) {
   return (
     <>
       <div className={style.organizationGrid}>
-        {organizations.map((org) => (
-          <>
-            <Organization
-              // Primary data
-              id={org.id}
-              key={org.slug}
-              slug={org.slug}
-              name={org.name}
-              logo={org.logoUrl}
-              causes={org.causes}
-              // Donation data
-              link={org.donationLinks}
-              bankAccount={org.donationBankAccountName}
-              products={org.donationProducts}
-            />
-          </>
+        {organizations.map((org, index) => (
+          <Organization
+            // Primary data
+            id={org.id}
+            key={index}
+            slug={org.slug}
+            name={org.name}
+            logo={org.logoUrl}
+            causes={org.causes}
+            // Donation data
+            link={org.donationLinks}
+            bankAccount={org.donationBankAccountName}
+            products={org.donationProducts}
+          />
         ))}
       </div>
-      {hasNext && (
+      {/* {hasNext && (
         <div className={style.seeMoreContainer}>
           <div onClick={handleNextPage} className={style.seeMore}>
             <span className={style.seeMoreText}>Ver más</span>
           </div>
         </div>
-      )}
+      )} */}
     </>
   )
 }

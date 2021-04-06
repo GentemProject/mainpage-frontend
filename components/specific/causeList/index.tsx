@@ -5,16 +5,18 @@ import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import { Loader } from '@/components/utils/interactive/loader'
 
 import styles from './style.module.scss'
+import { organizationsProjects } from 'interfaces/organization'
 
-function CauseList({
-  select,
-  filters,
-  data,
-  resetFilters,
-  checkbox,
-  handleNextPage,
-  loading,
+function CauseList(props: {
+  select
+  filters
+  data: organizationsProjects[]
+  resetFilters
+  /*   checkbox, */
+  handleNextPage
+  loading: boolean
 }) {
+  const { data, filters, handleNextPage, loading, resetFilters, select } = props
   const contentBanner = (
     <span className={styles.descBanner}>
       Encuentra la fundación, ONG o proyecto al que quieres apoyar
@@ -34,7 +36,10 @@ function CauseList({
       >
         <div className={styles.layoutCenter}>
           <div className={`${styles.ongListContent}`}>
-            <Filter select={select} filters={filters} checkbox={checkbox} />
+            <Filter
+              select={select}
+              filters={filters} /* checkbox={checkbox} */
+            />
             {loading ? (
               <Loader />
             ) : (
@@ -45,7 +50,7 @@ function CauseList({
                 // Modal filter
                 select={select}
                 filters={filters}
-                checkbox={checkbox}
+                /*  checkbox={checkbox} */
               />
             )}
           </div>

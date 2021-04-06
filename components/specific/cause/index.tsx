@@ -4,9 +4,36 @@ import Contenido from './contenido'
 import DonationData from './donationData'
 
 import styles from './style.module.scss'
+import { Organization } from 'interfaces/organization'
 
-function Cause({ data }) {
-  const { coordenates, city, country } = data
+function Cause(props: { data: Organization }) {
+  const { data } = props
+  const {
+    coordenateX,
+    coordenateY,
+    city,
+    country,
+    logoUrl,
+    goal,
+    causes,
+    contactEmail,
+    contactPhone,
+    whatsappPhone,
+    name,
+    howItIsUsingDonations,
+    description,
+    facebookUrl,
+    instagramUrl,
+    contactWebsite,
+    twitterUrl,
+    donationBankAccountName,
+    donationLinks,
+  } = data
+
+  const coordenates = {
+    coordenateX,
+    coordenateY,
+  }
   return (
     <div className={styles.ongProfile}>
       <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
@@ -14,33 +41,33 @@ function Cause({ data }) {
         <LayoutContainer>
           <div className={`${styles.ongProfileContent} ${styles.layout}`}>
             <Contenido
-              name={data.name}
-              description={data.description}
-              logo={data.logoUrl}
-              goal={data.goal}
-              howItIsUsingDonations={data.howItIsUsingDonations}
-              email={data.contactEmail}
-              phone={data.contactPhone}
-              whatsapp={data.whatsappPhone}
-              website={data.contactEmail}
-              facebook={data.facebookUrl}
-              instagram={data.instagramUrl}
-              twitter={data.twitterUrl}
-              bankAccount={data.donationBankAccountName}
-              donationLinks={data.donationLinks}
-              donationProducts={data.donationProducts}
-              city={city}
+              name={name}
+              description={description}
+              logo={logoUrl}
+              goal={goal}
+              howItIsUsingDonations={howItIsUsingDonations}
+              email={contactEmail}
+              phone={contactPhone}
+              whatsapp={whatsappPhone}
+              website={contactWebsite}
+              facebook={facebookUrl}
+              instagram={instagramUrl}
+              twitter={twitterUrl}
+              bankAccount={donationBankAccountName}
+              donationLinks={donationLinks}
+              /*               donationProducts={donationProducts}
+               */ city={city}
               country={country}
-              causes={data.causes}
-              sponsors={data.sponsors}
-              linkedIn={data.linkedInUrl}
+              causes={causes}
+              /*               sponsors={sponsors}
+              linkedIn={linkedInUrl} */
             />
             <DonationData
-              logo={data.logoUrl}
-              name={data.name}
-              bankAccount={data.donationBankAccountName}
-              donationLinks={data.donationLinks}
-              donationProducts={data.donationProducts}
+              logo={logoUrl}
+              name={name}
+              bankAccount={donationBankAccountName}
+              donationLinks={donationLinks}
+              /* donationProducts={donationProducts} */
             />
           </div>
         </LayoutContainer>

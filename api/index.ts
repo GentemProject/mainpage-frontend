@@ -7,8 +7,7 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client'
 
-/* const API = process.env.API_BACKEND; */
-const API = 'http://localhost:3100'
+const API = process.env.API_BACKEND
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {

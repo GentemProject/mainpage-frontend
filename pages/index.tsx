@@ -20,38 +20,22 @@ import Button from '@/components/utils/interactive/inputs/buttons/primary'
 // Apollo
 import { initializeApollo } from '../api'
 import { useQuery, gql } from '@apollo/client'
+import { getOrganizationsHome } from 'interfaces/organization'
 
 // Schema
 const querySchema = gql`
-  query Organizations(
-    $donationLinks: Boolean
-    $donationBankAccountName: Boolean
-  ) {
-    getOrganizations(
-      first: 8
-      donationLinks: $donationLinks
-      donationBankAccountName: $donationBankAccountName
-    ) {
-      organizations {
-        name
-        slug
-        logoUrl
-      }
+  query getOrganizationsHome($limit: Float) {
+    getOrganizations(limit: $limit) {
+      name
+      slug
+      coordenateY
+      logoUrl
     }
   }
 `
 
-const filtersDefault = {
-  donationLinks: false,
-  donationBankAccountName: false,
-}
-
-export default function Home({ orgs }: any) {
-  const { data, loading, error } = useQuery(querySchema, {
-    variables: filtersDefault,
-    ssr: true,
-  })
-
+export default function Home(props: { query: getOrganizationsHome }) {
+  const { query } = props
   const g = (
     <Fragment>
       <strong>gentem </strong>es un directorio abierto de organizaciones sin
@@ -100,10 +84,10 @@ export default function Home({ orgs }: any) {
           <Stats />
 
           <Nos />
-          {loading ? (
-            'Inserte loader'
+          {query.loading ? (
+            'Cargando...'
           ) : (
-            <Ongs ongs={data.getOrganizations.organizations} />
+            <Ongs ongs={query.data.getOrganizations} />
           )}
         </div>
       </LayoutContainer>
@@ -115,14 +99,15 @@ export default function Home({ orgs }: any) {
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo()
 
-  await apolloClient.query({
+  const query = await apolloClient.query({
     query: querySchema,
-    variables: filtersDefault,
+    variables: 8,
   })
+  apolloClient.cache.extract()
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
+      query,
     },
   }
 }

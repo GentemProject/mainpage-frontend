@@ -3,7 +3,17 @@ import GoogleMapReact from 'google-map-react'
 
 import style from '../style.module.scss'
 
-function Map({ location }) {
+interface locationI {
+  coordenates: {
+    coordenateX: string
+    coordenateY: string
+  }
+  city: string
+  country: string
+}
+
+function Map(props: { location: locationI }) {
+  const { location } = props
   const [coordenates, setCoordenates] = useState({
     y: -26.231718,
     x: -63.2485696,
@@ -13,8 +23,8 @@ function Map({ location }) {
   useEffect(() => {
     if (location.coordenates) {
       setCoordenates({
-        x: location.coordenates.x,
-        y: location.coordenates.y,
+        x: parseInt(location.coordenates.coordenateX),
+        y: parseInt(location.coordenates.coordenateY),
       })
       setZoom(12)
     }

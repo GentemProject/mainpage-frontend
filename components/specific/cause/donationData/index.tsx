@@ -1,25 +1,27 @@
 import { Divider, Button } from '../../../usables/buttons'
 import styles from '../style.module.scss'
 
-function DonationData({
-  logo,
-  name,
-  bankAccount,
-  donationLinks,
-  donationProducts,
+function DonationData(props: {
+  logo: string
+  name: string
+  bankAccount: string
+  donationLinks: string[]
+  /*   donationProducts, */
 }) {
+  const { name, donationLinks, bankAccount, logo } = props
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
         {(bankAccount !== '' ||
-          donationLinks !== '' ||
-          donationProducts[0] !== '') && (
+          donationLinks[0] !==
+            '') /*  ||
+          donationProducts[0] !== '' */ && (
           <ResponsiveDonate
             logo={logo}
             name={name}
             bankAccount={bankAccount}
             donationLinks={donationLinks}
-            donationProducts={donationProducts}
+            /*      donationProducts={donationProducts} */
           />
         )}
       </div>
@@ -28,13 +30,15 @@ function DonationData({
 }
 export default DonationData
 
-export function ResponsiveDonate({
-  logo,
-  name,
-  bankAccount,
-  donationLinks,
-  donationProducts,
+export function ResponsiveDonate(props: {
+  logo: string
+  name: string
+  bankAccount: string
+  donationLinks: string[]
+  /*   donationProducts, */
 }) {
+  const { name, donationLinks, bankAccount, logo } = props
+
   return (
     <>
       <div className={styles.ongProfileUserModal}>
@@ -88,7 +92,7 @@ export function ResponsiveDonate({
           </span>
         </div>
       )}
-      {donationProducts && (
+      {/*       {donationProducts && (
         <div className={styles.ongProfileHowToDonateDonateProduct}>
           <h4 className="OngProfile__DonateProduct--Title h4">
             Haz una donación de productos
@@ -102,7 +106,7 @@ export function ResponsiveDonate({
             <span className="span">{donationProducts}</span>
           </div>
         </div>
-      )}
+      )} */}
     </>
   )
 }

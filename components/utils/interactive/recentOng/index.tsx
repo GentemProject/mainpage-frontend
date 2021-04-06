@@ -2,9 +2,10 @@ import { useEffect, useState, Fragment } from 'react'
 // Aislar componente o es especifico?
 import styles from '../../../specific/home/style.module.scss'
 import Link from 'next/link'
+import { OrganizationHome, OrganizationsHome } from 'interfaces/organization'
 /* const logoDefault = '/logoDefault.png' */
 const logoDefault = '/logoDefault.png'
-function Ongs(props: any) {
+function Ongs(props: { ongs: OrganizationsHome['data']['getOrganizations'] }) {
   return (
     <div>
       <div className={styles.containerOngs}>
@@ -19,10 +20,10 @@ function Ongs(props: any) {
         </div>
 
         <div className={styles.containerFichas}>
-          {props.ongs.map((data) => (
+          {props.ongs.map((data, index) => (
             <Ficha
-              key={data.name}
-              i={data.logoUrl ? data.logoUrl : logoDefault}
+              key={index}
+              logoUrl={data.logoUrl ? data.logoUrl : logoDefault}
               alt={data.name}
               slug={data.slug}
             />
@@ -32,13 +33,17 @@ function Ongs(props: any) {
     </div>
   )
 }
-function Ficha(props: any) {
+function Ficha(props: {
+  logoUrl: OrganizationHome['logoUrl']
+  alt: OrganizationHome['name']
+  slug: OrganizationHome['slug']
+}) {
   return (
     <Link key={props.slug} href="/cause/[slug]" as={`/cause/${props.slug}`}>
       <div className={styles.ficha}>
         <div
           className={styles.img}
-          style={{ backgroundImage: `url(${props.i})` }}
+          style={{ backgroundImage: `url(${props.logoUrl})` }}
         >
           {
             //<img src={props.i} alt={props.alt} />
