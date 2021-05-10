@@ -201,7 +201,6 @@ const OngList = (props: { query: getOrganizationsFilters }): JSX.Element => {
       },
     })
   }
-
   /*         fetchMoreResult.getOrganizations = [
           ...prevResult.getOrganizations,
           ...fetchMoreResult.getOrganizations,
