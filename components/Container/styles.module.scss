@@ -1,0 +1,66 @@
+@import '../../styles/variables.scss';
+
+// XXS
+@media (min-width: 320px) {
+  .Container {
+    padding: $padding-xxs;
+  }
+}
+// XS
+@media (min-width: 424px) {
+  .Container {
+    padding: $padding-xs;
+  }
+}
+// S
+@media (min-width: 800px) {
+  .Container {
+    padding: $padding-s;
+  }
+}
+// M
+@media (min-width: 1028px) {
+  .Container {
+    padding: $padding-m;
+  }
+}
+// L
+@media (min-width: 1224px) {
+  .Container {
+    margin: 0 auto;
+    max-width: 1224px;
+    padding: 0;
+  }
+}
+$pagepadding: 0 60px;
+$pagepadding-tablet: 0 40px;
+$pagepadding-mobile: 0 25px;
+
+// XS
+$layout-xs: 24px;
+// XS Portrait
+$layout-xs-p: 24px;
+// S
+$layout-s: 32px;
+// S Portrait
+$layout-s-p: 32px;
+// M
+$layout-m: 42px;
+
+// XL
+$layout-xl: 108px;
+
+@media (min-width: 1224px) {
+  .layoutCenter {
+    display: flex;
+    justify-content: center;
+  }
+
+  .layout {
+    max-width: 1224px;
+  }
+}
+
+.layout-top {
+  margin-top: 64px;
+}

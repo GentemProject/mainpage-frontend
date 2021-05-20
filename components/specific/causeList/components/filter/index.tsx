@@ -11,39 +11,25 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-/* import {
-  Select,
-  Option,
-} from '../../../../utils/interactive/inputs/form/select' */
 
-// Style
 import style from '../../style.module.scss'
-function Filter({ select, /* checkbox, */ filters }) {
-  const [ciudad, setCiudad] = useState([])
-  /*   useEffect(() => {
-    getDistinct().then(
-      (data) => {
-        setCiudad(data)
-      },
-      (error) => {
-        setCiudad(error)
-      }
-    )
-  }, [])
- */
-  // getCause from GraphQL
-  const querySchema = gql`
+function Filter({ select, filters }) {
+  type Response = {
+    causes: {
+      id: string
+      name: string
+    }[]
+  }
+  const schema = gql`
     {
-      getCauses {
+      causes: getCauses {
         id
         name
       }
     }
   `
-  const { data, loading } = useQuery(querySchema, {
-    variables: filters,
-    ssr: true,
-  })
+  const { data, loading } = useQuery<Response>(schema)
+
   return (
     <>
       <div className={style.filterContainer}>
@@ -52,35 +38,11 @@ function Filter({ select, /* checkbox, */ filters }) {
             Usa los filtros para encontrar las organizaciones que quieras apoyar
           </h6>
         </div>
-        {/*         <SearchSelect title="Ubicación" info="Filtra por país">
-          <FormControl style={{ width: '100%', marginTop: '12px' }}>
-            <InputLabel id="demo-simple-select-label">País</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filters.country}
-              onChange={async (e) => {
-                await select.handleCountry(e.target.value)
-              }}
-            >
-              <MenuItem value="">
-                <em>Todos los paises</em>
-              </MenuItem>
-              {ciudad &&
-                ciudad.map((data) => {
-                  return (
-                    <MenuItem key={data} value={data}>
-                      {data}
-                    </MenuItem>
-                  )
-                })}
-            </Select>
-          </FormControl>
-        </SearchSelect> */}
         <SearchSelect title="Causa afectada" info="Filtra por causa">
           <FormControl style={{ width: '100%', marginTop: '12px' }}>
             <InputLabel id="demo-simple-select-label">Causa</InputLabel>
             <Select
+              disabled={loading}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={filters.causeId}
@@ -88,15 +50,11 @@ function Filter({ select, /* checkbox, */ filters }) {
                 select.handleCauseId(e.target.value)
               }}
             >
-              <MenuItem value="">Todas las causas</MenuItem>
-              {!loading &&
-                data.getCauses.map((data, index) => {
-                  return (
-                    <MenuItem key={index} value={data.id}>
-                      {data.name}
-                    </MenuItem>
-                  )
-                })}
+              {data?.causes.map((cause, index) => (
+                <MenuItem key={index} value={cause.id}>
+                  {cause.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </SearchSelect>

@@ -1,15 +1,5 @@
 const fetch = require('isomorphic-unfetch')
-let API_BACKEND
-if (process.env.NODE_ENV === 'development') {
-  API_BACKEND = 'https://api-dev.gentem.org'
-}
-if (process.env.NODE_ENV === 'production') {
-  API_BACKEND = 'https://api-prod.gentem.org'
-}
 module.exports = {
-  env: {
-    API_BACKEND: API_BACKEND,
-  },
   trailingSlash: true,
   distDir: '_next',
   generateBuildId: async () => {

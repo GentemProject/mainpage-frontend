@@ -4,8 +4,7 @@ import Router from 'next/router'
 import TagManager from 'react-gtm-module'
 
 // Apollo
-import { useApollo } from '../api'
-import { ApolloProvider } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 
 // Components
 import Close from '@/components/svg/close'
@@ -20,13 +19,19 @@ Router.events.on('routeChangeError', () => NProgress.done())
 // Styles
 import '../styles/styles.scss'
 
+// Config
+import { env } from 'config'
+
 const tagManagerArgs = {
   gtmId: 'GTM-KS8MP9B',
 }
 
 export default function App({ Component, pageProps }) {
-  // Apollo
-  const client = useApollo(pageProps.initialApolloState)
+  console.log({ env })
+  const client = new ApolloClient({
+    uri: env.API_BACKEND,
+    cache: new InMemoryCache(),
+  })
 
   // Cookies visible
   let cookiesVisible
@@ -49,6 +54,7 @@ export default function App({ Component, pageProps }) {
     }, 300)
     localStorage.setItem('cookies-visible', visible ? 'active' : 'inactive')
   }
+
   return (
     <>
       <Head>
