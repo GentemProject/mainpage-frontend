@@ -1,92 +1,69 @@
-import styles from './footer.module.scss'
+import styles from './style.module.scss'
+import LinkButton from 'components/utils/interactive/inputs/link'
 import Link from 'next/link'
+import {
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  InstagramIcon,
+  Heart,
+} from 'components/svg'
 function Footer() {
   return (
-    <>
-      <div className={styles.footer}>
-        <div className={styles.content}>
-          <div className={styles.socialMedia}>
-            <div>
-              <a
-                href="https://www.facebook.com/gentemorg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className={styles.socialMediaIcon}
-                  src="/fb.svg"
-                  alt="facebook logo"
-                />
-              </a>
+    <div className={styles.footer}>
+      <div className={styles.list}>
+        <LinkButton
+          href="/"
+          className="simple"
+          label="Preguntas frecuentes"
+          size="m"
+          color={{ color: '#888888' }}
+        />
+        <LinkButton
+          href="/"
+          className="simple"
+          label="Politica de privacidad"
+          size="m"
+          color={{ color: '#888888' }}
+        />
+        <LinkButton
+          href="/"
+          className="simple"
+          label="Terminos y condiciones"
+          size="m"
+          color={{ color: '#888888' }}
+        />
+      </div>
+      <div className={styles.social}>
+        <div className={styles.icons}>
+          <Link href="">
+            <div className={styles.i}>
+              <FacebookIcon />
             </div>
-            <div>
-              <a
-                href="https://www.instagram.com/gentem_org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className={styles.socialMediaIcon}
-                  src="/insta.svg"
-                  alt="instagram logo"
-                />
-              </a>
+          </Link>
+          <Link href="">
+            <div className={styles.i}>
+              <TwitterIcon />
             </div>
-            <div>
-              <a
-                href="https://www.linkedin.com/company/gentem-org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className={styles.socialMediaIcon}
-                  src="/linkedIn.svg"
-                  alt="linkedin logo"
-                />
-              </a>
+          </Link>
+          <Link href="">
+            <div className={styles.i}>
+              <InstagramIcon />
             </div>
-          </div>
-          <div className={styles.footerContact}>
-            <span>
-              ¿Tienes alguna duda? Contactanos en
-              <span className="mail-color">
-                <a href="mailto:hola@gentem.org"> hola@gentem.org</a>
-              </span>
-            </span>
-          </div>
-
-          {/* <div className='language'>
-            <div>Castellano</div>
-            <span className='circle'></span>
-            <div className='activate'>Ingles</div>
-            </div> */}
+          </Link>
+          <Link href="">
+            <div className={styles.i}>
+              <LinkedinIcon />
+            </div>
+          </Link>
         </div>
-        <div className={styles.additionals}>
-          <div className={styles.option}>
-            <Link href="/otros/politicas/privacidad">
-              <a>
-                <span>Terminos y condiciones</span>
-              </a>
-            </Link>
-          </div>
-          <div className={styles.option}>
-            <Link href="/otros/politicas/cookies">
-              <a>
-                <span>Politicas de privacidad</span>
-              </a>
-            </Link>
-          </div>
-          <div className={styles.option}>
-            <Link href="/otros/preguntas-frecuentes">
-              <a>
-                <span>Preguntas frecuentes</span>
-              </a>
-            </Link>
-          </div>
+        <div className={styles.gratitude}>
+          <span>Hecho con </span>
+          <Heart />
+          <span> por el equipo de gentem</span>
         </div>
       </div>
-    </>
+    </div>
   )
 }
-
 export default Footer

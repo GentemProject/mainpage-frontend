@@ -1,11 +1,12 @@
-import Header from './Header'
-import Footer from './Footer'
-
-function Layout({ children }) {
+import Header from './header'
+import Footer from './footer'
+import Container from './container'
+function Layout(props: { children: JSX.Element }): JSX.Element {
+  const { children } = props
   return (
     <>
-      <Header />
-      {children}
+      <Header type="transparent" />
+      <Container>{children}</Container>
       <Footer />
     </>
   )

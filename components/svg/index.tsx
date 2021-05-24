@@ -4,5 +4,19 @@ import Heart from './heart'
 import Logo from './Logo'
 import Message from './Message'
 import NextArrow from './nextArrow'
-
-export { Arrow, Close, Heart, Logo, Message, NextArrow }
+import InstagramIcon from './instagram'
+import FacebookIcon from './facebook'
+import LinkedinIcon from './linkedin'
+import TwitterIcon from './twitter'
+export {
+  Arrow,
+  Close,
+  Heart,
+  Logo,
+  Message,
+  NextArrow,
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  TwitterIcon
+}

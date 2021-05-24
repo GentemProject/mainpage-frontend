@@ -6,15 +6,15 @@ function Banner(props) {
   const { height, img, desc, content } = props
   return (
     <div
-      className={styles.containerBanner}
+      className={styles.hero}
       style={{
         height: height ? height : '500px',
-        backgroundImage: `url(${img})`,
+        backgroundImage: img && `url(${img})`,
       }}
     >
       <div className={styles.content}>
         <div className={styles.text}>
-          <span>{desc}</span>
+          <h1>{desc}</h1>
         </div>
         {content && content}
       </div>

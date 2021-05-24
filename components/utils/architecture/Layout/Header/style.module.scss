@@ -1,0 +1,121 @@
+@import './styles/vars.module.scss';
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1111111;
+  width: 100%;
+  flex-direction: column;
+  //  row-gap: $space-row-xs;
+  padding: 12px 48px;
+  height: auto;
+//  transition: all 0.2s;
+  background: linear-gradient(
+    180deg,
+    rgba(200, 200, 200, 0.1) 0%,
+    rgba(200, 200, 200, 0.05) 60%
+  );
+  backdrop-filter: blur(5px);
+
+  .content {
+    max-width: 1440px;
+    width: 100%;
+    height: 100%;
+    justify-content: $space-column;
+    display: flex;
+    .logo {
+      display: flex;
+      column-gap: $space-column-xs;
+      align-items: center;
+      h3 {
+        color: $monocromatic-white;
+      }
+      svg {
+        width: 44px;
+        height: 38px;
+      }
+    }
+    .actions {
+      display: flex;
+      column-gap: $space-row-s;
+    }
+  }
+  .menuMobile {
+    width: 100%;
+    display: flex;
+    transition: all 0.2s;
+    flex-direction: column;
+    height: 0;
+    overflow: hidden;
+    .menu {
+      display: none;
+      transition: all 0.2s 0s;
+      opacity: 0;
+      flex-direction: column-reverse;
+      row-gap: $space-row-s;
+      //  visibility: hidden;
+    }
+  }
+  .active {
+    display: flex;
+    height: 180px;
+    margin-top: $space-row-s;
+    //  height: min-content;
+    .menu {
+      display: flex;
+      transition-delay: 0.1s;
+      opacity: 1;
+      //  visibility: visible;
+      .auth {
+        justify-content: center;
+      }
+      .item {
+        width: 100%;
+        border-bottom: 1px solid white;
+        display: flex;
+      }
+    }
+  }
+}
+.auth {
+  display: flex;
+  column-gap: $space-row-s;
+}
+.blur {
+  background: radial-gradient(
+      99.22% 16383.75% at 99.22% 75%,
+      rgba(68, 68, 68, 0.3) 0%,
+      rgba(68, 68, 68, 0.1) 100%
+    ),
+    linear-gradient(
+      89.65deg,
+      rgba(153, 153, 153, 0.4) 0.63%,
+      rgba(245, 245, 245, 0.1) 100%
+    );
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  backdrop-filter: blur(20px);
+  .logo {
+    h3 {
+      color: $monocromatic-white;
+    }
+  }
+}
+.solid {
+  background-color: $monocromatic-white;
+  border: 1px solid rgba(153, 153, 153, 0.3);
+  backdrop-filter: blur(20px);
+  .logo {
+    h3 {
+      color: $gentem-purple;
+    }
+  }
+}
+@keyframes mobile {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: auto;
+  }
+}

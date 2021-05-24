@@ -1,0 +1,82 @@
+@import './styles/vars.module.scss';
+.footer {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  padding: $padding-m;
+  row-gap: $space-row-s;
+  .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: $space-row-xs;
+  }
+  .social {
+    display: flex;
+    flex-direction: column;
+    row-gap: $space-row-s;
+    padding: $padding-s;
+    align-items: center;
+    align-self: center;
+    .icons {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      column-gap: $space-row-s;
+      .i{
+        cursor: pointer;
+        width: 48px;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        height: 48px;
+        background-color: $gentem-purple;
+        border-radius: 100px;
+        svg{
+          width: 20px;
+          height: 20px;
+          path{
+            fill: $monocromatic-white;
+          }
+        }
+      }
+    }
+    .gratitude {
+      display: flex;
+      column-gap: 6px;
+      align-items: flex-end;
+      &:hover{
+        svg{
+          transform: scale(1.2);
+        }
+
+      }
+      svg{
+        transition: all 0.3s;
+        path{
+          fill: $gentem-yellow;
+        }
+
+      }
+      span{
+        color: $monocromatic-alternative-grey;
+      }
+    }
+  }
+}
+@media (min-width: 320px){
+  .footer{
+    flex-direction: column;
+    .list{
+      align-items: center;
+    }
+  }
+}
+@media (min-width: 800px){
+  .footer{
+    flex-direction: row;
+    .list{
+      align-items: flex-start;
+    }
+  }
+}

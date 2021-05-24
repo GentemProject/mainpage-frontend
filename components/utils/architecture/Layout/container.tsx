@@ -1,13 +1,8 @@
 import style from './style.module.scss'
 
-function LayoutContainer(props: any) {
-  const { scaped, children } = props
-  return (
-    <>
-      {scaped ? scaped : null}
-      <div className={style.children}>{children}</div>
-    </>
-  )
+function Container(props: { children: JSX.Element }): JSX.Element {
+  const {children} = props
+  return <div className={style.container}>{children}</div>
 }
 
-export default LayoutContainer
+export default Container

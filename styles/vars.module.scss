@@ -1,0 +1,51 @@
+$gentem-purple: #47398e;
+$gentem-yellow: #ffcf53;
+$ui-error: #eb3232;
+$ui-success: #27bc1a;
+$ui-action: #6691ff;
+$ui-alert: #ffa304;
+$ui-disabled: #f0eeee;
+$monocromatic-white: #ffffff;
+$monocromatic-alternative-white: #f5f5f5;
+$monocromatic-grey: #d5d5d5;
+$monocromatic-alternative-grey: #888888;
+$monocromatic-black: #2a293e;
+$monocromatic-alternative-black: #4a4a4a;
+$space-row-xs: 12px;
+$space-row-s: 24px;
+$space-row-m: 48px;
+$space-row-l: 64px;
+$space-row-xxl: 124px;
+$space-column-xs: 12px;
+$space-column-s: 24px;
+$space-column: space-between;
+$padding-xs: 12px;
+$padding-s: 24px;
+$padding-m: 48px;
+$padding-l: 64px;
+
+$p-xs: (
+    "size": 12px,
+    "weight": 400,
+    "line-height": 16px,
+);
+$p-s: (
+    "size": 14px,
+    "weight": 400,
+    "line-height": 18px,
+);
+$p-m: (
+    "size": 16px,
+    "weight": 400,
+    "line-height": 22px,
+);
+$p-l: (
+    "size": 18px,
+    "weight": 400,
+    "line-height": 24px,
+);
+$p-xl: (
+    "size": 24px,
+    "weight": 400,
+    "line-height": 32px,
+);

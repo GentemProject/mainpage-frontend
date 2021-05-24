@@ -1,0 +1,56 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.link {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  column-gap: $space-row-xs;
+  span {
+    font-weight: bold;
+  }
+}
+.m {
+  padding: $padding-xs $padding-s;
+  span {
+    font-size: map.get($p-l, 'size');
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+.s {
+  padding: 8px $padding-xs;
+  span {
+    font-size: map.get($p-s, 'size');
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+.border {
+  border: 2px solid $gentem-yellow;
+  background-color: transparent;
+  span{
+    color: $gentem-yellow;
+  }
+}
+.simple {
+  border: none;
+  background-color: transparent;
+  span{
+    color: $gentem-yellow;
+  }
+}
+.normal {
+  background-color: $gentem-yellow;
+  border: none;
+  span{
+    color: $gentem-purple
+  }
+}
