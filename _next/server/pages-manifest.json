@@ -1,6 +1,14 @@
 {
+  "/404": "pages/404.html",
   "/_app": "pages/_app.js",
+  "/admin": "pages/admin.html",
+  "/admin/testing": "pages/admin/testing.html",
+  "/cause/[slug]": "pages/cause/[slug].js",
+  "/": "pages/index.js",
+  "/otros/politicas/cookies": "pages/otros/politicas/cookies.html",
+  "/otros/politicas/privacidad": "pages/otros/politicas/privacidad.html",
+  "/otros/preguntas-frecuentes": "pages/otros/preguntas-frecuentes.html",
+  "/projects": "pages/projects.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/_document": "pages/_document.js"
 }
