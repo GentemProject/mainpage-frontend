@@ -70,7 +70,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
         <div className={styles.project}>
           <div className={styles.current} ref={isRef}>
             <div className={styles.img}>
-              <Image
+              <img
                 src={currentProject.project.src}
                 width={150}
                 height={150}
@@ -121,7 +121,7 @@ function Item(props: {
         selectProject(id)
       }}
     >
-      <Image width={48} height={48} src={src} alt={alt} className={styles.i} />
+      <img width={48} height={48} src={src} alt={alt} className={styles.i} />
     </div>
   )
 }
