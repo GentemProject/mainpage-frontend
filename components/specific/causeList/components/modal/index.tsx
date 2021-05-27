@@ -8,7 +8,7 @@ function ModalContent(props: any) {
       <div className={styles.ongListModalLogo}>
         <img src="/logoAnimado.svg" alt="logo" />
       </div>
-      <Filter select={select} filters={filters} checkbox={checkbox} />
+      <Filter select={select} filters={filters} />
     </div>
   )
 }
