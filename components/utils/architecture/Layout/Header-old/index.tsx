@@ -15,7 +15,7 @@ function Header() {
           <div className={styles.headerLogo}>
             <Link href="/">
               <a>
-                <Logo />
+                <Logo fill='white'/>
               </a>
             </Link>
           </div>
