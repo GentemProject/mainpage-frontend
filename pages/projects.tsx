@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 // Components & Usables
-import CauseList from '@/components/specific/causeList'
+//import CauseList from '@/components/specific/causeList'
 
 // Apollo
 import { initializeApollo } from '../api'
@@ -152,7 +152,7 @@ const OngList = (props: { query: getOrganizationsFilters }): JSX.Element => {
     await setOrganizationArray(data.getOrganizations)
     await setLoading(false)
   }
-  /*  
+  /*
   const handleDonationLinks = async (boolean) => {
     await setFilters({ ...filters, donationLinks: boolean })
     await refetch()
@@ -211,22 +211,7 @@ const OngList = (props: { query: getOrganizationsFilters }): JSX.Element => {
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
-      <CauseList
-        select={{
-          handleCauseId,
-          handleCountry,
-        }}
-        /*  checkbox={{
-          handleDonationLinks,
-          handleDonationBankAccountName,
-          handleDonationProducts,
-        }} */
-        handleNextPage={handleNextPage}
-        filters={filters}
-        resetFilters={resetFilters}
-        loading={loading}
-        data={!loading && organizationArray}
-      />
+
     </>
   )
 }
@@ -247,3 +232,21 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   }
 }
+/*
+<CauseList
+  select={{
+    handleCauseId,
+    handleCountry,
+  }}
+    checkbox={{
+    handleDonationLinks,
+    handleDonationBankAccountName,
+    handleDonationProducts,
+  }}
+  handleNextPage={handleNextPage}
+  filters={filters}
+  resetFilters={resetFilters}
+  loading={loading}
+  data={!loading && organizationArray}
+/>
+*/
