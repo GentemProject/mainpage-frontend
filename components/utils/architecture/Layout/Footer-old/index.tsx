@@ -1,6 +1,6 @@
 import styles from './footer.module.scss'
 import Link from 'next/link'
-function Footer() {
+function Footera() {
   return (
     <>
       <div className={styles.footer}>
@@ -89,4 +89,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footera
