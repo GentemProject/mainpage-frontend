@@ -1,7 +1,6 @@
 import Banner from '@/components/utils/architecture/hero'
 import Filter from './components/filter'
 import ContenidoSider from './components/organizations'
-import LayoutContainer from '@/components/utils/architecture/Layout/container'
 import { Loader } from '@/components/utils/interactive/loader'
 
 import styles from './style.module.scss'
@@ -24,38 +23,24 @@ function CauseList(props: {
   )
   return (
     <div className={styles.ongList}>
-      <LayoutContainer
-        scaped={
-          <Banner
-            img="../banner.jpg"
-            desc="Encuentra y dona"
-            height="400px"
-            content={contentBanner}
-          />
-        }
-      >
-        <div className={styles.layoutCenter}>
-          <div className={`${styles.ongListContent}`}>
-            <Filter
+      <div className={styles.layoutCenter}>
+        <div className={`${styles.ongListContent}`}>
+          <Filter select={select} filters={filters} /* checkbox={checkbox} */ />
+          {loading ? (
+            <Loader />
+          ) : (
+            <ContenidoSider
+              data={data}
+              resetFilters={resetFilters}
+              handleNextPage={handleNextPage}
+              // Modal filter
               select={select}
-              filters={filters} /* checkbox={checkbox} */
+              filters={filters}
+              /*  checkbox={checkbox} */
             />
-            {loading ? (
-              <Loader />
-            ) : (
-              <ContenidoSider
-                data={data}
-                resetFilters={resetFilters}
-                handleNextPage={handleNextPage}
-                // Modal filter
-                select={select}
-                filters={filters}
-                /*  checkbox={checkbox} */
-              />
-            )}
-          </div>
+          )}
         </div>
-      </LayoutContainer>
+      </div>
     </div>
   )
 }

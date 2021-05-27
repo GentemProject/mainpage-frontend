@@ -38,7 +38,7 @@ function Cause(props: { data: Organization }) {
     <div className={styles.ongProfile}>
       <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
         <Map location={{ coordenates, city, country }} />
-        <LayoutContainer>
+
           <div className={`${styles.ongProfileContent} ${styles.layout}`}>
             <Contenido
               name={name}
@@ -70,7 +70,7 @@ function Cause(props: { data: Organization }) {
               /* donationProducts={donationProducts} */
             />
           </div>
-        </LayoutContainer>
+    
       </div>
     </div>
   )

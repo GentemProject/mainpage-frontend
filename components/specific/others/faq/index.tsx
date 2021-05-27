@@ -13,7 +13,6 @@ function FAQContent() {
           </div>
         </div>
       </div>
-      <LayoutContainer>
         <div className={style.utilContainer}>
           <Collapse id="queesgentem" title="¿Qué es gentem?">
             <p>
@@ -153,7 +152,6 @@ function FAQContent() {
             </p>
           </Collapse>
         </div>
-      </LayoutContainer>
     </div>
   )
 }

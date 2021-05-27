@@ -12,7 +12,7 @@ function TermsConditionContent() {
           </div>
         </div>
       </div>
-      <LayoutContainer>
+
         <div className={style.utilContainer}>
           <p>
             Bienvenido a esta plataforma (el &quot;sitio&quot;) de propiedad de
@@ -230,7 +230,6 @@ function TermsConditionContent() {
             contacto con GENTEM en la dirección XXXXXX
           </p>
         </div>
-      </LayoutContainer>
     </div>
   )
 }
