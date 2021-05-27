@@ -7,6 +7,9 @@ if (process.env.NODE_ENV === 'production') {
   API_BACKEND = 'https://api-prod.gentem.org'
 }
 module.exports = {
+  images: {
+   domains: ['/'],
+ },
   env: {
     API_BACKEND: API_BACKEND,
   },
