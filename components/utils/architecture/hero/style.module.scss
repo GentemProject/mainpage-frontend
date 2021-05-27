@@ -1,7 +1,7 @@
 @import './styles/vars.module.scss';
 .hero {
   /*   margin-bottom: $size-banner; */
-  width: auto;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -16,7 +16,7 @@
     width: 100%;
     height: auto;
     display: grid;
-    row-gap: 24px;
+    row-gap: $space-row-s;
     justify-content: flex-start;
     align-items: center;
     .text {
@@ -32,5 +32,17 @@
         color: $monocromatic-white;
       }
     }
+  }
+}
+@media (min-width: 320px) { 
+  .hero{
+    padding: 0 $padding-xs;
+
+  }
+}
+@media (min-width: 800px) {
+  .hero{
+    padding: 0 $padding-m;
+
   }
 }

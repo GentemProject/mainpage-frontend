@@ -16,6 +16,8 @@ $space-row-s: 24px;
 $space-row-m: 48px;
 $space-row-l: 64px;
 $space-row-xxl: 124px;
+$space-row-xxxl: 248px;
+
 $space-column-xs: 12px;
 $space-column-s: 24px;
 $space-column: space-between;
@@ -47,5 +49,5 @@ $p-l: (
 $p-xl: (
     "size": 24px,
     "weight": 400,
-    "line-height": 32px,
+    "line-height": 38px,
 );

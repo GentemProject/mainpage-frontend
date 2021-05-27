@@ -8,7 +8,7 @@
   width: 100%;
   flex-direction: column;
   //  row-gap: $space-row-xs;
-  padding: 12px 48px;
+  padding: $space-row-xs $space-row-m;
   height: auto;
 //  transition: all 0.2s;
   background: linear-gradient(
@@ -109,6 +109,17 @@
     h3 {
       color: $gentem-purple;
     }
+  }
+}
+@media (min-width: 320px){
+  .header{
+    padding: $padding-xs;
+  }
+}
+@media (min-width: 800px) {
+  .header{
+    padding: $padding-xs $padding-m;
+
   }
 }
 @keyframes mobile {

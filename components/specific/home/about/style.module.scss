@@ -1,0 +1,55 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.about {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background-color: $gentem-yellow;
+  .content {
+    max-width: 1440px;
+    display: grid;
+    row-gap: $space-row-l;
+    width: 100%;
+    h1 {
+      text-align: center;
+    }
+    .list {
+      grid-gap: $space-row-m;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1 1  150px;
+      justify-content: center;
+    //  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+      .item {
+        display: grid;
+        max-width: 400px;
+        width: auto;
+        justify-items: center;
+        row-gap: $space-row-s;
+        grid-auto-rows: 100px 1fr;
+        p {
+          font-size: map.get($p-m, 'size');
+          text-align: center;
+          line-height: map.get($p-m, 'line-height');
+          color: $monocromatic-alternative-black;
+        }
+      }
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+@media (min-width: 320px) {
+  .about {
+    padding: $space-row-xxl $padding-xs;
+  }
+}
+@media (min-width: 800px) {
+  .about {
+    padding: $space-row-xxl $padding-m;
+  }
+}

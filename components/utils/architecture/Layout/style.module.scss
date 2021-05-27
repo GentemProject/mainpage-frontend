@@ -1,8 +1,18 @@
 @import './styles/vars.module.scss';
 .container {
   display: grid;
-  row-gap: $space-row-xxl;
-  place-content: center;
+  row-gap: $space-row-xxxl;
+  //place-content: center;
+  width: 100%;
+  height: 100%;
+}
+.block {
+  display: grid;
+  justify-content: center;
+}
+.max{
+  width: 100%;
+
 }
 // XXS
 

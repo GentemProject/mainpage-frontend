@@ -1,13 +1,16 @@
 import Hero from 'components/utils/architecture/hero'
 import Colab from './colaboration/colaboracion'
 import Stats from './stats/stats'
-import Info from './info/info-home'
-import Nos from './about/nosotros-home'
+import Info from './info/'
+import About from './about/'
 import Ongs from 'components/utils/interactive/recentOng/'
 import Contribuir from './colaboration/contribuir'
 import styles from './style.module.scss'
 import LinkButton from 'components/utils/interactive/inputs/link'
 import LastProjects from './lastProjects'
+import Support from './support'
+import Donation from './donation'
+import Invitation from './invitation'
 function Content(props: { query: any }): JSX.Element {
   const { query } = props
   const contentBanner = (
@@ -77,23 +80,14 @@ function Content(props: { query: any }): JSX.Element {
         desc="Descubre las organizaciones que trabajan por un futuro mejor"
       />
       <LastProjects projects={test} />
-      <Colab desc={g} btn="¡Apoya a una organización!" colorBtn=" #237ed5" />
+
       <Info />
-      <Colab
-        desc="El aporte que hagas, por pequeño que te parezca, puede significar un día de comida para una familia."
-        btn="¡Ayuda ya!"
-        colorBtn="#F44B53"
-      />
-      <Stats />
-
-      <Nos />
-      {query.loading ? (
-        'Cargando...'
-      ) : (
-        <Ongs ongs={query.data.getOrganizations} />
-      )}
-
-      <Contribuir />
+      <div>
+        <Support />
+        <About />
+        <Donation />
+        <Invitation />
+      </div>
     </>
   )
 }

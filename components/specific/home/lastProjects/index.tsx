@@ -24,7 +24,6 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
       href: '',
     },
   })
-  const [loading, setLoading] = useState(true)
   const isRef = useRef(null)
   const temporizer = () => {
     clearTimeout(timer)
@@ -37,7 +36,6 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
           ? { position: 0, project: projects[0] }
           : { position: n, project: projects[n] }
       )
-      transitionProject()
     }, 6000)
   }
   const transitionProject = () => {
@@ -49,14 +47,15 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
   }
   useEffect(() => {
     setCurrentProject({ position: 0, project: projects[0] })
-    setLoading(false)
     temporizer()
   }, [])
   useEffect(() => {
+      transitionProject()
     temporizer()
   }, [currentProject])
   const selectProject = (n: number) => {
     clearTimeout(timer)
+
     setCurrentProject({ position: n, project: projects[n] })
     temporizer()
   }

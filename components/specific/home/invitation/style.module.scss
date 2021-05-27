@@ -1,0 +1,51 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.invitation {
+  background-color: $gentem-purple;
+  padding: $space-row-xxl $padding-m;
+  position: relative;
+  min-height: 700px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  .content {
+    display: grid;
+    row-gap: $space-row-m;
+    place-items: center;
+    h1 {
+      color: $monocromatic-white;
+      text-align: center;
+    }
+    p {
+      color: $monocromatic-white;
+      text-align: center;
+    }
+  }
+  .logo {
+    transition: all 0.3s;
+    position: absolute;
+    right: 100px;
+    opacity: 0.5;
+    top: 50px;
+    svg {
+      width: 600px;
+      height: 600px;
+    }
+  }
+}
+@media (min-width: 320px){
+  .invitation{
+    .logo{
+      right: -200px;
+
+    }
+  }
+}
+@media (min-width: 1024px){
+  .invitation{
+    .logo{
+      right: 110px;
+
+    }
+  }
+}

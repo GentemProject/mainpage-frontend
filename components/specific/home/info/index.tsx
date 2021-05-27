@@ -1,58 +1,43 @@
-/* import FlDos from './fl-2' */
-import styles from '../style.module.scss'
-const img1 = '/poverty.png'
-const img2 = '/real.png'
-const img3 = '/together.png'
-
-function Infohome() {
+import styles from './style.module.scss'
+import { PeopleIcon, HandsUpIcon, HumanIcon } from 'components/svg'
+function Info(): JSX.Element {
   return (
-    <div className={styles.containerInfoHome}>
-      <Info
-        col="#237ED5"
-        tit="Iniciativas 
-sociales reales"
-        cuerpo="Queremos que tu ayuda llegue a la causa que realmente quieres apoyar, por eso las organizaciones que encuentras en gentem han sido filtradas por nuestro equipo."
-        i={img2}
-        id="3"
-      />
-      <Info
-        col="#1E8A61"
-        tit="Unidos somos 
-más fuertes"
-        cuerpo="No podemos ser indiferentes a lo que pasa cerca de nuestra casa, a los problemas de nuestros vecinos, conocidos o compañeros de trabajo, o a la sociedad en la que vivimos. Hay un futuro mejor, ¡y entre todos podemos construirlo juntos!"
-        i={img3}
-        id="2"
-      />
-      <Info
-        col="#FFCF53"
-        tit="La pobreza extrema azota a todo el mundo"
-        cuerpo="Solo imagina estar en los zapatos de alguien cabeza de familia, sin comida en casa, sin una forma de generar ingresos y tus hijos con hambre... ¡es momento de apoyarnos entre todos!"
-        i={img1}
-        id="1"
-      />
-    </div>
-  )
-}
-
-function Info(props: any) {
-  return (
-    <div className={styles.target}>
-      <div className={styles.containerImgInfo}>
-        <div className={styles.formaIm}>
-          <img src={props.i} alt="" />
-        </div>
-      </div>
+    <div className={styles.component}>
       <div className={styles.info}>
-        <div className={styles.texto}>
-          <h2>{props.tit}</h2>
-        </div>
-        <div className={styles.linea} style={{ background: props.col }}></div>
-        <div className={styles.desc}>
-          <p>{props.cuerpo}</p>
-        </div>
+        <Item
+          title="La extrema pobreza nos amenaza"
+          desc="Con la ayuda de cada uno de nosotros, por pequeña que sea, podemos darle a alguien un respiro en estos tiempos de incertidumbre, y la esperanza de un manaña mejor."
+          img={<HumanIcon />}
+        />
+        <Item
+          title="La extrema pobreza nos amenaza"
+          desc="Con la ayuda de cada uno de nosotros, por pequeña que sea, podemos darle a alguien un respiro en estos tiempos de incertidumbre, y la esperanza de un manaña mejor."
+          img={<HandsUpIcon />}
+        />
+        <Item
+          title="La extrema pobreza nos amenaza"
+          desc="Queremos que tu ayuda llegue a la población que realmente quieres impactar, por ende hemos realizado un trabajo exhaustivo para verificar las fundaciones que encontrás en gentem."
+          img={<PeopleIcon />}
+        />
       </div>
     </div>
   )
 }
-
-export default Infohome
+function Item(props: {
+  title: string
+  desc: string
+  img: JSX.Element
+}): JSX.Element {
+  const { title, desc, img } = props
+  return (
+    <div className={styles.item}>
+      <div className={styles.text}>
+        <h1>{title}</h1>
+        <div className={styles.line}></div>
+        <p>{desc}</p>
+      </div>
+      <div className={styles.image}>{img}</div>
+    </div>
+  )
+}
+export default Info

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './styles/vars.module.scss';
 .footer {
   display: flex;
@@ -23,7 +24,7 @@
       width: 100%;
       justify-content: center;
       column-gap: $space-row-s;
-      .i{
+      .i {
         cursor: pointer;
         width: 48px;
         display: flex;
@@ -32,10 +33,10 @@
         height: 48px;
         background-color: $gentem-purple;
         border-radius: 100px;
-        svg{
+        svg {
           width: 20px;
           height: 20px;
-          path{
+          path {
             fill: $monocromatic-white;
           }
         }
@@ -45,38 +46,47 @@
       display: flex;
       column-gap: 6px;
       align-items: flex-end;
-      &:hover{
-        svg{
+      &:hover {
+        svg {
           transform: scale(1.2);
         }
-
       }
-      svg{
+      svg {
         transition: all 0.3s;
-        path{
+        path {
           fill: $gentem-yellow;
         }
-
       }
-      span{
+      span {
         color: $monocromatic-alternative-grey;
       }
     }
   }
 }
-@media (min-width: 320px){
-  .footer{
+@media (min-width: 320px) {
+  .footer {
     flex-direction: column;
-    .list{
+    .list {
       align-items: center;
+    }
+    .social {
+      padding: 0;
+      .gratitude{
+        span{
+          font-size: map.get($p-s, 'size');
+        }
+      }
     }
   }
 }
-@media (min-width: 800px){
-  .footer{
+@media (min-width: 800px) {
+  .footer {
     flex-direction: row;
-    .list{
+    .list {
       align-items: flex-start;
+    }
+    .social {
+      padding: $padding-s;
     }
   }
 }
