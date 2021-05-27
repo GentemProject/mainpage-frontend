@@ -7,7 +7,7 @@ import Heart from '../../../../svg/heart'
 // Styles
 import styles from './header.module.scss'
 
-function Header() {
+function Headera() {
   return (
     <>
       <div className={`${styles.fixed}`}>
@@ -39,4 +39,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Headera
