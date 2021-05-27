@@ -2,10 +2,10 @@ import { useEffect, useState, Fragment } from 'react'
 // Aislar componente o es especifico?
 import styles from '../../../specific/home/style.module.scss'
 import Link from 'next/link'
-import { OrganizationHome, OrganizationsHome } from 'interfaces/organization'
+import { OrganizationHome } from 'interfaces/organization'
 /* const logoDefault = '/logoDefault.png' */
 const logoDefault = '/logoDefault.png'
-function Ongs(props: { ongs: OrganizationsHome['data']['getOrganizations'] }) {
+function Ongs(props: { ongs: any }) {
   return (
     <div>
       <div className={styles.containerOngs}>
