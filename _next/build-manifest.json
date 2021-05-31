@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/1622499929326/_buildManifest.js",
-    "static/1622499929326/_ssgManifest.js"
+    "static/1622501803699/_buildManifest.js",
+    "static/1622501803699/_ssgManifest.js"
   ],
   "pages": {
     "/": [
