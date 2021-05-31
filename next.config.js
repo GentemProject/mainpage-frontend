@@ -25,11 +25,6 @@ module.exports = {
   ) {
     const paths = {
       '/': { page: '/' },
-      '/projects': { page: '/projects' },
-      '/admin': { page: '/admin' },
-      '/util/preguntas-frecuentes': { page: '/util/preguntas-frecuentes' },
-      '/util/privacidad': { page: '/util/privacidad' },
-      '/util/terminos': { page: '/util/terminos' },
     }
 
     return paths
@@ -71,4 +66,9 @@ orgs.forEach((org) => {
     page: '/org/[slug]',
     query: { slug: org.slug },
   }
+  '/projects': { page: '/projects' },
+  '/admin': { page: '/admin' },
+  '/util/preguntas-frecuentes': { page: '/util/preguntas-frecuentes' },
+  '/util/privacidad': { page: '/util/privacidad' },
+  '/util/terminos': { page: '/util/terminos' },
 })*/
