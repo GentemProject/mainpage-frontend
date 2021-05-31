@@ -1,205 +1,248 @@
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useState, useEffect, useRef } from 'react'
-import NProgress from 'nprogress'
+import { useState } from 'react'
 
 // Components & Usables
+import CauseList from '@/components/specific/causeList'
+
+// Apollo
+import { initializeApollo } from '../api'
+import { useQuery, gql } from '@apollo/client'
 import {
-  Contenido,
-  ContenidoSider,
-  Banner,
-} from '../components/organizationList'
-import Loader from '../components/usables/Loader'
-import { getForFilters, getAllOrganizations } from '../api/filters'
-// Interfaces
-import { Organization } from '../interfaces/organization'
+  getOrganizationsFilters,
+  organizationsProjects,
+} from 'interfaces/organization'
 
-interface filters {
-  country: string | boolean
-  products: boolean
-  donationData: boolean
-  transfer: boolean
-  causeId: number
+interface organization {
+  id: string
+  name: string
+  slug: string
+  country: string
+  logoUrl: string
+  donationLinks: string[]
+  donationBankAccountName: string
+  donationProducts: string
+  causes: string[]
 }
-// Styles
-import styles from '../components/organizationList/onglist.module.scss'
-import FilterContainer from '../components/organizationList/filterContainer'
-import LayoutContainer from '@/components/Layout/LayoutContainer'
 
-interface Props {
-  projectos: Organization
-  lengthOng: number
+interface pageData {
+  totalOrganizations: number
+  hasNextPage: boolean
+  endCursor: string
 }
-const OngList: NextPage<Props> = ({ projectos, lengthOng }) => {
-  const quantityOng = lengthOng
-  const [resultfilters, setResultfilters] = useState<any>()
-  const [filters, setFilters] = useState<filters>({
-    country: null,
-    products: false,
-    donationData: false,
-    transfer: false,
-    causeId: 0,
-  })
 
-  const changeSelect = (motive: string, select: any) => {
-    const temp = { ...filters }
+interface data {
+  getOrganizations: {
+    pageData: pageData
+    organizations: organization[]
+  }
+}
 
-    if (motive === 'country') {
-      if (select === 'Todos los paises') {
-        temp.country = null
-      } else {
-        temp.country = select
+// Schema
+/* const querySchema = gql`
+  query Organizations(
+    $causeId: String
+    $country: String
+    $donationLinks: Boolean
+    $donationBankAccountName: Boolean
+    $donationProducts: Boolean
+    $endCursor: String
+  ) {
+    getOrganizations(
+      first: 12
+      endCursor: $endCursor
+      causeId: $causeId
+      country: $country
+      donationLinks: $donationLinks
+      donationBankAccountName: $donationBankAccountName
+      donationProducts: $donationProducts
+    ) {
+      pageData {
+        totalOrganizations
+        hasNextPage
+        endCursor
       }
-    }
-    if (motive === 'causeId') {
-      temp.causeId = select
-    }
-    setFilters(temp)
-  }
-  const [arrayProjectos, setArrayProjectos] = useState([projectos.data])
-  const [maxPage, setMaxPage] = useState(projectos.totalPages)
-  const [totalOrg, setTotalOrg] = useState(projectos.totalOrg)
-  const [actualPage, setActualPage] = useState(projectos.page)
-  const changeFilters = (res: boolean, motive: string) => {
-    const temp = { ...filters }
-    if (motive === 'all') {
-      temp.products = res
-      temp.donationData = res
-      temp.transfer = res
-      temp.causeId = 0
-      temp.country = null
-    }
-    if (motive === 'products') {
-      temp.products = res
-    }
-    if (motive === 'donationData') {
-      temp.donationData = res
-    }
-    if (motive === 'transfer') {
-      temp.transfer = res
-    }
-    setFilters(temp)
-  }
-  const mounted = useRef(false)
-  useEffect(() => {
-    const changeFilters = () => {
-      getForFilters(0, filters).then((datos) => {
-        NProgress.start()
-        if (datos === 'no hay nada') {
-          setResultfilters(null)
-          NProgress.done()
-        } else {
-          setResultfilters(datos)
-          NProgress.done()
+      organizations {
+        id
+        name
+        slug
+        country
+        logoUrl
+        donationLinks
+        donationBankAccountName
+        donationProducts
+        causes {
+          name
         }
-        setArrayProjectos([datos.data])
-        setMaxPage(datos.totalPages)
-        setActualPage(datos.page)
-        setTotalOrg(datos.totalOrg)
-      })
-    }
-    if (mounted.current) {
-      changeFilters()
-    } else {
-      mounted.current = true
-    }
-  }, [filters])
-
-  const [visible, setVisible] = useState(true)
-
-  const searchMore = async () => {
-    await getForFilters(actualPage + 1, filters).then((datos) => {
-      NProgress.start()
-      if (datos === 'no hay nada') {
-        setResultfilters(null)
-        NProgress.done()
-      } else {
-        setResultfilters(datos)
-        setActualPage(datos.page)
-        NProgress.done()
       }
-      setArrayProjectos([...arrayProjectos, datos.data])
+    }
+  }
+` */
+
+const querySchema = gql`
+  query getOrganizationsFilter(
+    $page: Float
+    $country: String
+    $causeId: String
+  ) {
+    getOrganizations(
+      limit: 12
+      page: $page
+      country: $country
+      causeId: $causeId
+    ) {
+      id
+      name
+      slug
+      country
+      logoUrl
+      donationLinks
+      donationBankAccountName
+      causes {
+        id
+        name
+      }
+    }
+  }
+`
+
+const filtersDefault = {
+  country: '',
+  causeId: '',
+  page: 0,
+  /*   donationLinks: false,
+  donationBankAccountName: false,
+  donationProducts: false, */
+  /*   endCursor: '', */
+}
+const OngList = (props: { query: getOrganizationsFilters }): JSX.Element => {
+  const { query } = props
+  const [organizationArray, setOrganizationArray] = useState<
+    organizationsProjects[]
+  >(query.data.getOrganizations)
+  const [loading, setLoading] = useState<boolean>(query.loading)
+  // Filter State
+  const [filters, setFilters] = useState(filtersDefault)
+  const { data, refetch, fetchMore } = useQuery<
+    getOrganizationsFilters['data']
+  >(querySchema, {
+    variables: filters,
+  })
+  // Filter handlers
+  const handleCountry = async (country) => {
+    await setFilters({
+      ...filters,
+      country: country,
+      page: 0,
+    })
+    await setLoading(true)
+    await refetch()
+    await setOrganizationArray(data.getOrganizations)
+    await setLoading(false)
+  }
+  const handleCauseId = async (causeId) => {
+    await setFilters({
+      ...filters,
+      causeId: causeId,
+      page: 0,
+    })
+    await setLoading(true)
+    await refetch()
+    await setOrganizationArray(data.getOrganizations)
+    await setLoading(false)
+  }
+  /*
+  const handleDonationLinks = async (boolean) => {
+    await setFilters({ ...filters, donationLinks: boolean })
+    await refetch()
+  } */
+  /*   const handleDonationBankAccountName = async (boolean) => {
+    await setFilters({
+      ...filters,
+      donationBankAccountName: boolean,
+      endCursor: '',
+    })
+    await refetch()
+  } */
+  /*   const handleDonationProducts = async (boolean) => {
+    await setFilters({
+      ...filters,
+      donationProducts: boolean,
+      endCursor: '',
+    })
+    await refetch()
+  } */
+  const resetFilters = async () => {
+    await setFilters(filtersDefault)
+  }
+
+  const handleNextPage = async () => {
+    await setFilters({
+      ...filters,
+      page: filters.page + 1,
+    })
+    await fetchMore({
+      variables: filters,
+      updateQuery: (prevResult: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prevResult
+
+        console.log(prevResult, 'prev')
+        console.log(fetchMoreResult, 'more')
+        return {
+          getOrganizations: {
+            ...query.data.getOrganizations,
+            data: [
+              ...query.data.getOrganizations,
+              ...fetchMoreResult?.getOrganizations,
+            ],
+          },
+        }
+      },
     })
   }
-
-  const handlePagination = async () => {
-    await searchMore()
-  }
-
-  useEffect(() => {
-    if (actualPage === maxPage) {
-      setVisible(false)
-    } else {
-      setVisible(true)
-    }
-  }, [actualPage, maxPage])
+  /*         fetchMoreResult.getOrganizations = [
+          ...prevResult.getOrganizations,
+          ...fetchMoreResult.getOrganizations,
+        ]
+        return fetchMoreResult */
   return (
     <>
       <Head>
         <title>Organizaciones | gentem</title>
       </Head>
-      {projectos.data.length < 0 && <Loader></Loader>}
-      {projectos.data.length > 0 && (
-        <div className={styles.ongList}>
-          <Banner />
-          <LayoutContainer>
-            <div className={styles.layoutCenter}>
-              <div className={`${styles.ongListContent} ${styles.layout}`}>
-                <FilterContainer
-                  changeFilters={changeFilters}
-                  changeSelect={changeSelect}
-                  filters={filters}
-                />
-                <ContenidoSider
-                  ONGs={resultfilters ? resultfilters : projectos.data}
-                  changeSelect={changeSelect}
-                  changeFilters={changeFilters}
-                  filters={filters}
-                  proyectos={arrayProjectos}
-                  totalOrgFilter={totalOrg}
-                  quantity={quantityOng}
-                  button={handlePagination}
-                  visible={visible}
-                  setFilters={setFilters}
-                />
-              </div>
-            </div>
-          </LayoutContainer>
-        </div>
-      )}
+      <CauseList
+        select={{
+          handleCauseId,
+          handleCountry,
+        }}
+        /*  checkbox={{
+          handleDonationLinks,
+          handleDonationBankAccountName,
+          handleDonationProducts,
+        }} */
+        handleNextPage={handleNextPage}
+        filters={filters}
+        resetFilters={resetFilters}
+        loading={loading}
+        data={!loading && organizationArray}
+      />
     </>
   )
 }
 
 export default OngList
-export const getStaticProps = async () => {
-  let lengthOng
-  await getAllOrganizations().then((length) => {
-    lengthOng = length
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo()
+
+  const query = await apolloClient.query({
+    query: querySchema,
+    variables: filtersDefault,
   })
-  const filters = {
-    country: null,
-    products: false,
-    donationData: false,
-    transfer: false,
-    causeId: 0,
-  }
-  let projectos
-  const page = 0
-  await getForFilters(page, filters).then((datos) => {
-    if (datos === 'no hay nada') {
-      projectos = null
-      return projectos
-    } else {
-      projectos = datos
-      return projectos
-    }
-  })
+  apolloClient.cache.extract()
   return {
     props: {
-      projectos,
-      lengthOng,
+      query,
     },
-    revalidate: 20,
   }
 }
