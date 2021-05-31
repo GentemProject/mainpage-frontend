@@ -31,15 +31,7 @@ module.exports = {
       '/util/privacidad': { page: '/util/privacidad' },
       '/util/terminos': { page: '/util/terminos' },
     }
-    const res = await fetch('https://api.gentem.org/api/projects/getall')
-    const data = await res.json()
-    const orgs = data.map((entry) => entry)
-    orgs.forEach((org) => {
-      paths[`/org/${org.slug}`] = {
-        page: '/org/[slug]',
-        query: { slug: org.slug },
-      }
-    })
+
     return paths
   },
   rules: [
@@ -70,3 +62,13 @@ module.exports = {
     },
   ],
 }
+/*
+const res = await fetch('https://api.gentem.org/api/projects/getall')
+const data = await res.json()
+const orgs = data.map((entry) => entry)
+orgs.forEach((org) => {
+  paths[`/org/${org.slug}`] = {
+    page: '/org/[slug]',
+    query: { slug: org.slug },
+  }
+})*/
