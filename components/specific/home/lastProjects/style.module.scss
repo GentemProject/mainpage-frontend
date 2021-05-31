@@ -1,0 +1,89 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.component {
+  display: flex;
+  justify-content: center;
+}
+.lastProjects {
+  display: grid;
+  max-width: 1440px;
+  width: auto;
+  row-gap: $space-row-m;
+  place-items: center;
+  h1{
+    text-align: center;
+  }
+  p {
+    font-size: map.get($p-xl, 'size');
+    line-height: map.get($p-xl, 'line-height');
+    font-weight: map.get($p-xl, 'weight');
+    max-width: 800px;
+    color: $monocromatic-black;
+    text-align: center;
+  }
+  .project {
+    width: 100%;
+    display: grid;
+  //place-items: center;
+    row-gap: $space-row-s;
+    .current {
+      display: grid;
+      place-items: center;
+      row-gap: $space-row-s;
+      opacity: 0;
+      .img {
+        filter: drop-shadow(0px 2px 10px rgba(91, 91, 91, 0.25));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+        .image {
+          border-radius: 20px;
+          transition: all 0.3s;
+        }
+      }
+    }
+    .anim {
+      animation-name: transitionProject;
+      animation-duration: 0.5s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-direction: alternate;
+    }
+  }
+  .list {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, 48px);
+    grid-gap: $space-column-s;
+    .item {
+      filter: drop-shadow(0px 2px 5px rgba(91, 91, 91, 0.25));
+      transition: all 0.3s;
+      height: 48px;
+      width: 48px;
+      .i {
+        border-radius: 10px;
+      }
+    }
+    .active {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes transitionProject {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (min-width: 320px){
+  .component{
+    padding: 0 $padding-xs;
+  }
+}

@@ -19,8 +19,8 @@ function TargetBase(props: any) {
   return (
     <div className={style.target}>
       <div className={style.targetGrid}>
-        {array.map((title: any) => {
-          return <Target key={id} desc={title} />
+        {array.map((cause: any) => {
+          return <Target key={id} desc={cause.name} />
         })}
       </div>
     </div>
