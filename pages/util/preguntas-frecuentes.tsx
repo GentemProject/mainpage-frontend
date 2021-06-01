@@ -1,4 +1,4 @@
-import FAQContent from '@/components/UtilPage/FAQContent'
+import FAQContent from '@/components/specific/others/faq'
 
 function FAQ() {
   return <FAQContent />

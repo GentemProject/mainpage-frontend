@@ -1,4 +1,5 @@
-import TermsConditionContent from '@/components/UtilPage/TersmConditionContent'
+
+import TermsConditionContent from '@/components/specific/others/cookies'
 
 function TermsConditions() {
   return <TermsConditionContent />
