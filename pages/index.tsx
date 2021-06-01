@@ -31,11 +31,11 @@ export default function Home(props: { query: getOrganizationsHome }) {
         </title>
       </Head>
 
-      <Content query={query} />
+      <Content query={null} />
     </>
   )
 }
-
+/**
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo()
 
@@ -51,3 +51,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   }
 }
+*/
