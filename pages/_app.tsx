@@ -1,36 +1,53 @@
 import { useEffect, useState } from 'react'
-import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
-import { GTMPageView } from '../components/gtm'
+import TagManager from 'react-gtm-module'
+
+// Apollo
+import { useApollo } from '../api'
+import { ApolloProvider } from '@apollo/client'
+
+// Components
 import Close from '@/components/svg/close'
-import Layout from '@/components/Layout'
+import Layout from '@/components/utils/architecture/Layout'
 
 // Loading
 import NProgress from 'nprogress'
-
-// Styles
-import '../styles/styles.scss'
-
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [visible, setVisible] = useState(true)
+// Styles
+import '../styles/styles.scss'
+
+const tagManagerArgs = {
+  gtmId: 'GTM-KS8MP9B',
+}
+
+export default function App({ Component, pageProps }) {
+  // Apollo
+  const client = useApollo(pageProps.initialApolloState)
+
+  // Cookies visible
+  let cookiesVisible
+  if (typeof window !== 'undefined') {
+    cookiesVisible = localStorage.getItem('cookies-visible')
+  }
+  const active = null || 'active'
+  const [visible, setVisible] = useState(
+    cookiesVisible === active ? false : true
+  )
   const [visibleEffect, setVisibleEffect] = useState('beta')
   useEffect(() => {
-    const handleRouteChange = (url: string) => GTMPageView(url)
-    Router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange)
-    }
+    TagManager.initialize(tagManagerArgs)
   }, [])
+
   const handleVisible = async () => {
     await setVisibleEffect('beta betaClose')
     await setTimeout(() => {
       setVisible(false)
     }, 300)
+    localStorage.setItem('cookies-visible', visible ? 'active' : 'inactive')
   }
   return (
     <>
@@ -45,6 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gentem.org/" />
+        <meta property="og:locale" content="es_AR" />
         <meta property="og:image" content="/logoDefault.png" />
         <meta property="og:image:secure_url" content="/logoDefault.png" />
         <meta property="og:image:type" content="image/jpeg" />
@@ -95,6 +113,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicons/favicon-16x16.png" sizes="16x16" />
         <link rel="icon" href="/favicons/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" href="/favicons/favicon-96x96.png" sizes="96x96" />
+
         {/* Android */}
         <link
           rel="shortcut icon"
@@ -173,6 +192,7 @@ export default function App({ Component, pageProps }: AppProps) {
           href="/favicons/apple/apple-icon-180x180.png"
           sizes="180x180"
         />
+
         {/* Windows 8 IE 10 */}
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta
@@ -187,7 +207,9 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Layout>
-        <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
       </Layout>
       {visible && (
         <div className={visibleEffect}>

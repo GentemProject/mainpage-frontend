@@ -1,3 +1,6 @@
+.logo{
+  width: 50px;
+}
 .firstBlue {
   animation-name: motion;
   animation-timing-function: ease-in-out;
@@ -325,6 +328,7 @@
   animation-duration: 6s;
   animation-iteration-count: infinite;
   animation-delay: 0.3s;
+  width: 100%;
 }
 
 @keyframes final {

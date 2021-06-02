@@ -1,0 +1,88 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.component {
+  display: grid;
+  justify-content: center;
+}
+.info {
+  display: grid;
+  //  place-content: center;
+  max-width: 1440px;
+  row-gap: $space-row-xxxl;
+  .item {
+    //justify-content: space-between;
+    align-items: center;
+    //  column-gap: 124px;
+    display: flex;
+    //  max-width: 1000px;
+    width: 100%;
+    flex-direction: row-reverse;
+    .text {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      row-gap: $space-row-s;
+      .line {
+        width: 110px;
+        height: 5px;
+        border-radius: 120px;
+        background-color: $gentem-purple;
+      }
+      p {
+        font-size: map.get($p-xl, 'size');
+        color: $monocromatic-black;
+        line-height: map.get($p-xl, 'line-height');
+      }
+    }
+    &:nth-child(2) {
+      flex-direction: row;
+    }
+  }
+}
+@media (min-width: 320px) {
+  .component {
+    padding: 0 $padding-xs;
+  }
+  .info {
+    .item {
+      flex-direction: column;
+      row-gap: 124px;
+      .text {
+        align-items: center;
+        h1 {
+          text-align: center;
+        }
+        p {
+          text-align: center;
+        }
+      }
+      &:nth-child(2) {
+        flex-direction: column;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .component {
+    padding: 0 $padding-m;
+  }
+  .info {
+    .item {
+      column-gap: $space-row-xxl;
+      flex-direction: row-reverse;
+      .text {
+        align-items: flex-start;
+        h1 {
+          text-align: left;
+        }
+        p {
+          text-align: left;
+        }
+      }
+      &:nth-child(2) {
+
+        flex-direction: row;
+      }
+    }
+  }
+}

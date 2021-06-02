@@ -1,0 +1,52 @@
+@import './styles/vars.module.scss';
+.container {
+  display: grid;
+  row-gap: $space-row-xxxl;
+  //place-content: center;
+  width: 100%;
+  height: 100%;
+}
+.block {
+  display: grid;
+  justify-content: center;
+}
+.max{
+  width: 100%;
+
+}
+// XXS
+
+// L
+
+$pagepadding: 0 60px;
+$pagepadding-tablet: 0 40px;
+$pagepadding-mobile: 0 25px;
+
+// XS
+$layout-xs: 24px;
+// XS Portrait
+$layout-xs-p: 24px;
+// S
+$layout-s: 32px;
+// S Portrait
+$layout-s-p: 32px;
+// M
+$layout-m: 42px;
+
+// XL
+$layout-xl: 108px;
+
+@media (min-width: 1224px) {
+  .layoutCenter {
+    display: flex;
+    justify-content: center;
+  }
+
+  .layout {
+    max-width: 1224px;
+  }
+}
+
+.layout-top {
+  margin-top: 64px;
+}

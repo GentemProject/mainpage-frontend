@@ -1,77 +1,80 @@
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { GetStaticProps, GetStaticPaths } from 'next'
 
 // Usables & Componentes
-import LayoutContainer from '@/components/Layout/LayoutContainer'
-import { getForId, getAllOrganizationsPath } from '../../api/filters'
-import { Contenido, ContenidoSider } from '../../components/organization'
-import Map from '../../components/organization/Map'
+import Cause from '@/components/specific/cause'
 
-// Styles
-import styles from '../../components/organization/organization.module.scss'
+// Apollo
+import { initializeApollo } from '../../api'
+import { useQuery, gql } from '@apollo/client'
+import { getOrganization } from 'interfaces/organization'
 
-const ORG: NextPage = (props) => {
-  const { organization }: any = props
-  if (!organization) {
-    return <>loading..</>
+const querySchema = gql`
+  query getOrganization($slug: String) {
+    getOrganization(slug: $slug) {
+      id
+      name
+      description
+      goal
+      logoUrl
+      howItIsUsingDonations
+      contactEmail
+      contactPhone
+      contactWebsite
+      whatsappPhone
+      facebookUrl
+      twitterUrl
+      instagramUrl
+      donationBankAccountName
+      donationLinks
+      city
+      country
+      coordenateX
+      coordenateY
+      causes {
+        name
+      }
+    }
   }
-  const ong = organization
+`
 
+const ORG = (props: { query: getOrganization }): JSX.Element => {
+  const router = useRouter()
+  const { slug } = router.query
+  console.log(props.query.data.getOrganization.name)
+  /*   const ong = data.getOrganization */
+
+  if (props.query.loading) return <span>Loading...</span>
   return (
     <>
       <Head>
-        <title>{ong.primaryData.name} | gentem</title>
+        <title>{props.query.data.getOrganization.name} | gentem</title>
       </Head>
-      <div className={styles.ongProfile}>
-        <div className={styles.layoutCenter} style={{ flexWrap: 'wrap' }}>
-          <Map location={ong.location} />
-          <LayoutContainer>
-            <div className={`${styles.ongProfileContent} ${styles.layout}`}>
-              <Contenido
-                causeId={ong.primaryData.causeId}
-                name={ong.primaryData.name}
-                description={ong.primaryData.description}
-                logo={ong.primaryData.logo}
-                objetive={ong.primaryData.objective}
-                howusedonation={ong.primaryData.howUseDonation}
-                sponsors={ong.primaryData.sponsors}
-                contact={ong.contact}
-                socialMedia={ong.socialMedia}
-                paymentData={ong.donationData}
-                location={ong.location}
-              />
-              <ContenidoSider
-                name={ong.primaryData.name}
-                paymentData={ong.donationData}
-              />
-            </div>
-          </LayoutContainer>
-        </div>
-      </div>
+      <Cause data={props.query.data.getOrganization} />
     </>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+/* export const getStaticPaths: GetStaticPaths = async () => {
   let paths
-  await getAllOrganizationsPath().then((data) => {
-    paths = data.map((org) => ({
-      params: { slug: org.slug },
-    }))
-    return paths
-  })
-  /*   const paths = await res.map((org) => ({
-    params: { slug: org.slug },
-  })) */
+  paths = [{ params: { slug: 'kawsay' } }]
   return { paths, fallback: false }
-  /* return { paths: [], fallback: false } */
-}
+} */
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const organization = await getForId(params.slug)
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const apolloClient = initializeApollo()
 
-  return { props: { organization }, revalidate: 20 }
+  const query = await apolloClient.query({
+    query: querySchema,
+    variables: { slug: params.slug },
+  })
+  apolloClient.cache.extract()
+  return {
+    props: {
+      query,
+    },
+  }
 }
 
 export default ORG

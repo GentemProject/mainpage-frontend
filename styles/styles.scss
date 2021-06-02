@@ -1,12 +1,12 @@
-@import './lib/variables.scss';
-@import './layout/layout.scss';
+@import './vars.module.scss';
 @import url('https://fonts.googleapis.com/css2?family=Nunito');
-
+*{
+  box-sizing: border-box;
+}
 body {
   font-family: 'Nunito', serif;
-  font-size: 18px;
   margin: 0;
-  color: #1a1928;
+  color: $monocromatic-black;
 }
 
 h1,
@@ -16,43 +16,49 @@ h4,
 h5,
 h6 {
   color: #1a1928;
+  margin: 0;
+  font-weight: bold;
 }
 h1 {
-  font-weight: 600 !important;
-  font-size: 45px !important;
+  font-size: 36px;
+  line-height: 48px;
 }
 h2 {
-  font-weight: 600 !important;
-  font-size: 32px !important;
-  line-height: 36px !important;
-  margin: 0 !important;
+  font-size: 28px;
+  line-height: 36px;
+
 }
 
 h3 {
-  font-weight: 600 !important;
-  font-size: 21px !important;
-  line-height: 30px !important;
-  margin: 0 !important;
+  font-size: 24px;
+  line-height: 32px;
 }
 h4 {
-  font-weight: bold !important;
-  font-size: 18px !important;
-  margin: 0 !important;
+  font-size: 18px;
+  line-height: 24px;
+}
+h5{
+  font-size: 16px;
+  line-height: 22px;
 }
 h6 {
-  font-size: 16px !important;
-  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
 }
 p {
   margin: 0;
+  padding: 0;
 }
 
 a {
-  color: $blue;
+  color: $ui-action;
   text-decoration: none;
   &:hover {
-    color: $dark-blue;
+    color: $ui-action;
   }
+}
+ul{
+  list-style: none;
 }
 button {
   background: none;
@@ -68,7 +74,26 @@ textarea {
 .ReactModalPortal {
   display: none;
 }
-
+@media (min-width: 320px) {
+  h1{
+    font-size: 28px;
+    line-height: 36px;
+  }
+  h2{
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+@media (min-width: 424px) {
+  h1{
+    font-size: 36px;
+    line-height: 48px;
+  }
+  h2{
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
 @media (max-width: 800px) {
   .ReactModalPortal {
     position: absolute;

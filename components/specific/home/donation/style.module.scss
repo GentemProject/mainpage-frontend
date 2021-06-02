@@ -1,0 +1,120 @@
+@use 'sass:map';
+@import './styles/vars.module.scss';
+.donation {
+  display: grid;
+  padding: $space-row-xxl $padding-m;
+  position: relative;
+  overflow: hidden;
+  height: 700px;
+  &:hover {
+    transition: all 0.5s;
+    .shape {
+      transform: translate(-170px, 150px) scale(1.1, 1.1);
+      &:last-child {
+        transform: matrix(-1, 0.08, 0.08, 1, 0, 0) scale(1.2, 1.1);
+      }
+    }
+  }
+  .content {
+    z-index: 2;
+    display: grid;
+    place-content: center;
+    row-gap: $space-row-m;
+    h1 {
+      text-align: center;
+    }
+    p {
+      font-size: map.get($p-xl, 'size');
+      line-height: map.get($p-xl, 'line-height');
+      color: $monocromatic-black;
+      text-align: center;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: center;
+      column-gap: $space-row-s;
+    }
+  }
+  .glass {
+    background: linear-gradient(
+        266.65deg,
+        rgba(51, 51, 51, 0.05) 31.68%,
+        rgba(51, 51, 51, 0.05) 114.3%
+      ),
+      linear-gradient(
+        260.74deg,
+        rgba(255, 255, 255, 0.3) 0.47%,
+        rgba(254, 254, 254, 0) 59.25%
+      ),
+      linear-gradient(
+        77.22deg,
+        rgba(238, 238, 238, 0.4) 0%,
+        rgba(238, 238, 238, 0.1) 100%
+      );
+    border: 1px solid rgba(238, 238, 238, 0.2);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .shape {
+    position: absolute;
+    transition: all 0.3s;
+    transform: translate(-170px, 150px);
+    z-index: -1;
+    &:last-child {
+      transform: matrix(-1, 0.08, 0.08, 1, 0, 0);
+      right: -200px;
+    }
+  }
+}
+@media (min-width: 320px) {
+  .donation {
+    padding: $space-row-xxl $padding-s;
+    .content {
+      .actions {
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+    .shape {
+      width: 400px;
+      height: 400px;
+
+      &:last-child {
+        width: 400px;
+        height: 400px;
+      }
+    }
+  }
+}
+@media (min-width: 800px) {
+  .donation {
+    padding: $space-row-xxl $padding-m;
+    .content {
+      .actions {
+        svg {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .donation {
+    .shape {
+      width: 600px;
+      height: 600px;
+
+      &:last-child {
+        width: 600px;
+        height: 600px;
+      }
+    }
+  }
+}
