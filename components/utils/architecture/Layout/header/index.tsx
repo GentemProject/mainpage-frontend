@@ -4,6 +4,7 @@ import MenuUser from './menu-user'
 import Logo from 'components/svg/Logo'
 import MenuIcon from 'components/svg/menu'
 import LinkButton from 'components/utils/interactive/inputs/link'
+import Link from 'next/link'
 function Header(props: { type?: string }): JSX.Element {
   const { type } = props
   const isRef = useRef(null)
@@ -50,7 +51,7 @@ function Header(props: { type?: string }): JSX.Element {
       <div className={styles.content}>
         <div className={styles.logo}>
           <Logo fill={type === 'solid' ? '#47398e' : '#fff'} />
-          <h3>{user ? user : 'gentem'}</h3>
+          <Link href='/'><h3>{user ? user : 'gentem'}</h3></Link>
         </div>
         {device === 'desktop' ? (
           <div className={styles.actions}>
@@ -86,7 +87,7 @@ function Links(props: { device?: string; user?: boolean }): JSX.Element {
         <LinkButton
           size="s"
           className="simple"
-          href="/"
+          href="/util/preguntas-frecuentes"
           label="Ayuda"
           color={{ color: '#fff' }}
         />
@@ -95,7 +96,7 @@ function Links(props: { device?: string; user?: boolean }): JSX.Element {
         <LinkButton
           size="s"
           className="simple"
-          href="/"
+          href="/nosotros"
           label="Nosotros"
           color={{ color: '#fff' }}
         />

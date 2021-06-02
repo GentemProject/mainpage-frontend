@@ -1,5 +1,5 @@
-import Header from './headerNew'
-import Footer from './footerNew'
+import Header from './header'
+import Footer from './footer'
 import Container from './container'
 function Layout(props: { children: JSX.Element }): JSX.Element {
   const { children } = props

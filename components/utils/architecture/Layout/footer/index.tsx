@@ -13,21 +13,21 @@ function Footer() {
     <div className={styles.footer}>
       <div className={styles.list}>
         <LinkButton
-          href="/"
+          href="/util/preguntas-frecuentes"
           className="simple"
           label="Preguntas frecuentes"
           size="m"
           color={{ color: '#888888' }}
         />
         <LinkButton
-          href="/"
+          href="/util/privacidad"
           className="simple"
           label="Politica de privacidad"
           size="m"
           color={{ color: '#888888' }}
         />
         <LinkButton
-          href="/"
+          href="/util/terminos"
           className="simple"
           label="Terminos y condiciones"
           size="m"

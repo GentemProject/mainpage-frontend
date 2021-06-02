@@ -1,121 +1,63 @@
-@import '../../../styles/variables.scss';
+@use 'sass:map';
+@import './styles/vars.module.scss';
 
-
-.containerBanner {
-  box-sizing: border-box;
-  width: 100%;
-  padding-top: $size-header;
-  height: 300px;
-  background: url(/banner.jpg);
-  background-position: center;
+.content {
+  padding: $space-row-xxl 0;
   display: grid;
-  position: relative;
+  row-gap: $space-row-xxl;
+  max-width: 900px;
+  width: 100%;
+  place-self: center;
   place-items: center;
-  button {
-    margin: 0;
+}
+.paragraph {
+  max-width: 800px;
+  width: 100%;
+  display: grid;
+  row-gap: $space-row-m;
+  font-size: map.get($p-xl, 'size');
+  color: $monocromatic-alternative-black;
+  line-height: map.get($p-xl, 'line-height');
+  p {
+    font-size: map.get($p-xl, 'size');
+    color: $monocromatic-alternative-black;
+    line-height: map.get($p-xl, 'line-height');
+    font-weight: 400;
   }
-  .content {
-    max-width: 800px;
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .text {
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      .h1 {
-        display: flex;
-        color: #fff;
-        width: 100%;
-        line-height: 1.2;
-        font-size: 36px !important;
-        font-weight: 400 !important;
-      }
+  a {
+    h1 {
+      color: $monocromatic-alternative-black;
     }
+  }
+  ul {
+    display: grid;
+    padding: 0;
+    row-gap: $space-row-xs;
   }
 }
 .bold {
   font-weight: bold;
 }
-.utilContainer {
-  margin: 60px 0;
-  & p {
-    padding: 6px 0 18px;
+.banner {
+  width: 100%;
+  display: grid;
+  height: 400px;
+  border-radius: 40px;
+  place-items: center;
+  h1 {
+    text-align: center;
+    color: $gentem-purple;
   }
-  h2 {
-    font-weight: 400 !important;
-    font-size: 28px !important;
-  }
-  & li {
-    padding-bottom: 8px;
-  }
+  box-shadow: 0px 0px 10px rgba(17, 17, 17, 0.1);
 }
-.faqCollapse {
-  background: #fff;
-  & > a {
-    box-shadow: 0px 8px 8px rgba(35, 126, 213, 0.15);
-    border-radius: 2px 2px 0px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: 500;
-    height: 48px;
-    padding: 0 1.8rem;
-    color: #fff;
-    position: relative;
-    background: $blue;
-    & svg {
-      width: 15px;
-      height: 15px;
-      fill: #fff;
-    }
-  }
-  &:target {
-    & a > svg {
-      transition: 0.4s linear 0s;
-      transform: rotate(-90deg);
-    }
-  }
-}
-
-.collapseContent {
-  box-shadow: 0px 0px 3px rgba(37, 37, 37, 0.25);
-  border-radius: 0px 0px 2px 2px;
-  max-height: 0em;
-  transition: 0.4s linear 0s;
-  overflow: hidden;
-}
-
-.collapseInnerContent {
-  padding: 1.8rem;
-}
-
-.faqCollapse + .faqCollapse a {
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
+.linkAuxiliar {
+  color: $ui-action;
 }
 @media (min-width: 320px) {
-  .faqCollapse {
-    &:target {
-      > div {
-        max-height: 35em;
-      }
-    }
+  .content {
+    padding: $space-row-xxl $padding-s;
   }
-}
-@media (min-width: 800px) {
-  .faqCollapse {
-    &:target {
-      > div {
-        max-height: 20em;
-      }
-    }
+  .banner {
+    padding: 0 $padding-s;
   }
 }
