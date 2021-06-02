@@ -80,13 +80,12 @@ function Content(props: { query: any }): JSX.Element {
         desc="Descubre las organizaciones que trabajan por un futuro mejor"
       />
       <LastProjects projects={test} />
-
+      <About />
       <Info />
       <div>
         <Support />
-        <About />
-        <Donation />
         <Invitation />
+        <Donation />
       </div>
     </>
   )

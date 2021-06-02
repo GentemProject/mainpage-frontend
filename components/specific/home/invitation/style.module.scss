@@ -1,7 +1,7 @@
 @use 'sass:map';
 @import './styles/vars.module.scss';
 .invitation {
-  background-color: $gentem-purple;
+  background-color: $gentem-yellow;
   padding: $space-row-xxl $padding-m;
   position: relative;
   min-height: 700px;
@@ -12,12 +12,13 @@
     display: grid;
     row-gap: $space-row-m;
     place-items: center;
+    z-index: 2;
     h1 {
-      color: $monocromatic-white;
+      color: $monocromatic-black;
       text-align: center;
     }
     p {
-      color: $monocromatic-white;
+      color: $monocromatic-black;
       text-align: center;
     }
   }
@@ -25,11 +26,14 @@
     transition: all 0.3s;
     position: absolute;
     right: 100px;
-    opacity: 0.5;
+    opacity: 1;
     top: 50px;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.1));
+      z-index: 0;
     svg {
       width: 600px;
       height: 600px;
+
     }
   }
 }

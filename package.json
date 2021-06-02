@@ -13,7 +13,9 @@
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
-    "tsm": "npx tsm styles/"
+    "tsm": "npx tsm styles/",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -49,6 +51,11 @@
     "sass": "^1.34.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
     "@testing-library/react": "^11.2.7",
     "@types/google-map-react": "^2.1.1",
     "@types/jest": "^26.0.23",
@@ -58,6 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "babel-jest": "^27.0.2",
+    "babel-loader": "^8.2.2",
     "cross-fetch": "^3.1.4",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",

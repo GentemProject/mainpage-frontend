@@ -11,15 +11,15 @@ function Invitation() {
         </p>
         <LinkButton
           href="/"
-          className="border"
+          className="normal"
           size="m"
           label="Registrate"
           icon={<Heart />}
-          color={{ color: '#fff', borderColor: '#fff' }}
+          color={{ color: '#fff', backgroundColor: '#47398E' }}
         />
       </div>
       <div className={styles.logo}>
-        <GentemIcon />
+        <GentemIcon color={'#ffcf53'} />
       </div>
     </div>
   )

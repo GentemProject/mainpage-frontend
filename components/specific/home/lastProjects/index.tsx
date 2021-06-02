@@ -83,7 +83,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
             <LinkButton
               href={currentProject.project.href}
               label="Apoyala"
-              className="border"
+              className="normal"
               size="m"
             />
           </div>

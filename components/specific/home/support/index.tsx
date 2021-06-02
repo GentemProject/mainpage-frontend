@@ -12,10 +12,10 @@ function Support(): JSX.Element {
           </h1>
           <LinkButton
             label="Apoya un proyecto"
-            className="border"
+            className="normal"
             size="m"
             href="/projects"
-            color={{ borderColor: '#fff', color: '#fff' }}
+
           />
         </div>
 

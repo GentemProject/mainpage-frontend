@@ -26,8 +26,8 @@ function About(): JSX.Element {
             href="/projects"
             size="m"
             label="Ayuda ya"
-            className="border"
-            color={{ color: '#4A4A4A', borderColor: '#4A4A4A' }}
+            className="normal"
+            color={{ color: '#fff', backgroundColor: '#47398E' }}
           />
         </div>
       </div>
