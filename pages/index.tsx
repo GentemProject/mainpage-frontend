@@ -1,41 +1,25 @@
-import { Fragment } from 'react'
-import { GetServerSideProps } from 'next'
-import Head from 'next/head'
-import LayoutContainer from '@/components/utils/architecture/Layout/container'
+import { Fragment } from 'react';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import LayoutContainer from '@/components/utils/architecture/Layout/container';
 /* import Container from '../components/----home-----/container' */
-import Banner from '@/components/utils/architecture/hero'
+import Banner from '@/components/utils/architecture/hero';
 /* import Fl from '../components/----home-----/fl-1' */
-import Colab from '@/components/specific/home/colaboration/colaboracion'
-import Stats from '@/components/specific/home/stats/stats'
+import Colab from '@/components/specific/home/colaboration/colaboracion';
+import Stats from '@/components/specific/home/stats/stats';
 /* import Info from '../components/----home-----/info-home' */
-import Info from '@/components/specific/home/info/info-home'
-import Nos from '@/components/specific/home/about/nosotros-home'
-import Ongs from '@/components/utils/interactive/recentOng/'
-import Contribuir from '@/components/specific/home/colaboration/contribuir'
-import styles from '@/components/specific/home/style.module.scss'
-import { getLastest } from '../api/filters'
-import Link from 'next/link'
-import Button from '@/components/utils/interactive/inputs/buttons/primary'
+import Info from '@/components/specific/home/info/info-home';
+import Nos from '@/components/specific/home/about/nosotros-home';
+import Ongs from '@/components/utils/interactive/recentOng/';
+import Contribuir from '@/components/specific/home/colaboration/contribuir';
+import styles from '@/components/specific/home/style.module.scss';
+import { getLastest } from '../api/filters';
+import Link from 'next/link';
+import Button from '@/components/utils/interactive/inputs/buttons/primary';
 
-// Apollo
-import { initializeApollo } from '../api'
-import { useQuery, gql } from '@apollo/client'
-import { getOrganizationsHome } from 'interfaces/organization'
+import { getOrganizationsHome } from 'interfaces/organization';
 
-// Schema
-const querySchema = gql`
-  query getOrganizationsHome($limit: Float) {
-    getOrganizations(limit: $limit) {
-      name
-      slug
-      coordenateY
-      logoUrl
-    }
-  }
-`
-
-export default function Home(props: { query: getOrganizationsHome }) {
-  const { query } = props
+export default function Home() {
   const g = (
     <Fragment>
       <strong>gentem </strong>es un directorio abierto de organizaciones sin
@@ -43,7 +27,7 @@ export default function Home(props: { query: getOrganizationsHome }) {
       Puedes buscarlas por ubicación, causa por la que trabajan, y formas de
       donar.
     </Fragment>
-  )
+  );
   const contentBanner = (
     <div className={styles.btnBanner}>
       <Link href="/projects">
@@ -52,7 +36,7 @@ export default function Home(props: { query: getOrganizationsHome }) {
         </a>
       </Link>
     </div>
-  )
+  );
   return (
     <>
       <Head>
@@ -84,30 +68,14 @@ export default function Home(props: { query: getOrganizationsHome }) {
           <Stats />
 
           <Nos />
-          {query.loading ? (
+          {/* {query.loading ? (
             'Cargando...'
           ) : (
             <Ongs ongs={query.data.getOrganizations} />
-          )}
+          )} */}
         </div>
       </LayoutContainer>
       <Contribuir />
     </>
-  )
-}
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const apolloClient = initializeApollo()
-
-  const query = await apolloClient.query({
-    query: querySchema,
-    variables: 8,
-  })
-  apolloClient.cache.extract()
-
-  return {
-    props: {
-      query,
-    },
-  }
+  );
 }

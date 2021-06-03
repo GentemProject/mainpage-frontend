@@ -1,12 +1,13 @@
-const fetch = require('isomorphic-unfetch')
+const fetch = require('isomorphic-unfetch');
+
 module.exports = {
   trailingSlash: true,
   distDir: '_next',
   generateBuildId: async () => {
     if (process.env.BUILD_ID) {
-      return process.env.BUILD_ID
+      return process.env.BUILD_ID;
     } else {
-      return `${new Date().getTime()}`
+      return `${new Date().getTime()}`;
     }
   },
   exportPathMap: async function (
@@ -20,17 +21,17 @@ module.exports = {
       '/util/preguntas-frecuentes': { page: '/util/preguntas-frecuentes' },
       '/util/privacidad': { page: '/util/privacidad' },
       '/util/terminos': { page: '/util/terminos' },
-    }
-    const res = await fetch('https://api.gentem.org/api/projects/getall')
-    const data = await res.json()
-    const orgs = data.map((entry) => entry)
+    };
+    const res = await fetch('https://api.gentem.org/api/projects/getall');
+    const data = await res.json();
+    const orgs = data.map((entry) => entry);
     orgs.forEach((org) => {
       paths[`/org/${org.slug}`] = {
         page: '/org/[slug]',
         query: { slug: org.slug },
-      }
-    })
-    return paths
+      };
+    });
+    return paths;
   },
   rules: [
     {
@@ -59,4 +60,7 @@ module.exports = {
       ],
     },
   ],
-}
+  images: {
+    domains: ['s3.amazonaws.com', 'gentem.org'],
+  },
+};
