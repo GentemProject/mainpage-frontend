@@ -10,14 +10,13 @@ import Stats from '@/components/specific/home/stats/stats';
 /* import Info from '../components/----home-----/info-home' */
 import Info from '@/components/specific/home/info/info-home';
 import Nos from '@/components/specific/home/about/nosotros-home';
-import Ongs from '@/components/utils/interactive/recentOng/';
 import Contribuir from '@/components/specific/home/colaboration/contribuir';
 import styles from '@/components/specific/home/style.module.scss';
-import { getLastest } from '../api/filters';
+// import { getLastest } from '../api/filters';
 import Link from 'next/link';
 import Button from '@/components/utils/interactive/inputs/buttons/primary';
 
-import { getOrganizationsHome } from 'interfaces/organization';
+// import { getOrganizationsHome } from 'interfaces/organization';
 
 export default function Home() {
   const g = (
