@@ -41,11 +41,11 @@ export function List() {
       <div className="flex justify-center items-center w-full h-full">
         <div className="text-center">
           <h3 className="text-2xl	text-medium mb-2">
-            No encontramos ninguna organización con los filtros que escogiste
+            No encontramos ninguna organización con los filtros que escogiste.
           </h3>
           <p className="text-sm text-gray-800 mb-8">
             Cambia tus filtros de búsqueda para encontrar una organización a la
-            que quieras ayudar
+            que quieras ayudar.
           </p>
           <Button variant="outlined" color="primary" onClick={resetFilters}>
             Mostrar todas las organizaciones
