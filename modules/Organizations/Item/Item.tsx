@@ -12,7 +12,7 @@ export function Item({ organization }: Props) {
   return (
     <Link href={`/org/${organization.slug}`}>
       <a>
-        <div className="bg-white p-4 rounded filter drop-shadow-xl hover:drop-shadow-2xl transition-all">
+        <div className="bg-white min-h-full p-4 rounded filter drop-shadow-xl hover:drop-shadow-2xl transition-all">
           <div className="grid grid-cols-3">
             <div>
               <Image
@@ -23,14 +23,16 @@ export function Item({ organization }: Props) {
               />
             </div>
             <div className="col-span-2 ml-4">
-              <h3 className="text-lg text-black">{organization.name}</h3>
+              <h3 className="text-lg text-black leading-none">
+                {organization.name}
+              </h3>
 
               <div className="text-sm text-gray-400 mb-4">
                 {organization.country}
               </div>
 
-              <div className="text-xs text-gray-400">
-                Causas o comunidades con las que trabajan
+              <div className="text-xs text-gray-400 mb-1">
+                Causas o comunidades que trabajan
               </div>
 
               <ScrollContainer

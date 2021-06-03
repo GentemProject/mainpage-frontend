@@ -12,12 +12,12 @@ import {
 import { onError } from '@apollo/client/link/error';
 
 import Close from '@/components/svg/close';
-import Layout from '@/components/utils/architecture/Layout';
 
 import Custom404 from './404';
 
 import { env } from 'config';
 import { Head, isServer } from 'utils';
+import { Layout } from 'components';
 
 // import '../styles/styles.scss';
 import 'tailwindcss/tailwind.css';

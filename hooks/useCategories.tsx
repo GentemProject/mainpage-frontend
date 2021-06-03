@@ -1,4 +1,4 @@
-import cat from '../api/categories.json'
+import cat from '../api/categories.json';
 
 //  useAllCategories
 
@@ -9,17 +9,17 @@ import cat from '../api/categories.json'
 // }, [communityWorkWith])
 
 export function useAllCategories(props: any) {
-  const { setCauseArray, causeId } = props
-  const catdata = cat.data
+  const { setCauseArray, causeId } = props;
+  const catdata = cat.data;
   return catdata.map((target: any) => {
     return causeId.map((communityId: number) => {
       return target.cat_id.some((categorieId: number) => {
         categorieId === communityId
           ? setCauseArray((causeArray: []) => [...causeArray, target.cat_name])
-          : false
-      })
-    })
-  })
+          : false;
+      });
+    });
+  });
 }
 
 // useOneCategorie
@@ -31,9 +31,9 @@ export function useAllCategories(props: any) {
 // }, [causeId])
 
 export function useOneCategorie(props: any) {
-  const { setCause, causeId } = props
-  const catdata = cat.data
+  const { setCause, causeId } = props;
+  const catdata = cat.data;
   return catdata.map((target: any) => {
-    causeId === target.cat_id[0] ? setCause(target.cat_name) : false
-  })
+    causeId === target.cat_id[0] ? setCause(target.cat_name) : false;
+  });
 }

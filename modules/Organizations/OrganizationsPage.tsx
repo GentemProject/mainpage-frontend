@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { Box, Grid } from '@material-ui/core';
 
 import { Hero, Container } from 'components';
 
