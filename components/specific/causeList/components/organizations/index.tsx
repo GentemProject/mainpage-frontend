@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from 'react'
-import Modal from 'react-modal'
-import ScrollContainer from 'react-indiana-drag-scroll'
+import { useState, useEffect, useRef } from 'react';
+import Modal from 'react-modal';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 // Components & Usables
-import ModalContent from '../modal'
+// import ModalContent from '../modal'
 
 // Svg
-import Close from '../../../../svg/close'
+import Close from '../../../../svg/close';
 
 // Styles
-import style from '../../style.module.scss'
-import Organization from './Organization'
+import style from '../../style.module.scss';
+import Organization from './Organization';
 
-Modal.setAppElement('#__next')
+Modal.setAppElement('#__next');
 
 function ContenidoSider({
   data,
@@ -22,13 +22,13 @@ function ContenidoSider({
   /*   checkbox, */
   handleNextPage,
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <div className={style.ongListResult}>
@@ -96,7 +96,7 @@ function ContenidoSider({
         </>
       )}
     </div>
-  )
+  );
 }
 
 function NoOrganization({ resetFilters }) {
@@ -119,7 +119,7 @@ function NoOrganization({ resetFilters }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function OrganizationsSider({ organizations, /* hasNext, */ handleNextPage }) {
@@ -150,7 +150,7 @@ function OrganizationsSider({ organizations, /* hasNext, */ handleNextPage }) {
         </div>
       )} */}
     </>
-  )
+  );
 }
 
-export default ContenidoSider
+export default ContenidoSider;

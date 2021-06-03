@@ -1,49 +1,49 @@
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Modal from 'react-modal'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Modal from 'react-modal';
 
 // SVG
-import Message from '../../../svg/Message'
-import Close from '../../../svg/close'
+import Message from '../../../svg/Message';
+import Close from '../../../svg/close';
 
 // Usables & Componentes
-import { ResponsiveDonate } from '../donationData'
-import { Button, Divider } from '../../../usables/buttons'
-import TargetBase from '../../../usables/TargetBase'
+import { ResponsiveDonate } from '../donationData';
+import { Button } from '../../../usables/buttons';
+import TargetBase from '../../../usables/TargetBase';
 
 // Styles
-import styles from '../style.module.scss'
-import { Organization } from 'interfaces/organization'
+import styles from '../style.module.scss';
+import { Organization } from 'interfaces/organization';
 
-Modal.setAppElement('#__next')
+Modal.setAppElement('#__next');
 
 function Contenido(props?: {
-  name: Organization['name']
-  description: Organization['description']
-  logo: Organization['logoUrl']
-  goal: Organization['goal']
-  howItIsUsingDonations: Organization['howItIsUsingDonations']
-  email: Organization['contactEmail']
-  phone: Organization['contactPhone']
-  whatsapp: Organization['whatsappPhone']
-  website: Organization['contactWebsite']
-  facebook: Organization['facebookUrl']
-  instagram: Organization['instagramUrl']
-  twitter: Organization['twitterUrl']
-  bankAccount: Organization['donationBankAccountName']
-  donationLinks: Organization['donationLinks']
-  city: Organization['city']
-  country: Organization['country']
-  causes: Organization['causes']
+  name: Organization['name'];
+  description: Organization['description'];
+  logo: Organization['logoUrl'];
+  goal: Organization['goal'];
+  howItIsUsingDonations: Organization['howItIsUsingDonations'];
+  email: Organization['contactEmail'];
+  phone: Organization['contactPhone'];
+  whatsapp: Organization['whatsappPhone'];
+  website: Organization['contactWebsite'];
+  facebook: Organization['facebookUrl'];
+  instagram: Organization['instagramUrl'];
+  twitter: Organization['twitterUrl'];
+  bankAccount: Organization['donationBankAccountName'];
+  donationLinks: Organization['donationLinks'];
+  city: Organization['city'];
+  country: Organization['country'];
+  causes: Organization['causes'];
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const {
     name,
@@ -66,8 +66,8 @@ function Contenido(props?: {
     country,
     causes,
     /*     sponsors, */
-  } = props
-  const filter = 0
+  } = props;
+  const filter = 0;
   return (
     <div className={styles.ongProfileHero}>
       <div className="OngProfile__Hero--User">
@@ -139,11 +139,11 @@ function Contenido(props?: {
         {(website || email || phone) && (
           <div className={styles.ongProfileHowToDonateContact}>
             <h4 className={styles.ongProfileContactTitle}> Contacto </h4>
-            <Divider
+            {/* <Divider
               styleProp={{
                 margin: '12px 0',
               }}
-            />
+            /> */}
             <div className={styles.ongProfileContactInfo}>
               {website && (
                 <div className="OngProfile__Info-Web">
@@ -176,11 +176,11 @@ function Contenido(props?: {
         {(whatsapp || instagram || facebook || twitter) && (
           <div className={styles.ongProfileSocial}>
             <h4 className="OngProfile__Social--Title">Redes sociales</h4>
-            <Divider
+            {/* <Divider
               styleProp={{
                 margin: '12px 0',
               }}
-            />
+            /> */}
             <div className="OngProfile__Social--Networks">
               {whatsapp && (
                 <a
@@ -217,11 +217,11 @@ function Contenido(props?: {
         {(city || country) && (
           <div className={styles.ongProfileUserAddress}>
             <h4 className={styles.ongProfileAddressTitle}> Área de trabajo </h4>
-            <Divider
+            {/* <Divider
               styleProp={{
                 margin: '12px 0',
               }}
-            />
+            /> */}
             <div className={styles.ongProfileAddressInfo}>
               <div className={styles.ongProfileInfoIcon}>
                 <img src="/location.svg" alt="location icon" />
@@ -283,6 +283,6 @@ function Contenido(props?: {
         )}
       </div>
     </div>
-  )
+  );
 }
-export default Contenido
+export default Contenido;

@@ -1,14 +1,14 @@
-import { Divider, Button } from '../../../usables/buttons'
-import styles from '../style.module.scss'
+import { Button } from '../../../usables/buttons';
+import styles from '../style.module.scss';
 
 function DonationData(props: {
-  logo: string
-  name: string
-  bankAccount: string
-  donationLinks: string[]
+  logo: string;
+  name: string;
+  bankAccount: string;
+  donationLinks: string[];
   /*   donationProducts, */
 }) {
-  const { name, donationLinks, bankAccount, logo } = props
+  const { name, donationLinks, bankAccount, logo } = props;
   return (
     <div className={styles.ongProfileHowToDonate}>
       <div>
@@ -26,18 +26,18 @@ function DonationData(props: {
         )}
       </div>
     </div>
-  )
+  );
 }
-export default DonationData
+export default DonationData;
 
 export function ResponsiveDonate(props: {
-  logo: string
-  name: string
-  bankAccount: string
-  donationLinks: string[]
+  logo: string;
+  name: string;
+  bankAccount: string;
+  donationLinks: string[];
   /*   donationProducts, */
 }) {
-  const { name, donationLinks, bankAccount, logo } = props
+  const { name, donationLinks, bankAccount, logo } = props;
 
   return (
     <>
@@ -60,11 +60,11 @@ export function ResponsiveDonate(props: {
         <div className="OngProfile__HowToDonate--Donate">
           <>
             <h4 className="OngProfile__Donate--Title h4"> Dona Online </h4>
-            <Divider
+            {/* <Divider
               styleProp={{
                 margin: '12px 0',
               }}
-            />
+            /> */}
             <a
               href={donationLinks[0]}
               target="_blank"
@@ -82,11 +82,11 @@ export function ResponsiveDonate(props: {
           <h4 className="OngProfile__DonateWay--Bank h4">
             Consigna a una cuenta bancaria
           </h4>
-          <Divider
+          {/* <Divider
             styleProp={{
               margin: '12px 0',
             }}
-          />
+          /> */}
           <span className={`OngProfile__DonateWay--BankID ${styles.span}`}>
             {bankAccount}
           </span>
@@ -108,5 +108,5 @@ export function ResponsiveDonate(props: {
         </div>
       )} */}
     </>
-  )
+  );
 }
