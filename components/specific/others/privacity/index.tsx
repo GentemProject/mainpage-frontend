@@ -1,13 +1,19 @@
+import { useEffect } from 'react'
 import style from '../style.module.scss'
 import Paragraph from 'components/specific/others/paragraph'
 import Banner from 'components/specific/others/banner'
-function PrivacityContent() {
+import { useHeader, header } from 'contexts/general'
+function PrivacityContent(): JSX.Element {
+  const currentHeader = useHeader()
+  useEffect(() => {
+    currentHeader.changeClass('solid')
+  }, [])
   return (
     <div className={style.content}>
       <Banner title="Privacidad" />
       <Paragraph title="Introducción" id="introduccion">
         <p>
-          La organización gentem (en adelante "GENTEM"), dando cumplimiento a la
+          La organización gentem (en adelante GENTEM), dando cumplimiento a la
           Ley Estatutaria 1581 de 2012, la Ley de Habeas Data 1266 de 2008 y el
           artículo 15 de la Constitución Política, presenta su Política de
           Tratamiento de Datos Personales.
@@ -469,7 +475,6 @@ function PrivacityContent() {
           </p>
         </>
       </Paragraph>
-
     </div>
   )
 }

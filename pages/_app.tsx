@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import TagManager from 'react-gtm-module'
-
+// contexts
+import { header, HeaderProvider } from 'contexts/general'
 // Apollo
 import { useApollo } from '../api'
 import { ApolloProvider } from '@apollo/client'
@@ -24,9 +25,26 @@ const tagManagerArgs = {
   gtmId: 'GTM-KS8MP9B',
 }
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }): JSX.Element {
   // Apollo
   const client = useApollo(pageProps.initialApolloState)
+
+  const [currentHeader, setCurrentHeader] = useState({
+    classStyle: header.classStyle,
+    userIsLogged: header.userIsLogged,
+    changeClass: (e) => {
+      setCurrentHeader({
+        classStyle: e,
+        userIsLogged: currentHeader.userIsLogged,
+        changeClass: currentHeader.changeClass,
+      })
+    },
+  })
+
+  useEffect(() => {
+    //  setCurrentHeader(header)
+    console.log(currentHeader)
+  }, [currentHeader])
 
   // Cookies visible
   let cookiesVisible
@@ -206,11 +224,13 @@ export default function App({ Component, pageProps }) {
           content="/favicons/ms/browserconfig.xml"
         />
       </Head>
-      <Layout>
-        <ApolloProvider client={client}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </Layout>
+      <HeaderProvider value={currentHeader}>
+        <Layout>
+          <ApolloProvider client={client}>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </Layout>
+      </HeaderProvider>
       {visible && (
         <div className={visibleEffect}>
           <div className="betaContainer">

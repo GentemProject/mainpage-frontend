@@ -3,11 +3,7 @@
   display: grid;
   flex-direction: row;
   width: 100%;
-  background: linear-gradient(
-    95.96deg,
-    rgba(57, 57, 142, 0.9) 37.64%,
-    rgba(54, 110, 255, 0.9) 84.95%
-  );
+  background: $gentem-purple;
   backdrop-filter: blur(30px);
   overflow: hidden;
   .content {

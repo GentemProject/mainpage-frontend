@@ -1,12 +1,13 @@
 @import './styles/vars.module.scss';
 .hero {
   /*   margin-bottom: $size-banner; */
+  height: 500px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   display: grid;
-  background: linear-gradient(0deg, #283593, #283593);
+  background: $gentem-purple;
   backdrop-filter: blur(25px);
   position: relative;
   place-items: center;

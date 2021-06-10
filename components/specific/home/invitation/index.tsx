@@ -19,9 +19,10 @@ function Invitation() {
         />
       </div>
       <div className={styles.logo}>
-        <GentemIcon color={'#ffcf53'} />
+      
       </div>
     </div>
   )
 }
 export default Invitation
+//  <GentemIcon color={'#ffcf53'} />

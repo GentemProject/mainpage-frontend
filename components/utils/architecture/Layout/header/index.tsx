@@ -5,18 +5,22 @@ import Logo from 'components/svg/Logo'
 import MenuIcon from 'components/svg/menu'
 import LinkButton from 'components/utils/interactive/inputs/link'
 import Link from 'next/link'
+import { useHeader } from 'contexts/general'
+import { colores } from '@/components/utils/interactive/inputs/form/colores'
 function Header(props: { type?: string }): JSX.Element {
   const { type } = props
   const isRef = useRef(null)
   const user = false
   const [device, setDevice] = useState('')
   const [menu, setMenu] = useState(false)
+  const currentClass = useHeader()
   const handleMenu = () => {
     setMenu((menu) => !menu)
   }
+
   useEffect(() => {
     function getScroll() {
-      if (window.scrollY >= 500) {
+      if (window.scrollY >= 500 && currentClass.classStyle !== 'solid') {
         isRef.current.classList.add(styles.blur)
       } else {
         isRef.current.classList.remove(styles.blur)
@@ -29,7 +33,7 @@ function Header(props: { type?: string }): JSX.Element {
   })
   useEffect(() => {
     function getWidth() {
-      if (document.body.clientWidth > 1140) {
+      if (document.body.clientWidth >= 1140) {
         setDevice('desktop')
       } else {
         setDevice('mobile')
@@ -41,22 +45,30 @@ function Header(props: { type?: string }): JSX.Element {
       document.removeEventListener('resize', getWidth)
     }
   }, [])
+  const colorButtons = {
+    color: currentClass.classStyle === 'solid' ? '#47398e' : '#fff',
+  }
   return (
     <div
       ref={isRef}
       className={
-        type === null ? `${styles.header}` : `${styles.header} ${styles[type]}`
+        currentClass.classStyle === ''
+          ? `${styles.header}`
+          : `${styles.header} ${styles[currentClass.classStyle]}`
       }
     >
       <div className={styles.content}>
         <div className={styles.logo}>
-          <Logo fill={type === 'solid' ? '#47398e' : '#fff'} />
-          <Link href='/'><h3>{user ? user : 'gentem'}</h3></Link>
+          <Logo
+            fill={currentClass.classStyle === 'solid' ? '#47398e' : '#fff'}
+          />
+          <Link href="/">
+            <h3>{user ? user : 'gentem'}</h3>
+          </Link>
         </div>
         {device === 'desktop' ? (
           <div className={styles.actions}>
-            {' '}
-            <Links device={device} user={user} />
+            <Links device={device} user={user} color={colorButtons} />
           </div>
         ) : (
           <button onClick={() => handleMenu()}>
@@ -71,15 +83,19 @@ function Header(props: { type?: string }): JSX.Element {
           }
         >
           <div className={styles.menu}>
-            <Links />
+            <Links color={colorButtons} />
           </div>
         </div>
       )}
     </div>
   )
 }
-function Links(props: { device?: string; user?: boolean }): JSX.Element {
-  const { device, user } = props
+function Links(props: {
+  device?: string
+  user?: boolean
+  color: any
+}): JSX.Element {
+  const { device, user, color } = props
 
   const elem = (
     <>
@@ -89,7 +105,7 @@ function Links(props: { device?: string; user?: boolean }): JSX.Element {
           className="simple"
           href="/util/preguntas-frecuentes"
           label="Ayuda"
-          color={{ color: '#fff' }}
+          color={{ color: color.color }}
         />
       </div>
       <div className={styles.item}>
@@ -98,10 +114,10 @@ function Links(props: { device?: string; user?: boolean }): JSX.Element {
           className="simple"
           href="/nosotros"
           label="Nosotros"
-          color={{ color: '#fff' }}
+          color={{ color: color.color }}
         />
       </div>
-      <MenuUser />
+      <MenuUser color={color} />
     </>
   )
   return elem

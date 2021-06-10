@@ -1,10 +1,10 @@
 @import './vars.module.scss';
-@import url('https://fonts.googleapis.com/css2?family=Nunito');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700&display=swap');
+* {
   box-sizing: border-box;
+  font-family: 'Nunito', serif;
 }
 body {
-  font-family: 'Nunito', serif;
   margin: 0;
   color: $monocromatic-black;
 }
@@ -15,9 +15,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: #1a1928;
+  color: $monocromatic-black;
   margin: 0;
-  font-weight: bold;
+  font-weight: 700;
 }
 h1 {
   font-size: 36px;
@@ -26,7 +26,6 @@ h1 {
 h2 {
   font-size: 28px;
   line-height: 36px;
-
 }
 
 h3 {
@@ -37,7 +36,7 @@ h4 {
   font-size: 18px;
   line-height: 24px;
 }
-h5{
+h5 {
   font-size: 16px;
   line-height: 22px;
 }
@@ -57,7 +56,7 @@ a {
     color: $ui-action;
   }
 }
-ul{
+ul {
   list-style: none;
 }
 button {
@@ -75,21 +74,21 @@ textarea {
   display: none;
 }
 @media (min-width: 320px) {
-  h1{
+  h1 {
     font-size: 28px;
     line-height: 36px;
   }
-  h2{
+  h2 {
     font-size: 26px;
     line-height: 32px;
   }
 }
 @media (min-width: 424px) {
-  h1{
+  h1 {
     font-size: 36px;
     line-height: 48px;
   }
-  h2{
+  h2 {
     font-size: 28px;
     line-height: 36px;
   }

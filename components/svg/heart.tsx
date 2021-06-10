@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function Heart() {
+export default function Heart(props: { fill?: string }): JSX.Element {
+  const { fill } = props
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="white"
+      fill={fill ? fill : 'white'}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

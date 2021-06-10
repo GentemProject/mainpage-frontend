@@ -29,7 +29,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
     clearTimeout(timer)
 
     timer = setTimeout(() => {
-      let n = currentProject.position + 1
+      const n = currentProject.position + 1
 
       setCurrentProject(() =>
         n >= projects.length
@@ -42,7 +42,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
     isRef.current.classList.add(styles.anim)
     clearTimeout(timer2)
     timer2 = setTimeout(() => {
-      isRef.current.classList.remove(styles.anim)
+    isRef.current !== null &&  isRef.current.classList.remove(styles.anim)
     }, 6000)
   }
   useEffect(() => {

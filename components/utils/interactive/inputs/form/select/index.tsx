@@ -1,138 +1,120 @@
-import React, { useEffect, useState, useCallback } from 'react'
-
-import styles from '../style.module.scss'
-
-export const Select = ({ onChange, value, children, id, label }) => {
-  const [select, setSel] = useState(false)
-  const [val, setVal] = useState(null)
-  const isRef = React.useRef(null)
-  const [current, setCurrent] = useState({
+/* eslint-disable @typescript-eslint/ban-types */
+import React, { useEffect, useState } from 'react';
+import { ArrowSelect, Close } from '@/components/svg';
+import styles from '../style.module.scss';
+interface iTarget {
+  target: { value: string | string[]; type: string };
+}
+function Select(props: {
+  onChange: Function;
+  value: any;
+  children: any;
+  id: string;
+  label: string;
+  name: string;
+  multiOption: boolean;
+}): JSX.Element {
+  const { onChange, value, children, id, label, name, multiOption } = props;
+  const [select, setSel] = useState(false);
+  const isRef = React.useRef(null);
+  const [current, setCurrent] = useState<iTarget>({
     target: {
       value: value,
+      type: name,
     },
-  })
-  useEffect(() => {
-    console.log('children', children)
-  }, [])
+  });
 
+  useEffect(() => {
+    console.log([typeof current.target.value, current.target.value, value]);
+    if (multiOption) {
+      if (current.target.value !== value.length) {
+        onChange(current);
+      }
+      setSel(false);
+    } else {
+      if (current.target.value !== value) {
+        onChange(current);
+      }
+      setSel(false);
+    }
+  }, [current]);
   const handleClick = (e) => {
-    setSel(true)
-  }
+    setSel(true);
+  };
   const isBlur = () => {
     isRef.current.onselectstart = () => {
-      return false
+      return false;
+    };
+    isRef.current.selectionEnd = 0;
+  };
+  const deleteValue = () => {
+    if (multiOption) {
+      setCurrent({
+        target: {
+          value:
+            typeof current.target.value === 'object'
+              ? current.target.value.splice(current.target.value.length)
+              : [],
+          type: current.target.type,
+        },
+      });
+    } else {
+      setCurrent({ target: { value: '', type: current.target.type } });
     }
-    isRef.current.selectionEnd = 0
-  }
-  const handleVals = (e) => {
-    const temp = { ...current }
-    temp.target.value = e
-    console.log(typeof e)
-    //setCurrent(temp)
-    onChange(e)
-    setSel(false)
-  }
-  useEffect(() => {
-    // onChange(val)
-    console.log('asads childrem', value)
-  }, [children])
-  const handleVal = useCallback(
-    (e) => {
-      const temp = { ...current }
-      temp.target.value = e
-      //setCurrent(temp)
-      onChange(e)
-      setSel(false)
-    },
-    [value]
-  )
-
+    onChange(current);
+  };
+  const change = {
+    change: setCurrent,
+    c: current,
+    multiOption: multiOption,
+  };
   return (
     <div className={styles.containerSelect}>
       <div
         className={
-          (current.target.value !== null && current.target.value !== '') ||
+          (current.target.value !== null &&
+            current.target.value !== '' &&
+            current.target.value.length !== 0) ||
           select === true
             ? styles.select + ' ' + styles.activeSelect
             : styles.select
-        }
-      >
-        <label htmlFor={'inp' + id}>
-          <span>{label}</span>
-        </label>
+        }>
+        {!label ? null : (
+          <label htmlFor={'inp' + id}>
+            <span>{label}</span>
+          </label>
+        )}
         <input
-          value={value}
+          value={current.target.value}
           id={'inp' + id}
           onFocus={handleClick}
           onClick={isBlur}
           ref={isRef}
           readOnly
+          name={name}
           type="text"
         />
+        <div
+          className={
+            select ? styles.icons + ' ' + styles.activeIcons : styles.icons
+          }>
+          {current.target.value !== '' && current.target.value.length !== 0 ? (
+            <div onClick={() => deleteValue()}>
+              <Close />
+            </div>
+          ) : (
+            <ArrowSelect />
+          )}
+        </div>
       </div>
       <div
-        className={select ? styles.extend + ' ' + styles.active : styles.extend}
-      >
-        <ul>{children(onChange)}</ul>
+        className={
+          select ? styles.extend + ' ' + styles.active : styles.extend
+        }>
+        <ul>{children(change)}</ul>
       </div>
     </div>
-  )
-}
-export const Option = ({ desc, value, val }) => {
-  const r = React.useRef(null)
-
-  const handleValue = () => {
-    val(r.current.dataset.value)
-  }
-  return (
-    <li
-      className={styles.option}
-      ref={r}
-      data-value={value}
-      onClick={handleValue}
-    >
-      <span>{desc}</span>
-    </li>
-  )
+  );
 }
 
-/*
- *
- *
- *          <li
-            className={styles.option}
-            onClick={(e) => handleVal(isRef.current.childNodes[0].value)}
-            value="4"
-          >
-            <span>Papaeyda</span>
-          </li>
-          <li
-            className={styles.option}
-            onClick={(e) =>
-              handleVal(isRef.current.childNodes[1].dataset.value)
-            }
-            data-value="24"
-          >
-            <span>P22apaeyda</span>
-          </li>
-          <li
-            className={styles.option}
-            //        onClick={handleLi}
-            ref={refBack}
-            data-value="9"
-            onClick={han}
-          >
-            <span>El que tiene la solucion</span>
-          </li>
-          <li
-            className={styles.option}
-            // onClick={handleLi}
-            ref={refBack}
-            data-value="91"
-            onClick={handleRef}
-          >
-            <span>El que tiene la solucion 2</span>
-          </li>
-
- *
- * */
+export default React.memo(Select);

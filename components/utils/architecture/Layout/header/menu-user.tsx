@@ -1,6 +1,8 @@
 import styles from './style.module.scss'
 import LinkButton from 'components/utils/interactive/inputs/link'
-function MenuUser() {
+import { Heart } from 'components/svg'
+function MenuUser(props: { color: any }): JSX.Element {
+  const { color } = props
   const user = false
   return (
     <div className={styles.auth}>
@@ -13,14 +15,15 @@ function MenuUser() {
             className="simple"
             href="/"
             label="Ingresar"
-            color={{ color: '#fff' }}
+            color={{ color: color.color }}
           />
           <LinkButton
             size="s"
             className="border"
             href="/"
             label="Registra tu proyecto"
-            color={{ borderColor: '#fff', color: '#fff' }}
+            icon={<Heart fill={color.color} />}
+            color={{ borderColor: color.color, color: color.color }}
           />
         </>
       )}

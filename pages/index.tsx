@@ -1,5 +1,4 @@
-import { Fragment } from 'react'
-import { GetServerSideProps } from 'next'
+import { useEffect } from 'react'
 import Head from 'next/head'
 /* import Container from '../components/----home-----/container' */
 import Content from 'components/specific/home/'
@@ -7,7 +6,7 @@ import Content from 'components/specific/home/'
 import { initializeApollo } from '../api'
 import { useQuery, gql } from '@apollo/client'
 import { getOrganizationsHome } from 'interfaces/organization'
-
+import { useHeader } from 'contexts/general'
 // Schema
 const querySchema = gql`
   query getOrganizationsHome($limit: Float) {
@@ -20,9 +19,12 @@ const querySchema = gql`
   }
 `
 
-export default function Home(props: { query: getOrganizationsHome }) {
+export default function Home(props: { query: getOrganizationsHome }):JSX.Element {
   const { query } = props
-
+  const currentHeader = useHeader()
+  useEffect(() => {
+    currentHeader.changeClass('')
+  }, [])
   return (
     <>
       <Head>
