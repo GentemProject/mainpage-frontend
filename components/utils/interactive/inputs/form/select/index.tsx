@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { useEffect, useState } from 'react';
-import { ArrowSelect, Close } from '@/components/svg';
+import { ArrowSelect, Close } from 'components/svg';
 import styles from '../style.module.scss';
 interface iTarget {
   target: { value: string | string[]; type: string };

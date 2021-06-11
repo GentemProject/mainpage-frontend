@@ -10,8 +10,8 @@ interface Project {
   title: string
   href: string
 }
-var timer
-var timer2
+var timer: any
+var timer2: any
 function LastProjects(props: { projects: Project[] }): JSX.Element {
   const { projects } = props
   const [currentProject, setCurrentProject] = useState({
@@ -42,7 +42,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
     isRef.current.classList.add(styles.anim)
     clearTimeout(timer2)
     timer2 = setTimeout(() => {
-    isRef.current !== null &&  isRef.current.classList.remove(styles.anim)
+      isRef.current !== null && isRef.current.classList.remove(styles.anim)
     }, 6000)
   }
   useEffect(() => {
@@ -50,7 +50,7 @@ function LastProjects(props: { projects: Project[] }): JSX.Element {
     temporizer()
   }, [])
   useEffect(() => {
-      transitionProject()
+    transitionProject()
     temporizer()
   }, [currentProject])
   const selectProject = (n: number) => {
