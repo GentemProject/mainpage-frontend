@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { useEffect, useState } from 'react';
 import styles from '../style.module.scss';
-import { Close } from '@/components/SVG';
+import { Close } from 'components/svg';
 const Option = (props: {
   desc: string;
   value: string;
