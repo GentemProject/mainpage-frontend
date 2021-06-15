@@ -20,7 +20,7 @@ function Header(props: { type?: string }): JSX.Element {
 
   useEffect(() => {
     function getScroll() {
-      if (window.scrollY >= 500 && currentClass.classStyle !== 'solid') {
+      if (window.scrollY >= 460 && currentClass.classStyle !== 'solid') {
         isRef.current.classList.add(styles.blur)
       } else {
         isRef.current.classList.remove(styles.blur)
@@ -87,6 +87,8 @@ function Header(props: { type?: string }): JSX.Element {
           </div>
         </div>
       )}
+      <div className={styles.backgroundBlur}></div>
+      
     </div>
   )
 }

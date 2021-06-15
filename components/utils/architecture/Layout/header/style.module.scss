@@ -7,18 +7,29 @@
   z-index: 1111111;
   width: 100%;
   flex-direction: column;
-  //  row-gap: $space-row-xs;
   padding: $space-row-xs $space-row-m;
   height: auto;
   transition: all 0, 3s;
-  //   background-image: linear-gradient(90.43deg, rgba(226, 226, 226, 0.6) 19.02%, rgba(225, 225, 225, 0.4) 87.57%);
-
   backdrop-filter: blur(5px);
-
-  animation-duration: 1s;
-  animation-direction: alternate;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
+  .backgroundBlur {
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: radial-gradient(
+        153.45% 10046.21% at 43.75% 67.5%,
+        rgba(71, 57, 142, 0.6) 53.07%,
+        rgba(71, 57, 142, 0.4) 89.16%
+      ),
+      linear-gradient(
+        90.8deg,
+        rgba(71, 57, 142, 0.8) 2%,
+        rgba(71, 57, 142, 0.7) 100%
+      );
+    border: 1px solid rgba(71, 57, 142, 0.3);
+    z-index: -1;
+  }
   .content {
     max-width: 1440px;
     width: 100%;
@@ -87,8 +98,11 @@
   column-gap: $space-row-s;
 }
 .blur {
-  animation-name: blur;
-  border: 1px solid rgba(71, 57, 142, 0.3);
+  .backgroundBlur {
+    opacity: 1;
+  }
+
+  //  border: 1px solid rgba(71, 57, 142, 0.3);
 
   backdrop-filter: blur(20px);
   .logo {
@@ -130,18 +144,9 @@
 }
 @keyframes blur {
   0% {
- background-image: transparent; 
+    opacity: 0;
   }
   100% {
-    background-image: radial-gradient(
-        153.45% 10046.21% at 43.75% 67.5%,
-        rgba(71, 57, 142, 0.6) 53.07%,
-        rgba(71, 57, 142, 0.4) 89.16%
-      ),
-      linear-gradient(
-        90.8deg,
-        rgba(71, 57, 142, 0.8) 2%,
-        rgba(71, 57, 142, 0.7) 100%
-      );
+    opacity: 1;
   }
 }
