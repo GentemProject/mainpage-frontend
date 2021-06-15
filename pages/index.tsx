@@ -19,7 +19,9 @@ const querySchema = gql`
   }
 `
 
-export default function Home(props: { query: getOrganizationsHome }):JSX.Element {
+export default function Home(props: {
+  query: getOrganizationsHome
+}): JSX.Element {
   const { query } = props
   const currentHeader = useHeader()
   useEffect(() => {

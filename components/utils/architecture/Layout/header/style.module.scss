@@ -10,14 +10,15 @@
   //  row-gap: $space-row-xs;
   padding: $space-row-xs $space-row-m;
   height: auto;
-  //  transition: all 0.2s;
-  background: linear-gradient(
-    180deg,
-    rgba(200, 200, 200, 0.1) 0%,
-    rgba(200, 200, 200, 0.05) 60%
-  );
+  transition: all 0, 3s;
+  //   background-image: linear-gradient(90.43deg, rgba(226, 226, 226, 0.6) 19.02%, rgba(225, 225, 225, 0.4) 87.57%);
+
   backdrop-filter: blur(5px);
 
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
   .content {
     max-width: 1440px;
     width: 100%;
@@ -31,7 +32,7 @@
       align-items: center;
       h3 {
         color: $monocromatic-white;
-	cursor: pointer;
+        cursor: pointer;
       }
       svg {
         width: 44px;
@@ -86,17 +87,9 @@
   column-gap: $space-row-s;
 }
 .blur {
-  background: radial-gradient(
-      99.22% 16383.75% at 99.22% 75%,
-      rgba(68, 68, 68, 0.3) 0%,
-      rgba(68, 68, 68, 0.1) 100%
-    ),
-    linear-gradient(
-      89.65deg,
-      rgba(153, 153, 153, 0.4) 0.63%,
-      rgba(245, 245, 245, 0.1) 100%
-    );
-  border: 1px solid rgba(192, 192, 192, 0.3);
+  animation-name: blur;
+  border: 1px solid rgba(71, 57, 142, 0.3);
+
   backdrop-filter: blur(20px);
   .logo {
     h3 {
@@ -133,5 +126,22 @@
   }
   100% {
     height: auto;
+  }
+}
+@keyframes blur {
+  0% {
+ background-image: transparent; 
+  }
+  100% {
+    background-image: radial-gradient(
+        153.45% 10046.21% at 43.75% 67.5%,
+        rgba(71, 57, 142, 0.6) 53.07%,
+        rgba(71, 57, 142, 0.4) 89.16%
+      ),
+      linear-gradient(
+        90.8deg,
+        rgba(71, 57, 142, 0.8) 2%,
+        rgba(71, 57, 142, 0.7) 100%
+      );
   }
 }
