@@ -72,7 +72,9 @@ function Header(props: { type?: string }): JSX.Element {
           </div>
         ) : (
           <button onClick={() => handleMenu()}>
-            <MenuIcon />
+            <MenuIcon
+              color={currentClass.classStyle === 'solid' && '#47398e'}
+            />
           </button>
         )}
       </div>
@@ -88,7 +90,6 @@ function Header(props: { type?: string }): JSX.Element {
         </div>
       )}
       <div className={styles.backgroundBlur}></div>
-      
     </div>
   )
 }
@@ -101,7 +102,7 @@ function Links(props: {
 
   const elem = (
     <>
-      <div className={styles.item}>
+      <div className={styles.item} style={{ borderColor: color.color }}>
         <LinkButton
           size="s"
           className="simple"
@@ -110,7 +111,7 @@ function Links(props: {
           color={{ color: color.color }}
         />
       </div>
-      <div className={styles.item}>
+      <div className={styles.item} style={{ borderColor: color.color }}>
         <LinkButton
           size="s"
           className="simple"

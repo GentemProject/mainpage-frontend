@@ -69,25 +69,26 @@
       opacity: 0;
       flex-direction: column-reverse;
       row-gap: $space-row-s;
-      //  visibility: hidden;
+      .item {
+        border-bottom: 1px solid white;
+      }
     }
   }
   .active {
     display: flex;
+    flex-direction: column;
     height: 180px;
     margin-top: $space-row-s;
-    //  height: min-content;
     .menu {
-      display: flex;
+      display: grid;
       transition-delay: 0.1s;
       opacity: 1;
-      //  visibility: visible;
       .auth {
         justify-content: center;
+        grid-row: 1;
       }
       .item {
         width: 100%;
-        border-bottom: 1px solid white;
         display: flex;
       }
     }

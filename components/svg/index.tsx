@@ -19,6 +19,7 @@ import PaypalIcon from './paypal'
 import ShapeIcon from './shape'
 import GentemIcon from './gentem'
 import ArrowSelect from './arrowSelect'
+import PrideFlag from './prideflag'
 export {
   Arrow,
   Close,
@@ -41,4 +42,5 @@ export {
   ShapeIcon,
   GentemIcon,
   ArrowSelect,
+  PrideFlag,
 }

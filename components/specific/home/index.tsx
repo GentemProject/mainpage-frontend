@@ -11,6 +11,7 @@ import LastProjects from './lastProjects'
 import Support from './support'
 import Donation from './donation'
 import Invitation from './invitation'
+import PrideMonth from 'components/specific/home/prideMonth'
 function Content(props: { query: any }): JSX.Element {
   const { query } = props
   const contentBanner = (
@@ -80,10 +81,10 @@ function Content(props: { query: any }): JSX.Element {
         desc="Descubre las organizaciones que trabajan por un futuro mejor"
       />
       <LastProjects projects={test} />
+      <PrideMonth/>
+     <div>
       <About />
-      <Info />
-      <div>
-        <Support />
+         <Support />
         <Invitation />
         <Donation />
       </div>

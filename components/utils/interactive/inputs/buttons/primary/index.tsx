@@ -1,9 +1,14 @@
-function Button(props) {
-  const { desc, color, colorFont } = props
+function Button(props: {
+  label: string
+  color?: string
+  colorFont?: string
+  onClick: Function
+}): JSX.Element {
+  const { label, onClick, color, colorFont } = props
   return (
     <div className="containerButton">
-      <button className="button">
-        <span>{desc}</span>
+      <button className="button" onClick={()=> onClick()}>
+        <span>{label}</span>
       </button>
       <style jsx>
         {`
